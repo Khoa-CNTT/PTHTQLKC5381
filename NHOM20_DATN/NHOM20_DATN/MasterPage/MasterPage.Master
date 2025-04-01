@@ -1,0 +1,450 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="NHOM20_DATN.MasterPage.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title class="web">Webiste đăng ký khám bệnh Banana</title>
+    <style>
+        @keyframes scaleUpDown {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .scaling-div {
+            animation: scaleUpDown 1.5s infinite;
+        }
+
+        .header1 {
+            margin-top: 1%;
+        }
+
+        .tb_icon a {
+            font-size: 14px;
+            color: #00007f;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .header1 .tb_icon tr td a:hover {
+            color: dodgerblue;
+        }
+
+        .tb_icon img {
+            max-width: 1em;
+            margin-top: -20px;
+        }
+
+        .tb_icon tr td {
+            padding-right: 10px;
+            align-content: center;
+        }
+
+        .tieudedangnhap {
+            background-color: darkorange;
+            width: 250px;
+            border-radius: 50px;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            padding-top: 8px;
+        }
+
+            .tieudedangnhap a {
+                text-transform: uppercase;
+            }
+
+        .dangnhap {
+            font-size: 14px;
+            color: whitesmoke;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .tieudehotro {
+            background-color: #020295;
+            width: 280px;
+            border-radius: 50px;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            padding: 8px;
+            font-size: 14px;
+            color: whitesmoke;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .header2 {
+            font-family: Helvetica;
+            font-size: 18px;
+            position: sticky;
+            top: 0;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 5000;
+            min-height: 100px;
+            background-color: #4CBBDE;
+        }
+
+            .header2 .container-fluid ul li {
+                padding-left: 15px;
+            }
+
+                .header2 .container-fluid ul li a:hover {
+                    color: #00007f;
+                    font-weight: bold;
+                }
+
+        #BackToTopImage {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            display: none; /* Cái này là ẩn nút cho đến khi cuộn xuống */
+            z-index: 1000;
+        }
+
+        .footer_chinh {
+            background: linear-gradient(to right,#4CBBDE, #66a6ff);
+            min-height: 200px;
+            padding-top: 25px;
+        }
+
+        #menu_footerleft li {
+            list-style: none;
+            color: #e8e8e8;
+            font-size: 14px;
+        }
+
+            #menu_footerleft li a {
+                text-decoration: none;
+                color: white;
+                font-size: 14px;
+                line-height: 30px;
+            }
+
+                #menu_footerleft li a:hover {
+                    color: #df2323;
+                }
+
+        .dropdown-menu {
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .title_footer {
+            color: white;
+            font-size: 30px;
+        }
+
+        #menu_footercenter {
+            margin-left: -20px;
+        }
+
+            #menu_footercenter li {
+                list-style: none;
+                color: #e8e8e8;
+                font-size: 14px;
+                padding: 3px 0px;
+            }
+
+                #menu_footercenter li a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 14px;
+                    line-height: 30px;
+                }
+
+                    #menu_footercenter li a:hover {
+                        color: #df2323;
+                    }
+
+        .footer_phu {
+            margin-top: -10px;
+            padding-top: 25px;
+            background-color: #f1f1f1;
+            min-height: 200px;
+        }
+
+            .footer_phu #footer_phu_left p {
+                color: #e8e8e8;
+                padding-left: 50px;
+                font-size: 14px;
+            }
+
+            .footer_phu hr {
+                background-color: gray;
+                height: 0.1px;
+                width: 500px;
+                margin-left: 50px;
+                border-width: 1px;
+            }
+
+            .footer_phu #footer_phu_right {
+                margin-left: 350px;
+            }
+
+        #caidat {
+            max-width: 25px;
+        }
+
+        .chucnangphu {
+            list-style: none;
+            text-decoration: none;
+        }
+
+        .phu {
+            left: 0;
+            width: 250px;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+     <div class="container">
+         <div class="ZX">
+             <div class="header1">
+                 <div class="row">
+                     <div class="col-xl-5">
+                         <table class="tb_icon">
+                             <tr>
+                                 <td>
+                                     <img src="img/tiktok.png" /></td>
+                                 <td>
+                                     <p style="font-size: 16px;"><a href="">TikTok</a></p>
+                                 </td>
+                                 <td>
+                                     <img src="img/facebook.png" /></td>
+                                 <td>
+                                     <p style="font-size: 16px;"><a href="">Facebook</a></p>
+                                 </td>
+                                 <td>
+                                     <img src="img/youtube.png" /></td>
+                                 <td>
+                                     <p style="font-size: 16px;"><a href="">Youtube</a></p>
+                                 </td>
+                                 <td>
+                                     <img src="img/zalo.jpg" /></td>
+                                 <td>
+                                     <p style="font-size: 16px;"><a href="">Zalo</a></p>
+                                 </td>
+                             </tr>
+                         </table>
+                     </div>
+                     <div style="margin-left: 120px;" class="col-6 col-xl-5">
+                         <table class="dangnhap">
+                             <tr>
+                                 <td class="tieudedangnhap">
+                                     <p>
+                                         <a id="lnkDangNhapDangKy" class="dangnhap" href="DangNhap.aspx" runat="server">ĐĂNG NHẬP/ĐĂNG KÝ</a>
+                                     </p>
+                                 </td>
+                             </tr>
+                         </table>
+                     </div>
+
+                     <div style="margin-left: -280px;" class="col-6 col-xl-2 scaling-div">
+                         <table class="lienhe">
+                             <tr>
+                                 <td>
+                                     <p class="tieudehotro">
+                                         <img style="width: 28px; padding-right: 5px;" src="img/tainghe.png" />HỖ TRỢ ĐẶT KHÁM : <b>1900 3456</b>
+                                     </p>
+                                 </td>
+                             </tr>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+             <div class="header2">
+                 <div class="row">
+                     <div class="col-xl-3">
+                         <a href="Default.aspx">
+                             <img style="width: 100px;" src="img/logochinh.png" /></a>
+                     </div>
+                     <div style="max-width: 900px; margin-top: 8px;" class="col-xl-9">
+                         <nav style="padding-left: 20px;" class="navbar navbar-expand-lg bg-body-tertiary">
+                             <div class="container-fluid">
+                                 <a style="font-size: 18px; color: #686868; margin-top: -1px;" class="navbar-brand" href="Default.aspx">Trang chủ</a>
+                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#Menucontent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                     <span class="navbar-toggler-icon"></span>
+                                 </button>
+                                 <div class="collapse navbar-collapse" id="Menucontent" style="margin-top: 4px;">
+                                     <ul class="navbar-nav me-auto mb-2 mb-lg-1">
+                                         <li class="nav-item">
+                                             <a class="nav-link active" aria-current="page" href="GioiThieu.aspx">Giới thiệu</a>
+                                         </li>
+                                         <li class="nav-item">
+                                             <a class="nav-link" href="TinTuc.aspx">Tin tức</a>
+                                         </li>
+                                         <li class="nav-item dropdown">
+                                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dịch vụ</a>
+                                             <ul class="dropdown-menu">
+                                                 <li><a class="dropdown-item" href="DangkyKhamTrucTiep.aspx">Đăng ký khám trực tiếp</a></li>
+                                                 <li><a class="dropdown-item" href="TuVanSucKhoeTrucTuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
+                                                 <li><a class="dropdown-item" href="HuyKham.aspx">Hủy khám</a></li>
+                                                 <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>
+                                             </ul>
+                                         </li>
+                                         <li class="nav-item dropdown">
+                                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hướng dẫn</a>
+                                             <ul class="dropdown-menu">
+                                                 <li><a class="dropdown-item" href="HuongDanDatLichKham.aspx">Đặt lịch khám</a></li>
+                                                 <li><a class="dropdown-item" href="HuongDanQuyTrinhDiKham.aspx">Quy trình đi khám</a></li>
+                                                 <li><a class="dropdown-item" href="CauHoiThuongGap.aspx">Câu hỏi thường gặp</a></li>
+                                             </ul>
+                                         </li>
+                                         <li class="nav-item">
+                                             <a class="nav-link" href="LienHe.aspx">Liên hệ</a>
+                                         </li>
+                                         <li class="nav-item">
+                                             <table class="icon">
+                                                 <tr>
+                                                     <td>
+                                                         <a href="">
+                                                             <img id="thongbao" style="width: 26px; margin-top: 5px; margin-left: 15px;" src="img/notification.png" />
+                                                         </a>
+                                                     </td>
+                                                     <td>
+                                                         <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">
+                                                             <img style="width: 26px; margin-left: 15px; margin-top: 5px;" src="img/gmail.png" /></a>
+                                                     </td>
+                                                 </tr>
+                                             </table>
+                                         </li>
+                                         <li class="nav-item dropdown">
+                                             <a class="nav-link dropdown-toggle" href="#" role="button" id="caidatDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                 <asp:ImageButton ID="caidat" ImageUrl="~/img/setting.png" runat="server" />
+                                             </a>
+                                             <ul class="dropdown-menu phu" aria-labelledby="caidatDropdown">
+                                                 <li runat="server" id="quanLyThongTin">
+                                                     <asp:LinkButton CssClass="chucnangphu" ID="btnQuanly_thongtin" runat="server" Text="Quản lý thông tin cá nhân" PostBackUrl="~/QuanLyThongTinCaNhan.aspx" /></li>
+                                                 <li runat="server" id="dl">
+                                                     <asp:LinkButton CssClass="chucnangphu" ID="btnDatLai" runat="server" Text="Đặt lại mật khẩu" PostBackUrl="~/DatLaiMatKhau.aspx" /></li>
+                                                 <li runat="server" id="dangXuat">
+                                                     <asp:LinkButton CssClass="chucnangphu" ID="btnDangXuat" runat="server" OnClick="Logout_Click" OnClientClick="return confirm('Bạn có chắc chắn muốn đăng xuất?');" Text="Đăng xuất" /></li>
+
+                                             </ul>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </nav>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="row">
+                 <div class="col">
+                     <asp:ImageButton ID="BackToTopImage" runat="server" ImageUrl="~/img/up-arrow.png" OnClientClick="scrollToTop(); return false;" />
+                 </div>
+             </div>
+         </div>
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+                     <div class="footer text-center">
+                <div class="ZY">
+                    <div class="footer_chinh">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img src="img/logochinh.png" style="max-width: 180px; margin-left: 30px; margin-top: 10px;" />
+                                <ul id="menu_footerleft">
+                                    <li>
+                                        <img style="width: 18px; margin: -3px 10px;" src="img/next.png" /><a style="margin-top: -15px;" href="">Trang chủ</a></li>
+                                    <li>
+                                        <img style="width: 18px; margin: -3px 10px;" src="img/next.png" /><a style="margin-top: -15px;" href="GioiThieu.aspx">Giới thiệu</a></li>
+                                    <li>
+                                        <img style="width: 18px; margin: -3px 10px;" src="img/next.png" /><a style="margin-top: -15px;" href="TinTuc.aspx">Tin tức</a></li>
+                                    <li>
+                                        <img style="width: 18px; margin: -3px 10px;" src="img/next.png" /><a style="margin-top: -15px;" href="LienHe.aspx">Liên hệ</a></li>
+                                    <li style="margin-top: 4px;">
+
+                                        <img style="width: 15px; margin: -3px 10px;" src="img/phone.png" />Hotline : 1900 3456
+
+                                    </li>
+                                    <li style="margin-top: 4px; padding: 6px 0px;">
+                                        <img style="width: 15px; margin: -3px 10px;" src="img/gmail.png" />Gmail : bananahospital@gmail.com</li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-4">
+                                <h4 class="title_footer">HƯỚNG DẪN BỆNH NHÂN :</h4>
+                                <ul id="menu_footercenter">
+                                    <li>
+                                        <img style="width: 18px;" src="img/next.png" /><a style="margin-top: -15px;" href="">Đặt lịch khám</a></li>
+                                    <li>
+                                        <img style="width: 18px;" src="img/next.png" /><a style="margin-top: -15px;" href="">Quy trình đi khám</a></li>
+                                    <li>
+                                        <img style="width: 18px;" src="img/next.png" /><a style="margin-top: -15px;" href="">Câu hỏi thường gặp</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-4">
+                                <h4 class="title_footer">ĐỊA CHỈ BỆNH VIỆN :</h4>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2855.431423551432!2d108.20749375056734!3d16.06028127260758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b416e135cd%3A0x401b57932be120d9!2zMjIwIFBoYW4gVGhhbmgsIFRo4bqhYyBHacOhbiwgVGhhbmggS2jDqiwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1713282438118!5m2!1svi!2s"
+                                    style="max-width: 300px; height: 280px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer_phu">
+                        <div class="row">
+                            <div class="col-6 col-xl-6">
+                                <p><b>Giấy phép kinh doanh số</b> : 31739QCS/BDHN</p>
+                                <p><b>Quyền sở hữu trí tuệ số</b> : QUSHTT_982413</p>
+                            </div>
+                            <div class="col-6 col-xl-6">
+                                <img src="img/bocongthuong.png" style="max-width: 260px; height: 100px;" />
+                                <img src="img/quality.png" style="max-width: 150px; height: 100px;" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p style="margin-top: 30px;">Copyright 2024 · Thiết kế và phát triển bởi BANANA HOSPITAL All rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script>
+        document.getElementById("thongbao").addEventListener("click", function (event) {
+            event.preventDefault();
+            var notificationModal = new bootstrap.Modal(document.getElementById("notificationModal"));
+            notificationModal.show();
+        });
+    </script>
+    <script type="text/javascript">
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <script type="text/javascript">
+        window.onscroll = function () {
+            var backToTopButton = document.getElementById('<%= BackToTopImage.ClientID %>');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+    </script>
+   
+</body>
+</html>

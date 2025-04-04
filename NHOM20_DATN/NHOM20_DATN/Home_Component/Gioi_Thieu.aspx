@@ -514,8 +514,8 @@
                                alt="Green haired ninja in armor - Video game character" />
                        </div>
                        <div class="card card-3">
-                           <img class="../card-img"
-                               src="img/dientich.jpeg"
+                           <img class="card-img"
+                               src="../img/dientich.jpeg"
                                alt="Female warrior in armor - Video game character" />
                        </div>
                        <div class="card card-4">

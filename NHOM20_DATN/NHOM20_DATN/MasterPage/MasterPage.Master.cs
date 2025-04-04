@@ -20,6 +20,8 @@ namespace NHOM20_DATN.MasterPage
                     lnkDangNhapDangKy.InnerHtml = tenDN;
                     lnkDangNhapDangKy.HRef = "#";
 
+                    
+
 
                     caidat.PostBackUrl = "#"; // Không thay đổi URL khi nhấn vào
                     quanLyThongTin.Visible = true; // Hiển thị "Quản lý thông tin cá nhân"
@@ -30,7 +32,7 @@ namespace NHOM20_DATN.MasterPage
                 else
                 {
                     // Người dùng chưa đăng nhập
-                    caidat.PostBackUrl = "DangNhap.aspx"; // Điều hướng đến trang đăng nhập
+                    caidat.PostBackUrl = "~/Dang_Nhap.aspx"; // Điều hướng đến trang đăng nhập
                     quanLyThongTin.Visible = false; // Ẩn "Quản lý thông tin cá nhân"
                     btnDatLai.Visible = false;
                     dangXuat.Visible = false; // Ẩn "Đăng xuất"
@@ -56,7 +58,7 @@ namespace NHOM20_DATN.MasterPage
             // Xóa session và điều hướng về trang đăng nhập
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("DangNhap.aspx");
+            Response.Redirect("~/Dang_Nhap.aspx");
         
         }
     }

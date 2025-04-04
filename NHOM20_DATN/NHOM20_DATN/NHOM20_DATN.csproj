@@ -145,9 +145,11 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="Dat_Lai_Mat_Khau.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home_Component\Gioi_Thieu.aspx" />
+    <Content Include="Huy_Kham.aspx" />
     <Content Include="img\110.jpg" />
     <Content Include="img\abs.jpeg" />
     <Content Include="img\ahd1.jpeg" />
@@ -225,6 +227,7 @@
     <Content Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Lich_Kham.aspx" />
     <Content Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx" />
+    <Content Include="Quen_Mat_Khau.aspx" />
     <Content Include="style\doctor\doctor_appointment.css" />
     <Content Include="style\doctor\doctor_side_style.css" />
     <Content Include="style\login_content_style.css" />
@@ -240,6 +243,7 @@
     <Content Include="Patient\Thong_Tin_Tu_Van.aspx" />
     <Content Include="Patient\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Xem_Thong_Tin_Benh_Nhan.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dang_Ky.aspx.cs">
@@ -255,6 +259,13 @@
     </Compile>
     <Compile Include="Dang_Nhap.aspx.designer.cs">
       <DependentUpon>Dang_Nhap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dat_Lai_Mat_Khau.aspx.cs">
+      <DependentUpon>Dat_Lai_Mat_Khau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dat_Lai_Mat_Khau.aspx.designer.cs">
+      <DependentUpon>Dat_Lai_Mat_Khau.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -272,6 +283,13 @@
     </Compile>
     <Compile Include="Home_Component\Gioi_Thieu.aspx.designer.cs">
       <DependentUpon>Gioi_Thieu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Huy_Kham.aspx.cs">
+      <DependentUpon>Huy_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Huy_Kham.aspx.designer.cs">
+      <DependentUpon>Huy_Kham.aspx</DependentUpon>
     </Compile>
     <Compile Include="LopKetNoi.cs" />
     <Compile Include="MasterPage\Doctor_MasterPage.Master.cs">
@@ -340,11 +358,25 @@
       <DependentUpon>Tu_Van_Suc_Khoe_Truc_Tuyen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quen_Mat_Khau.aspx.cs">
+      <DependentUpon>Quen_Mat_Khau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quen_Mat_Khau.aspx.designer.cs">
+      <DependentUpon>Quen_Mat_Khau.aspx</DependentUpon>
+    </Compile>
     <Compile Include="res\service\AppointmentManagerment_Service.cs" />
     <Compile Include="res\service\DoctorService.cs" />
     <Compile Include="res\service\PatientManagerment.cs" />
     <Compile Include="res\service\QlbvService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
+    <Compile Include="Xem_Thong_Tin_Benh_Nhan.aspx.cs">
+      <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Xem_Thong_Tin_Benh_Nhan.aspx.designer.cs">
+      <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage\MasterPage.Master" />

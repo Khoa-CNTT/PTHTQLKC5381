@@ -3,16 +3,32 @@
   "WorkspaceRootPath": "E:\\NHOM20_FINAL\\NHOM20_DATN\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|e:\\nhom20_final\\nhom20_datn\\nhom20_datn\\patient\\tu_van_suc_khoe_truc_tuyen.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\patient\\tu_van_suc_khoe_truc_tuyen.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|e:\\nhom20_final\\nhom20_datn\\nhom20_datn\\patient\\tu_van_suc_khoe_truc_tuyen.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\patient\\tu_van_suc_khoe_truc_tuyen.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|e:\\nhom20_final\\nhom20_datn\\nhom20_datn\\patient\\thong_tin_tu_van.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\patient\\thong_tin_tu_van.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|e:\\nhom20_final\\nhom20_datn\\nhom20_datn\\patient\\thong_tin_tu_van.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\patient\\thong_tin_tu_van.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|E:\\NHOM20_FINAL\\NHOM20_DATN\\nhom20_datn\\masterpage\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\masterpage\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|e:\\nhom20_final\\nhom20_datn\\nhom20_datn\\home_component\\gioi_thieu.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\home_component\\gioi_thieu.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|E:\\NHOM20_FINAL\\NHOM20_DATN\\nhom20_datn\\patient\\quan_ly_thong_tin_ca_nhan.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\patient\\quan_ly_thong_tin_ca_nhan.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|E:\\NHOM20_FINAL\\NHOM20_DATN\\nhom20_datn\\masterpage\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|solutionrelative:nhom20_datn\\masterpage\\masterpage.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F74C28E-A305-41F3-815D-A79579A14738}|NHOM20_DATN\\NHOM20_DATN.csproj|E:\\NHOM20_FINAL\\NHOM20_DATN\\nhom20_datn\\patient\\quan_ly_thong_tin_ca_nhan.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,7 +58,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Quan_Ly_Thong_Tin_Ca_Nhan.aspx",
               "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Quan_Ly_Thong_Tin_Ca_Nhan.aspx",
               "RelativeDocumentMoniker": "NHOM20_DATN\\Patient\\Quan_Ly_Thong_Tin_Ca_Nhan.aspx",
@@ -73,19 +89,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Gioi_Thieu.aspx",
-              "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
-              "RelativeDocumentMoniker": "NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
-              "ToolTip": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
-              "RelativeToolTip": "NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
+              "Title": "Tu_Van_Suc_Khoe_Truc_Tuyen.aspx",
+              "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx",
+              "RelativeDocumentMoniker": "NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx",
+              "ToolTip": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx",
+              "RelativeToolTip": "NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-04-03T17:18:09.711Z",
+              "WhenOpened": "2025-04-04T03:26:21.804Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "Tu_Van_Suc_Khoe_Truc_Tuyen.aspx.cs",
+              "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx.cs",
+              "RelativeDocumentMoniker": "NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx.cs",
+              "ToolTip": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx.cs",
+              "RelativeToolTip": "NHOM20_DATN\\Patient\\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T03:28:38.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MasterPage.Master",
               "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\MasterPage\\MasterPage.Master",
               "RelativeDocumentMoniker": "NHOM20_DATN\\MasterPage\\MasterPage.Master",
@@ -98,7 +127,46 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Thong_Tin_Tu_Van.aspx",
+              "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx",
+              "RelativeDocumentMoniker": "NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx",
+              "ToolTip": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx",
+              "RelativeToolTip": "NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-04-04T03:33:58.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Thong_Tin_Tu_Van.aspx.cs",
+              "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx.cs",
+              "RelativeDocumentMoniker": "NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx.cs",
+              "ToolTip": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx.cs",
+              "RelativeToolTip": "NHOM20_DATN\\Patient\\Thong_Tin_Tu_Van.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T03:35:24.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Gioi_Thieu.aspx",
+              "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
+              "RelativeDocumentMoniker": "NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
+              "ToolTip": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
+              "RelativeToolTip": "NHOM20_DATN\\Home_Component\\Gioi_Thieu.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-04-03T17:18:09.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs",
               "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Patient\\Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs",
               "RelativeDocumentMoniker": "NHOM20_DATN\\Patient\\Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs",
@@ -106,11 +174,12 @@
               "RelativeToolTip": "NHOM20_DATN\\Patient\\Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs",
               "ViewState": "AgIAACYAAAAAAAAAAADwv4kAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-03T16:11:51.477Z"
+              "WhenOpened": "2025-04-03T16:11:51.477Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "LopKetNoi.cs",
               "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\LopKetNoi.cs",
               "RelativeDocumentMoniker": "NHOM20_DATN\\LopKetNoi.cs",
@@ -118,11 +187,12 @@
               "RelativeToolTip": "NHOM20_DATN\\LopKetNoi.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T12:18:11.898Z"
+              "WhenOpened": "2025-04-02T12:18:11.898Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "MasterPage.Master.cs",
               "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\MasterPage\\MasterPage.Master.cs",
               "RelativeDocumentMoniker": "NHOM20_DATN\\MasterPage\\MasterPage.Master.cs",
@@ -130,11 +200,12 @@
               "RelativeToolTip": "NHOM20_DATN\\MasterPage\\MasterPage.Master.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAQwDcAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T15:41:00.556Z"
+              "WhenOpened": "2025-04-01T15:41:00.556Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Dang_Nhap.aspx.cs",
               "DocumentMoniker": "E:\\NHOM20_FINAL\\NHOM20_DATN\\NHOM20_DATN\\Dang_Nhap.aspx.cs",
               "RelativeDocumentMoniker": "NHOM20_DATN\\Dang_Nhap.aspx.cs",
@@ -142,7 +213,8 @@
               "RelativeToolTip": "NHOM20_DATN\\Dang_Nhap.aspx.cs",
               "ViewState": "AgIAAG8AAAAAAAAAAAAowBQAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T12:25:39.068Z"
+              "WhenOpened": "2025-04-02T12:25:39.068Z",
+              "EditorCaption": ""
             }
           ]
         }

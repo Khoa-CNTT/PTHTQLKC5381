@@ -1,0 +1,427 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+.d_flex {
+    display: flex;
+    gap: 8px;
+    background-color: aliceblue;
+}
+
+#content {
+    width: 65%;
+    margin: 0 auto;
+}
+
+
+.doctor_tb {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 95%;
+    margin-top: 20px;
+    margin-left: 50px;
+    border: 1px solid #000;
+}
+
+.bang-header {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-left: 420px;
+}
+
+
+
+.icon_User i {
+    font-size: 5em;
+    color: #8583e2;
+}
+
+.out i {
+    margin-top: 100px;
+    margin-left: -60px;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.out {
+    font-size: 18px;
+}
+
+    .out a {
+        color: #8583e2;
+        font-size: 20px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+
+.btn-them, .btn-sua, .btn-xoa {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-them {
+    background-color: #45a049; /* Màu xanh lá */
+    color: white;
+}
+
+.btn-sua {
+    background-color: #2196F3; /* Màu xanh dương */
+}
+
+.btn-xoa {
+    background-color: #F44336; /* Màu đỏ */
+}
+
+.btn-them:hover {
+    background-color: #45a049; /* Màu xanh lá đậm khi hover */
+}
+
+.btn-sua:hover {
+    background-color: #0b7dda; /* Màu xanh dương đậm khi hover */
+}
+
+.btn-xoa:hover {
+    background-color: #d32f2f; /* Màu đỏ đậm khi hover */
+}
+
+.doctor_tb td, th {
+    text-align: left;
+    padding: 8px;
+}
+
+.Phankhung {
+    display: flex;
+}
+
+.sidebar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 350px;
+    background: #ffffff;
+    padding: 20px;
+    height: 105vh;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    touch-action: pan-y;
+    border-radius: 2em;
+}
+
+    .sidebar h2 {
+        text-align: center;
+        color: #8583e2;
+        font-size: 36px;
+        margin: 1em 0;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+            .sidebar ul li:hover {
+                color: red;
+                font-weight: bold;
+            }
+
+            .sidebar ul li a {
+                text-decoration: none;
+                color: #8583e2;
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+                .sidebar ul li a i {
+                    margin-right: 10px;
+                    font-weight: 800;
+                    color: #8583e2;
+                }
+
+.size {
+    font-size: 24px;
+    color: white;
+    margin-top: 50px;
+}
+
+.bx-user-circle {
+    font-size: 75px;
+    margin-left: 70px;
+}
+
+.d_block {
+    display: block;
+}
+
+.d_none {
+    display: none;
+}
+
+.btn_close {
+    float: right;
+    cursor: pointer;
+    display: none;
+}
+
+    .btn_close i {
+        color: white;
+        font-size: 30px;
+    }
+
+.btn_menu {
+    position: fixed;
+    margin-top: 1.5em;
+    margin-left: 1em;
+    display: none;
+    opacity: 0.5;
+}
+
+    .btn_menu i {
+        cursor: pointer;
+        background: #ccc;
+        color: whitesmoke;
+        font-size: 3em;
+        border-radius: 10px;
+        padding: 9px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+/*PC*/
+@media only screen and (max-width: 960px) {
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 80%;
+    }
+
+    .btn_menu {
+        display: block;
+    }
+
+    .btn_close {
+        display: block;
+        position: absolute;
+        font-size: 30px;
+        color: white;
+        right: 1em;
+        top: 0;
+    }
+
+    .active {
+        display: flex;
+        left: 0%;
+        flex-flow: column;
+        width: 22em;
+        z-index: 2;
+    }
+
+    .out i {
+        font-size: 25px;
+    }
+
+    .out {
+        position: absolute;
+        bottom: 8em;
+    }
+}
+
+@media only screen and (min-width: 100px) and (max-width: 786px) {
+
+    body {
+        margin: 0;
+    }
+
+    .d_flex {
+        margin-top: 9em;
+    }
+
+    .menu-container {
+        height: 11em;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 80%;
+        top: 0;
+    }
+
+    .btn_menu {
+        display: block;
+        margin-left: unset;
+        margin-top: unset;
+        top: 0;
+        width: 100%;
+        background-color: aqua;
+        opacity: 0.6;
+        padding: 0.5em;
+    }
+
+    .btn_close {
+        position: absolute;
+        font-size: 30px;
+        right: 30px;
+        color: white;
+    }
+
+    .active {
+        display: flex;
+        left: 0%;
+    }
+
+    .sidebar ul li {
+        padding: 1em 0;
+        margin: 2em 0;
+    }
+
+        .sidebar ul li a, .sidebar h3 {
+            font-size: 25px;
+        }
+
+    .sidebar h2 {
+        font-size: 25px;
+    }
+
+    .btn_menu i {
+        font-size: 4em;
+    }
+
+    .out i {
+        font-size: 25px;
+    }
+
+    .out {
+        position: absolute;
+        bottom: 2em;
+    }
+
+    .size {
+        margin-top: unset;
+        z-index: 2;
+    }
+
+    .sidebar ul li {
+        margin: unset;
+    }
+}
+
+/*Mobile phone*/
+
+@media only screen and (max-device-width: 960px) {
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 80%;
+    }
+
+    .btn_menu {
+        top: 0;
+        margin: 0;
+        display: block;
+        width: 100%;
+        padding: 1em;
+        background-color: #4ba7f0;
+        opacity: 0.9;
+    }
+
+    .btn_close {
+        display: block;
+    }
+
+    .active {
+        display: block;
+        left: 0%;
+        z-index: 2;
+    }
+
+    .out i {
+        font-size: 25px;
+        margin-top: 100px;
+        margin-left: unset;
+    }
+}
+
+@media only screen and (min-device-width: 100px) and (max-device-width: 786px) {
+    .icon_User {
+        margin-top: 10em;
+    }
+
+    .size {
+        font-size: 4em;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 80%;
+    }
+
+    .btn_menu {
+        top: 0;
+        margin: 0;
+        display: block;
+        width: 100%;
+        padding: 1em;
+        background-color: #4ba7f0;
+    }
+
+    .btn_close {
+        display: block;
+        position: absolute;
+        right: 1em;
+    }
+
+        .btn_close i, .btn_menu i {
+            font-size: 8em;
+        }
+
+    .active {
+        display: flex;
+        left: 0%;
+        flex-direction: column;
+        z-index: 2;
+    }
+
+    .sidebar ul li a {
+        text-decoration: none;
+        color: white;
+        font-size: 4em;
+    }
+
+    .sidebar ul li {
+        margin: 3em 0;
+    }
+
+    .sidebar h2 {
+        font-size: 7em;
+        margin: 25px 0;
+    }
+
+    .out i {
+        font-size: 80px;
+        margin: unset;
+    }
+}

@@ -1,0 +1,421 @@
+﻿#list_here {
+    margin-top: 3em;
+    max-width: fit-content;
+}
+
+
+
+.pd_tb_2px {
+    padding: 2px 0;
+}
+
+
+.seach_bar {
+    margin-bottom: 1em;
+}
+
+    .seach_bar input, .filter_bar select {
+        padding: 0.4em 1em;
+        border: 1px solid #ccc;
+        border-radius: 1em;
+    }
+
+.btn_search {
+    padding: 0.6em 2em;
+    background: #95e4c8;
+    text-decoration: none;
+    color: azure;
+    font-weight: 600;
+    border-radius: 1em;
+}
+
+    .btn_search:hover {
+        background: #64cba6;
+    }
+
+.gridview-table tr:first-child th:first-child {
+    border-top-left-radius: 20px;
+}
+
+/* top-right border-radius */
+.gridview-table tr:first-child th:last-child {
+    border-top-right-radius: 20px;
+}
+
+/* bottom-left border-radius */
+.gridview-table tr:nth-last-child(2) td:first-child {
+    border-bottom-left-radius: 20px;
+}
+
+/* bottom-right border-radius */
+.gridview-table tr:nth-last-child(2) td:last-child {
+    border-bottom-right-radius: 20px;
+}
+
+.gridview-table {
+    table-layout: inherit;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin-right: 0px;
+}
+
+    .gridview-table th {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+        white-space: nowrap;
+        background-color: #72c1f6;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #4d4c4c;
+    }
+
+    .gridview-table td {
+        padding: 6px;
+        border-top: 1px solid #ccc;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+        background-color: white;
+    }
+
+
+    .gridview-table td {
+        font-size: 14px;
+        word-wrap: break-word;
+        background-color: white;
+    }
+
+        .gridview-table td a {
+            margin: 5px 0;
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+            width: 6em;
+            border-radius: 5em;
+            text-align: center;
+        }
+
+
+
+
+
+    .gridview-table .ddl_Department {
+        width: 100%;
+        max-width: 200px;
+    }
+
+
+
+    .gridview-table input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+.EditButton {
+    color: white;
+    background-color: dodgerblue;
+    padding: 5px 10px;
+    width: 2em;
+}
+
+.UpdateButton {
+    margin: 10px 0;
+    color: white;
+    background-color: dodgerblue;
+    padding: 5px 10px;
+    width: 2em;
+}
+
+.CancelButton {
+    margin: 10px 0;
+    color: white;
+    background-color: olivedrab;
+    padding: 5px 10px;
+    width: 2em;
+}
+
+.DeleteButton {
+    background-color: red;
+    padding: 5px 10px;
+    color: white;
+    min-width: 2em;
+}
+
+.btn_update {
+    height: 2em;
+}
+
+.load_list {
+    width: 2em;
+    text-align: center;
+    padding: 5px;
+    background: #e4dfd9;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+    .load_list a {
+        padding: unset;
+    }
+
+
+
+
+.pagination {
+    line-height: 24px;
+    display: contents;
+}
+
+    .pagination span {
+        padding: 2px 10px;
+        background-color: cornflowerblue;
+        color: white;
+    }
+
+    .pagination td {
+        border: none;
+        border-radius: unset;
+        background-color: none;
+        padding: 0;
+        width: unset;
+        background-color: unset;
+    }
+
+        .pagination td a {
+            border-radius: unset;
+            padding: 2px 10px;
+            color: white;
+            width: auto;
+        }
+
+    .pagination span,
+    .pagination a {
+        padding: 2px 10px;
+    }
+
+    .pagination table {
+        margin: 2em auto;
+    }
+
+
+
+        .pagination table td a,
+        .pagination table td span {
+            margin: 0;
+            border: 1px solid #ccc;
+            display: block;
+            border-radius: unset;
+        }
+
+
+
+
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-bg-type: none;
+}
+
+
+
+@media only screen and (max-width: 1500px) {
+    .table_doctor {
+        overflow-x: scroll;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    #content {
+        width: 100%;
+    }
+
+    #cont_btn {
+        gap: 3em;
+    }
+
+    .d_flex {
+        display: block;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+
+
+@media screen and (min-width: 100px) and (max-width: 768px) {
+    #content {
+        width: 100%;
+    }
+
+    #cont_btn {
+        display: block;
+        width: 100%;
+    }
+
+        #cont_btn .btn_regist_dt, .btn_list {
+            width: 100%;
+            margin: 1em 0;
+        }
+
+    .d_flex {
+        display: block;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+}
+
+
+
+/*==================            Moblie             ==================*/
+
+@media only screen and (max-device-width: 960px) {
+    #content {
+        width: 100%;
+    }
+
+    #cont_btn {
+        gap: 3em;
+    }
+
+    .d_flex {
+        display: block;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+@media only screen and (min-device-width: 100px) and (max-device-width: 786px) {
+
+    /*List*/ .gridview-table td
+    .gridview-table td {
+        white-space: unset;
+        padding: 21px;
+    }
+
+    .gridview-table th,
+    .gridview-table td {
+        font-size: 45px;
+        max-width: 20em;
+    }
+
+        .gridview-table td a {
+            font-size: 35px;
+            font-weight: 600;
+        }
+
+
+
+    .seach_bar input {
+        font-size: 40px;
+    }
+
+    .filter_bar select {
+        font-size: 40px;
+    }
+
+        .filter_bar select select option {
+            font-size: 20px;
+        }
+
+    .btn_search {
+        padding: 3.5em;
+    }
+
+    .seach_bar i {
+        font-size: 60px;
+    }
+
+    .load_list {
+        font-size: 65px;
+        padding: unset;
+    }
+
+    #content {
+        width: 100%;
+    }
+
+    #cont_btn {
+        display: block;
+        width: 100%;
+    }
+
+        #cont_btn a {
+            font-size: 45px;
+        }
+
+        #cont_btn .btn_regist_dt, .btn_list {
+            width: 100%;
+            margin: 1em 0;
+        }
+
+    .d_flex {
+        display: block;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+
+    .EditButton, .DeleteButton {
+        padding: 22px 20px;
+    }
+
+    .seach_bar input, .filter_bar select {
+        padding: 1.4em 1em;
+        border: 1px solid #ccc;
+        width: 80%;
+        border-radius: 1em;
+    }
+
+    .ddl_filter option {
+        font-size: 20px;
+    }
+
+    .gridview-table .btn_update a {
+        font-size: 45px;
+    }
+
+    .pd_tb_2px option {
+        font-size: 20px;
+    }
+
+    .gridview-table input[type="text"] {
+        margin: 0 1em;
+        width: unset;
+    }
+
+    .pagination table td span,
+    .pagination table td a {
+        padding: 1em 1.5em;
+    }
+}

@@ -1,0 +1,46 @@
+﻿
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em 0;
+}
+
+    #container .detail_main .detail_content .detail_img img {
+        max-width: 100%;
+        margin: 1em 0;
+    }
+
+.float_r {
+    float: right;
+}
+
+.color_A0A0A0 {
+    color: #A0A0A0;
+}
+
+#container .detail_main .detail_content {
+    font-family: Roboto;
+    font-size: 17px;
+    line-height: 30px;
+    color: #222;
+}
+
+@media (min-width: 1200px) {
+
+    #container {
+        width: 1170px;
+    }
+}
+
+@media (min-width: 992px) {
+    #container {
+        width: 750px;
+    }
+}
+
+@media screen and (min-width: 100px) and (max-device-width: 768px) {
+
+    #container {
+        padding: 1em 1em;
+    }
+}

@@ -1,0 +1,277 @@
+﻿
+#container_regist {
+    margin: 2em;
+}
+
+#regist_here {
+    display: none;
+}
+/*===========================       doctor regist forrm         ============================*/
+#regist_form {
+    background-color: rgba(245, 250, 255, 0.986);
+    max-width: 50%;
+    border-radius: 1em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 3em;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #cdc6c6;
+}
+
+.cl_red {
+    color: red;
+}
+
+#regist_form h2 {
+    color: rgb(59, 194, 252);
+}
+
+#regist_form .inp_mxn {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+#regist_form .inp_mdn,
+.inp_mk,
+.inp_mxn {
+    margin: 1em 0;
+    width: 80%;
+}
+
+#regist_form h2 {
+    margin: 1em 0;
+}
+
+#regist_form input {
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 1.5em;
+    border: 1px solid #ccc;
+    background-color: #e5e5e582;
+}
+
+#regist_form .inp_mxn input {
+    width: 50%;
+}
+
+#regist_form .inp_mxn span {
+    padding: 1em 2em;
+    background-color: rgb(59, 194, 252);
+}
+
+
+
+
+#regist_form .inp_submit .inp_btn input {
+    padding: 1em 2em;
+    background-color: rgb(87, 205, 255);
+    border: none;
+    border-radius: 2em;
+    cursor: pointer;
+    color: aliceblue;
+    font-weight: 500;
+}
+
+    #regist_form .inp_submit .inp_btn input:hover {
+        background-color: rgb(14, 181, 253);
+    }
+
+#regist_form .inp_submit {
+    padding: 1em;
+}
+
+#regist_form .inp_mxn,
+.inp_btn p,
+button {
+    font-weight: 600;
+    color: aliceblue;
+}
+
+#regist_form .inp_regis {
+    margin-bottom: 2em;
+}
+
+
+#regist_form .inp_sdt {
+    width: 60%;
+    margin: 1em;
+}
+
+.d_flex {
+    display: flex;
+    gap: 1em;
+}
+
+
+.inp_specialists {
+    width: 100%;
+    padding: 0.5em 1em;
+    border-radius: 1.5em;
+    border: 1px solid #ccc;
+    background-color: #e5e5e582;
+    /*color: #6e6e6e;*/
+}
+
+.mg_tb_1em {
+    margin: 1em 0;
+}
+
+.mg_left_1em {
+    margin-left: 1em;
+}
+
+.mg_right_2em {
+    margin-right: 2em;
+}
+
+.width_50per {
+    width: 50%;
+}
+
+#cont_btn .btn_regist_dt, .btn_list {
+    width: 12em;
+    background-color: darkgrey;
+    border-radius: 2em;
+}
+
+    #cont_btn .btn_regist_dt:hover, .btn_list:hover {
+        background-color: darkorange;
+    }
+
+
+#cont_btn {
+    display: flex;
+    justify-content: center;
+    gap: 8em;
+}
+
+    #cont_btn a {
+        font-weight: 500;
+        text-decoration: none;
+        color: aliceblue;
+        padding: 1em;
+        line-height: 3em;
+    }
+/*=======================        List doctor    ===========================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* remove up/down number btn */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+@media screen and (min-device-width: 1380px) {
+    #regist_form .date_inp {
+        padding: 1.3em 1em;
+    }
+}
+
+@media screen and (max-width: 1380px) {
+
+    #regist_form .inp_mxn {
+        display: block;
+    }
+}
+
+.inp_mxn span {
+    width: 100%;
+}
+
+#cont_btn {
+    text-align: center;
+}
+
+
+
+@media screen and (min-width: 962px) and (max-width: 1400px) {
+    #regist_form {
+        max-width: 70%;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    #regist_form {
+        max-width: 80% !important;
+    }
+}
+
+
+@media only screen and (min-width: 100px) and (max-device-width: 768px) {
+
+
+    #regist_form input {
+        padding: 0.5em 1em;
+    }
+
+
+
+    #regist_form .inp_mxn input {
+        padding: 1.3em 0;
+        padding-left: 1em;
+    }
+
+    #regist_form .inp_sdt {
+        display: block;
+        margin: 0;
+    }
+
+        #regist_form .inp_sdt input {
+            margin-bottom: 1em;
+        }
+
+    #regist_form .inp_mk {
+        margin: 0;
+        margin-bottom: 1em;
+    }
+}
+/*Mobile*/
+
+@media only screen and (min-device-width: 100px) and (max-device-width: 768px) {
+
+    #regist_form h2 {
+        font-size: 55px;
+    }
+
+    #regist_form {
+        max-width: 90%;
+    }
+
+        #regist_form input, #regist_form .inp_specialists {
+            padding: 0.5em 1em;
+            font-size: 40px;
+        }
+
+    .inp_specialists option {
+        font-size: 15px;
+    }
+
+    #regist_form .inp_mk {
+        margin: 2em;
+    }
+
+    #ContentPlaceHolder1_ctl00 {
+        font-size: 40px;
+    }
+}

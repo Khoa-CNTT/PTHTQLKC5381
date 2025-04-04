@@ -43,7 +43,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="MailKit, Version=4.11.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.4.11.0\lib\net48\MailKit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MimeKit, Version=4.11.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.4.11.0\lib\net48\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Formats.Asn1, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Formats.Asn1.8.0.1\lib\net462\System.Formats.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.0\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -185,7 +218,25 @@
     <Content Include="img\xephang.png" />
     <Content Include="img\youtube.png" />
     <Content Include="img\zalo.jpg" />
+    <Content Include="js\admin_side.js" />
+    <Content Include="js\doctorCreateAccount.js" />
+    <Content Include="js\Doctor_side.js" />
+    <Content Include="pages\Manager\Quan_Ly_Bac_Si.aspx" />
+    <Content Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx" />
+    <Content Include="pages\Manager\Quan_Ly_Lich_Kham.aspx" />
     <Content Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx" />
+    <Content Include="style\doctor\doctor_appointment.css" />
+    <Content Include="style\doctor\doctor_side_style.css" />
+    <Content Include="style\login_content_style.css" />
+    <Content Include="style\manager\doctor_list_style.css" />
+    <Content Include="style\manager\doctor_register.css" />
+    <Content Include="style\manager\ManagerAppointment_style.css" />
+    <Content Include="style\manager\ManagerMasterpage_style.css" />
+    <Content Include="style\manager\NewsManagement_style.css" />
+    <Content Include="style\manager\patientManagerment.css" />
+    <Content Include="style\news_content_style.css" />
+    <Content Include="style\new_dt.css" />
+    <Content Include="style\Regist_form.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +272,20 @@
       <DependentUpon>Gioi_Thieu.aspx</DependentUpon>
     </Compile>
     <Compile Include="LopKetNoi.cs" />
+    <Compile Include="MasterPage\Doctor_MasterPage.Master.cs">
+      <DependentUpon>Doctor_MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\Doctor_MasterPage.Master.designer.cs">
+      <DependentUpon>Doctor_MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\Managerment_MasterPage.Master.cs">
+      <DependentUpon>Managerment_MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\Managerment_MasterPage.Master.designer.cs">
+      <DependentUpon>Managerment_MasterPage.Master</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage\MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -230,6 +295,27 @@
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.1.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.8.1.AssemblyAttributes.cs" />
+    <Compile Include="pages\Manager\Quan_Ly_Bac_Si.aspx.cs">
+      <DependentUpon>Quan_Ly_Bac_Si.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Bac_Si.aspx.designer.cs">
+      <DependentUpon>Quan_Ly_Bac_Si.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx.cs">
+      <DependentUpon>Quan_Ly_Benh_Nhan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx.designer.cs">
+      <DependentUpon>Quan_Ly_Benh_Nhan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Lich_Kham.aspx.cs">
+      <DependentUpon>Quan_Ly_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Quan_Ly_Lich_Kham.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs">
       <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,6 +324,11 @@
       <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="res\service\AppointmentManagerment_Service.cs" />
+    <Compile Include="res\service\DoctorService.cs" />
+    <Compile Include="res\service\PatientManagerment.cs" />
+    <Compile Include="res\service\QlbvService.cs" />
+    <Compile Include="sendMail\sendMai_gmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage\MasterPage.Master" />
@@ -253,6 +344,8 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="obj\Release\NHOM20_DATN.csproj.AssemblyReference.cache" />
+    <Content Include="MasterPage\Managerment_MasterPage.Master" />
+    <Content Include="MasterPage\Doctor_MasterPage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -263,7 +356,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\BaiViet\" />
     <Folder Include="Models\" />
+    <Folder Include="pages\Doctor\" />
+    <Folder Include="pages\User\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

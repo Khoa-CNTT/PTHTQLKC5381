@@ -1,0 +1,122 @@
+﻿#container_content h1 {
+    text-align: center;
+    color: #1691E2;
+}
+
+#container #container_content {
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#container .slide_bar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#container .title_news h3:hover {
+    text-decoration: underline;
+}
+
+
+#container .slide_bar .content_item a {
+    text-decoration: none;
+}
+
+#container .slide_bar .content_item {
+    flex: 1;
+    padding: 2em 1em;
+    position: relative;
+    margin: 2em 0;
+}
+
+    #container .slide_bar .content_item img {
+        min-width: 100%;
+        height: 15em;
+    }
+
+
+
+#container .slide_bar .title_news {
+    width: 24em;
+}
+
+
+    #container .slide_bar .title_news .detail_news {
+        border: 1px solid #ccc;
+        width: fit-content;
+        padding: 0.5em 1em;
+        position: absolute;
+        bottom: 0;
+    }
+
+        #container .slide_bar .title_news .detail_news:hover {
+            background-color: #ccc;
+        }
+
+
+#container .title_news a h3 {
+    color: rgb(74, 74, 74);
+    font-weight: 600;
+}
+
+
+#container .title_news p,
+a {
+    color: #9b9b9b;
+}
+
+@media screen and (min-width: 100px) and (max-device-width: 769px) {
+
+    #container .slide_bar .content_item {
+        min-width: 100%;
+        padding: 0;
+    }
+
+        #container .slide_bar .content_item img {
+            max-width: 100%;
+            height: 32em;
+            width: -webkit-fill-available;
+        }
+
+    #container .slide_bar .title_news .detail_news {
+        display: none;
+    }
+
+    #container .slide_bar {
+        margin-bottom: 3em;
+    }
+
+        #container .slide_bar .title_news {
+            margin: 1em auto;
+            width: 100%;
+        }
+}
+
+@media screen and (max-width: 940px) {
+    #container .slide_bar .content_item {
+        padding: 0 1em;
+        padding-bottom: 1em;
+    }
+
+        #container .slide_bar .content_item img {
+            max-width: none;
+        }
+
+    #container .slide_bar .title_news {
+        display: flex;
+        width: 40em;
+        object-fit: cover;
+    }
+
+        #container .slide_bar .title_news .detail_news {
+            display: none;
+        }
+
+    #container .slide_bar .news_des {
+        margin-left: 2em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+}

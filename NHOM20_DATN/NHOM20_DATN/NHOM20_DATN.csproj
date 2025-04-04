@@ -144,6 +144,8 @@
     <Content Include="bin\roslyn\vbc.exe" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
     <Content Include="Dang_Ky.aspx" />
+    <Content Include="Dang_Ky_Kham_Truc_Tiep.aspx" />
+    <Content Include="Dang_Ky_Lich_Kham.aspx" />
     <Content Include="Dang_Nhap.aspx" />
     <Content Include="Dat_Lai_Mat_Khau.aspx" />
     <Content Include="Default.aspx" />
@@ -154,6 +156,8 @@
     <Content Include="img\abs.jpeg" />
     <Content Include="img\ahd1.jpeg" />
     <Content Include="img\anet.jpeg" />
+    <Content Include="img\anhbs.jpg" />
+    <Content Include="img\anhbs2.jpg" />
     <Content Include="img\Aologo.png" />
     <Content Include="img\background.png" />
     <Content Include="img\backgroundnen.jpg" />
@@ -243,6 +247,7 @@
     <Content Include="Patient\Thong_Tin_Tu_Van.aspx" />
     <Content Include="Patient\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Xem_Lich_Kham.aspx" />
     <Content Include="Xem_Thong_Tin_Benh_Nhan.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +257,20 @@
     </Compile>
     <Compile Include="Dang_Ky.aspx.designer.cs">
       <DependentUpon>Dang_Ky.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dang_Ky_Kham_Truc_Tiep.aspx.cs">
+      <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dang_Ky_Kham_Truc_Tiep.aspx.designer.cs">
+      <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dang_Ky_Lich_Kham.aspx.cs">
+      <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dang_Ky_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dang_Nhap.aspx.cs">
       <DependentUpon>Dang_Nhap.aspx</DependentUpon>
@@ -370,6 +389,13 @@
     <Compile Include="res\service\PatientManagerment.cs" />
     <Compile Include="res\service\QlbvService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
+    <Compile Include="Xem_Lich_Kham.aspx.cs">
+      <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Xem_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Xem_Thong_Tin_Benh_Nhan.aspx.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -293,7 +293,7 @@
                                          <li class="nav-item dropdown">
                                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dịch vụ</a>
                                              <ul class="dropdown-menu">
-                                                 <li><a class="dropdown-item" href="DangkyKhamTrucTiep.aspx">Đăng ký khám trực tiếp</a></li>
+                                                 <li><a class="dropdown-item" href="Dang_ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
                                                  <li><a class="dropdown-item" href="../Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
                                                  <li><a class="dropdown-item" href="HuyKham.aspx">Hủy khám</a></li>
                                                  <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>

@@ -31,7 +31,7 @@
                         <li><a href="QuanLyThongTinCaNhan.aspx"><i class='bx bx-lock-alt'></i>Quản lý thông tin cá nhân</a></li>
                         <li><a href="QuanLyBenhNhan.aspx"><i class='bx bx-user'></i>Xem Thông Tin Bệnh Nhân</a></li>
                         <li><a href="Xem_Lich_Kham.aspx"><i class='bx bx-calendar'></i>Xem Lịch Khám</a></li>
-                        <li><a href="DangKyLichKham.aspx"><i class='bx bx-calendar-plus'></i>Đăng ký lịch khám</a></li>
+                        <li><a href="Dang_Ky_Lich_Kham.aspx"><i class='bx bx-calendar-plus'></i>Đăng ký lịch khám</a></li>
                         <li><a href="XemThongTinTuVan.aspx"><i class='bx bx-calendar-x' style='color:#956ee8' ></i>Xem thông tin tư vấn</a></li>
                     </ul>
 

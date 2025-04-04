@@ -421,7 +421,7 @@
                    <div class="content content-1">
                        <div class="mobile-visual">
                            <img class="card-img"
-                               src="img/benhvien.jpg" />
+                               src="../img/benhvien.jpg" />
                        </div>
                        <div class="meta">
                            <h2 class="headline">Giới thiệu chung<span class="text-highlight"><br />
@@ -446,7 +446,7 @@
                    <div class="content content-2">
                        <div class="mobile-visual">
                            <img class="card-img"
-                               src="img/sumenh.jpeg" />
+                               src="../img/sumenh.jpeg" />
                        </div>
                        <div class="meta">
                            <h2 class="headline">Tầm nhìn - 
@@ -468,7 +468,7 @@
                    <div class="content content-3">
                        <div class="mobile-visual">
                            <img class="card-img"
-                               src="img/dientich.jpeg" />
+                               src="../img/dientich.jpeg" />
                        </div>
                        <div class="meta">
                            <h2 class="headline">Quy mô
@@ -484,7 +484,7 @@
                    <div class="content content-4">
                        <div class="mobile-visual">
                            <img class="card-img"
-                               src="img/thanhtuu.jpg" />
+                               src="../img/thanhtuu.jpg" />
                        </div>
                        <div class="meta">
                            <h2 class="headline">Thành tựu hơn <span class="text-highlight">3 năm hoạt động</span>
@@ -505,22 +505,22 @@
                    <div class="card-wrapper">
                        <div class="card card-1">
                            <img class="card-img"
-                               src="img/benhvien.jpg"
+                               src="../img/benhvien.jpg"
                                alt="Fantasy warrior  - Video game character" />
                        </div>
                        <div class="card card-2">
                            <img class="card-img"
-                               src="img/sumenh.jpeg"
+                               src="../img/sumenh.jpeg"
                                alt="Green haired ninja in armor - Video game character" />
                        </div>
                        <div class="card card-3">
-                           <img class="card-img"
+                           <img class="../card-img"
                                src="img/dientich.jpeg"
                                alt="Female warrior in armor - Video game character" />
                        </div>
                        <div class="card card-4">
                            <img class="card-img"
-                               src="img/thanhtuu.jpg"
+                               src="../img/thanhtuu.jpg"
                                alt="Agile warrior - Video game character" />
                        </div>
                    </div>

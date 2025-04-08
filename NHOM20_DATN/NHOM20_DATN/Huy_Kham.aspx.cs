@@ -27,7 +27,7 @@ namespace NHOM20_DATN
                 else
                 {
                     Response.Write("<script>alert('Vui lòng đăng nhập!');</script>");
-                    Response.Redirect("DangNhap.aspx");
+                    Response.Redirect("Dang_Nhap.aspx");
                 }
             }
         }
@@ -76,7 +76,6 @@ namespace NHOM20_DATN
         {
             if (!string.IsNullOrEmpty(lbthoigian.Text))
             {
-                // Lấy thông tin ngày khám và giờ khám từ label
                 string[] parts = lbthoigian.Text.Split('-');
                 DateTime ngayKham;
                 TimeSpan gioKham;
@@ -97,12 +96,53 @@ namespace NHOM20_DATN
                         ClientScript.RegisterStartupScript(this.GetType(), "KhongTheHuy", script, true);
                         return;
                     }
+
+                    string email = lbemail.Text;
+                    string hoTen = lbhoten.Text;
+                    string thoiGian = lbthoigian.Text;
                     string idPhieu = lbid.Text;
-                    XoaDangKy(idPhieu);
-                    string idBenhNhan = Session["UserID"].ToString();
-                    LoaddPhieuKham(idBenhNhan);
-                    TaiDanhSachPhieuKham(idBenhNhan);
-                    gvDanhSachPhieu.SelectedIndex = -1;
+                    bool huyThanhCong = XoaDangKy(idPhieu);
+
+                    if (huyThanhCong)
+                    {
+                        string successScript = @"
+                    swal({
+                        title: 'Thành công',
+                        text: 'Bạn đã hủy đăng ký khám thành công!',
+                        icon: 'success',
+                        button: 'Đóng'
+                    }).then(() => {";
+                        string tieude = "BANANA HOPITAL ĐÀ NẴNG XIN CHÀO QUÝ KHÁCH !!!\n ";
+                        string noidung = "Bạn đã hủy đăng ký khám bệnh thành công\n" +
+                                        "\nID Phiếu: " + idPhieu +
+                                        "\nHọ tên: " + hoTen +
+                                        "\nThời gian: " + thoiGian;
+
+                        sendMai_gmail sendmail = new sendMai_gmail();
+                        int emailResult = sendmail.sendMail_gmail(email, tieude, noidung);
+
+                        if (emailResult > 0)
+                        {
+                            successScript += @"
+                        swal({
+                            title: 'Thành công',
+                            text: 'Đã gửi email thông báo hủy khám!',
+                            icon: 'success',
+                            button: 'Đóng'
+                        }).then(() => {";
+                        }
+                        successScript += @"
+                            " + Page.ClientScript.GetPostBackEventReference(btnnut, "") + @"
+                        });";
+
+                        if (emailResult > 0)
+                        {
+                            successScript += "});";
+                        }
+
+                        ClientScript.RegisterStartupScript(this.GetType(), "Success", successScript, true);
+                        return;
+                    }
                 }
                 else
                 {
@@ -113,44 +153,24 @@ namespace NHOM20_DATN
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "Error", "swal('Lỗi','Không tìm thấy thông tin đăng ký!','error');", true);
             }
+            string idBenhNhan = Session["UserID"].ToString();
+            LoaddPhieuKham(idBenhNhan);
+            TaiDanhSachPhieuKham(idBenhNhan);
+            gvDanhSachPhieu.SelectedIndex = -1;
         }
 
-        private void XoaDangKy(string idPhieu)
+        private bool XoaDangKy(string idPhieu)
         {
             string sql = "DELETE FROM LichKhamBacSi WHERE IDPhieu = @IDPhieu; " +
-                 "DELETE FROM LichKhamBenhNhan WHERE IDPhieu = @IDPhieu; " +
-                 "DELETE FROM PhieuKham WHERE IDPhieu = @IDPhieu; ";
+            "DELETE FROM LichKhamBenhNhan WHERE IDPhieu = @IDPhieu; " +
+            "DELETE FROM PhieuKham WHERE IDPhieu = @IDPhieu; ";
             SqlParameter[] parameters = {
              new SqlParameter("@IDPhieu", idPhieu) };
 
             LopKetNoi knn1 = new LopKetNoi();
             int result = knn1.CapNhat(sql, parameters);
 
-            if (result > 0)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "Success", "swal('Thành công','Đã huỷ đăng ký khám thành công!','success');", true);
-                string tieude = "BANANA HOPITAL ĐÀ NẴNG XIN CHÀO QUÝ KHÁCH !!!\n ";
-                string noidung = "Bạn đã hủy đăng ký khám bệnh thành công\n" +
-                                "\nID Phiếu: " + lbid.Text +
-                                "\nHọ tên: " + lbhoten.Text +
-                                "\nThời gian: " + lbthoigian.Text;
-
-                sendMai_gmail sendmail = new sendMai_gmail();
-
-                int emailResult = sendmail.sendMail_gmail(lbemail.Text, tieude, noidung);
-                if (emailResult > 0)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Success", "swal('Thành công','Đã gửi email thông báo huỷ khám!','success');", true);
-                }
-                else
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "Error", "swal('Lỗi','Không thể gửi email thông báo!','error');", true);
-                }
-            }
-            else
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "Error", "swal('Lỗi','Không thể huỷ đăng ký!','error');", true);
-            }
+            return result > 0;
         }
 
 
@@ -177,9 +197,6 @@ namespace NHOM20_DATN
 
             ClientScript.RegisterStartupScript(this.GetType(), "showInfo", "showPhongKhamInfo('" + phongKhamInfo + "');", true);
         }
-
-
-
 
         private void TaiDanhSachPhieuKham(string idBenhNhan)
         {

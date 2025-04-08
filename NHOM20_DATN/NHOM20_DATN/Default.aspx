@@ -209,7 +209,7 @@
                                     <img src="img/huykham.png" style="width: 80px; margin-left: 60px;" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Hủy khám</h5>
-                                        <a href="HuyKham.aspx" style="margin-top: 30px;" class="btn btn-primary">Tại đây</a>
+                                        <a href="Huy_Kham.aspx" style="margin-top: 30px;" class="btn btn-primary">Tại đây</a>
                                     </div>
                                 </div>
                             </div>

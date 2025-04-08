@@ -16,7 +16,7 @@ namespace NHOM20_DATN
         {
             if (Session["UserID"] == null || Session["Role"] == null)
             {
-                Response.Redirect("DangNhap.aspx");
+                Response.Redirect("Dang_Nhap.aspx");
                 return;
             }
 

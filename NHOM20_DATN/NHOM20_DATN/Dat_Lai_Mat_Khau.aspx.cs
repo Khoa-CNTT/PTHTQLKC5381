@@ -16,7 +16,7 @@ namespace NHOM20_DATN
         {
             if (Session["UserID"] == null)
             {
-                Response.Redirect("DangNhap.aspx");
+                Response.Redirect("Dang_Nhap.aspx");
             }
         }
         private void ShowSweetAlert(string title, string message, string type)
@@ -29,16 +29,14 @@ namespace NHOM20_DATN
             string matKhauCu = TextBox1.Text.Trim();
             string matKhauMoi = txtxacminh.Text.Trim();
             string nhapLaiMatKhauMoi = txtmatkhau.Text.Trim();
-            string userID = Session["UserID"].ToString(); // Lấy ID người dùng từ session
+            string userID = Session["UserID"].ToString(); 
 
-            // Kiểm tra ô trống
             if (string.IsNullOrEmpty(matKhauCu) || string.IsNullOrEmpty(matKhauMoi) || string.IsNullOrEmpty(nhapLaiMatKhauMoi))
             {
                 ShowSweetAlert("Lỗi", "Vui lòng điền đầy đủ thông tin.", "error");
                 return;
             }
 
-            // Kiểm tra mật khẩu cũ TRƯỚC TIÊN
             LopKetNoi ketNoi = new LopKetNoi();
             string query = "SELECT MatKhau FROM TaiKhoan WHERE ID = @ID";
             SqlParameter[] checkParams = new SqlParameter[] { new SqlParameter("@ID", userID) };
@@ -57,9 +55,6 @@ namespace NHOM20_DATN
                 return;
             }
 
-            // Sau khi xác nhận mật khẩu cũ đúng, mới kiểm tra các điều kiện khác
-
-            // Kiểm tra mật khẩu khớp
             if (matKhauMoi != nhapLaiMatKhauMoi)
             {
                 ShowSweetAlert("Lỗi", "Mật khẩu mới không khớp.", "error");
@@ -73,7 +68,6 @@ namespace NHOM20_DATN
                 return;
             }
 
-            // Cập nhật mật khẩu mới (giữ nguyên)
             query = "UPDATE TaiKhoan SET MatKhau = @MatKhauMoi WHERE ID = @ID";
             SqlParameter[] updateParams = new SqlParameter[]
             {
@@ -95,7 +89,6 @@ namespace NHOM20_DATN
         // Hàm kiểm tra độ mạnh của mật khẩu
         private bool KiemTraDoManhMatKhau(string password)
         {
-            // Biểu thức chính quy yêu cầu: ít nhất 10 ký tự, 1 chữ cái in hoa, 1 ký tự đặc biệt
             string pattern = @"^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$";
             return Regex.IsMatch(password, pattern);
         }

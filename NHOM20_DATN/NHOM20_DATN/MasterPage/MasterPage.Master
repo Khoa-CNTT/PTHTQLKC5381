@@ -295,15 +295,15 @@
                                              <ul class="dropdown-menu">
                                                  <li><a class="dropdown-item" href="Dang_ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
                                                  <li><a class="dropdown-item" href="../Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
-                                                 <li><a class="dropdown-item" href="HuyKham.aspx">Hủy khám</a></li>
+                                                 <li><a class="dropdown-item" href="Huy_Kham.aspx">Hủy khám</a></li>
                                                  <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>
                                              </ul>
                                          </li>
                                          <li class="nav-item dropdown">
                                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hướng dẫn</a>
                                              <ul class="dropdown-menu">
-                                                 <li><a class="dropdown-item" href="HuongDanDatLichKham.aspx">Đặt lịch khám</a></li>
-                                                 <li><a class="dropdown-item" href="HuongDanQuyTrinhDiKham.aspx">Quy trình đi khám</a></li>
+                                                 <li><a class="dropdown-item" href="Huong_Dan_Dat_Lich_Kham.aspx">Đặt lịch khám</a></li>
+                                                 <li><a class="dropdown-item" href="Huong_Dan_Quy_Trinh_Di_Kham.aspx">Quy trình đi khám</a></li>
                                                  <li><a class="dropdown-item" href="CauHoiThuongGap.aspx">Câu hỏi thường gặp</a></li>
                                              </ul>
                                          </li>

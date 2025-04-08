@@ -149,6 +149,7 @@
     <Content Include="Dang_Nhap.aspx" />
     <Content Include="Dat_Lai_Mat_Khau.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Error_forbidden.html" />
     <Content Include="Global.asax" />
     <Content Include="Home_Component\Gioi_Thieu.aspx" />
     <Content Include="Huy_Kham.aspx" />
@@ -227,6 +228,7 @@
     <Content Include="js\admin_side.js" />
     <Content Include="js\doctorCreateAccount.js" />
     <Content Include="js\Doctor_side.js" />
+    <Content Include="pages\Doctor\Cap_Nhat_Ho_So_Benh_An.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bac_Si.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Lich_Kham.aspx" />
@@ -234,6 +236,7 @@
     <Content Include="Quen_Mat_Khau.aspx" />
     <Content Include="style\doctor\doctor_appointment.css" />
     <Content Include="style\doctor\doctor_side_style.css" />
+    <Content Include="style\doctor\medical_records.css" />
     <Content Include="style\login_content_style.css" />
     <Content Include="style\manager\doctor_list_style.css" />
     <Content Include="style\manager\doctor_register.css" />
@@ -334,6 +337,13 @@
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.1.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.8.1.AssemblyAttributes.cs" />
+    <Compile Include="pages\Doctor\Cap_Nhat_Ho_So_Benh_An.aspx.cs">
+      <DependentUpon>Cap_Nhat_Ho_So_Benh_An.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Doctor\Cap_Nhat_Ho_So_Benh_An.aspx.designer.cs">
+      <DependentUpon>Cap_Nhat_Ho_So_Benh_An.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Manager\Quan_Ly_Bac_Si.aspx.cs">
       <DependentUpon>Quan_Ly_Bac_Si.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -432,8 +442,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="img\BaiViet\" />
     <Folder Include="Models\" />
-    <Folder Include="pages\Doctor\" />
-    <Folder Include="pages\User\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

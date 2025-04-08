@@ -27,17 +27,18 @@
                     <h2>BÁC SĨ</h2>
 
                     <ul>
-                        <li><a href="XemThongTinPhieuKham.aspx"><i class='bx bx-clipboard' style='color:#956ee8'  ></i>Xem thông tin phiếu khám</a></li>
-                        <li><a href="QuanLyThongTinCaNhan.aspx"><i class='bx bx-lock-alt'></i>Quản lý thông tin cá nhân</a></li>
-                        <li><a href="QuanLyBenhNhan.aspx"><i class='bx bx-user'></i>Xem Thông Tin Bệnh Nhân</a></li>
+                        <li><a href="Xem_Thong_Tin_Phieu_Kham.aspx"><i class='bx bx-clipboard' ></i>Xem thông tin phiếu khám</a></li>
+                        <li><a href="Quan_Ly_Thong_Tin_Ca_Nhan.aspx"><i class='bx bx-lock-alt'></i>Quản lý thông tin cá nhân</a></li>
+                        <li><a href="Quan_Ly_Benh_Nhan.aspx"><i class='bx bx-user'></i>Xem Thông Tin Bệnh Nhân</a></li>
+                        <li><a href="#"><i class='bx bx-calendar-x' ></i>Cập Nhật Hồ Sơ Bệnh Án</a></li>
                         <li><a href="Xem_Lich_Kham.aspx"><i class='bx bx-calendar'></i>Xem Lịch Khám</a></li>
                         <li><a href="Dang_Ky_Lich_Kham.aspx"><i class='bx bx-calendar-plus'></i>Đăng ký lịch khám</a></li>
-                        <li><a href="XemThongTinTuVan.aspx"><i class='bx bx-calendar-x' style='color:#956ee8' ></i>Xem thông tin tư vấn</a></li>
+                        <li><a href="Xem_Thong_Tin_Tu_Van.aspx"><i class='bx bx-calendar-x' ></i>Xem thông tin tư vấn</a></li>
                     </ul>
 
                     <div class="out">
                         <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="Logout_Click" OnClientClick="return confirm('Bạn có chắc chắn muốn đăng xuất?');">
-                    <i class='bx bx-log-out' style='color: #8583e2;' > </i>Đăng Xuất                        </asp:LinkButton>
+                    <i class='bx bx-log-out' > </i>Đăng Xuất                        </asp:LinkButton>
 
                     </div>
                 </div>
@@ -51,11 +52,8 @@
 
         </div>
 
-
-
-
     </form>
 
-    <script src="../js/Doctor_side.js"></script>
+    <script src="/js/Doctor_side.js"></script>
 </body>
 </html>

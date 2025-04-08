@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Security.Policy;
 
 namespace NHOM20_DATN
 {
@@ -115,6 +116,7 @@ namespace NHOM20_DATN
                     Session["Role"] = "BacSi";
                     Session["TenDangNhap"] = username;
                     Response.Redirect("Xem_Lich_Kham.aspx");
+                    
                 }
                 else if (userId.StartsWith("QL"))
                 {
@@ -122,7 +124,7 @@ namespace NHOM20_DATN
                     Session["UserID"] = userId;
                     Session["Role"] = "QuanLy";
                     Session["TenDangNhap"] = username;
-                    Response.Redirect("Quan_Ly_Bac_Si.aspx");
+                    Response.Redirect("pages/Manager/Quan_Ly_Bac_Si.aspx");
                 }
             }
             else

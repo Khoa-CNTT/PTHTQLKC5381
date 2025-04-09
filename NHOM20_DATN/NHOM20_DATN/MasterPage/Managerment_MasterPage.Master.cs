@@ -29,7 +29,7 @@ namespace NHOM20_DATN.MasterPage
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("DangNhap.aspx");
+            Response.Redirect("Dang_Nhap.aspx");
         }
     }
 }

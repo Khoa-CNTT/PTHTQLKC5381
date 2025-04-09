@@ -151,6 +151,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home_Component\Gioi_Thieu.aspx" />
+    <Content Include="Huong_Dan_Dat_Lich_Kham.aspx" />
+    <Content Include="Huong_Dan_Quy_Trinh_Di_Kham.aspx" />
     <Content Include="Huy_Kham.aspx" />
     <Content Include="img\110.jpg" />
     <Content Include="img\abs.jpeg" />
@@ -302,6 +304,20 @@
     </Compile>
     <Compile Include="Home_Component\Gioi_Thieu.aspx.designer.cs">
       <DependentUpon>Gioi_Thieu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Huong_Dan_Dat_Lich_Kham.aspx.cs">
+      <DependentUpon>Huong_Dan_Dat_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Huong_Dan_Dat_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Huong_Dan_Dat_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Huong_Dan_Quy_Trinh_Di_Kham.aspx.cs">
+      <DependentUpon>Huong_Dan_Quy_Trinh_Di_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Huong_Dan_Quy_Trinh_Di_Kham.aspx.designer.cs">
+      <DependentUpon>Huong_Dan_Quy_Trinh_Di_Kham.aspx</DependentUpon>
     </Compile>
     <Compile Include="Huy_Kham.aspx.cs">
       <DependentUpon>Huy_Kham.aspx</DependentUpon>

@@ -13,13 +13,14 @@ namespace NHOM20_DATN.MasterPage
         {
             if (!IsPostBack)
             {
+
                 if ((string)Session["Role"] == null || (string)Session["Role"] == "")
                 {
-                    Response.Redirect("../../Dang_Nhap.aspx");
+                    Response.Redirect("/Dang_Nhap.aspx");
                 }
                 else if ((string)Session["Role"] != "BacSi")
                 {
-                    Response.Redirect("../../Error_forbidden.html");
+                    Response.Redirect("/Error_forbidden.html");
                 }
 
             }
@@ -29,7 +30,7 @@ namespace NHOM20_DATN.MasterPage
             // Xóa session và điều hướng về trang đăng nhập
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("Dang_Nhap.aspx");
+            Response.Redirect("/Dang_Nhap.aspx");
         }
 
 

@@ -130,12 +130,10 @@ namespace NHOM20_DATN.pages.Manager
 
         protected void btn_Close_Click(object sender, EventArgs e)
         {
-
             pn_Add.Visible = false;
             btnEdit.Visible = true;
             btnAdd.Visible = true;
             btnDelete.Visible = true;
-
 
         }
         //=========================
@@ -186,10 +184,7 @@ namespace NHOM20_DATN.pages.Manager
                     result = patientManagerment.deletePatients(idBn);
                 }
             }
-
             Response.Redirect("Quan_Ly_Benh_Nhan.aspx");
-
-
         }
 
         protected void cancelDelete_Click(object sender, EventArgs e)
@@ -200,9 +195,6 @@ namespace NHOM20_DATN.pages.Manager
             btnDelete.Visible = true;
             cancelDelete.Visible = false;
             deleteSelect.Visible = false;
-
-
-
         }
         //=================================
         //Command event
@@ -268,12 +260,6 @@ namespace NHOM20_DATN.pages.Manager
             //radioGT_edit.SelectedValue;
             pn_Update.Visible = false;
             cancelEdit.Visible = true;
-
-
-
-
-
-
 
         }
     }

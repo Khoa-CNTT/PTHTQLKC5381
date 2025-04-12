@@ -9,7 +9,7 @@
        <div id="container_regist">
        <%-- Button --%>
        <div id="cont_btn">
-           <div class="btn_regist_dt"><a href="#">Đăng ký người bác sĩ</a></div>
+           <div class="btn_regist_dt"><a href="#">Đăng ký bác sĩ</a></div>
            <div class="btn_list"><a href="#">Danh sách bác sĩ</a></div>
        </div>
 

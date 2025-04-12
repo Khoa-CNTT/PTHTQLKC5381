@@ -262,6 +262,9 @@
     <Content Include="js\admin_side.js" />
     <Content Include="js\doctorCreateAccount.js" />
     <Content Include="js\Doctor_side.js" />
+    <Content Include="obj\Debug\NHOM20_DATN.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\NHOM20_DATN.dll" />
+    <Content Include="obj\Debug\NHOM20_DATN.pdb" />
     <Content Include="pages\Doctor\Cap_Nhat_Ho_So_Benh_An.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bac_Si.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx" />
@@ -481,6 +484,11 @@
     <Content Include="obj\Release\NHOM20_DATN.csproj.AssemblyReference.cache" />
     <Content Include="MasterPage\Managerment_MasterPage.Master" />
     <Content Include="MasterPage\Doctor_MasterPage.Master" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\NHOM20_D.29673BB9.Up2Date" />
+    <Content Include="obj\Debug\NHOM20_DATN.csproj.AssemblyReference.cache" />
+    <Content Include="obj\Debug\NHOM20_DATN.csproj.CoreCompileInputs.cache" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -493,6 +501,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="img\BaiViet\" />
     <Folder Include="Models\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

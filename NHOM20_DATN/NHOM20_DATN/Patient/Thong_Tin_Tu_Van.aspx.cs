@@ -20,7 +20,7 @@ namespace NHOM20_DATN.Patient
         private string vnp_TmnCode = "X4TR6660";
         private string vnp_HashSecret = "EN10K7GAAI8F0OPG9ZK518CPKSG5HI QF";
         private string vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        private string vnp_ReturnUrl = "https://localhost:44395/Patient/Thong_Tin_Tu_Van.aspx";
+        private string vnp_ReturnUrl = "https://5a76-14-165-151-227.ngrok-free.app";
 
         protected void Page_Load(object sender, EventArgs e)
         {

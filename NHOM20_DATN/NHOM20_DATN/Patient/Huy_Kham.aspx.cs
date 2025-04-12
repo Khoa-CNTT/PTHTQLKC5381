@@ -27,7 +27,7 @@ namespace NHOM20_DATN
                 else
                 {
                     Response.Write("<script>alert('Vui lòng đăng nhập!');</script>");
-                    Response.Redirect("Dang_Nhap.aspx");
+                    Response.Redirect("~/Dang_Nhap.aspx");
                 }
             }
         }

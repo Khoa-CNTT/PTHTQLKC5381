@@ -16,7 +16,7 @@ namespace NHOM20_DATN
         {
             if (Session["UserID"] == null)
             {
-                Response.Redirect("Dang_Nhap.aspx");
+                Response.Redirect("~/Dang_Nhap.aspx");
             }
         }
         private void ShowSweetAlert(string title, string message, string type)

@@ -209,7 +209,7 @@
                                     <img src="img/huykham.png" style="width: 80px; margin-left: 60px;" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Hủy khám</h5>
-                                        <a href="Huy_Kham.aspx" style="margin-top: 30px;" class="btn btn-primary">Tại đây</a>
+                                        <a href="/Patient/Huy_Kham.aspx" style="margin-top: 30px;" class="btn btn-primary">Tại đây</a>
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                         <h5 class="card-title">Xem quy
                                             <br />
                                             trình khám</h5>
-                                        <a href="#" style="margin-top: 5px;" class="btn btn-primary">Tại đây</a>
+                                        <a href="Huong_Dan_Quy_Trinh_Di_Kham.aspx" style="margin-top: 5px;" class="btn btn-primary">Tại đây</a>
                                     </div>
                                 </div>
                             </div>

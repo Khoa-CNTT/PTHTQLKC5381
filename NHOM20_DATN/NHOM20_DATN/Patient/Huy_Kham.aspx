@@ -810,7 +810,7 @@
         </div>
         <div class="than5">
             <div class="logo5">
-                <img style="width: 80px;" src="img/logochinh.png" />
+                <img style="width: 80px;" src="../img/logochinh.png" />
             </div>
             <div class="bienvien5">
                 <asp:Label ID="Label2" CssClass="lb2" runat="server" Text="Bệnh Viện Banana"></asp:Label>
@@ -956,7 +956,7 @@
                 }
             }).then((value) => {
                 if (value) {
-                    window.location.href = "DangKyKhamTrucTiep.aspx";
+                    window.location.href = "../pages/Doctor/Dang_Ky_Kham_Truc_Tiep.aspx";
                 }
             });
         }

@@ -91,7 +91,7 @@
             color: white;
             padding: 10px 0;
             text-align: center;
-            z-index: 1000;
+            z-index: 5000;
             min-height: 100px;
             background-color: #4CBBDE;
         }
@@ -293,9 +293,9 @@
                                          <li class="nav-item dropdown">
                                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dịch vụ</a>
                                              <ul class="dropdown-menu">
-                                                 <li><a class="dropdown-item" href="../Dang_Ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
-                                                 <li><a class="dropdown-item" href="../Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
-                                                 <li><a class="dropdown-item" href="../Huy_Kham.aspx">Hủy khám</a></li>
+                                                 <li><a class="dropdown-item" href="Dang_ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
+                                                 <li><a class="dropdown-item" href="/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
+                                                 <li><a class="dropdown-item" href="/Patient/Huy_Kham.aspx">Hủy khám</a></li>
                                                  <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>
                                              </ul>
                                          </li>
@@ -333,7 +333,7 @@
                                                  <li runat="server" id="quanLyThongTin">
                                                      <asp:LinkButton CssClass="chucnangphu" ID="btnQuanly_thongtin" runat="server" Text="Quản lý thông tin cá nhân" PostBackUrl="~/Patient/Quan_Ly_Thong_Tin_Ca_Nhan.aspx" /></li>
                                                  <li runat="server" id="dl">
-                                                     <asp:LinkButton CssClass="chucnangphu" ID="btnDatLai" runat="server" Text="Đặt lại mật khẩu" PostBackUrl="~/DatLaiMatKhau.aspx" /></li>
+                                                     <asp:LinkButton CssClass="chucnangphu" ID="btnDatLai" runat="server" Text="Đặt lại mật khẩu" PostBackUrl="/Patient/Dat_Lai_Mat_Khau.aspx" /></li>
                                                  <li runat="server" id="dangXuat">
                                                      <asp:LinkButton CssClass="chucnangphu" ID="btnDangXuat" runat="server" OnClick="Logout_Click" OnClientClick="return confirm('Bạn có chắc chắn muốn đăng xuất?');" Text="Đăng xuất" /></li>
 
@@ -364,7 +364,6 @@
                             <div class="col-xl-4">
                                 <img src="../img/logochinh.png" style="max-width: 180px; margin-left: 30px; margin-top: 10px;" />
                                 <ul id="menu_footerleft">
-
                                     <li>
                                         <img style="width: 18px; margin: -3px 10px;" src="../img/next.png" /><a style="margin-top: -15px;" href="">Trang chủ</a></li>
                                     <li>

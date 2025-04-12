@@ -25,9 +25,9 @@
                 <h2>QUẢN LÝ</h2>
                 <h3 class="size">CHỨC NĂNG QUẢN LÝ</h3>
                 <ul>
-                    <li><a href="../pages/Manager/Quan_Ly_Benh_Nhan.aspx"><i class="fa-solid fa-bed-pulse"></i>Quản lý bệnh nhân</a></li>
-                    <li><a href="../pages/Manager/Quan_Ly_Bac_Si.aspx"><i class="fa-solid fa-user-doctor"></i>Quản lý bác sĩ</a></li>
-                    <li><a href="../pages/Manager/Quan_Ly_Lich_Kham.aspx"><i class="fa-regular fa-calendar-days"></i>Quản lý lịch khám</a></li>
+                    <li><a href="/pages/Manager/Quan_Ly_Benh_Nhan.aspx"><i class="fa-solid fa-bed-pulse"></i>Quản lý bệnh nhân</a></li>
+                    <li><a href="/pages/Manager/Quan_Ly_Bac_Si.aspx"><i class="fa-solid fa-user-doctor"></i>Quản lý bác sĩ</a></li>
+                    <li><a href="/pages/Manager/Quan_Ly_Lich_Kham.aspx"><i class="fa-regular fa-calendar-days"></i>Quản lý lịch khám</a></li>
                     <li><a href="Quan_Ly_Bai_Viet_SK.aspx"><i class="fa-regular fa-calendar-days"></i>Quản lý bài viết</a></li>
 
                 </ul>

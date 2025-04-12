@@ -1,2 +1,772 @@
-﻿body {
+﻿#list_here {
+    margin-top: 3em;
+    max-width: fit-content;
+    margin: auto;
+    margin-top: 4em;
+}
+
+.d_flex {
+    display: flex;
+    background-color: aliceblue;
+    justify-content: space-between;
+}
+
+.d_block {
+    display: block !important;
+}
+
+
+#ContentPlaceHolder1_radioGT tbody,
+#ContentPlaceHolder1_radioGT_edit tbody {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+#ContentPlaceHolder1_radioGT tr td,
+#ContentPlaceHolder1_radioGT_edit tr td {
+    display: flex;
+    align-items: center;
+}
+
+.crud_bar {
+    display: flex;
+    margin-bottom: 1em;
+    align-items: center;
+}
+
+
+
+/*#ContentPlaceHolder1_pn_AT {
+    position: fixed;
+    border: 1px solid #e4dfd9;
+    height: 20em;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #e2e2e2;
+}*/
+
+.btn_Containner {
+    display: flex;
+    gap: 10px;
+}
+
+    .btn_Containner .btn_add a,
+    .btn_Containner .btn_edit a,
+    .btn_Containner .btn_cancelEdit a,
+    .btn_Containner .btn_delete a,
+    .btn_Containner .deleteSelected a,
+    .btn_Containner .cancelDelete a {
+        padding: 10px 15px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: white;
+    }
+
+
+
+
+    .btn_Containner .btn_add a {
+        background-color: #00c42a;
+    }
+
+    .btn_Containner .btn_edit a {
+        background-color: deepskyblue;
+    }
+
+    .btn_Containner .btn_delete a,
+    .btn_Containner .deleteSelected a {
+        background-color: red;
+    }
+
+
+
+
+    .btn_Containner .btn_cancelEdit a,
+    .btn_Containner .cancelDelete a {
+        background-color: #00c42a;
+    }
+
+
+
+
+.chTime_content {
+    display: flex;
+    flex-flow: column;
+    background-color: #fafafa;
+    border-radius: 30px;
+    padding: 2em 4em;
+    width: 70%;
+    margin: auto
+}
+
+#patientAdd_container,
+#patientUpdate_container {
+    display: none;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    margin: auto;
+    left: 0;
+    right: 0em;
+    padding: 1em 0;
+    background-color: #00000066;
+    height: 100%;
+}
+
+
+
+    #patientAdd_container .chTime_content input,
+    #patientUpdate_container .chTime_content input,
+    #patientUpdate_container .chTime_content textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #aeaeae85;
+    }
+
+.chTime_content h2 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.wrapper_list {
+    height: 4em;
+    width: 80%;
+}
+
+    .wrapper_list select {
+        position: absolute;
+        width: 80%;
+        padding: 1em 0.5em;
+    }
+
+.chTime_content #ContentPlaceHolder1_btn_Save, .chTime_content #ContentPlaceHolder1_btn_Close {
+    width: 80%;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
+.chTime_content #ContentPlaceHolder1_btn_Save,
+.chTime_content #ContentPlaceHolder1_btn_Save_Update {
+    background-color: #32a6dd;
+    color: white;
+}
+
+.chTime_content #ContentPlaceHolder1_btn_Close,
+.chTime_content #ContentPlaceHolder1_btn_Close_Update {
+    background-color: #f62121;
+    color: white;
+}
+
+
+.pd_tb_2px {
+    padding: 2px 0;
+}
+
+
+
+
+.seach_bar input, .filter_bar select {
+    padding: 0.4em 1em;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+}
+
+.btn_search {
+    padding: 0.6em 2em;
+    background: #95e4c8;
+    text-decoration: none;
+    color: azure;
+    font-weight: 600;
+    border-radius: 1em;
+}
+
+    .btn_search:hover {
+        background: #64cba6;
+    }
+
+
+
+.gridview-table {
+    table-layout: inherit;
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin-right: 0px;
+}
+
+    .gridview-table th {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+        /*    white-space: nowrap;*/
+        overflow: hidden;
+        max-width: 50em;
+        text-overflow: ellipsis;
+    }
+
+    .gridview-table td {
+        padding: 6px;
+        border-top: 1px solid #ccc;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 10em;
+        width: 10em;
+        background-color: white;
+    }
+
+
+    .gridview-table th {
+        background-color: #72c1f6;
+        color: #4d4c4c;
+    }
+
+    .gridview-table td {
+        font-size: 14px;
+        word-wrap: break-word;
+        text-align: center;
+        padding: 1em 0.5em;
+    }
+
+        .gridview-table td a {
+            margin: 5px 0;
+            font-size: 14px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+            .gridview-table td a i {
+                color: #646464;
+            }
+
+
+
+
+
+    .gridview-table .ddl_Department {
+        width: 100%;
+        max-width: 200px;
+    }
+
+
+
+    .gridview-table input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+.EditButton {
+    color: white;
+    background-color: dodgerblue;
+    padding: 5px 10px;
+    width: 2em;
+}
+
+.gridview-table tr:first-child th:first-child {
+    border-top-left-radius: 20px;
+}
+
+/* top-right border-radius */
+.gridview-table tr:first-child th:last-child {
+    border-top-right-radius: 20px;
+}
+
+/* bottom-left border-radius */
+.gridview-table tr:nth-last-child(2) td:first-child {
+    border-bottom-left-radius: 20px;
+}
+
+/* bottom-right border-radius */
+.gridview-table tr:nth-last-child(2) td:last-child {
+    border-bottom-right-radius: 20px;
+}
+
+.load_list {
+    width: 2em;
+    text-align: center;
+    padding: 5px;
+    background: #e4dfd9;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+    .load_list a {
+        padding: unset;
+    }
+
+
+.pagination {
+    line-height: 24px;
+    display: contents;
+}
+
+    .pagination span {
+        padding: 2px 10px;
+        background-color: cornflowerblue;
+        color: white;
+    }
+
+    .pagination td {
+        border: none;
+        border-radius: unset;
+        background-color: none;
+        padding: 0;
+        width: unset;
+        background-color: unset;
+    }
+
+        .pagination td a {
+            border-radius: unset;
+            padding: 2px 10px;
+            color: white;
+            width: auto;
+        }
+
+    .pagination span,
+    .pagination a {
+        padding: 2px 10px;
+    }
+
+    .pagination table {
+        margin: 2em auto;
+    }
+
+
+
+        .pagination table td a,
+        .pagination table td span {
+            margin: 0;
+            border: 1px solid #ccc;
+            display: block;
+            border-radius: unset;
+        }
+
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-bg-type: none;
+}
+
+.lblDahuy, .lblDangcho, .lblDadangky {
+    padding: 5px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+/* remove up/down number btn */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/*              CODE HERE           */
+.table_medic {
+    margin-top: 1em;
+}
+
+.btn_edit a,
+.btn_cancelEdit a {
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.btn_edit a {
+    background-color: deepskyblue;
+}
+
+.btn_cancelEdit a {
+    background-color: #00c42a;
+}
+
+.container_control {
+    align-items: center;
+}
+
+.grid_2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1em;
+}
+
+.contain_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    flex-flow: row;
+}
+/*===========PC==================*/
+@media only screen and (max-width: 1500px) {
+    .table_medic {
+        overflow-x: scroll;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    #content {
+        width: 100%;
+    }
+
+    #cont_btn {
+        gap: 3em;
+    }
+
+    .d_flex {
+        display: block;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+
+
+@media screen and (min-width: 100px) and (max-width: 768px) {
+
+    #list_here {
+        width: 95%;
+        margin: auto;
+        margin-top: 15em;
+    }
+
+    #ContentPlaceHolder1_pn_AT {
+        position: relative;
+        height: 18em;
+        width: 75%;
+        height: 18em;
+        margin: auto;
+        width: 75%;
+        font-size: 16px;
+    }
+
+    .chTime_content h2 {
+        font-size: 30px;
+    }
+
+
+
+
+
+    /*List*/
+    .gridview-table td
+    .gridview-table td {
+        white-space: unset;
+        padding: 16px;
+    }
+
+    .gridview-table th,
+    .gridview-table td {
+        text-align: center;
+        font-size: 16px;
+        max-width: 20em;
+    }
+
+        .gridview-table td a {
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            width: 6em;
+            border-radius: 5em;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+            .gridview-table td a i {
+                font-size: 16px;
+            }
+
+
+
+    .seach_bar input {
+        font-size: 16px;
+    }
+
+    .filter_bar select {
+        font-size: 16px;
+    }
+
+        .filter_bar select select option {
+            font-size: 20px;
+        }
+
+    .btn_search {
+        padding: 3.5em;
+    }
+
+    .seach_bar i {
+        font-size: 16px;
+    }
+
+    .load_list {
+        font-size: 16px;
+        padding: unset;
+    }
+
+    #content {
+        width: 100%;
+    }
+
+
+
+    .d_flex {
+        display: block;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+
+        .seach_bar input, .filter_bar select {
+            padding: 1.4em 1em;
+            border: 1px solid #ccc;
+            width: 80%;
+        }
+
+    .ddl_filter option {
+        font-size: 16px;
+    }
+
+    .gridview-table .btn_update a {
+        font-size: 16px;
+    }
+
+    .pd_tb_2px option {
+        font-size: 16px;
+    }
+
+    .pagination table td span,
+    .pagination table td a {
+        padding: 1em 1.5em;
+    }
+    /*CSS HERE*/
+    .grid_2 {
+        display: block;
+    }
+
+    #patientUpdate_container {
+        overflow: scroll;
+    }
+
+        #patientUpdate_container .chTime_content input,
+        #patientUpdate_container .chTime_content textarea {
+            font-size: 16px;
+            padding: 20px 10px;
+        }
+
+    .chTime_content {
+        width: 90%;
+        font-size: 16px;
+        padding: 2em 1em;
+    }
+
+    .btn_edit a,
+    .btn_cancelEdit a {
+        font-size: 16px;
+        padding: 0.5em 2em;
+    }
+
+    .btn_cancelEdit,
+    .btn_edit {
+        margin: 5em 0;
+    }
+}
+
+
+
+/*==================            Moblie             ==================*/
+
+@media only screen and (max-device-width: 960px) {
+    #content {
+        width: 100%;
+    }
+
+
+
+    .d_flex {
+        display: block;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+@media only screen and (min-device-width: 100px) and (max-device-width: 786px) {
+
+    #list_here {
+        width: 95%;
+        margin: auto;
+        margin-top: 15em;
+    }
+
+    #ContentPlaceHolder1_pn_AT {
+        position: relative;
+        height: 18em;
+        width: 75%;
+        height: 18em;
+        margin: auto;
+        width: 75%;
+        font-size: 45px;
+    }
+
+    .chTime_content h2 {
+        font-size: 70px;
+    }
+
+
+
+
+
+    /*List*/
+    .gridview-table td {
+        white-space: unset;
+        max-width: 100px;
+        padding: 21px;
+        text-overflow: ellipsis;
+        border-right: 1px solid #c6c6c6;
+        word-wrap: unset;
+    }
+
+    .gridview-table th,
+    .gridview-table td {
+        text-align: center;
+        font-size: 45px;
+        max-width: 10em;
+    }
+
+        .gridview-table td a {
+            font-size: 35px;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            width: 6em;
+            border-radius: 5em;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+            .gridview-table td a i {
+                font-size: 50px;
+            }
+
+
+
+    .seach_bar input {
+        font-size: 40px;
+    }
+
+    .filter_bar select {
+        font-size: 40px;
+    }
+
+        .filter_bar select select option {
+            font-size: 20px;
+        }
+
+    .btn_search {
+        padding: 3.5em;
+    }
+
+    .seach_bar i {
+        font-size: 60px;
+    }
+
+    .load_list {
+        font-size: 65px;
+        padding: unset;
+    }
+
+    #content {
+        width: 100%;
+    }
+
+
+
+    .d_flex {
+        display: block;
+    }
+
+    .seach_bar {
+        display: flex;
+        gap: 10px;
+    }
+
+    .filter_bar {
+        margin: 1em 0;
+    }
+
+        .seach_bar input, .filter_bar select {
+            padding: 1.4em 1em;
+            border: 1px solid #ccc;
+            width: 80%;
+        }
+
+    .ddl_filter option {
+        font-size: 16px;
+    }
+
+    .gridview-table .btn_update a {
+        font-size: 45px;
+    }
+
+    .pd_tb_2px option {
+        font-size: 20px;
+    }
+
+    .pagination table td span,
+    .pagination table td a {
+        padding: 1em 1.5em;
+    }
+    /*CSS HERE*/
+    .grid_2 {
+        display: block;
+    }
+
+    #patientUpdate_container .chTime_content input,
+    #patientUpdate_container .chTime_content textarea {
+        font-size: 40px;
+        padding: 20px 10px;
+    }
+
+    .chTime_content {
+        width: 90%;
+        font-size: 40px;
+        padding: 2em 1em;
+    }
+
+    .btn_edit a,
+    .btn_cancelEdit a {
+        font-size: 50px;
+        padding: 0.5em 2em;
+    }
+
+    .btn_cancelEdit,
+    .btn_edit {
+        margin: 5em 0;
+    }
 }

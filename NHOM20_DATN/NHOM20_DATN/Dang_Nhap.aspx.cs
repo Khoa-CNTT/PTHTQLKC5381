@@ -122,7 +122,7 @@ namespace NHOM20_DATN
                     Session["UserID"] = userId;
                     Session["Role"] = "QuanLy";
                     Session["TenDangNhap"] = username;
-                    Response.Redirect("Quan_Ly_Bac_Si.aspx");
+                    Response.Redirect("pages/Manager/Quan_Ly_Bac_Si.aspx");
                 }
             }
             else

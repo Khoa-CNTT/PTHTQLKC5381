@@ -91,7 +91,7 @@
             color: white;
             padding: 10px 0;
             text-align: center;
-            z-index: 5000;
+            z-index: 1000;
             min-height: 100px;
             background-color: #4CBBDE;
         }
@@ -293,9 +293,9 @@
                                          <li class="nav-item dropdown">
                                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dịch vụ</a>
                                              <ul class="dropdown-menu">
-                                                 <li><a class="dropdown-item" href="Dang_ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
+                                                 <li><a class="dropdown-item" href="../Dang_Ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
                                                  <li><a class="dropdown-item" href="../Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
-                                                 <li><a class="dropdown-item" href="Huy_Kham.aspx">Hủy khám</a></li>
+                                                 <li><a class="dropdown-item" href="../Huy_Kham.aspx">Hủy khám</a></li>
                                                  <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>
                                              </ul>
                                          </li>

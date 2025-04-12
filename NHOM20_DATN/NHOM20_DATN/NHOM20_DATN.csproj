@@ -46,6 +46,9 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=3.0.4.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.3.0.4\lib\net462\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="MailKit, Version=4.11.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>..\packages\MailKit.4.11.0\lib\net48\MailKit.dll</HintPath>
     </Reference>
@@ -100,12 +103,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\BouncyCastle.Cryptography.dll" />
+    <Content Include="bin\BouncyCastle.Cryptography.xml" />
+    <Content Include="bin\log4net.dll" />
+    <Content Include="bin\log4net.pdb" />
+    <Content Include="bin\log4net.xml" />
+    <Content Include="bin\MailKit.dll" />
+    <Content Include="bin\MailKit.pdb" />
+    <Content Include="bin\MailKit.xml" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\MimeKit.dll" />
+    <Content Include="bin\MimeKit.pdb" />
+    <Content Include="bin\MimeKit.xml" />
     <Content Include="bin\NHOM20_DATN.dll" />
     <Content Include="bin\NHOM20_DATN.pdb" />
     <Content Include="bin\roslyn\csc.exe" />
     <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\log4net.dll" />
+    <Content Include="bin\roslyn\log4net.xml" />
     <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
     <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
     <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
@@ -143,6 +159,22 @@
     <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
     <Content Include="bin\roslyn\vbc.exe" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll" />
+    <Content Include="bin\roslyn\VNPAY_CS_ASPX.pdb" />
+    <Content Include="bin\System.Buffers.dll" />
+    <Content Include="bin\System.Buffers.xml" />
+    <Content Include="bin\System.Formats.Asn1.dll" />
+    <Content Include="bin\System.Formats.Asn1.xml" />
+    <Content Include="bin\System.Memory.dll" />
+    <Content Include="bin\System.Memory.xml" />
+    <Content Include="bin\System.Numerics.Vectors.dll" />
+    <Content Include="bin\System.Numerics.Vectors.xml" />
+    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="bin\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="bin\System.ValueTuple.dll" />
+    <Content Include="bin\System.ValueTuple.xml" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="Dang_Ky_Lich_Kham.aspx" />
@@ -246,6 +278,8 @@
     <Content Include="style\Regist_form.css" />
     <Content Include="Patient\Thong_Tin_Tu_Van.aspx" />
     <Content Include="Patient\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx" />
+    <Content Include="bin\MailKit.dll.config" />
+    <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll.config" />
     <Content Include="Web.config" />
     <Content Include="Xem_Lich_Kham.aspx" />
     <Content Include="Xem_Thong_Tin_Benh_Nhan.aspx" />

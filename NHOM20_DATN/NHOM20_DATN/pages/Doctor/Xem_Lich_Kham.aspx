@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Doctor_MasterPage.Master" AutoEventWireup="true" CodeBehind="Xem_Lich_Kham.aspx.cs" Inherits="NHOM20_DATN.Xem_Lich_Kham" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <link href="style/doctor/doctor_appointment.css" rel='stylesheet'>
+     <link href="../../style/doctor/doctor_appointment.css" rel='stylesheet'>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -115,14 +115,15 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%-- Xóa --%>
-                <asp:TemplateField Visible="true">
-                    <ItemTemplate>
-                        <asp:LinkButton ID="btn_Delete" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")%>' CommandName="Xoa" runat="server">
-                             <i class="fa-regular fa-trash-can"></i>
-                        </asp:LinkButton>
-
-                    </ItemTemplate>
-                </asp:TemplateField>
+              <asp:TemplateField Visible="true">
+    <ItemTemplate>
+        <asp:LinkButton ID="btn_Delete" 
+            OnClientClick='<%# "showCancelDialog(\"" + Eval("IDPhieu") + "\", \"" + Eval("NgayKham") + "\"); return false;" %>' 
+            runat="server">
+            <i class="fa-regular fa-trash-can"></i>
+        </asp:LinkButton>
+    </ItemTemplate>
+</asp:TemplateField>
 
 
             </Columns>
@@ -164,11 +165,36 @@
 
 </div>
 <script>
-    function showAlert(message, iconType) {
+    function showCancelDialog(idPk, dayWork) {
         Swal.fire({
-            title: message,
-            icon: iconType,
-            confirmButtonText: 'OK'
+            title: 'Lý do hủy lịch',
+            input: 'text',
+            inputPlaceholder: 'Nhập lý do hủy lịch...',
+            showCancelButton: true,
+            confirmButtonText: 'Tiếp tục',
+            cancelButtonText: 'Hủy bỏ',
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Vui lòng nhập lý do hủy!';
+                }
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Ask for confirmation after getting reason
+                Swal.fire({
+                    title: 'Xác nhận hủy lịch',
+                    text: 'Bạn có chắc chắn muốn hủy lịch này?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Đồng ý',
+                    cancelButtonText: 'Hủy bỏ'
+                }).then((confirmation) => {
+                    if (confirmation.isConfirmed) {
+                        // Call server-side method with both ID and reason
+                        __doPostBack('CancelAppointment', idPk + '|' + dayWork + '|' + result.value);
+                    }
+                });
+            }
         });
     }
 </script>

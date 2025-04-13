@@ -115,7 +115,7 @@ namespace NHOM20_DATN
                     Session["UserID"] = userId;
                     Session["Role"] = "BacSi";
                     Session["TenDangNhap"] = username;
-                    Response.Redirect("Xem_Lich_Kham.aspx");
+                    Response.Redirect("pages/Doctor/Xem_Lich_Kham.aspx");
                     
                 }
                 else if (userId.StartsWith("QL"))
@@ -129,9 +129,9 @@ namespace NHOM20_DATN
             }
             else
             {
-                string js = "alert('Tên đăng nhập hoặc mật khẩu không đúng!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ErrorAlert", js, true);
-                return;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+             "Swal.fire({ icon: 'error', title: 'Đăng nhập thất bại', text: 'Tên đăng nhập hoặc mật khẩu không đúng!' });", true);
+
             }
         
          }

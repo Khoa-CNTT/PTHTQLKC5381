@@ -30,9 +30,8 @@ namespace NHOM20_DATN
 
             if (dt != null && Convert.ToInt32(dt.Rows[0][0]) > 0)
             {
-                string js = "alert('Tên đăng nhập đã tồn tại!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ErrorAlert", js, true);
-                return;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+            "Swal.fire({ icon: 'error', title: 'Đăng nhập thất bại', text: 'Tên đăng nhập đã tồn tại  !' });", true);
             }
             // Kiểm tra email đã tồn tại chưa
             string checkEmailQuery = "SELECT COUNT(*) FROM TaiKhoan WHERE Email = @Email";
@@ -41,8 +40,8 @@ namespace NHOM20_DATN
 
             if (dtEmail != null && Convert.ToInt32(dtEmail.Rows[0][0]) > 0)
             {
-                string js = "alert('Email đã tồn tại!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ErrorAlert", js, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+            "Swal.fire({ icon: 'error', title: 'Đăng nhập thất bại', text: 'Email đã tồn tại!' });", true);
                 return;
             }
             // Tạo ID mới cho bệnh nhân
@@ -60,8 +59,8 @@ namespace NHOM20_DATN
 
             if (result <= 0)
             {
-                string js = "alert('Đăng ký không thành công!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ErrorAlert", js, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+             "Swal.fire({ icon: 'error', title: 'Đăng ký thất bại' });", true);
             }
             else
             {
@@ -78,8 +77,8 @@ namespace NHOM20_DATN
         };
                 db.CapNhat(insertPatientQuery, patientParams);
 
-                string js = "alert('Đăng ký thành công!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "SuccessAlert", js, true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+             "Swal.fire({ icon: 'success', title: 'Đăng ký thành công' });", true);
             }
         }
         private string GenerateUniqueId(string prefix)

@@ -46,7 +46,7 @@ namespace NHOM20_DATN.Patient
         {
             if (Session["TenDangNhap"] == null)
             {
-                Response.Redirect("DangNhap.aspx");
+                Response.Redirect("../Dang_Nhap.aspx");
             }
             else
             {

@@ -200,7 +200,7 @@
                                         <h5 class="card-title">Tư vấn sức khỏe
                                         <br />
                                             trực tuyến</h5>
-                                        <a href="ThongTinTuVan.aspx" style="margin-top: 10px;" class="btn btn-primary">Tại đây</a>
+                                        <a href="Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx" style="margin-top: 10px;" class="btn btn-primary">Tại đây</a>
                                     </div>
                                 </div>
                             </div>

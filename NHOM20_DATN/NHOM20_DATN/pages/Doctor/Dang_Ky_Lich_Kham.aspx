@@ -142,8 +142,8 @@ h4{
             <div class="trong">
                  <p><strong>Bệnh viện BANANA</strong></p>
                  <p>Cơ sở 220 Phan Thanh - Thành phố Đà Nẵng</p>
-                <img class="hinhbs1" src="img/anhbs.jpg"/>
-                <img class="hinhbs2" src="img/anhbs2.jpg"/>
+                <img class="hinhbs1" src="../../img/anhbs.jpg"/>
+                <img class="hinhbs2" src="../../img/anhbs2.jpg"/>
             </div>
            
         </div>

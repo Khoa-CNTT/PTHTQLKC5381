@@ -58,7 +58,7 @@ namespace NHOM20_DATN.MasterPage
             // Xóa session và điều hướng về trang đăng nhập
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("~/Dang_Nhap.aspx");
+            Response.Redirect("../Dang_Nhap.aspx");
         
         }
     }

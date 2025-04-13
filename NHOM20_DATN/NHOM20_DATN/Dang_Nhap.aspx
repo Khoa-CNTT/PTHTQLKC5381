@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Dang_Nhap.aspx.cs" Inherits="NHOM20_DATN.Dang_Nhap" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         #content_container #login_container {
             text-align: center;
@@ -267,5 +269,14 @@
             </div>
         </div>
     </div>
-
+    <script>
+        function showAlert(message, iconType) {
+            Swal.fire({
+                title: message,
+                icon: iconType,
+                confirmButtonText: 'OK'
+            });
+        }
+       
+    </script>
 </asp:Content>

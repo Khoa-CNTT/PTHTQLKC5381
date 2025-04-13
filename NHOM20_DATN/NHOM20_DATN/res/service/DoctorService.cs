@@ -148,13 +148,14 @@ namespace NHOM20_DATN.res.service
             return 0;
         }
 
-        public void mailCancelAppointment(string idPk)
+        public void mailCancelAppointment(string idPk, string reason)
         {
             string query_getMailCancel = "select * from PhieuKham where IDPhieu = @idPK";
             SqlParameter[] pr = new SqlParameter[] {
-                new SqlParameter ("@idPK", idPk)
-            };
+        new SqlParameter ("@idPK", idPk)
+    };
             DataTable dt = kn.docdulieu(query_getMailCancel, pr);
+
             //====Get email client
             string email = dt.Rows[0]["Email"].ToString();
 
@@ -165,12 +166,15 @@ namespace NHOM20_DATN.res.service
             string time = time_db.ToString("HH:mm");
 
             string subject = "Hủy Khám Ngày " + day;
-            string description = "Bác sĩ đã HỦY KHÁM bạn!" +
-            " Mã phiếu HỦY KHÁM của bạn là:\n '" + idPk
-                                    + "' vào lúc " + time + " ngày " + day + ".";
+            string description = $"Kính gửi {name},\n\n" +
+                               $"Bác sĩ đã HỦY KHÁM của bạn!\n" +
+                               $"Mã phiếu: {idPk}\n" +
+                               $"Thời gian: {time} ngày {day}\n" +
+                               $"Lý do hủy: {reason}\n\n" +
+                               $"Xin lỗi vì sự bất tiện này.";
+
             sendMai_gmail mailSender = new sendMai_gmail();
             mailSender.sendMail_gmail(email, subject, description);
-
         }
         public void mailChangeAppointment(string idPk, string dayOld, string timeOld)
         {

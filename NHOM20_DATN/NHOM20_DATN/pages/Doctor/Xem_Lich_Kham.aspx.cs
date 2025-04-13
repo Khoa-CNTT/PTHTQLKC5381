@@ -20,7 +20,36 @@ namespace NHOM20_DATN
             {
                 view_List();
             }
+            else
+            {
+                string eventTarget = Request["__EVENTTARGET"];
+                string eventArgument = Request["__EVENTARGUMENT"];
 
+                if (eventTarget == "CancelAppointment")
+                {
+                    string[] args = eventArgument.Split('|');
+                    string idPk = args[0];
+                    string dayWork = args[1];
+                    string reason = args[2];
+
+                    // Call your cancel method with reason
+                    CancelAppointmentWithReason(idPk, dayWork, reason);
+                }
+            }
+
+        }
+        private void CancelAppointmentWithReason(string idPk, string dayWork, string reason)
+        {
+            string docId = (string)Session["UserID"];
+            //string docId = "TK001";
+
+            // Update your mail method to include reason
+            DoctorService.mailCancelAppointment(idPk, reason);
+            DoctorService.deleteAppointment(idPk, docId);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                "showAlert('Đã hủy lịch và gửi mail thông báo.', 'success');", true);
+            Response.Redirect("Xem_Lich_Kham.aspx");
         }
 
         //load list view
@@ -135,18 +164,7 @@ namespace NHOM20_DATN
 
 
             }//============Xóa=============
-            else if (e.CommandName == "Xoa")
-            {
-                string docId = (string)Session["UserID"];
-                //string docId = "TK001";
-                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
-                string dayWork = commandArgs[0];
-                string idPk = commandArgs[1];
-                DoctorService.mailCancelAppointment(idPk);
-                DoctorService.deleteAppointment(idPk, docId);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Đã gửi mail.', 'success');", true);
-                Response.Redirect("Xem_Lich_Kham.aspx");
-            }
+           
             else if (e.CommandName == "XemTT")
             {
                 Response.Redirect("Xem_Lich_Kham.aspx");

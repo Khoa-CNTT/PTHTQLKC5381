@@ -175,10 +175,13 @@
     <Content Include="bin\System.Threading.Tasks.Extensions.xml" />
     <Content Include="bin\System.ValueTuple.dll" />
     <Content Include="bin\System.ValueTuple.xml" />
+    <Content Include="Cau_Hoi_Thuong_Gap.aspx" />
     <Content Include="Dang_Ky.aspx" />
-    <Content Include="Dang_Ky_Kham_Truc_Tiep.aspx" />
-    <Content Include="Dang_Ky_Lich_Kham.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="Lien_He.aspx" />
+    <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
+    <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
+    <Content Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="Patient\Dat_Lai_Mat_Khau.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Error_forbidden.html" />
@@ -289,10 +292,16 @@
     <Content Include="bin\MailKit.dll.config" />
     <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll.config" />
     <Content Include="Web.config" />
-    <Content Include="Xem_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cau_Hoi_Thuong_Gap.aspx.cs">
+      <DependentUpon>Cau_Hoi_Thuong_Gap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cau_Hoi_Thuong_Gap.aspx.designer.cs">
+      <DependentUpon>Cau_Hoi_Thuong_Gap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dang_Ky.aspx.cs">
       <DependentUpon>Dang_Ky.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,26 +309,40 @@
     <Compile Include="Dang_Ky.aspx.designer.cs">
       <DependentUpon>Dang_Ky.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dang_Ky_Kham_Truc_Tiep.aspx.cs">
-      <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dang_Ky_Kham_Truc_Tiep.aspx.designer.cs">
-      <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dang_Ky_Lich_Kham.aspx.cs">
-      <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dang_Ky_Lich_Kham.aspx.designer.cs">
-      <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Dang_Nhap.aspx.cs">
       <DependentUpon>Dang_Nhap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Dang_Nhap.aspx.designer.cs">
       <DependentUpon>Dang_Nhap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lien_He.aspx.cs">
+      <DependentUpon>Lien_He.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lien_He.aspx.designer.cs">
+      <DependentUpon>Lien_He.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.cs">
+      <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Doctor\Xem_Lich_Kham.aspx.cs">
+      <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Doctor\Xem_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx.cs">
+      <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx.designer.cs">
+      <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patient\Dat_Lai_Mat_Khau.aspx.cs">
       <DependentUpon>Dat_Lai_Mat_Khau.aspx</DependentUpon>
@@ -453,13 +476,6 @@
     <Compile Include="res\service\PatientManagerment.cs" />
     <Compile Include="res\service\QlbvService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
-    <Compile Include="Xem_Lich_Kham.aspx.cs">
-      <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Xem_Lich_Kham.aspx.designer.cs">
-      <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

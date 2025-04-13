@@ -147,6 +147,7 @@
     <Content Include="Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="Dang_Ky_Lich_Kham.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="img\anhnen_huykham.jpeg" />
     <Content Include="Patient\Dat_Lai_Mat_Khau.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Error_forbidden.html" />

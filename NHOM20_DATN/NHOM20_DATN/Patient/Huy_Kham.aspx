@@ -15,27 +15,29 @@
             .than5 {
                 margin-left: 600px !important;
             }
-
+            
             .nen5 {
-                width: 860px !important;
-                margin-left: 350px !important;
+                width: 870px !important;
+                margin-left: 320px !important;
+                margin-top: -380px !important;
             }
 
             .btn-xoa {
-                margin-top: 190px !important;
+                margin-top: 90px !important;
                 margin-left: 550px !important;
             }
 
             .btn-in {
                 height: 45px;
                 width: 150px;
-                margin-top: 190px !important;
+                margin-top: 90px !important;
                 margin-left: 850px !important;
                 position: absolute;
             }
 
             .ghichu {
-                margin-left: 600px !important;
+                margin-left: 580px !important;
+                margin-top: 150px !important;
             }
         }
 
@@ -193,12 +195,17 @@
                 margin-left: -260px;
             }
 
-            .tieudephieu5, .bienvien5 {
+            .tieudephieu5{
                 margin-left: -100px !important;
             }
+            .bienvien5{
+                margin-left: -170px !important;
+                margin-top:-40px !important;
+            }
 
-            .logo5 {
-                margin-left: -220px !important;
+            .logo5 img{
+                margin-left: -250px !important;
+                margin-top: 15px !important;
             }
 
             .ghichu {
@@ -215,7 +222,8 @@
 
             .nen5 {
                 width: 520px !important;
-                margin-left: 160px !important;
+                margin-left: -100px !important;
+                top: 470px !important;
             }
 
             .ghichu {
@@ -239,153 +247,157 @@
                 font-size: 12px !important;
                 position: absolute;
             }
+            .anhnenhuykham .anhhuykham , .nentrong{
+    display: none;
+}
         }
 
         /* Quy tắc cho màn hình rất nhỏ */
         @media (max-width: 768px) {
-            .danh-sach-phieu-container {
-                position: fixed;
-                margin-left: -260px;
-                top: 60px;
-                width: 120px !important;
-                height: 650px;
-                background-color: #f8f9fa;
-                border-right: 1px solid #dee2e6;
-                overflow-y: auto;
-                padding: -5px;
-                z-index: 1000;
-                position: absolute;
+        .tong5 {
+        width: 100%;
+        margin-left: -900px !important;
+        padding: 0px;
+        height: 750px !important;
+        overflow: visible !important;
+        position: relative !important;
+    }
+        .id5{
+            font-size:15px !important;
+            margin-left:-5px !important;
+        }
+        .phieukham5{
+            font-size:18px !important;
+            margin-left:-110px !important;
+        }
+        .phongkham5{
+             margin-left:-20px !important;
+        }
+        .thoigiankham5{
+            font-size:11px !important;
+            margin-left:-70px !important;
+        }
+        .chinh5 h3{
+            font-size:13px !important;
+        }
+    /* Thanh tiêu đề "Huỷ Khám" */
+    .tieude5 {
+        width: 100% !important;
+        margin-left: -220px !important;
+        font-size: 22px !important;
+        padding: 10px !important;
+        text-align: center;
+    }
+    
+    /* Container chính */
+    .nen5 {
+        width: 350px !important;
+        margin-left: -80px !important;
+        top: 482px !important;
+        height: 600px !important;
+        position: absolute !important;
+        transform: none !important;
+        border: 2px solid #50c7c7 !important;
+    }
+    
+    /* Nền trong chứa thông tin */
+    .nentrong {
+        width: 100% !important;
+        left: 2.5% !important;
+        top: 180px;
+        height: auto;
+        padding-bottom: 20px;
+        position: relative;
+        display:none;
+    }
+    
+    /* Phần thân chính */
+    .than5 {
+        width: 75% !important;
+        margin-left: 0 !important;
+        padding: 10px;
+        margin-top:-30px;
+        font-size:13px !important;
+        margin-left:-80px !important;
+    }
+    
+    /* Logo và tiêu đề phòng khám */
+    .logo5 img {
+        margin-left: 0 !important;
+        display: block;
+        margin: 0 auto;
+        display:none;
+    }
+    
+    .bienvien5 {
+        margin-left: 70px !important;
+        margin-top: -50px !important;
+        display:none;
+    }
+    
+    /* Điều chỉnh các khung thông tin */
+    .trai5, .phai5 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-top: 20px !important;
+        float: none;
+    }
+    
+    .khung1, .khung2, .khung3, .khung4, .khung5, .khung6, .khung7 {
+        width: 90% !important;
+        margin-left: 5% !important;
+        font-size: 12px !important;
+    }
+    
+    /* Nút chức năng */
+            .btn-xoa, .btn-in {
+                margin-top:10px;
             }
-
-            .grid-view-simple {
-                font-size: 9px !important;
-            }
-
-                .grid-view-simple th {
-                    font-size: 9px !important;
-                }
-
-            .bienvien5 {
-                margin-left: -100px;
-            }
-
-            .logo5 {
-                margin-left: -10px;
-            }
-
-            .khung1, .khung2, .khung3, .khung4, .khung5, .khung6, .khung7 {
-                width: 100px !important;
-                font-size: 10px !important;
-            }
-
-            .tieudephieu5, .bienvien5 {
-                margin-left: -20px !important;
-            }
-
-            .logo5 {
-                margin-left: -150px !important;
-            }
-
-            .trai5 {
-                margin-left: -120px !important;
-            }
-
-                .trai5 h3 {
-                    font-size: 9px !important;
-                }
-
-            .phai5 {
-                margin-left: 70px !important;
-                margin-top: -265px !important;
-            }
-
-                .phai5 h3 {
-                    font-size: 9px !important;
-                }
-
-            .tong5 {
-                font-size: 10px !important;
-            }
-
-            .tieude5 {
-                width: 520px !important;
-                margin-left: -220px !important;
-            }
-
-
-            .than5 {
-                margin-left: 50px !important;
-                font-size: 10px !important;
-            }
-
-            .thoigiankham5 {
-                margin-left: -50px !important;
-                font-size: 11px !important;
-            }
-
-            .nen5 {
-                width: 400px !important;
-                margin-left: 120px !important;
-            }
-
-            .ghichu {
-                margin-top: -80px !important;
-                margin-left: 40px !important;
-                font-size: 8px !important;
-            }
-
-            .btn-xoa {
-                width: 100px;
-                height: 30px;
-                margin-top: 200px !important;
-                margin-left: -50px !important;
-                font-size: 9px !important;
-            }
-
-            .btn-in {
-                width: 100px;
-                height: 30px;
-                margin-top: 200px !important;
-                margin-left: 150px !important;
-                font-size: 9px !important;
-                position: absolute;
-            }
-
-            .ghichu {
-                text-align: center;
-                margin-top: -80px;
-                margin-bottom: 5px;
-                margin-left: 200px !important;
-                z-index: 10;
-                position: absolute;
-            }
-
-                .ghichu a {
-                    text-decoration: none;
-                    font-size: 9px !important;
-                }
-
-            .khung3 {
-                margin-left: 35px !important;
-            }
-
-            .khung4 {
-                margin-left: 43px !important;
-            }
-
-            .khung5 {
-                margin-left: 20px !important;
-            }
-
-            .khung6 {
-                margin-left: 30px !important;
-                margin-top: -40px !important;
-            }
-
-            .khung7 {
-                margin-left: 30px !important;
-                margin-top: -50px;
-            }
+    .btn-in {
+        position: absolute;
+        margin-left: 160px !important;
+        display: block;
+        float: none;
+        width: 15%;
+        font-size:11px !important;
+    }
+    .btn-xoa{
+        position: absolute;
+        margin-left: -50px !important;
+        display: block;
+        float: none;
+        width: 20%;
+        font-size:11px !important;
+    }
+    
+    /* Ghi chú */
+    .ghichu {
+        margin: 30px 0px !important;
+        padding:20px;
+        width: 100%;
+        position: absolute;
+        left: -140px !important;
+        
+    }
+    .a{
+        font-size: 9px !important;
+    }
+    
+    /* Danh sách phiếu */
+    .danh-sach-phieu-container {
+        width: 30% !important;
+        margin-left: -260px !important;
+        position: relative;
+        height: 640px !important;
+        top: 43px !important;
+        left: 0;
+        margin-bottom: 20px;
+    }
+    
+    /* Ẩn ảnh nền trên mobile */
+    .anhnenhuykham .anhhuykham {
+        display: none;
+    }
         }
 
         .ghichu {
@@ -451,15 +463,23 @@
             position: relative;
             margin-top: 10px;
             margin-left: 20px;
-            height: 760px;
+            height: 680px;
         }
-
+        .anhnenhuykham{
+            z-index:2;
+        }
+        .anhnenhuykham .anhhuykham{
+            width:1260px !important;
+            height:700px;
+            z-index:-1 !important;
+            position:absolute;
+        }
 
         .tieude5 {
             margin-top: -7px;
             font-size: 24px;
-            background: linear-gradient(to right,#4876FF, #97FFFF);
-            color: #98F5FF;
+            background: #366A9A;
+            color: white;
             padding: 10px 40px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -471,7 +491,9 @@
 
         .logo5 img {
             margin-top: 30px;
-            margin-left: 30px;
+            margin-left: -270px;
+            height: 40px;
+            width: 70px !important;
         }
 
         .than5 {
@@ -479,31 +501,54 @@
         }
 
         .bienvien5 {
-            margin-top: -60px;
-            margin-left: 115px;
-        }
+               margin-top: -45px;
+                margin-left: -194px;
 
+        }
         .lb3 {
-            font-size: 14px;
+            font-size: 11px;
         }
 
         .lb2 {
-            font-size: 24px;
+            font-size: 13px;
         }
-
+        .nentrong{
+            background-color:white;
+            width: 840px;
+            height: 330px;
+            position: absolute;
+            z-index: 0;
+            left: 335px;
+            top: 210px;
+            border-radius: 5px;
+        }
+        .id5, .phieukham5 , .thoigiankham5{
+            position:relative;
+        }
+        .trai5, .phai5 {
+            position: relative; 
+            z-index: 1;
+        }
+        .id5, .phongkham5, .thoigiankham5 {
+            position: relative;
+            z-index: 1;
+        }
         .tieudephieu5 {
             margin-left: 100px;
             margin-top: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .phieukham5 {
-            color: deepskyblue;
-            font-size: 22px;
+            color: #2B6477;
+            font-size: 48px;
             font-weight: bolder;
+            margin-left: -110px;
         }
 
         .id5 {
-            font-size: 40px;
+            font-size: 22px;
             margin-left: -5px;
             font-weight: bolder;
         }
@@ -515,7 +560,7 @@
         }
 
         .phong5 {
-            margin-top: 15px;
+            margin-top: 0px;
             margin-left: 20px;
         }
 
@@ -530,7 +575,7 @@
 
         .phai5 {
             margin-left: 200px;
-            margin-top: -275px;
+            margin-top: -218px;
         }
 
             .phai5 h3 {
@@ -565,14 +610,16 @@
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             color: rgb(128, 128, 128);
+            
         }
 
         .khung4 {
-            margin-left: 51px;
+            margin-left: 8px;
             box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             color: rgb(128, 128, 128);
+            
         }
 
         .khung5 {
@@ -581,6 +628,7 @@
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             color: rgb(128, 128, 128);
+            width:708px;
         }
 
         .khung6 {
@@ -597,6 +645,7 @@
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
             color: rgb(128, 128, 128);
+           
         }
 
         .nut5 {
@@ -605,18 +654,22 @@
         }
 
         .nen5 {
-            background-color: #F0F0F0;
+            background-color: rgba(234, 241, 244, 1);
             width: 950px;
-            height: 650px;
-            margin-top: -700px;
+            height: 600px;
+            margin-top: -415px !important;
             margin-left: 200px;
             position: absolute;
             z-index: -1;
             border-radius: 20px;
             overflow: hidden;
         }
+        
 
         @media print {
+            .anhnenhuykham .anhhuykham{
+                display:none;
+            }
             .tong5 {
                 margin-left: 20px;
                 height: 500px;
@@ -637,7 +690,7 @@
             }
 
             .phai5 {
-                margin-top: -325px !important;
+                margin-top: -225px !important;
                 margin-left: 200px !important;
             }
 
@@ -666,7 +719,7 @@
             }
 
             .khung4 {
-                margin-left: 70px;
+                margin-left: 60px;
             }
 
             .khung3 {
@@ -691,7 +744,7 @@
             left: 30px;
             top: 60px;
             width: 250px;
-            height: 650px;
+            height: 600px;
             background-color: #f8f9fa;
             border-right: 1px solid #dee2e6;
             overflow-y: auto;
@@ -743,12 +796,14 @@
             .danh-sach-phieu-container {
                 width: 200px;
                 padding: 10px;
+               
             }
-
-            .grid-view-simple {
-                font-size: 12px;
+            .grid-view-simple{
+                font-size:11px !important;
             }
-
+                .grid-view-simple th {
+                    font-size:11px !important;
+                }
             .tong5 {
                 margin-left: 220px !important;
             }
@@ -782,10 +837,12 @@
             }
     </style>
     <div class="tong5">
-
+        
         <div class="Tren1">
             <asp:Label ID="Label1" CssClass="tieude5" runat="server" Text="HUỶ KHÁM"></asp:Label>
         </div>
+        <div class=" anhnenhuykham">
+            <img class="anhhuykham" src="../img/anhnen_huykham.jpeg" />
         <div class="Trai1">
 
             <div class="danh-sach-phieu-container">
@@ -809,6 +866,7 @@
             </div>
         </div>
         <div class="than5">
+            
             <div class="logo5">
                 <img style="width: 80px;" src="../img/logochinh.png" />
             </div>
@@ -820,7 +878,9 @@
             <div class="tieudephieu5">
                 <asp:Label ID="Label4" CssClass="phieukham5" runat="server" Text="Phiếu Khám Bệnh"></asp:Label>
                 <br />
-                <asp:Label ID="lbid" CssClass="id5" runat="server" Text="P014"></asp:Label>
+                
+                <asp:Label ID="Label7" CssClass="id5" runat="server" Text="Mã Phiếu:"></asp:Label>
+                <asp:Label ID="lbid" CssClass="id5" runat="server" Text=" PK89D962"></asp:Label>
                 <div class="phong5">
                     <asp:Label ID="Label5" CssClass="phongkham5" runat="server" Text="Phòng khám:"></asp:Label>
                     <asp:Label ID="lbphongkham" runat="server" Text="P001"></asp:Label>
@@ -829,8 +889,10 @@
                     <asp:Label ID="Label6" runat="server" Text="Thời gian khám:"></asp:Label>
                     <asp:Label ID="lbthoigian" runat="server" Text="25/05/2024 12:00:00 AM"></asp:Label>
                 </span>
+                    
             </div>
             <div class="chinh5">
+                <div class="nentrong"> </div>
                 <div class="trai5">
                     <h3>Họ Và Tên:<asp:TextBox CssClass="khung1" ID="lbhoten" runat="server" Text="Dữ liệu hiển thị" ReadOnly="True"></asp:TextBox></h3>
 
@@ -838,7 +900,7 @@
 
                     <h3>Giới Tính:<asp:TextBox CssClass="khung3" ID="lbgioitinh" runat="server" Text="Dữ liệu hiển thị" ReadOnly="True"></asp:TextBox></h3>
 
-                    <h3>Địa Chỉ:<asp:TextBox CssClass="khung4" ID="lbdiachi" runat="server" Text="Dữ liệu hiển thị" ReadOnly="True"></asp:TextBox></h3>
+                    
 
                     <h3>Triệu Chứng:
                     <asp:TextBox CssClass="khung5" ID="lbtrieuchung" runat="server" Text="Dữ liệu hiển thị" ReadOnly="True"></asp:TextBox></h3>
@@ -848,9 +910,10 @@
                     <h3>Email:<asp:TextBox ID="lbemail" CssClass="khung6" runat="server" Text="Dữ liệu hiển thị" ReadOnly="True"></asp:TextBox></h3>
 
                     <h3>SĐT:<asp:TextBox ID="lbsdt" CssClass="khung7" runat="server" Text="Dữ liệu hiển thị" ReadOnly="True"></asp:TextBox></h3>
-
+                    <h3>Địa Chỉ:<asp:TextBox CssClass="khung4" ID="lbdiachi" runat="server" Text="Dữ liệu hiển thị" ReadOnly="True"></asp:TextBox></h3>
                 </div>
             </div>
+               
         </div>
         <div class="nut22">
             <asp:Button ID="btnnut" runat="server" CssClass="btn-xoa" Text="Xoá đăng ký" OnClick="btnnut_Click"
@@ -865,7 +928,7 @@
 
     </div>
     <div class="nen5"></div>
-
+    </div>
     <script type="text/javascript">
         function showPhongKhamInfo(phongKhamInfo) {
             addStyles();

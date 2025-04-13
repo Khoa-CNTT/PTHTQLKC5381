@@ -262,7 +262,7 @@
                         </div>
                     </div>
                     <div class="inp_regis">Đăng ký tài khoản <a href="Dang_Ky.aspx">tại đây</a> </div>
-                    <div class="inp_regis">Quên mật khẩu hãy bấm <a href="QuenMatKhau.aspx">vào đây</a> </div>
+                    <div class="inp_regis">Quên mật khẩu hãy bấm <a href="/Patient/Quen_Mat_Khau.aspx">vào đây</a> </div>
                 </div>
             </div>
         </div>

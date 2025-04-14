@@ -60,6 +60,15 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
         /// lbid control.
         /// </summary>
         /// <remarks>
@@ -132,15 +141,6 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.TextBox lbgioitinh;
 
         /// <summary>
-        /// lbdiachi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lbdiachi;
-
-        /// <summary>
         /// lbtrieuchung control.
         /// </summary>
         /// <remarks>
@@ -166,6 +166,15 @@ namespace NHOM20_DATN
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox lbsdt;
+
+        /// <summary>
+        /// lbdiachi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lbdiachi;
 
         /// <summary>
         /// btnnut control.

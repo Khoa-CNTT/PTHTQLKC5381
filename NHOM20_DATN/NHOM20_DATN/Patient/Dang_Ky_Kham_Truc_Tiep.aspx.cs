@@ -30,7 +30,7 @@ namespace NHOM20_DATN
                 }
                 else
                 {
-                    Response.Redirect("DangNhap.aspx");
+                    Response.Redirect("../Dang_Nhap.aspx");
                 }
                 LoadChuyenKhoa();
                 LoadPhongKham();
@@ -99,12 +99,12 @@ namespace NHOM20_DATN
                 // Nếu thiếu thông tin, hiển thị thông báo cập nhật
                 if (isMissingInfo)
                 {
-                    Response.Write("<script>alert('Bạn hãy cập nhật thông tin cá nhân của mình!');</script>");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hãy cập nhật thông tin cá nhân.', 'warning');", true);
                 }
             }
             else
             {
-                Response.Write("<script>alert('Bạn hãy cập nhật thông tin cá nhân của mình!');</script>");
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hãy cập nhật thông tin cá nhân.', 'warning');", true);
             }
         }
         private void BindNgayKhamRepeater()
@@ -234,17 +234,17 @@ namespace NHOM20_DATN
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bạn sí không có giờ khám này.', 'warning');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bác sĩ không có giờ khám này.', 'warning');", true);
                     }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bạn sí không có giờ khám này.', 'warning');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bác sĩ không có giờ khám này.', 'warning');", true);
                 }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bạn sí không có giờ khám này.', 'warning');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bác sĩ không có giờ khám này.', 'warning');", true);
             }
         }
         protected void ddlBacSi_SelectedIndexChanged(object sender, EventArgs e)

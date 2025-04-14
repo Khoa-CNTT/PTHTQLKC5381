@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Dang_Nhap.aspx.cs" Inherits="NHOM20_DATN.Dang_Nhap" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         #content_container #login_container {
             text-align: center;
@@ -262,10 +264,19 @@
                         </div>
                     </div>
                     <div class="inp_regis">Đăng ký tài khoản <a href="Dang_Ky.aspx">tại đây</a> </div>
-                    <div class="inp_regis">Quên mật khẩu hãy bấm <a href="QuenMatKhau.aspx">vào đây</a> </div>
+                    <div class="inp_regis">Quên mật khẩu hãy bấm <a href="/Patient/Quen_Mat_Khau.aspx">vào đây</a> </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script>
+        function showAlert(message, iconType) {
+            Swal.fire({
+                title: message,
+                icon: iconType,
+                confirmButtonText: 'OK'
+            });
+        }
+       
+    </script>
 </asp:Content>

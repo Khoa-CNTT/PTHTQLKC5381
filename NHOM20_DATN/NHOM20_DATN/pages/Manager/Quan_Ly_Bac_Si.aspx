@@ -94,9 +94,7 @@
 
                </div>
            </div>
-           <div class="load_list">
-               <asp:LinkButton ID="LinkButton1" title="Load lại danh sách" CssClass="refresh_btn" OnClick="LinkButton1_Click1" runat="server"><i class="fa-solid fa-rotate-right"></i></asp:LinkButton>
-           </div>
+         
 
            <div class="radius-2em">
                <div class="table_doctor">
@@ -197,6 +195,7 @@
                                </ItemTemplate>
                                <EditItemTemplate>
                                    <asp:FileUpload ID="up_Img" runat="server" />
+                                   <asp:Label ID="hidden_imgUrl" Visible="false" Text='<%#Eval("HinhAnh") %>' runat="server"></asp:Label>
                                </EditItemTemplate>
                            </asp:TemplateField>
                            <%-- ==============     Btn    =============== --%>
@@ -248,7 +247,24 @@
            </div>
        </div>
    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function ShowAlert(notice, warn) {
+        Swal.fire({
+            title: notice,
+            icon: warn,
+            confirmButtonText: 'OK'
+        });
+    }
+    function OpenForm() {
+        const btn_open = document.querySelector("#patientUpdate_container"); 
+        btn_open.classList.add("d_block");
+    }
+    function CloseForm() {
+        const btn_open = document.querySelector("#patientUpdate_container");
+        btn_open.classList.remove("d_block");
+    }
+    </script>
 
    <script src="../../js/doctorCreateAccount.js"></script>
 </asp:Content>

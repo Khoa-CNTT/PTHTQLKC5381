@@ -14,11 +14,7 @@ namespace NHOM20_DATN
         LopKetNoi ketNoi = new LopKetNoi();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserID"] == null || Session["Role"] == null)
-            {
-                Response.Redirect("~/Dang_Nhap.aspx");
-                return;
-            }
+          
 
             if (!IsPostBack)
             {

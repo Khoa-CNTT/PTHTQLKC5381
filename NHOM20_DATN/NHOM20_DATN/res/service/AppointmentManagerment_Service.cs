@@ -17,17 +17,14 @@ namespace NHOM20_DATN.res.service
 
 
 
-
-
-
         public DataTable viewListAppointment()
         {
             string query_Appointment = "select  lkbn.NgayKham, lkbn.ThoiGianKham , lkbn.TrangThai, bn.SoDienThoai, bn.HoTen ,pk.IDPhieu , bs.HoTen as BSKham, bs.IDBacSi ,bn.IDBenhNhan   " +
-        " from PhieuKham pk   " +
+        " from PhieuKham pk  " +
         " JOIN LichKhamBenhNhan lkbn ON pk.IDPhieu = lkbn.IDPhieu  " +
         " join BenhNhan bn on pk.IDBenhNhan  = bn.IDBenhNhan " +
-        "JOIN LichKhamBacSi lkbs ON pk.IDPhieu = lkbs.IDPhieu   " +
-        "join BacSi bs on pk.IDBacSi = bs.IDBacSi " +
+        " JOIN LichKhamBacSi lkbs ON pk.IDPhieu = lkbs.IDPhieu   " +
+        " join BacSi bs on pk.IDBacSi = bs.IDBacSi " +
         " order by  lkbn.NgayKham, lkbn.ThoiGianKham";
             SqlParameter[] pr = new SqlParameter[] { };
             DataTable dt = kn.docdulieu(query_Appointment, pr);
@@ -145,6 +142,7 @@ namespace NHOM20_DATN.res.service
             string query_deletePK = "delete from PhieuKham where IDBacSi= @IDBacSi and IDPhieu = @IDPhieu";
             string query_deleteLKBS = "delete from LichKhamBacSi where IDBacSi= @IDBacSi and IDPhieu = @IDPhieu";
             string query_deleteLKBN = "delete from LichKhamBenhNhan where IDPhieu = @IDPhieu";
+            string query_deleteLSK = "delete from LichSuKham where IDPhieu = @IDPhieu";
             SqlParameter[] pr = new SqlParameter[] {
         new SqlParameter("@IDBacSi", idBs),
             new SqlParameter("@IDPhieu", idPhieu)

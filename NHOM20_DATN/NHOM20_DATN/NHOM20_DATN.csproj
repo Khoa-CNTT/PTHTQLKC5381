@@ -181,6 +181,8 @@
     <Content Include="Cau_Hoi_Thuong_Gap.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="js\appointment_manager.js" />
+    <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />

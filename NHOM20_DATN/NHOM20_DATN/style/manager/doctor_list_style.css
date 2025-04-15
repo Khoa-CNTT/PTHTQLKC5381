@@ -34,22 +34,22 @@
     }
 
 .gridview-table tr:first-child th:first-child {
-    border-top-left-radius: 20px;
+   
 }
 
 /* top-right border-radius */
 .gridview-table tr:first-child th:last-child {
-    border-top-right-radius: 20px;
+    
 }
 
 /* bottom-left border-radius */
 .gridview-table tr:nth-last-child(2) td:first-child {
-    border-bottom-left-radius: 20px;
+    
 }
 
 /* bottom-right border-radius */
 .gridview-table tr:nth-last-child(2) td:last-child {
-    border-bottom-right-radius: 20px;
+    
 }
 
 .gridview-table {
@@ -220,6 +220,15 @@
     --bs-table-bg-type: none;
 }
 
+
+/*          Code Here*/
+.contain-qlbs {
+    background-color: #d9d9d96e;
+}
+
+.table_doctor {
+    box-shadow: 0 0 5px #888888;
+}
 
 
 @media only screen and (max-width: 1500px) {

@@ -23,6 +23,19 @@ document.onclick = function (e) {
 }
 
 
+function showAlert(titleValue, textValue, iconValue) {
+    Swal.fire({
+        title: titleValue,
+        text: textValue,
+        icon: iconValue
+    });
+}
 
+function showAlert(titleValue, iconValue) {
+    Swal.fire({
+        title: titleValue,
+        icon: iconValue
+    });
+}
 
 

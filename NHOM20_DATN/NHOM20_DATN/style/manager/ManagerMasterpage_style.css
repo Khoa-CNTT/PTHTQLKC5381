@@ -1,5 +1,9 @@
-﻿body {
-    background: aliceblue;
+﻿html{
+    height: 100vh;
+}
+
+body {
+    background: #f9f9f9;
 }
 
 #content {
@@ -25,11 +29,23 @@
     margin-left: 420px;
 }
 
+
+.icon_User {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    gap: 10px;
+    border-bottom: 1px solid #787878;
+}
+
 .icon_User i {
-    font-size: 5em;
+    font-size: 30px;
     color: white;
 }
 
+.icon_User h4{
+    color: white;
+}
 
 .btn-them, .btn-sua, .btn-xoa {
     padding: 10px 20px;
@@ -80,16 +96,14 @@
 .sidebar {
     display: flex;
     position: fixed;
-    align-items: center;
     flex-direction: column;
     height: 100vh;
     width: 350px;
     background: #283345;
-    padding: 20px;
+    padding: 20px 0;
     margin-bottom: 20px;
     transition: 0.3s;
     touch-action: pan-y;
-    border-radius: 2em;
 }
 
 
@@ -104,23 +118,22 @@
     .sidebar ul {
         list-style-type: none;
         padding: 0;
-        margin-top: 20px;
+        margin-top: 5px;
     }
 
         .sidebar ul li {
-            margin: 15px 0;
+          
         }
 
             .sidebar ul li:hover {
                 color: red;
-                font-weight: bold;
+               
             }
 
             .sidebar ul li a {
                 text-decoration: none;
                 color: white;
-                font-weight: 600;
-                font-size: 20px;
+                font-size: 18px;
             }
 
                 .sidebar ul li a i {
@@ -148,7 +161,7 @@
 
 .d_flex {
     display: flex;
-    background-color: aliceblue;
+  
 }
 
 .btn_close {
@@ -176,20 +189,40 @@
 
 .out {
     position: absolute;
-    bottom: 5em;
+    bottom: 1em;
+    margin-left: 15px;
 }
 
     .out i {
-        color: #8583e2;
-        font-size: 26px;
-        font-weight: 600;
+        color: white;
+        font-size: 18px;
     }
 
     .out a {
         color: white;
-        font-size: 20px;
-        font-weight: 600;
+        font-size: 18px;
         text-decoration: none;
+    }
+
+    .out a:hover {
+        color: #ccc;
+    }
+
+
+/*CODE HERE*/
+.contain-qlbn,
+.contain-qlbs,
+.contain-qllk,
+.contain-qlbvsk {
+    padding: 15px 15px;
+}
+
+
+    .contain-qlbn:hover,
+    .contain-qlbs:hover,
+    .contain-qllk:hover,
+    .contain-qlbvsk:hover {
+        background-color: #d9d9d96e;
     }
 
 
@@ -200,8 +233,9 @@
 
 
 
-@media only screen and (max-width: 960px) {
-    .sidebar {
+
+    @media only screen and (max-width: 960px) {
+        .sidebar {
         position: fixed;
         left: -100%;
         width: 80%;
@@ -214,7 +248,7 @@
     .btn_close {
         display: block;
         position: absolute;
-        font-size: 30px;
+        font-size: 18px;
         color: white;
         right: 1em;
         top: 0;

@@ -34,7 +34,9 @@ namespace NHOM20_DATN.pages.Manager
             }
             else
             {
-                Response.Write("<script>alert('Chưa có lịch khám !');</script>");
+                string message = "Chưa có lịch khám!";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
 
         }
@@ -55,7 +57,12 @@ namespace NHOM20_DATN.pages.Manager
                 hiddenOldDay.Value = dayWork;
                 hiddenOldTime.Value = timeWork;
                 hiddenDocID.Value = docId;
+                //      Đổi giờ
                 pn_AT.Visible = true;
+                string script = "openForm('#chTime_container');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "display", script, true);
+
+
                 lbl_idPk.Text = idPk;
                 //set text cho ngày
                 var dayCalender = Convert.ToDateTime(dayWork);
@@ -94,7 +101,9 @@ namespace NHOM20_DATN.pages.Manager
                 string bnID = commandArgs[3];
                 appointmentManagerment_Service.mailCancelAppointmentManager(idPk);
                 appointmentManagerment_Service.deleteAppointmentManager(idPk, docId);
-                Response.Write("<script>alert('Đã gửi mail thông báo hủy cho bệnh nhân và bác sĩ');</script>");
+                string message = "Đã gửi mail thông báo hủy cho bệnh nhân và bác sĩ";
+                string script = "showAlert('" + message + "','success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 Response.Redirect("Quan_Ly_Lich_Kham.aspx");
 
             }
@@ -150,7 +159,9 @@ namespace NHOM20_DATN.pages.Manager
             }
             else
             {
-                Response.Write("<script>alert('Không có thông tin tương ứng');</script>");
+                string message = "Không có thông tin tương ứng";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
 
         }
@@ -174,20 +185,19 @@ namespace NHOM20_DATN.pages.Manager
                 if (result != 0)
                 {
                     appointmentManagerment_Service.mailChangeAppointmentManager(idPk, oldDAy, oldTime);
+                    string message = "Đã gửi mail thông báo cho bệnh nhân";
+                    string script = "showAlert('" + message + "','success');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                    //string script = $"alert('{message}'); window.location='Quan_Ly_Lich_Kham.aspx';";
+                    //Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
 
-                    string message = "Đã gửi mail thông báo cho bệnh nhân !";
-                    string script = $"alert('{message}'); window.location='Quan_Ly_Lich_Kham.aspx';";
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
 
                 }
                 else
                 {
-
-                    string message = "Cập nhật thất bại !";
-                    string script = $"alert('{message}'); window.location='Quan_Ly_Lich_Kham.aspx';";
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
-
-
+                    string message = "Cập nhật thất bại";
+                    string script = "showAlert('" + message + "','error');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 }
 
             }
@@ -205,6 +215,8 @@ namespace NHOM20_DATN.pages.Manager
         protected void btn_Close_Click(object sender, EventArgs e)
         {
             pn_AT.Visible = false;
+            string script = "closeForm('#chTime_container');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "display", script, true);
         }
 
         //===========Seacching 
@@ -218,7 +230,9 @@ namespace NHOM20_DATN.pages.Manager
             }
             else
             {
-                Response.Write("<script>alert('Không tìm thấy thông tin');</script>");
+                string message = "Không tìm thấy thông tin";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
 
         }
@@ -239,7 +253,9 @@ namespace NHOM20_DATN.pages.Manager
             {
                 txtCalender.Text = DateTime.Parse(hiddenOldDay.Value).ToString("yyyy-MM-dd");
 
-                Response.Write("<script>alert('Vui lòng chọn mốc thời gian tương lai!');</script>");
+                string message = "Môc";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
             }
             List<string> availableHour = appointmentManagerment_Service.availableHour(docID, day_selected);

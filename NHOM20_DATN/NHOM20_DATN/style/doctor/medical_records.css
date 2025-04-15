@@ -7,7 +7,6 @@
 
 .d_flex {
     display: flex;
-    background-color: aliceblue;
     justify-content: space-between;
 }
 
@@ -222,7 +221,7 @@
 
 
     .gridview-table th {
-        background-color: #72c1f6;
+        background-color: #e4e4e4;
         color: #4d4c4c;
     }
 
@@ -243,9 +242,6 @@
             .gridview-table td a i {
                 color: #646464;
             }
-
-
-
 
 
     .gridview-table .ddl_Department {
@@ -269,22 +265,22 @@
 }
 
 .gridview-table tr:first-child th:first-child {
-    border-top-left-radius: 20px;
+ 
 }
 
 /* top-right border-radius */
 .gridview-table tr:first-child th:last-child {
-    border-top-right-radius: 20px;
+   
 }
 
 /* bottom-left border-radius */
 .gridview-table tr:nth-last-child(2) td:first-child {
-    border-bottom-left-radius: 20px;
+
 }
 
 /* bottom-right border-radius */
 .gridview-table tr:nth-last-child(2) td:last-child {
-    border-bottom-right-radius: 20px;
+ 
 }
 
 .load_list {
@@ -330,7 +326,7 @@
 
     .pagination span,
     .pagination a {
-        padding: 2px 10px;
+/*        padding: 2px 10px;*/
     }
 
     .pagination table {
@@ -403,6 +399,9 @@ input[type=number]::-webkit-outer-spin-button {
     gap: 1em;
     flex-flow: row;
 }
+.contain-cnhs {
+    background-color: #d9d9d96e;
+}
 /*===========PC==================*/
 @media only screen and (max-width: 1500px) {
     .table_medic {
@@ -440,7 +439,7 @@ input[type=number]::-webkit-outer-spin-button {
     #list_here {
         width: 95%;
         margin: auto;
-        margin-top: 15em;
+        margin-top: 8em;
     }
 
     #ContentPlaceHolder1_pn_AT {
@@ -494,6 +493,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     .seach_bar input {
         font-size: 16px;
+        padding: 10px 20px!important;
     }
 
     .filter_bar select {
@@ -505,7 +505,7 @@ input[type=number]::-webkit-outer-spin-button {
         }
 
     .btn_search {
-        padding: 3.5em;
+        padding: 0.5em 1em;
     }
 
     .seach_bar i {
@@ -519,7 +519,9 @@ input[type=number]::-webkit-outer-spin-button {
 
     #content {
         width: 100%;
+        margin-left: unset;
     }
+
 
 
 
@@ -587,8 +589,14 @@ input[type=number]::-webkit-outer-spin-button {
 
     .btn_cancelEdit,
     .btn_edit {
-        margin: 5em 0;
+        margin: 1em 0;
     }
+
+    #right-dropdown {
+        display: none;
+    }
+
+
 }
 
 
@@ -598,7 +606,9 @@ input[type=number]::-webkit-outer-spin-button {
 @media only screen and (max-device-width: 960px) {
     #content {
         width: 100%;
+        margin-left: unset;
     }
+
 
 
 

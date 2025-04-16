@@ -26,51 +26,90 @@ namespace NHOM20_DATN.Patient
         private string partnerCode = "MOMO";
         private string accessKey = "F8BBA842ECF85";
         private string secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        private string redirectUrl = "https://140c-14-165-151-227.ngrok-free.app/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx";
-        private string ipnUrl = "https://140c-14-165-151-227.ngrok-free.app/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx";
+        private string redirectUrl = "https://a3b6-113-165-214-240.ngrok-free.app/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx";
+        private string ipnUrl = "https://a3b6-113-165-214-240.ngrok-free.app/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 SetDateRange();
-
-                // Xử lý phản hồi MoMo
-                if (Request.QueryString["resultCode"] != null)
+                XuLyKetQuaMoMo();
+                HienThiThongTinBacSi();
+                var thongTinThanhToan = Session["ThongTinThanhToan"] as Dictionary<string, object>;
+                if (thongTinThanhToan != null)
                 {
-                    string resultCode = Request.QueryString["resultCode"];
-                    if (resultCode == "0")
-                    {
-                        var tuVanTemp = Session["TuVanTemp"] as Dictionary<string, object>;
-                        if (tuVanTemp != null)
-                        {
-                            string idTuVan = TaoMaTuVan();
-                            string linkGoogleMeet = "https://meet.google.com/" + Guid.NewGuid().ToString().Substring(0, 8);
-                            DangKyTuVan(idTuVan, tuVanTemp["IDBenhNhan"].ToString(), tuVanTemp["IDBacSi"].ToString(),
-                                (DateTime)tuVanTemp["Ngay"], (TimeSpan)tuVanTemp["Gio"], tuVanTemp["TrieuChung"].ToString(), linkGoogleMeet);
-                            Session.Remove("TuVanTemp");
-                            Response.Write("<script>alert('Đăng ký tư vấn thành công!');</script>");
-                        }
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Thanh toán thất bại hoặc bị hủy.');</script>");
-                    }
+                    string idBenhNhan = thongTinThanhToan["IDBenhNhan"].ToString();
+                    LayThongTinBenhNhan(idBenhNhan);
+                }
+            }
+        }
+
+        private void XuLyKetQuaMoMo()
+        {
+            if (Request.QueryString["resultCode"] == null) return;
+
+            string resultCode = Request.QueryString["resultCode"];
+            string amount = Request.QueryString["amount"];
+            var thongTinThanhToan = Session["ThongTinThanhToan"] as Dictionary<string, object>;
+
+            if (thongTinThanhToan == null) return;
+
+            string idBenhNhan = thongTinThanhToan["IDBenhNhan"].ToString();
+            string idPhieu = thongTinThanhToan["IDPhieu"].ToString();
+            decimal soTien = Convert.ToDecimal(amount);
+
+            if (resultCode == "0") // Thanh toán thành công
+            {
+                LuuThanhToan(idBenhNhan, idPhieu, soTien, "DaThanhToan");
+
+                var tuVanTemp = Session["TuVanTemp"] as Dictionary<string, object>;
+                if (tuVanTemp != null)
+                {
+                    string idTuVan = TaoMaTuVan();
+                    string linkJitsi = "https://meet.jit.si/" + Guid.NewGuid().ToString().Substring(0, 8);
+                    DateTime ngay = (DateTime)tuVanTemp["Ngay"];
+                    TimeSpan gio = (TimeSpan)tuVanTemp["Gio"];
+                    string idBacSi = tuVanTemp["IDBacSi"].ToString();
+                    string trieuChung = tuVanTemp["TrieuChung"].ToString();
+
+                    DangKyTuVan(idTuVan, idBenhNhan, idBacSi, ngay, gio, trieuChung, linkJitsi);
+                    GửiEmailThamSoBenhNhan(idTuVan, idBenhNhan, linkJitsi, ngay, gio);
+                    Session.Remove("TuVanTemp");
                 }
 
-                // Hiển thị thông tin bác sĩ
-                lblTenBacSi.Text = Request.QueryString["TenBacSi"];
-                lblChuyenKhoa.Text = Request.QueryString["ChuyenKhoa"];
-                lblTrinhDo.Text = Request.QueryString["TrinhDo"];
-                lblEmail.Text = Request.QueryString["Email"];
-                lblVaiTro.Text = Request.QueryString["VaiTro"];
-                lblIDBacSi.Text = Request.QueryString["IDBacSi"];
-
-                if (Session["IDBenhNhan"] != null)
-                    LayThongTinBenhNhan(Session["IDBenhNhan"].ToString());
-                else
-                    lblIDBenhNhan.Text = "Chưa có ID bệnh nhân";
+                ThongBaoVaChuyenTrang("Thanh toán thành công!", redirectUrl);
             }
+            else
+            {
+                LuuThanhToan(idBenhNhan, idPhieu, soTien, "ThatBai");
+                Response.Write("<script>alert('Thanh toán thất bại hoặc bị hủy.');</script>");
+            }
+
+            // Có thể xóa luôn Session ở đây nếu cần
+            // Session.Remove("ThongTinThanhToan");
+        }
+
+        private void ThongBaoVaChuyenTrang(string message, string url)
+        {
+            string script = $@"
+        <script>
+            alert('{message}');
+            setTimeout(function() {{
+                window.location.href = '{url}';
+            }}, 1500);
+        </script>";
+            Response.Write(script);
+        }
+
+        private void HienThiThongTinBacSi()
+        {
+            lblTenBacSi.Text = Request.QueryString["TenBacSi"];
+            lblChuyenKhoa.Text = Request.QueryString["ChuyenKhoa"];
+            lblTrinhDo.Text = Request.QueryString["TrinhDo"];
+            lblEmail.Text = Request.QueryString["Email"];
+            lblVaiTro.Text = Request.QueryString["VaiTro"];
+            lblIDBacSi.Text = Request.QueryString["IDBacSi"];
         }
 
         private void SetDateRange()
@@ -103,9 +142,11 @@ namespace NHOM20_DATN.Patient
                 string idBenhNhan = lblIDBenhNhan.Text;
                 string idBacSi = lblIDBacSi.Text;
 
-                if (!DateTime.TryParse(txtNgay.Text, out DateTime ngay)) throw new Exception("Ngày không hợp lệ.");
-                if (!TimeSpan.TryParse(ddlGio.Text, out TimeSpan gio)) throw new Exception("Giờ không hợp lệ.");
-                string trieuChung = txtTrieuChung.Text.Trim();
+                if (!DateTime.TryParse(txtNgay.Text, out DateTime ngay))
+                    throw new Exception("Ngày không hợp lệ.");
+
+                if (!TimeSpan.TryParse(ddlGio.Text, out TimeSpan gio))
+                    throw new Exception("Giờ không hợp lệ.");
 
                 if (!((gio >= TimeSpan.FromHours(7) && gio <= TimeSpan.FromHours(11)) ||
                       (gio >= TimeSpan.FromHours(14) && gio <= TimeSpan.FromHours(17))))
@@ -114,22 +155,22 @@ namespace NHOM20_DATN.Patient
                 if (KiemTraTrungLich(idBacSi, ngay, gio))
                     throw new Exception("Bác sĩ đã có lịch tư vấn vào thời điểm này.");
 
-                // Lưu session
-                Session["TuVanTemp"] = new Dictionary<string, object>
-                {
-                    {"IDBenhNhan", idBenhNhan},
-                    {"IDBacSi", idBacSi},
-                    {"Ngay", ngay},
-                    {"Gio", gio},
-                    {"TrieuChung", trieuChung}
-                };
+                string trieuChung = txtTrieuChung.Text.Trim();
 
-                // Gọi hàm tạo thanh toán MoMo
+                Session["TuVanTemp"] = new Dictionary<string, object>
+        {
+            {"IDBenhNhan", idBenhNhan},
+            {"IDBacSi", idBacSi},
+            {"Ngay", ngay},
+            {"Gio", gio},
+            {"TrieuChung", trieuChung}
+        };
+
                 await TaoYeuCauThanhToanMoMo();
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                Response.Write($"<script>alert('{ex.Message}');</script>");
             }
         }
 
@@ -142,8 +183,7 @@ namespace NHOM20_DATN.Patient
             string orderInfo = "Thanh toán tư vấn trực tuyến";
             string extraData = "";
 
-            string rawHash = $"accessKey={accessKey}&amount={amount}&extraData={extraData}&ipnUrl={ipnUrl}&orderId={orderId}&orderInfo={orderInfo}&partnerCode={partnerCode}&redirectUrl={redirectUrl}&requestId={requestId}&requestType=captureWallet";
-
+            string rawHash = $"accessKey={accessKey}&amount={amount}&extraData={extraData}&ipnUrl={ipnUrl}&orderId={orderId}&orderInfo={orderInfo}&partnerCode={partnerCode}&redirectUrl={redirectUrl}&requestId={requestId}&requestType=payWithATM";
             string signature = HmacSHA256(secretKey, rawHash);
 
             var paymentRequest = new
@@ -157,10 +197,23 @@ namespace NHOM20_DATN.Patient
                 redirectUrl,
                 ipnUrl,
                 extraData,
-                requestType = "captureWallet", // captureWallet : cai ni la ma QR nhe
+                requestType = "payWithATM",
                 signature,
                 lang = "vi"
             };
+
+            // Lưu thông tin thanh toán vào Session
+            string idBenhNhan = (string)((Dictionary<string, object>)Session["TuVanTemp"])["IDBenhNhan"];
+            string idPhieuTam = "PhieuTam_" + orderId;  // Tạo ID phiếu tạm
+            var thongTinThanhToan = new Dictionary<string, object>
+            {
+                ["IDBenhNhan"] = idBenhNhan,
+                ["IDPhieu"] = idPhieuTam,
+                ["SoTien"] = amount,
+                ["OrderId"] = orderId,
+                ["RequestId"] = requestId
+            };
+            Session["ThongTinThanhToan"] = thongTinThanhToan;
 
             using (HttpClient client = new HttpClient())
             {
@@ -171,15 +224,30 @@ namespace NHOM20_DATN.Patient
 
                 dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent);
                 string payUrl = jsonResponse.payUrl;
+
+                // Chuyển hướng đến trang nhập số thẻ (test)
                 Response.Redirect(payUrl);
-                // TỰ ĐỘNG MỞ TRÌNH DUYỆT ĐỂ TEST
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = payUrl,
-                    UseShellExecute = true
-                });
             }
+
         }
+
+        private void LuuThanhToan(string idBenhNhan, string idPhieu, decimal soTien, string trangThai)
+        {
+            string sql = "INSERT INTO ThanhToan (IDBenhNhan, IDPhieu, SoTien, TrangThai, ThoiGianThanhToan) " +
+                         "VALUES (@IDBenhNhan, @IDPhieu, @SoTien, @TrangThai, @ThoiGianThanhToan)";
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@IDBenhNhan", idBenhNhan),
+                new SqlParameter("@IDPhieu", idPhieu),
+                new SqlParameter("@SoTien", soTien),
+                new SqlParameter("@TrangThai", trangThai),
+                new SqlParameter("@ThoiGianThanhToan", DateTime.Now)
+    };
+
+            db.CapNhat(sql, parameters);
+        }
+
+
 
         private string HmacSHA256(string key, string message)
         {

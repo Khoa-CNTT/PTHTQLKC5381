@@ -185,8 +185,8 @@ namespace NHOM20_DATN.pages.Manager
 
             if (upload.HasFile)
             {
-                upload.SaveAs(Server.MapPath("img/" + upload.FileName));
-                img_String = "img/" + upload.FileName;
+                upload.SaveAs(Server.MapPath("~/img/" + upload.FileName));
+                img_String = "~/img/" + upload.FileName;
             }
 
 

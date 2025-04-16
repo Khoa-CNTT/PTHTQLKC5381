@@ -299,7 +299,7 @@
                 </div>
                 <div class="quaylai">
                     Quay lại trang đăng nhập
-                <a href="Dang_Nhap.aspx">tại đây !!!</a>
+                <a href="/Dang_Nhap.aspx">tại đây !!!</a>
                 </div>
                 <div class="hienthi1">
                     <asp:Label ID="Label2" CssClass="lb2" runat="server" Text=""></asp:Label>

@@ -100,7 +100,7 @@
                     <%-- ==============     Ngày sinh   =============== --%>
                     <asp:TemplateField HeaderText="Ngày Sinh">
                         <ItemTemplate>
-                            <asp:Label ID="lbl_Ngay" title='<%#(DateTime.Parse(Eval("NgaySinh").ToString())).ToString("MM/dd/yyyy") %>' runat="server" Text='<%#(DateTime.Parse(Eval("NgaySinh").ToString())).ToString("MM/dd/yyyy") %>'></asp:Label><br />
+                            <asp:Label ID="lbl_Ngay" title='<%#(DateTime.Parse(Eval("NgaySinh").ToString())).ToString("dd/MM/yyyy") %>' runat="server" Text='<%#(DateTime.Parse(Eval("NgaySinh").ToString())).ToString("dd/MM/yyyy") %>'></asp:Label><br />
                         </ItemTemplate>
                     </asp:TemplateField>
 

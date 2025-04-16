@@ -18,6 +18,7 @@ namespace NHOM20_DATN.pages.Doctor
             {
                 loadData();
             }
+
         }
 
         public void loadData()

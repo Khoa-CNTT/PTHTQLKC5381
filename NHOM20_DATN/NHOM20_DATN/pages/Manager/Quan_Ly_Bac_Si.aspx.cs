@@ -53,8 +53,9 @@ namespace NHOM20_DATN.pages.Manager
             //kiểm tra tồn tại Bác sĩ
             if (dt != null && Convert.ToInt32(dt.Rows[0][0]) > 0)
             {
-                string js = "alert('Tên đăng nhập đã tồn tại!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ErrorAlert", js, true);
+                string message = "Tên đăng nhập đã tồn tại";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
             }
             // Tạo ID mới cho bs
@@ -87,8 +88,10 @@ namespace NHOM20_DATN.pages.Manager
             //========check và cập nhật thông tin đăng ký
             if (kn.CapNhat(insertDoctorQuery, doctorParams) != 0)
             {
-                string js = "alert('Đăng ký thành công!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "SuccessAlert", js, true);
+                string message = "Đăng ký thành công";
+                string script = "showAlert('" + message + "','success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewList();
             }
             else
             {
@@ -97,9 +100,11 @@ namespace NHOM20_DATN.pages.Manager
                 SqlParameter[] para = new SqlParameter[] {
                     new SqlParameter("@TenDangNhap", username) };
                 int a = kn.CapNhat(sql_delete, para);
+                string message = "Không thêm được do thiếu thông tin";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
 
-                string js = "alert('Không thêm được do thiếu thông tin!" + ddlChuyenKhoa.SelectedItem.Value + "');";
-                ClientScript.RegisterStartupScript(this.GetType(), "SuccessAlert", js, true);
+
 
             }
 
@@ -121,8 +126,6 @@ namespace NHOM20_DATN.pages.Manager
                 gridDoctor.DataSource = ds;
                 gridDoctor.DataBind();
             }
-
-
         }
 
 
@@ -160,12 +163,7 @@ namespace NHOM20_DATN.pages.Manager
                     // Set the selected value based on current data
                     string currentSpecialtyId = DataBinder.Eval(e.Row.DataItem, "ChuyenKhoaID").ToString();
                     ddl_Specialty.SelectedValue = currentSpecialtyId;
-
-
-
                 }
-
-
             }
 
         }
@@ -179,17 +177,20 @@ namespace NHOM20_DATN.pages.Manager
             TextBox email = gridDoctor.Rows[e.RowIndex].FindControl("txt_Email") as TextBox;
             TextBox level = gridDoctor.Rows[e.RowIndex].FindControl("txt_Level") as TextBox;
             FileUpload upload = gridDoctor.Rows[e.RowIndex].FindControl("up_Img") as FileUpload;
-
+            Label anhHidden = gridDoctor.Rows[e.RowIndex].FindControl("hidden_imgUrl") as Label;
             //File upload
             string img_String = "";
 
-            if (upload.HasFile)
+            if (upload.HasFile && upload!=null)
             {
                 upload.SaveAs(Server.MapPath("~/img/" + upload.FileName));
                 img_String = "~/img/" + upload.FileName;
             }
+            else{
+                img_String = anhHidden.Text+"";
+            }
 
-
+            
             //droplist
             DropDownList ddListDuty = gridDoctor.Rows[e.RowIndex].FindControl("ddl_Duty") as DropDownList;
             DropDownList ddList = gridDoctor.Rows[e.RowIndex].FindControl("ddl_Specialty") as DropDownList;
@@ -270,11 +271,7 @@ namespace NHOM20_DATN.pages.Manager
         }
 
 
-        //==============refresh btn==============
-        protected void LinkButton1_Click1(object sender, EventArgs e)
-        {
-            viewList();
-        }
+       
         //==============sorting==============
         protected void gridDoctor_Sorting(object sender, GridViewSortEventArgs e)
         {
@@ -370,7 +367,9 @@ namespace NHOM20_DATN.pages.Manager
             }
             else
             {
-                Response.Write("<script>alert('Không có thông tin tương ứng');</script>");
+                string js = "showAlert('Không có thông tin tương ứng');";
+                ClientScript.RegisterStartupScript(this.GetType(), "SuccessAlert", js, true);
+
             }
 
         }
@@ -406,7 +405,9 @@ namespace NHOM20_DATN.pages.Manager
             }
             else
             {
-                Response.Write("<script>alert('Không tìm thấy dữ liệu');</script>");
+                string message = "Không tìm thấy dữ liệu";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
 
         }

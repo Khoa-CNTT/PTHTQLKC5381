@@ -71,6 +71,29 @@ document.onclick = function (e) {
 }
 
 
+function display() {
+    const d = document.querySelector("#dropdown-menu");
+    if (d.classList.contains("d_block")) {
+        d.classList.remove("d_block");
+        return;
+    }
+    d.classList.add("d_block");
+}
 
+function none() {
+    const d = document.querySelector("#dropdown-menu");
+    if (d.classList.contains("d_block")) {
+        d.classList.remove("d_block");
+    }
+}
+
+
+function showAlert(titleValue, textValue, iconValue ) {
+    Swal.fire({
+        title: titleValue,
+        text: textValue,
+        icon: iconValue
+    });
+}
 
 

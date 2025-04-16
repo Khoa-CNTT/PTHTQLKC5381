@@ -134,9 +134,9 @@
                 <%-- Xóa --%>
                 <asp:TemplateField Visible="true">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btn_Delete" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")%>' CommandName="Xoa" runat="server">
+                        <asp:LinkButton ID="btn_Delete" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("  IDBacsi") +","+ Eval("IDBenhNhan")%>' CommandName="Xoa" runat="server">
                              <i class="fa-regular fa-trash-can"></i>
-                        </asp:LinkButton>
+                        </asp:LinkButton>                                       
 
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -153,7 +153,7 @@
     <asp:HiddenField ID="hiddenOldTime" runat="server" />
 
 
-    <div id="chTime_container">
+    <div id="chTime_container" class="">
         <asp:Panel ID="pn_AT" runat="server" Visible="false"  CssClass="pnl_AT">
             <div class="chTime_content">
 
@@ -161,6 +161,7 @@
                     <asp:Label ID="lbl_idPk" ForeColor="#00a2ff" runat="server" Text=""></asp:Label>
 
                 </h2>
+                <div class="grid_2">
                 <div class="wrapper_list">
                     <asp:DropDownList ID="ddl_aT"
                         runat="server"
@@ -171,10 +172,15 @@
                         AppendDataBoundItems="True">
                     </asp:DropDownList>
                 </div>
-                <asp:TextBox ID="txtCalender" type="date" AutoPostBack="true"  OnTextChanged="txtCalender_TextChanged" CssClass="inp_Date" runat="server"></asp:TextBox>
-                <asp:Button ID="btn_Save" runat="server" OnClick="btn_Save_Click" Text="Lưu" />
-                <asp:Button ID="btn_Close" runat="server" OnClick="btn_Close_Click" Text="Đóng" />
-
+                <div>
+                    <asp:TextBox ID="txtCalender" type="date" AutoPostBack="true"  OnTextChanged="txtCalender_TextChanged" CssClass="inp_Date" runat="server"></asp:TextBox>
+                </div>
+                    </div>
+                
+                <div class="grid_2">
+                        <asp:Button ID="btn_Save" runat="server" OnClick="btn_Save_Click" Text="Lưu" />
+    <asp:Button ID="btn_Close" runat="server" OnClick="btn_Close_Click" Text="Đóng" />
+                </div>
             </div>
         </asp:Panel>
     </div>
@@ -186,5 +192,27 @@
         </div>--%>
 
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        //function showAlert(titleValue, textValue, iconValue) {
+        //    Swal.fire({
+        //        title: titleValue,
+        //        text: textValue,
+        //        icon: iconValue
+        //    });
+        //}
+
+        function showAlert(titleValue, iconValue) {
+            Swal.fire({
+                title: titleValue,
+                icon: iconValue
+            });
+        }
+
+
+    </script>
+    <script src="/js/appointment_manager.js">
+    </script>
+
 
 </asp:Content>

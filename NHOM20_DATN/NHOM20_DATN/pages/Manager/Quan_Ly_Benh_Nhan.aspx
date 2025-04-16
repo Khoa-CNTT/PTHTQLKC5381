@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Managerment_MasterPage.Master" AutoEventWireup="true" CodeBehind="Quan_Ly_Benh_Nhan.aspx.cs" Inherits="NHOM20_DATN.pages.Manager.Quan_Ly_Benh_Nhan" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../style/manager/patientManagerment.css" rel='stylesheet'>
 </asp:Content>
@@ -29,7 +30,7 @@
                     </asp:LinkButton>
                 </div>
                 <%-- Cancel Edit --%>
-                <div class="btn_cancelEdit" id="btn_cancelEdit" >
+                <div class="btn_cancelEdit" id="btn_cancelEdit">
                     <asp:LinkButton ID="cancelEdit" Visible="false" OnClick="cancelEdit_Click" runat="server">
                      Hủy
                     </asp:LinkButton>
@@ -71,8 +72,8 @@
 
                     <asp:TemplateField Visible="false">
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnEditRow" 
-                                CommandArgument='<%#Eval("IDBenhNhan") +","+Eval("HoTen")+","+Eval("NgaySinh")+","+Eval("SoDienThoai")+","+Eval("Email")+","+Eval("GioiTinh") %>' 
+                            <asp:LinkButton ID="btnEditRow"
+                                CommandArgument='<%#Eval("IDBenhNhan") +","+Eval("HoTen")+","+Eval("NgaySinh")+","+Eval("SoDienThoai")+","+Eval("Email")+","+Eval("GioiTinh") %>'
                                 CommandName="editSelect" runat="server">
                                 <i class="fa-solid fa-pen-to-square" style="color: dodgerblue;"></i>
                             </asp:LinkButton>
@@ -81,7 +82,7 @@
                     <%-- ==============   checked delete  =============== --%>
                     <asp:TemplateField Visible="false">
                         <ItemTemplate>
-                            <asp:CheckBox ID="checkDelete" AutoPostBack="true"  runat="server" />
+                            <asp:CheckBox ID="checkDelete" AutoPostBack="true" runat="server" />
                         </ItemTemplate>
                     </asp:TemplateField>
                     <%-- ==============     ID BenhNhan  =============== --%>
@@ -137,40 +138,80 @@
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                        
+
                 </Columns>
                 <PagerStyle BackColor="" ForeColor="" HorizontalAlign="Left" CssClass="pagination" />
             </asp:GridView>
 
         </div>
         <asp:HiddenField ID="hiddenIdBN" runat="server" />
-       <asp:HiddenField ID="hiddenName" runat="server" />
+        <asp:HiddenField ID="hiddenName" runat="server" />
         <asp:HiddenField ID="hiddenNgaySinh" runat="server" />
         <asp:HiddenField ID="hiddenSDT" runat="server" />
         <asp:HiddenField ID="hiddenEmail" runat="server" />
         <asp:HiddenField ID="hiddenGT" runat="server" />
-        
+
         <div id="patientAdd_container">
             <asp:Panel ID="pn_Add" runat="server" Visible="false" CssClass="pnl_Add">
                 <div class="chTime_content">
                     <h2>Thêm bệnh nhân</h2>
-                    <asp:TextBox ID="txtIDBenhNhan" Visible="false" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtTK" placeholder="Tên tài khoản" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtMK" placeholder="Mật khẩu" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtName" placeholder="Tên bệnh nhân" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtNgaySinh" type="date" placeholder="Ngày Sinh" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtSDT" type="number" placeholder="SĐT" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtEmail" placeholder="Email" runat="server"></asp:TextBox>
-                    <asp:RadioButtonList ID="radioGT" runat="server">
-                        <asp:ListItem Value="Nam" Text="Nam"></asp:ListItem>
-                        <asp:ListItem Value="Nu" Text="Nữ"></asp:ListItem>
-                    </asp:RadioButtonList>
-                    <asp:Button ID="btn_Save" runat="server" OnClick="btn_Save_Click" Text="Lưu" />
-                    <asp:Button ID="btn_Close" runat="server" OnClick="btn_Close_Click" Text="Đóng" />
 
+                    <%-- IDBN --%>
+                    <asp:TextBox ID="txtIDBenhNhan" Visible="false" runat="server"></asp:TextBox>
+                    <div class="grid_2">
+                        <%-- TK --%>
+                        <div class="chandoan-inp">
+                            <span><b>Tài Khoản</b></span>
+                            <asp:TextBox ID="txtTK" placeholder="Tên tài khoản" runat="server"></asp:TextBox>
+                        </div>
+                        <%-- MK --%>
+                        <div class="donthuoc-inp">
+                            <span><b>Mật Khẩu</b></span>
+                            <asp:TextBox ID="txtMK" placeholder="Mật khẩu" runat="server"></asp:TextBox>
+
+                        </div>
+                    </div>
+                    <%-- Ten --%>
+                    <div class="ghichu-inp">
+                        <span><b>Tên</b></span>
+                        <asp:TextBox ID="txtName" placeholder="Tên bệnh nhân" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="grid_2">
+                        <%-- SDT --%>
+                        <div class="ghichu-inp">
+                            <span><b>SĐT</b></span>
+                            <asp:TextBox ID="txtSDT" type="number" placeholder="SĐT" runat="server"></asp:TextBox>
+                        </div>
+                        <%-- Email --%>
+                        <div class="ghichu-inp">
+                            <span><b>Email</b></span>
+                            <asp:TextBox ID="txtEmail" placeholder="Email" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <%-- NgaySinh --%>
+                    <div class="ghichu-inp">
+                        <span><b>Ngày Sinh</b></span>
+                        <asp:TextBox ID="txtNgaySinh" type="date" placeholder="Ngày Sinh" runat="server"></asp:TextBox>
+                    </div>
+                    <%-- GT --%>
+                    <div class="gioitinh-inp" style="display: flex; align-items: center; gap: 10px;">
+                        <span><b>Giới Tính</b></span>
+                        <asp:RadioButtonList ID="radioGT" runat="server">
+                            <asp:ListItem Value="Nam" Text="Nam"></asp:ListItem>
+                            <asp:ListItem Value="Nu" Text="Nữ"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
+                    <div class="contain_btn">
+                        <div class="grid_2">
+                            <asp:Button ID="btn_Save" runat="server" OnClick="btn_Save_Click" Text="Lưu" />
+                            <asp:Button ID="btn_Close" runat="server" OnClick="btn_Close_Click" Text="Đóng" />
+                        </div>
+                    </div>
                 </div>
             </asp:Panel>
         </div>
+
+
 
         <%-- Panel update --%>
         <div id="patientUpdate_container">
@@ -181,7 +222,7 @@
                     <asp:TextBox ID="txtName_edit" runat="server"></asp:TextBox>
                     <asp:TextBox ID="txtNgaySinh_edit" type="date" runat="server"></asp:TextBox>
                     <asp:TextBox ID="txtSDT_edit" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtEmail_edit"  runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtEmail_edit" runat="server"></asp:TextBox>
                     <asp:RadioButtonList ID="radioGT_edit" runat="server">
                         <asp:ListItem Value="Nam" Text="Nam"></asp:ListItem>
                         <asp:ListItem Value="Nu" Text="Nữ"></asp:ListItem>
@@ -192,7 +233,25 @@
                 </div>
             </asp:Panel>
         </div>
-
-
     </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function showAlert(notice, warn) {
+        Swal.fire({
+            title: notice,
+            icon: warn,
+            confirmButtonText: 'OK'
+        });
+    }
+</script>
+    <script src="/js/patient_manager.js"></script>
+
+
+
+
+
+
+
+
+
 </asp:Content>

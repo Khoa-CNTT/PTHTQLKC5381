@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Managerment_MasterPage.Master" AutoEventWireup="true" CodeBehind="Quan_Ly_Lich_Kham.aspx.cs" Inherits="NHOM20_DATN.pages.Manager.Quan_Ly_Lich_Kham" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <link href="../../style/manager/ManagerAppointment_style.css" rel='stylesheet'>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
@@ -215,4 +216,9 @@
     </script>
 
 
+        icon: iconType,
+        confirmButtonText: 'OK'
+    });
+}
+    </script>
 </asp:Content>

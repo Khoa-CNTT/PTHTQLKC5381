@@ -15,7 +15,7 @@ namespace NHOM20_DATN.MasterPage
             {
                 if ((string)Session["Role"] == null || (string)Session["Role"] == "")
                 {
-                    Response.Redirect("~/DangNhap.aspx");
+                    Response.Redirect("/Dang_Nhap.aspx");
                 }
                 else if ((string)Session["Role"] != "QuanLy")
                 {
@@ -29,7 +29,7 @@ namespace NHOM20_DATN.MasterPage
         {
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("~/Dang_Nhap.aspx");
+            Response.Redirect("/Dang_Nhap.aspx");
         }
     }
 }

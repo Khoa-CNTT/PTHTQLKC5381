@@ -4,6 +4,7 @@
   <link href="../../style/manager/doctor_register.css" rel='stylesheet'>
   <link href="../../style/manager/doctor_list_style.css" rel='stylesheet'>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <div id="container_regist">
@@ -247,6 +248,11 @@
            </div>
        </div>
    </div>
+
+      <script>
+      function showAlert(message, iconType) {
+          Swal.fire({
+              title: message,
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function ShowAlert(notice, warn) {
@@ -266,5 +272,10 @@
     }
     </script>
 
+              icon: iconType,
+              confirmButtonText: 'OK'
+          });
+      }
+      </script>
    <script src="../../js/doctorCreateAccount.js"></script>
 </asp:Content>

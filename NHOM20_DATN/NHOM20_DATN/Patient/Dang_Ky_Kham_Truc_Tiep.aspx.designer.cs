@@ -15,15 +15,6 @@ namespace NHOM20_DATN
     {
 
         /// <summary>
-        /// ddlPhongKham control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPhongKham;
-
-        /// <summary>
         /// ddlChuyenKhoa control.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace NHOM20_DATN
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlChuyenKhoa;
+
+        /// <summary>
+        /// ddlPhongKham control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPhongKham;
 
         /// <summary>
         /// ddlBacSi control.

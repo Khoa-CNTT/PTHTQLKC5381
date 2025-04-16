@@ -15,7 +15,7 @@ namespace NHOM20_DATN.sendMail
             {
                 // Tạo nội dung email
                 var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("Bệnh viện Hospital", "bananahospitaldanang@gmail.com"));
+                message.From.Add(new MailboxAddress("Bệnh viện Hospital", "banana1999@gmail.com"));
                 message.To.Add(new MailboxAddress("", mail));
                 message.Subject = subject;
                 var bodyBuilder = new BodyBuilder { TextBody = description };

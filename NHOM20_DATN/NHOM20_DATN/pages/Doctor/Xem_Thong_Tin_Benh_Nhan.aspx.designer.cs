@@ -33,22 +33,22 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.LinkButton btn_Search;
 
         /// <summary>
-        /// ddlPhongKham control.
+        /// ddlTrangThai control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPhongKham;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTrangThai;
 
         /// <summary>
-        /// ddlChuyenKhoa control.
+        /// ddlNgayKham control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChuyenKhoa;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNgayKham;
 
         /// <summary>
         /// btnRefresh control.
@@ -67,5 +67,14 @@ namespace NHOM20_DATN
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
+        /// patientDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl patientDetails;
     }
 }

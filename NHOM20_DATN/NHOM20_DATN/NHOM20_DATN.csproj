@@ -178,6 +178,13 @@
     <Content Include="Cau_Hoi_Thuong_Gap.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="img\Anh2.jpg" />
+    <Content Include="img\anhnendatlai.jpg" />
+    <Content Include="img\Anhquenmatkhau.jpeg" />
+    <Content Include="img\anhquenmatkhau.png" />
+    <Content Include="img\anhtraidatlai.jpg" />
+    <Content Include="img\anhxoalogo.png" />
+    <Content Include="img\khoa.png" />
     <Content Include="Lien_He.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />

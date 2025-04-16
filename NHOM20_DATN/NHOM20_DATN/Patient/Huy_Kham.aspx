@@ -723,7 +723,7 @@
         }
 
         .nen5 {
-            background-color: rgba(234, 241, 244, 1);
+            background-color: rgb(234 241 244 / 73%);
             width: 950px;
             height: 600px;
             margin-top: -415px !important;
@@ -739,6 +739,10 @@
             .anhnenhuykham .anhhuykham, .btn-xoa, .btn-in,
             .danh-sach-phieu-container, .ZX, .ZY, .tieude5, .ghichu, .web, .nen5 {
                 display: none !important;
+            }
+
+            body, .tong5, .trai5, .phai5, .tieudephieu5 {
+                white-space: nowrap !important;
             }
 
             body, .tong5 {
@@ -790,29 +794,36 @@
                 width: 500px !important;
             }
 
+            .id5 {
+                font-weight: normal !important;
+            }
+
             .tieudephieu5 {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 white-space: nowrap;
                 text-align: center;
-                margin: 10px 0 !important;
                 padding-bottom: 10px;
                 border-bottom: 1px solid #ddd;
+                margin-top: 60px !important;
             }
 
-            .id5 {
-                display: inline-block !important;
-            }
+                .tieudephieu5 .id5 {
+                    display: inline !important;
+                    white-space: nowrap !important;
+                    margin-right: 5px !important;
+                }
 
             .phieukham5 {
                 display: block;
-                left: 190px !important;
-                font-size: 20px !important;
+                left: 180px !important;
+                font-size: 32px !important;
                 margin: 30px 0 20px 0 !important;
                 color: #000 !important;
                 font-weight: bold;
-                margin-bottom: 10px
+                margin-bottom: 10px;
+                top: 45px;
             }
 
             .tieudephieu5 {
@@ -823,7 +834,7 @@
 
             .id5, .phong5, .thoigiankham5 {
                 display: inline-block !important;
-                margin: 0 20px 10px 0 !important;
+                margin: 10px 20px 10px 0 !important;
                 font-size: 15px !important;
             }
 
@@ -875,11 +886,12 @@
                 font-weight: bold !important;
             }
 
-            .chinh5:after {
-                content: "";
-                display: table;
-                clear: both;
+            .chinh5 {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
             }
+
 
             .logo5 img {
                 display: block !important;
@@ -1001,7 +1013,78 @@
                 text-decoration: none !important;
                 color: red;
             }
+
+        .danh-sach-phieu-container {
+            background-color: #e7f3ffe8;
+            border-radius: 5px;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 0px auto;
+            position: relative;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-xoa.loading {
+            position: relative;
+            color: transparent;
+        }
+
+            .btn-xoa.loading:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 20px;
+                height: 20px;
+                border: 3px solid rgba(255,255,255,0.3);
+                border-radius: 50%;
+                border-top-color: #fff;
+                animation: spin 1s ease-in-out infinite;
+            }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
     </style>
+
     <div class="tong5">
 
         <div class="Tren1">
@@ -1044,9 +1127,10 @@
                 <div class="tieudephieu5">
                     <asp:Label ID="Label4" CssClass="phieukham5" runat="server" Text="Phiếu Khám Bệnh"></asp:Label>
                     <br />
-
-                    <asp:Label ID="Label7" CssClass="id5" runat="server" Text="Mã Phiếu:"></asp:Label>
-                    <asp:Label ID="lbid" CssClass="id5" runat="server" Text=" PK89D962"></asp:Label>
+                    <div class="id-wrapper" style="display: inline-block; white-space: nowrap;">
+                        <asp:Label ID="Label7" CssClass="id5" runat="server" Text="Mã Phiếu:"></asp:Label>
+                        <asp:Label ID="lbid" CssClass="id5" runat="server" Text=" PK89D962"></asp:Label>
+                    </div>
                     <div class="phong5">
                         <asp:Label ID="Label5" CssClass="phongkham5" runat="server" Text="Phòng khám:"></asp:Label>
                         <asp:Label ID="lbphongkham" runat="server" Text="P001"></asp:Label>
@@ -1094,6 +1178,13 @@
 
         </div>
         <div class="nen5"></div>
+        <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+            <div style="color: white; font-size: 20px;">
+                <div class="spinner"></div>
+                <p>Đang xử lý...</p>
+            </div>
+        </div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
     </div>
     <script type="text/javascript">
         function showPhongKhamInfo(phongKhamInfo) {
@@ -1102,7 +1193,6 @@
             contentDiv.className = 'custom-alert';
             contentDiv.innerHTML = phongKhamInfo;
 
-            // Hiển thị SweetAlert
             swal({
                 title: "Thông Tin Phòng Khám",
                 content: contentDiv,
@@ -1114,40 +1204,23 @@
             }).then(() => {
                 window.scrollTo(0, 0);
             });
-            setTimeout(function () {
-                const swalModal = document.querySelector('.swal-modal');
-                if (swalModal) {
-                    swalModal.scrollTop = 0;
-
-                    const titleElement = document.querySelector('.swal-title');
-                    if (titleElement) {
-                        titleElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-
-                    swalModal.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 100);
         }
+
         function addStyles() {
             const style = document.createElement('style');
             style.innerHTML = `
-        .custom-alert {
-           width: 600px; font-size: 18px; padding: 20px; text-align:left;margin-left: 30px;
-        }
-        .swal-modal{
-             width: 600px;
-        }
-       
-    `;
+            .custom-alert {
+                width: 600px; font-size: 18px; padding: 20px; text-align:left;margin-left: 30px;
+            }
+            .swal-modal {
+                width: 600px;
+            }
+            `;
             document.head.appendChild(style);
         }
 
-
-    </script>
-
-    <script type="text/javascript">
         function confirmDelete() {
-            return swal({
+            swal({
                 title: "Bạn có chắc chắn muốn hủy đăng ký?",
                 text: "Nếu bạn xác nhận, đăng ký sẽ bị xóa.",
                 icon: "warning",
@@ -1155,15 +1228,24 @@
                 dangerMode: true,
             }).then((willDelete) => {
                 if (willDelete) {
+                    document.getElementById('loadingOverlay').style.display = 'flex';
                     __doPostBack('<%= btnnut.UniqueID %>', '');
-                } else {
-                    swal("Đăng ký vẫn được giữ lại!");
-                    return false;
-                }
-            });
+                    } else {
+                        swal("Đăng ký vẫn được giữ lại!");
+                        return false;
+                    }
+                });
+            return false;
         }
-    </script>
-    <script>
+
+        function pageLoad() {
+            const overlay = document.getElementById('loadingOverlay');
+            if (overlay) overlay.style.display = 'none';
+
+            const btn = document.querySelector('.btn-xoa.loading');
+            if (btn) btn.classList.remove('loading');
+        }
+
         function showExpiredAlert() {
             return swal({
                 title: "Phiếu khám đã hết hạn",
@@ -1185,12 +1267,11 @@
                 }
             }).then((value) => {
                 if (value) {
-                    window.location.href = "../pages/Doctor/Dang_Ky_Kham_Truc_Tiep.aspx";
+                    window.location.href = "/pages/Doctor/Dang_Ky_Kham_Truc_Tiep.aspx";
                 }
             });
         }
-    </script>
-    <script type="text/javascript">
+
         function selectRow(rowIndex) {
             __doPostBack('<%= gvDanhSachPhieu.UniqueID %>', 'SelectRow$' + rowIndex);
         }

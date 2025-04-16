@@ -298,6 +298,7 @@
                                                  <li><a class="dropdown-item" href="/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
                                                  <li><a class="dropdown-item" href="/Patient/Huy_Kham.aspx">Hủy khám</a></li>
                                                  <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>
+
                                              </ul>
                                          </li>
                                          <li class="nav-item dropdown">
@@ -419,9 +420,8 @@
                 </div>
             </div>
         </div>
-    </form>
 
-    
+    </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
@@ -437,40 +437,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
-    <script type="text/javascript">
-        window.onscroll = function () {
-            var backToTopButton = document.getElementById('<%= BackToTopImage.ClientID %>');
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        };
-        window.onload = function () {
-            const btn = document.getElementById('<%= btnDangXuat.ClientID %>');
-        if (btn) {
-            btn.addEventListener('click', function (e) {
-                e.preventDefault(); // Ngăn hành động postback mặc định
-
-                Swal.fire({
-                    title: 'Xác nhận đăng xuất',
-                    text: "Bạn có muốn đăng xuất không?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Đăng xuất',
-                    cancelButtonText: 'Hủy'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Gọi postback để kích hoạt sự kiện Logout_Click
-                        __doPostBack('<%= btnDangXuat.UniqueID %>', '');
-                    }
-                });
-            });
-            }
-        };
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3oEddz63s3cF5OeLJ1vSOPUt/C+VRbN6z1yUlD9sMGZmIZzIQ2m0x0K5rRJH9I1" crossorigin="anonymous"></script>
    
 </body>
 </html>

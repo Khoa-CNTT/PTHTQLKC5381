@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Thong_Tin_Tu_Van.aspx.cs" Inherits="NHOM20_DATN.Patient.Thong_Tin_Tu_Van" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Thong_Tin_Tu_Van.aspx.cs" Inherits="NHOM20_DATN.Patient.Thong_Tin_Tu_Van" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

@@ -23,7 +23,7 @@ namespace NHOM20_DATN.MasterPage
                     
 
 
-                    caidat.PostBackUrl = "#"; // Không thay đổi URL khi nhấn vào
+                    caidat.PostBackUrl = "~/Dang_Nhap.aspx"; // Không thay đổi URL khi nhấn vào
                     quanLyThongTin.Visible = true; // Hiển thị "Quản lý thông tin cá nhân"
                     btnDatLai.Visible = true;
                     dangXuat.Visible = true; // Hiển thị "Đăng xuất"

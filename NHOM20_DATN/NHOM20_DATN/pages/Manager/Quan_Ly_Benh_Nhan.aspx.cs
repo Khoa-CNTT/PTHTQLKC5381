@@ -51,15 +51,11 @@ namespace NHOM20_DATN.pages.Manager
             }
             else
             {
-                string message = "Không có thông tin tương ứng ";
-                string script = $"alert('{message}'); window.location='Quan_Ly_Benh_Nhan.aspx';";
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
+                string message = "Không có thông tin tương ứng";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
         }
-
-
-
-
 
         //=============== Button CRUD
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -91,6 +87,9 @@ namespace NHOM20_DATN.pages.Manager
             btnEdit.Visible = false;
             btnAdd.Visible = false;
             btnDelete.Visible = false;
+            string js = $"openForm('#patientAdd_container')";
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", js, true);
+
 
 
         }
@@ -108,8 +107,9 @@ namespace NHOM20_DATN.pages.Manager
             //check existing patient
             if (patientManagerment.checkUserExisting(username) == 0)
             {
-                string js = "alert('Tên đăng nhập đã tồn tại!');";
-                ClientScript.RegisterStartupScript(this.GetType(), "ErrorAlert", js, true);
+                string message = "Tên đăng nhập đã tồn tại";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
             }
             string idBN = "BN" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
@@ -117,14 +117,14 @@ namespace NHOM20_DATN.pages.Manager
             if (result != 0)
             {
                 string message = "Thêm bệnh nhân thành công";
-                string script = $"alert('{message}'); window.location='Quan_Ly_Benh_Nhan.aspx';";
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
+                string script = "showAlert('" + message + "','success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
             else
             {
-                string message = "Thêm bệnh nhân thất bại";
-                string script = $"alert('{message}'); window.location='Quan_Ly_Benh_Nhan.aspx';";
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
+                string message = "Thêm bệnh nhân thất bại!";
+                string script = "showAlert('" + message + "','error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
         }
 
@@ -134,6 +134,8 @@ namespace NHOM20_DATN.pages.Manager
             btnEdit.Visible = true;
             btnAdd.Visible = true;
             btnDelete.Visible = true;
+            string js = $"closeForm('#patientAdd_container')";
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", js, true);
 
         }
         //=========================
@@ -149,25 +151,12 @@ namespace NHOM20_DATN.pages.Manager
 
         }
 
-
-
-
-
-
-
         // ============Check edit item
-
-
-
-
         //Hold checked in checkbox
         protected void gridPatientsManager_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }
-
-
-
         //===========After click button delete
         protected void deleteSelect_Click(object sender, EventArgs e)
         {
@@ -202,7 +191,6 @@ namespace NHOM20_DATN.pages.Manager
         {
             if (e.CommandName == "editSelect")
             {
-
                 string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
                 string id = commandArgs[0];
                 string name = commandArgs[1];
@@ -223,8 +211,14 @@ namespace NHOM20_DATN.pages.Manager
                 txtSDT_edit.Text = SDT;
                 txtEmail_edit.Text = email;
                 radioGT_edit.SelectedValue = gt;
+
+                //      Open Form
                 pn_Update.Visible = true;
                 cancelEdit.Visible = false;
+                string js = $"openForm('#patientUpdate_container')";
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", js, true);
+
+
             }
 
         }
@@ -240,15 +234,15 @@ namespace NHOM20_DATN.pages.Manager
             int result = patientManagerment.updatePatient(id, name, ngaysinh, gt, sdt, email);
             if (result != 0)
             {
-                string message = "Cập nhật thành công";
-                string script = $"alert('{message}'); window.location='Quan_Ly_Benh_Nhan.aspx';";
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
+                string message = "Cập nhật thành công!";
+                string script = "showAlert('" + message + "','success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
             else
             {
-                string message = "Cập nhật thất bại";
-                string script = $"alert('{message}'); window.location='Quan_Ly_Benh_Nhan.aspx';";
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
+                string message = "Cập nhật thất bại!";
+                string script = "showAlert('" + message + "','error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
         }
 
@@ -260,6 +254,8 @@ namespace NHOM20_DATN.pages.Manager
             //radioGT_edit.SelectedValue;
             pn_Update.Visible = false;
             cancelEdit.Visible = true;
+            string js = $"closeForm('#patientUpdate_container')";
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", js, true);
 
         }
     }

@@ -194,15 +194,16 @@ namespace NHOM20_DATN
                 if (result != 0)
                 {
                     DoctorService.mailChangeAppointment(idPk, oldDAy, oldTime);
-                    Response.Write("<script>alert('Đã gửi mail báo đổi giờ');</script>");
+                    string js = "showAlert('Thành công. Đã gửi mail báo đổi giờ!', 'success');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", js, true);
                     Response.Redirect("Xem_Lich_Kham.aspx");
+                   
 
                 }
                 else
                 {
-
-                    Response.Write("<script>alert('Cập nhật thất bại " + idPk + "');</script>");
-                    Response.Redirect("Xem_Lich_Kham.aspx");
+                    string js = "showAlert('Cập nhật thất bại!', 'warning');";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", js, true);
 
                 }
 

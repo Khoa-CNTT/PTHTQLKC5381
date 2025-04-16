@@ -1,17 +1,23 @@
-﻿body {
+﻿html{
+    height: 100vh;
+}
+
+body {
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
 }
 
 .d_flex {
     display: flex;
     gap: 8px;
-    background-color: aliceblue;
+  
 }
 
 #content {
     width: 65%;
     margin: 0 auto;
+    margin-left: 350px;
 }
 
 
@@ -33,29 +39,40 @@
 
 
 
+
+
 .icon_User i {
-    font-size: 5em;
+    font-size: 30px;
     color: white;
 }
 
-.out i {
-    margin-top: 100px;
-    margin-left: -60px;
-    font-size: 26px;
-    font-weight: 600;
+
+.icon_User h4 {
+    color: white;
 }
 
-.out {
+
+
+.out i {
+    color: white;
     font-size: 18px;
 }
 
+.out {
+    position: absolute;
+    bottom: 1em;
+    margin-left: 15px;
+}
+
+
     .out a {
         color: white;
-        font-size: 20px;
-        font-weight: 600;
+        font-size: 18px;
         text-decoration: none;
     }
-
+        .out a:hover {
+            color: #ccc;
+        }
 
 .btn-them, .btn-sua, .btn-xoa {
     padding: 10px 20px;
@@ -105,17 +122,23 @@
 
 .sidebar {
     display: flex;
-    align-items: center;
+    position: fixed;
     flex-direction: column;
+    height: 100vh;
     width: 350px;
     background: #283345;
-    padding: 20px;
-    height: 105vh;
+    padding: 20px 0;
     margin-bottom: 20px;
     transition: 0.3s;
     touch-action: pan-y;
-    border-radius: 2em;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
+
+    /*.sidebar::-webkit-scrollbar {
+        display: none;*/ /* Chrome, Safari */
+    /*}*/
+
 
     .sidebar h2 {
         text-align: center;
@@ -127,29 +150,27 @@
     .sidebar ul {
         list-style-type: none;
         padding: 0;
-        margin-top: 20px;
+        margin-top: 5px;
     }
 
         .sidebar ul li {
-            margin: 15px 0;
+/*            margin: 15px 0;*/
         }
 
             .sidebar ul li:hover {
                 color: red;
-                font-weight: bold;
+                
             }
 
             .sidebar ul li a {
                 text-decoration: none;
                 color: white;
-                font-size: 20px;
-                font-weight: 600;
+                font-size: 18px;
+            
             }
 
                 .sidebar ul li a i {
                     margin-right: 10px;
-                    font-weight: 800;
-                    color: white;
                 }
 
 .size {
@@ -182,12 +203,16 @@
         font-size: 30px;
     }
 
+
+
+
 .btn_menu {
     position: fixed;
     margin-top: 1.5em;
     margin-left: 1em;
     display: none;
     opacity: 0.5;
+    
 }
 
     .btn_menu i {
@@ -198,23 +223,99 @@
         border-radius: 10px;
         padding: 9px;
     }
+/*      CODE HERE*/
+.icon_User {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    gap: 10px;
+    border-bottom: 1px solid #787878;
+    justify-content: space-between;
+}
 
 
 
+#dropdown-menu {
+    background-color: #283345;
+    left: 349px;
+    top: 1em;
+    border: none !important;
+    border-radius: unset;
+}
+
+    #dropdown-menu ul{
+        margin: unset;
+        padding-left: unset;
+    }
+
+        #dropdown-menu ul li a{
+            text-decoration: none;
+            color: white;
+        }
+
+        #dropdown-menu ul li {
+            list-style-type: none;
+            color: white;
+            padding: 5px;
+        }
+
+        #dropdown-menu ul li:hover {
+           
+            background-color: #d9d9d96e;
+        }
+        #dropdown-menu ul li a {
+            font-size: 13px;
+        }
 
 
+.signout-btn {
+    display: none;
+}
 
+.ttcn-btn {
+    display: none;
+}
 
+    .contain-ttpk,
+    .contain-ttcn,
+    .contain-ttbn,
+    .contain-cnhs,
+    .contain-xlk,
+    .contain-dklk,
+    .contain-tttv {
+        padding: 15px 15px;
+    }
 
+    .contain-ttpk:hover,
+    .contain-ttcn:hover,
+    .contain-ttbn:hover,
+    .contain-cnhs:hover,
+    .contain-xlk:hover,
+    .contain-dklk:hover,
+    .contain-tttv:hover {
+        background-color: #d9d9d96e;
+    }
 
+#right-dropdown {
+    background: none;
+    border: none;
+}
 
+    #right-dropdown i {
+        font-size: 18px;
+    }
 
+.contain-profile {
+    display: flex;
+    gap: 10px;
+}
 /*PC*/
 @media only screen and (max-width: 960px) {
     .sidebar {
         position: fixed;
         left: -100%;
         width: 80%;
+
     }
 
     .btn_menu {
@@ -244,11 +345,13 @@
 
     .out {
         position: absolute;
-        bottom: 8em;
+        bottom: 1em;
+
     }
 }
 
 @media only screen and (min-width: 100px) and (max-width: 786px) {
+
 
     body {
         margin: 0;
@@ -291,7 +394,7 @@
     }
 
     .sidebar ul li {
-        padding: 1em 0;
+/*        padding: 1em 0;*/
         margin: 2em 0;
     }
 
@@ -324,6 +427,28 @@
     .sidebar ul li {
         margin: unset;
     }
+/*          CODE HERE*/
+    #right-dropdown {
+        display: none;
+    }
+    .signout-btn {
+        display: block;
+    }
+
+    .ttcn-btn {
+        display: block;
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 /*Mobile phone*/
@@ -364,12 +489,16 @@
 
 @media only screen and (min-device-width: 100px) and (max-device-width: 786px) {
     .icon_User {
-        margin-top: 10em;
+        padding: 4em 15px;
     }
+        .icon_User i, .icon_User h4 {
+            font-size: 4em;
+        }
 
-    .size {
-        font-size: 4em;
-    }
+
+        .size {
+            font-size: 4em;
+        }
 
     .sidebar {
         position: fixed;
@@ -429,4 +558,20 @@
     .out a {
         font-size: 4em;
     }
+/*                          CODE HERE*/
+    #right-dropdown{
+        display: none;
+    }
+    .signout-btn{
+        display: block
+    }
+    .ttcn-btn{
+        display: block;
+    }
+
+
+
+
+
+
 }

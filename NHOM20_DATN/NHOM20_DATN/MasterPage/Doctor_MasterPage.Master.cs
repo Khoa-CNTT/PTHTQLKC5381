@@ -11,8 +11,11 @@ namespace NHOM20_DATN.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["UserID"] = "BS8ED6DB63";
+            Session["Role"] = "BacSi";
             if (!IsPostBack)
             {
+
 
                 if ((string)Session["Role"] == null || (string)Session["Role"] == "")
                 {

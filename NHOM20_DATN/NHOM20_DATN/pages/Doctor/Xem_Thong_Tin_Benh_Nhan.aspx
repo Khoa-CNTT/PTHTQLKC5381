@@ -13,6 +13,10 @@
             padding: 0;
         }
 
+        .contain-ttbn{
+            background-color: #d9d9d96e;
+        }
+
         .bang-header {
             margin-left: -5px;
         }

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs" Inherits="NHOM20_DATN.Patient.Quan_Ly_Thong_Tin_Ca_Nhan" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <style>
     .khungthongtin {
         background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -122,4 +123,14 @@
         </asp:DataList>
     </div>
 </div>
+    <script>
+        function showAlert(message, iconType) {
+            Swal.fire({
+                title: message,
+
+                icon: iconType,
+                confirmButtonText: 'OK'
+            });
+        }
+    </script>
 </asp:Content>

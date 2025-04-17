@@ -74,6 +74,7 @@ namespace NHOM20_DATN
 
         protected void btnnut_Click(object sender, EventArgs e)
         {
+
             if (!string.IsNullOrEmpty(lbthoigian.Text))
             {
                 string[] parts = lbthoigian.Text.Split('-');

@@ -50,6 +50,13 @@
                         </div>
                     </div>
                     <ul>
+                        <li><a href="Xem_Thong_Tin_Phieu_Kham.aspx"><i class='bx bx-clipboard' ></i>Xem thông tin phiếu khám</a></li>
+                        <li><a href="Quan_Ly_Thong_Tin_Ca_Nhan.aspx"><i class='bx bx-lock-alt'></i>Quản lý thông tin cá nhân</a></li>
+                        <li><a href="/pages/Doctor/Xem_Thong_Tin_Benh_Nhan.aspx"><i class='bx bx-user'></i>Xem Thông Tin Bệnh Nhân</a></li>
+                        <li><a href="/pages/Doctor/Cap_Nhat_Ho_So_Benh_An.aspx"><i class='bx bx-calendar-x' ></i>Cập Nhật Hồ Sơ Bệnh Án</a></li>
+                        <li><a href="/pages/Doctor/Xem_Lich_Kham.aspx"><i class='bx bx-calendar'></i>Xem Lịch Khám</a></li>
+                        <li><a href="/pages/Doctor/Dang_Ky_Lich_Kham.aspx"><i class='bx bx-calendar-plus'></i>Đăng ký lịch khám</a></li>
+                        <li><a href="Xem_Thong_Tin_Tu_Van.aspx"><i class='bx bx-calendar-x' ></i>Xem thông tin tư vấn</a></li>
                          <li class="ttcn-btn">
 
      <a href="Quan_Ly_Thong_Tin_Ca_Nhan.aspx">

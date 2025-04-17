@@ -121,20 +121,25 @@ namespace NHOM20_DATN.Patient
             }
 
             LopKetNoi kb = new LopKetNoi();
-            kb.CapNhat(query, param);
-            string js = "alert('Cập nhật thành công!');";
-            ClientScript.RegisterStartupScript(this.GetType(), "SuccessAlert", js, true);
+            int result = kb.CapNhat(query, param);
+
+            if (result > 0) // Nếu cập nhật thành công
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Đăng ký thành công.', 'success');", true);
+            }
+            else // Nếu có lỗi
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Đăng ký thất bại.', 'success');", true);
+            }
+
             HienThiThongTinCaNhan(); // Cập nhật lại thông tin sau khi lưu
         }
 
         protected void btnHuyCapNhat_Click(object sender, EventArgs e)
         {
-            // Gọi lại hàm HienThiThongTinCaNhan() để lấy dữ liệu từ cơ sở dữ liệu
             HienThiThongTinCaNhan();
-
-            // Hiển thị thông báo hoặc thực hiện các thao tác khác nếu cần
-            string js = "alert('Hủy cập nhật thành công. Dữ liệu đã được phục hồi.');";
-            ClientScript.RegisterStartupScript(this.GetType(), "CancelAlert", js, true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hủy đăng ký thành công.', 'success');", true);
         }
+    
     }
 }

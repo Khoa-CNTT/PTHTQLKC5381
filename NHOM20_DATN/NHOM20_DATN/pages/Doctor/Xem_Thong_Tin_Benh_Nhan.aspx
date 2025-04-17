@@ -22,7 +22,7 @@
         }
         /* Container */
         .Phankhung {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
             border-radius: 8px;
@@ -78,11 +78,11 @@
 
         /* GridView */
         .doctor_tb {
-            width: 1075px;
+            width: 1120px;
             border: none;
             margin-top: 20px;
             margin-left: -8px;
-            font-size: 12px;
+            font-size: 13px;
         }
 
             .doctor_tb th, .doctor_tb td {
@@ -94,6 +94,8 @@
             .doctor_tb th {
                 background-color: #007bff;
                 color: white;
+                font-size:13px;
+                margin-left:10px;
             }
 
             .doctor_tb tr:hover {
@@ -424,6 +426,62 @@
             .btn-refresh i {
                 font-size: 14px;
             }
+            .btn-detail {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-detail:hover {
+    background-color: #45a049;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    border-radius: 5px;
+    position: relative;
+    top: 40px;
+    left:30px;
+}
+
+.modal-title {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: -10px;
+    color:#8A2BE2;
+}
+
+.close {
+    color: #aaa;
+    float: left;
+    margin-left:830px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
     </style>
 
 </asp:Content>
@@ -438,11 +496,15 @@
                     <asp:TextBox ID="txt_Searching" placeholder="Tìm kiếm" runat="server"></asp:TextBox>
                     <asp:LinkButton ID="btn_Search" CssClass="btn_search" OnClick="btn_Search_Click" runat="server"><i class="fa-solid fa-magnifying-glass"></i> </asp:LinkButton>
                 </div>
-                <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true"
-                    OnSelectedIndexChanged="ddlPhongKham_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlTrangThai" runat="server" AutoPostBack="true"
+                    OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
+                    <asp:ListItem Text="Tất cả trạng thái" Value="" Selected="True"></asp:ListItem>
+                    <asp:ListItem Text="Đã thanh toán" Value="Đã thanh toán"></asp:ListItem>
+                    <asp:ListItem Text="Chưa thanh toán" Value="Chưa thanh toán"></asp:ListItem>
                 </asp:DropDownList>
-                <asp:DropDownList ID="ddlChuyenKhoa" runat="server" AutoPostBack="true"
-                    OnSelectedIndexChanged="ddlChuyenKhoa_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlNgayKham" runat="server" AutoPostBack="true"
+                    OnSelectedIndexChanged="ddlNgayKham_SelectedIndexChanged">
+                    <asp:ListItem Text="Tất cả ngày" Value="" Selected="True"></asp:ListItem>
                 </asp:DropDownList>
                 <asp:LinkButton ID="btnRefresh" runat="server" CssClass="btn-refresh" OnClick="btnRefresh_Click">
     <i class="fas fa-sync-alt"></i>
@@ -451,29 +513,69 @@
             </div>
             <div class="boc">
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-                    OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true" PageSize="7"
-                    CssClass="doctor_tb" PagerStyle-CssClass="pagination">
-                    <Columns>
-                        <asp:BoundField DataField="IDBenhNhan" HeaderText="Mã Bệnh Nhân" ReadOnly="true" />
-                        <asp:TemplateField HeaderText="Tên bệnh nhân">
-                            <ItemTemplate>
-                                <asp:Label ID="lblHoTen" runat="server" Text='<%# Eval("HoTen") %>'></asp:Label>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox ID="txtHoTen" runat="server" Text='<%# Bind("HoTen") %>'></asp:TextBox>
-                            </EditItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="NgaySinh" HeaderText="Ngày Sinh" />
-                        <asp:BoundField DataField="IDPhongKham" HeaderText="Phòng Khám" />
-                        <asp:BoundField DataField="ChuyenKhoa" HeaderText="Chuyên khoa" />
-                        <asp:BoundField DataField="GioiTinh" HeaderText="Giới Tính" />
-                        <asp:BoundField DataField="SoDienThoai" HeaderText="Số điện thoại" />
-
-                        <asp:BoundField DataField="Email" HeaderText="Email" />
-                        <%-- <asp:BoundField DataField="TrangThai" HeaderText="TrangThai" />--%>
-                    </Columns>
-                </asp:GridView>
+                OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true" PageSize="7"
+                CssClass="doctor_tb" PagerStyle-CssClass="pagination">
+                <Columns>
+                    <asp:BoundField DataField="IDBenhNhan" HeaderText="Mã Bệnh Nhân" ReadOnly="true" />
+                    <asp:TemplateField HeaderText="Tên bệnh nhân">
+                        <ItemTemplate>
+                            <asp:Label ID="lblHoTen" runat="server" Text='<%# Eval("HoTen") %>'></asp:Label>
+                        </ItemTemplate>
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtHoTen" runat="server" Text='<%# Bind("HoTen") %>'></asp:TextBox>
+                        </EditItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="NgayKham" HeaderText="Ngày Khám" DataFormatString="{0:dd/MM/yyyy}" />
+                    <asp:BoundField DataField="ThoiGianKham" HeaderText="Thời Gian Khám" />
+                    <asp:BoundField DataField="TrieuChung" HeaderText="Triệu Chứng" />
+                    <asp:BoundField DataField="TrangThai" HeaderText="Trạng Thái" />
+                    <asp:TemplateField HeaderText="Thao tác">
+                        <ItemTemplate>
+                            <asp:Button ID="btnDetail" runat="server" Text="Xem chi tiết" 
+                                CommandArgument='<%# Eval("IDBenhNhan") %>' 
+                                OnClick="btnDetail_Click" CssClass="btn-detail" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
             </div>
         </div>
+
+
+
+       <div id="detailModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Thông tin chi tiết bệnh nhân</h2>
+        <div id="patientDetails" runat="server"></div>
+    </div>
+</div>
+
+<script>
+
+    // Lấy modal
+        var modal = document.getElementById("detailModal");
+
+        // Lấy nút đóng modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Khi click vào nút đóng, đóng modal
+        span.onclick = function() {
+            modal.style.display = "none";
+    }
+
+        // Khi click bất kỳ đâu ngoài modal, đóng modal
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+        // Hàm hiển thị modal (có thể gọi từ code-behind)
+        function showModal() {
+            modal.style.display = "block";
+    }
+</script>
+
     </div>
 </asp:Content>

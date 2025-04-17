@@ -41,34 +41,43 @@ namespace NHOM20_DATN
         private void CancelAppointmentWithReason(string idPk, string dayWork, string reason)
         {
             string docId = (string)Session["UserID"];
-            //string docId = "TK001";
 
-            // Update your mail method to include reason
-            DoctorService.mailCancelAppointment(idPk, reason);
-            DoctorService.deleteAppointment(idPk, docId);
+            // Cập nhật trạng thái thành 'DaHuy' thay vì xóa
+            string sql = @"UPDATE LichKhamBenhNhan 
+                  SET TrangThai = 'DaHuy', Ghichu = @reason 
+                  WHERE IDPhieu = @idPk";
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
-                "showAlert('Đã hủy lịch và gửi mail thông báo.', 'success');", true);
-            Response.Redirect("Xem_Lich_Kham.aspx");
+            SqlParameter[] pr = new SqlParameter[] {
+        new SqlParameter("@idPk", idPk),
+        new SqlParameter("@reason", reason) // Lưu lý do hủy vào Ghichu
+    };
+
+            int result =kn.CapNhat(sql, pr);
+
+            if (result > 0)
+            {
+                DoctorService.mailCancelAppointment(idPk, reason);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                    "showAlert('Đã hủy lịch và gửi mail thông báo.', 'success');", true);
+                Response.Redirect("Xem_Lich_Kham.aspx");
+            }
         }
-
         //load list view
         public void view_List()
         {
 
             pn_AT.Visible = false;
             string idU = (string)Session["UserID"];
-            //string idU = "TK001";
-            string sql_LK = "select *  " +
+            string sql_LK = "select * " +
                 "from PhieuKham pk " +
-                 "JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu " +
-                "join BenhNhan bn on pk.IDBenhNhan  = bn.IDBenhNhan " +
-                "where pk.IDBacSi = @idBS " +
-                "order by  lkb.NgayKham, lkb.ThoiGianKham";
+                "JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu " +
+                "join BenhNhan bn on pk.IDBenhNhan = bn.IDBenhNhan " +
+                "where pk.IDBacSi = @idBS AND lkb.TrangThai <> 'DaHuy' " + // Chỉ hiển thị các trạng thái khác 'DaHuy'
+                "order by lkb.NgayKham, lkb.ThoiGianKham";
 
             SqlParameter[] pr = new SqlParameter[] {
-                new SqlParameter("@idBS",idU)
-            };
+        new SqlParameter("@idBS", idU)
+    };
             DataTable dt = kn.docdulieu(sql_LK, pr);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -94,14 +103,13 @@ namespace NHOM20_DATN
         {
 
             string idDoc = (string)Session["UserID"];
-            //string idDoc = "TK001";
-            string query_list = "select *  " +
-                " from PhieuKham pk  " +
-                " JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu  " +
-                " join BenhNhan bn on pk.IDBenhNhan  = bn.IDBenhNhan  " +
-                " where pk.IDBacSi = @idDoc " +
-                " and TrangThai = @TrangThai " +
-                " order by  lkb.NgayKham, lkb.ThoiGianKham";
+            string query_list = "select * " +
+                "from PhieuKham pk " +
+                "JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu " +
+                "join BenhNhan bn on pk.IDBenhNhan = bn.IDBenhNhan " +
+                "where pk.IDBacSi = @idDoc " +
+                "and TrangThai = @TrangThai " + // Đã tự động loại trừ 'DaHuy' vì đang filter theo status cụ thể
+                "order by lkb.NgayKham, lkb.ThoiGianKham";
             SqlParameter[] sp = new SqlParameter[] {
         new SqlParameter("@TrangThai",status),
          new SqlParameter("@idDoc",idDoc)

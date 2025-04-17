@@ -69,13 +69,13 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.DropDownList DDLgiokham;
 
         /// <summary>
-        /// ddlGioiTinh control.
+        /// Txttrinhdo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGioiTinh;
+        protected global::System.Web.UI.WebControls.TextBox Txttrinhdo;
 
         /// <summary>
         /// txtDiaChi control.

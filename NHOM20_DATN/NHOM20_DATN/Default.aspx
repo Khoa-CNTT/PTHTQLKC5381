@@ -220,7 +220,7 @@
                                         <h5 class="card-title">Xem quy
                                             <br />
                                             trình khám</h5>
-                                        <a href="Huong_Dan_Quy_Trinh_Di_Kham.aspx" style="margin-top: 5px;" class="btn btn-primary">Tại đây</a>
+                                        <a href="/Huong_Dan_Quy_Trinh_Di_Kham.aspx" style="margin-top: 5px;" class="btn btn-primary">Tại đây</a>
                                     </div>
                                 </div>
                             </div>

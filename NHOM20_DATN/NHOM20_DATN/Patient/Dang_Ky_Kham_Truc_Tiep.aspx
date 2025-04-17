@@ -280,11 +280,7 @@
             </div>
             <div class="row">
                 <!-- Bệnh viện/phòng khám -->
-                <div class="form-group col-6">
-                    <label for="ddlPhongKham">Bệnh viện/phòng khám</label>
-                    <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true" CssClass="form-control">
-                    </asp:DropDownList>
-                </div>
+               
                 <!-- Chuyên khoa -->
                 <div class="form-group col-6">
                     <label for="ddlChuyenKhoa">Chuyên khoa</label>
@@ -293,6 +289,12 @@
                         CssClass="form-control">
                     </asp:DropDownList>
                 </div>
+                     <!-- Bệnh viện/phòng khám -->
+                 <div class="form-group col-6">
+     <label for="ddlPhongKham">Bệnh viện/phòng khám</label>
+     <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true" CssClass="form-control">
+     </asp:DropDownList>
+ </div>
             </div>
             <div class="row">
                 <!-- Bác sĩ -->
@@ -385,7 +387,7 @@
                     <div class="radio-group">
                         <asp:RadioButtonList ID="gtRadioList" RepeatDirection="Horizontal" runat="server">
                             <asp:ListItem Value="Nam">Nam</asp:ListItem>
-                            <asp:ListItem Value="Nữ">Nữ</asp:ListItem>
+                            <asp:ListItem Value="Nu">Nữ</asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
                 </div>

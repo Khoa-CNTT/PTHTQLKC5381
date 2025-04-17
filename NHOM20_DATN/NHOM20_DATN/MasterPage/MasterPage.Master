@@ -304,8 +304,8 @@
                                          <li class="nav-item dropdown">
                                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hướng dẫn</a>
                                              <ul class="dropdown-menu">
-                                                 <li><a class="dropdown-item" href="Huong_Dan_Dat_Lich_Kham.aspx">Đặt lịch khám</a></li>
-                                                 <li><a class="dropdown-item" href="Huong_Dan_Quy_Trinh_Di_Kham.aspx">Quy trình đi khám</a></li>
+                                                 <li><a class="dropdown-item" href="/Huong_Dan_Dat_Lich_Kham.aspx">Đặt lịch khám</a></li>
+                                                 <li><a class="dropdown-item" href="/Huong_Dan_Quy_Trinh_Di_Kham.aspx">Quy trình đi khám</a></li>
                                                  <li><a class="dropdown-item" href="../Cau_Hoi_Thuong_Gap.aspx">Câu hỏi thường gặp</a></li>
                                              </ul>
                                          </li>

@@ -1,39 +1,51 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Quen_Mat_Khau.aspx.cs" Inherits="NHOM20_DATN.Quen_Mat_Khau" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-                <style>
+    <style>
         .tong {
             padding: 50px;
             position: relative;
-            height: 450px;
-        }
-
-        .bang1 tr td {
-            padding: 20px;
+            height: 500px;
         }
 
         .bang1 {
-            margin-top: -20px;
+            margin-top: 30px;
+            margin-left: 30px;
         }
 
         .mail {
-            width: 250px;
+            width: 280px;
         }
 
         .khung {
-            width: 550px;
+            width: 300px;
             font-size: 16px;
-            height: 187px;
-            margin-left: 350px;
+            height: 200px;
+            margin-left: 650px;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 10px; /* Bo góc */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            font-family: Arial, sans-serif; 
+            background-color: #bbbbbb7a;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            font-family: Arial, sans-serif;
+            margin-top: -450px;
+        }
+
+        .khung1 {
+            font-size: 16px;
+            width: 550px;
+            height: 175px;
+            margin-left: -70px;
+            margin-top: 80px;
+            background-color: #bbbbbb7a;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            font-family: Arial, sans-serif;
         }
 
         .hienthi1 {
@@ -46,49 +58,42 @@
             position: absolute;
         }
 
+            .bang2 tr td {
+                padding: 5px;
+            }
+
         .than2 {
             margin-left: 50px;
             margin-top: 30px;
         }
 
-        .khung1 {
-            font-size: 16px;
-            width: 550px;
-            height: 165px;
-            margin-left: -70px;
-            margin-top: 70px;
-            background-color: #fff; 
-            border-radius: 10px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-            font-family: Arial, sans-serif;
-        }
-
-        .bang2 tr td {
-            padding: 10px;
-        }
-
         .bang2 {
             margin-top: 20px;
-            margin-left: 30px;
+            margin-left: 50px;
         }
 
         .xacnhan1 {
             position: absolute;
-            font-size: 16px;
+            font-size: 13px;
+            margin-left: 10px;
         }
 
         .mau {
             color: white;
             background-color: dodgerblue;
-            width: 200px;
+            width: 280px;
             border-radius: 8px;
             border: 1px solid dodgerblue;
             height: 30px;
+            margin-left: 0px;
+            margin-top: 25px;
         }
 
         .quaylai {
-            margin-left: 250px;
-            margin-top: -30px;
+            margin-left: 70px;
+            margin-top: 5px;
+            font-style: italic;
+            font-size: 11px;
         }
 
             .quaylai a {
@@ -97,19 +102,29 @@
             }
 
                 .quaylai a:hover {
-                    color: LightSkyBlue;
+                    color: red;
                 }
 
         @media (min-width: 1201px) {
             .tong {
-                margin-left: -55px;
+                margin-left: -1px;
             }
 
             .khung {
-                height: 190px;
-                width: 600px;
-                font-size: 16px;
+                height: 180px;
+                width: 380px;
+                font-size: 13px;
+                transition: all 0.3s ease;
+                transform-style: preserve-3d;
+                position: relative;
+                z-index: 1;
             }
+
+                .khung:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+                    z-index: 10;
+                }
 
             .than2 {
                 margin-left: 50px;
@@ -117,14 +132,31 @@
 
             .khung1 {
                 height: 170px;
-                width: 600px;
-                font-size: 16px;
-                margin-top: 50px;
+                width: 380px;
+                font-size: 13px;
+                margin-top: 80px;
+                transition: all 0.3s ease;
+                transform-style: preserve-3d;
+                position: relative;
+                z-index: 2;
             }
 
             .xacnhan1 .mau {
-                margin-top: -20px;
-                margin-left: 10px;
+                margin-top: -10px;
+                margin-left: -125px;
+            }
+
+            .hienthi {
+                margin-left: 290px !important;
+                margin-top: -35px;
+                position: absolute;
+            }
+
+            .hienthi1 {
+                margin-top: -40px !important;
+                margin-left: -390px !important;
+                width: 400px;
+                font-size: 13px;
             }
         }
 
@@ -132,13 +164,29 @@
         /* Quy tắc cho màn hình trung bình */
         @media (max-width: 1200px) and (min-width: 993px) {
             .tong {
-                margin-left: -255px;
+                margin-left: 0px;
+                width: 940px;
+            }
+
+            .hienthi {
+                margin-left: 10px !important;
+                margin-top: 0px;
+                position: absolute;
+            }
+
+            .hienthi1 {
+                margin-top: -10px !important;
+                margin-left: -230px !important;
+                width: 400px;
+                font-size: 13px;
             }
 
             .khung {
                 height: 190px;
                 width: 600px;
                 font-size: 16px;
+                margin-left: 60px;
+                margin-top: 10px;
             }
 
             .than2 {
@@ -149,25 +197,32 @@
                 height: 170px;
                 width: 600px;
                 font-size: 16px;
-                margin-top: 60px;
+                margin-top: 130px;
             }
 
             .xacnhan1 .mau {
                 margin-top: -20px;
                 margin-left: 10px;
+            }
+
+            .dau4 {
+                display: none;
             }
         }
 
         /* Quy tắc cho màn hình nhỏ */
         @media (max-width: 992px) and (min-width: 769px) {
             .tong {
-                margin-left: -355px;
+                margin-left: 0px;
+                width: 695px;
             }
 
             .khung {
                 height: 190px;
                 width: 600px;
                 font-size: 13px;
+                margin-top: 10px;
+                margin-left: -5px;
             }
 
             .than2 {
@@ -178,25 +233,49 @@
                 height: 170px;
                 width: 600px;
                 font-size: 13px;
-                margin-top: 60px;
+                margin-top: 130px;
+                margin-left: -70px;
             }
 
             .xacnhan1 .mau {
                 margin-top: -20px;
                 margin-left: 10px;
             }
+
+            .dau4 {
+                display: none;
+            }
+
+            .hienthi {
+                margin-left: 10px !important;
+                margin-top: -5px;
+                position: absolute;
+            }
+
+            .hienthi1 {
+                margin-top: -5px !important;
+                margin-left: -250px !important;
+                width: 400px;
+            }
         }
 
         /* Quy tắc cho màn hình rất nhỏ */
         @media (max-width: 768px) {
             .tong {
-                margin-left: -395px;
+                margin-left: 0px;
+                width: 460px;
+            }
+
+            .quen {
+                top: 100px;
             }
 
             .khung {
-                height: 200px;
-                width: 450px;
-                font-size: 13px;
+                height: 160px;
+                width: 440px;
+                font-size: 10px;
+                margin-top: 20px;
+                margin-left: -40px;
             }
 
             .than2 {
@@ -204,22 +283,47 @@
             }
 
             .khung1 {
-                height: 160px;
-                width: 450px;
-                font-size: 13px;
-                margin-top: 50px;
+                height: 140px;
+                width: 440px;
+                font-size: 10px;
+                margin-top: 100px;
             }
 
             .xacnhan1 .mau {
-                margin-top: -20px;
                 margin-left: -50px;
+                font-size: 10px;
             }
-                .eye-icon {
+
+            .xacnhan1 {
+                margin-top: 100px !important;
+            }
+
+            .eye-icon {
                 cursor: pointer;
                 position: absolute;
                 margin-left: 2px !important;
                 margin-top: 4px;
-}
+            }
+
+            .dau4 {
+                display: none;
+            }
+
+            #ContentPlaceHolder1_Label2 {
+                margin-left: 100px;
+            }
+
+            .hienthi {
+                margin-left: 10px !important;
+                margin-top: -5px;
+                position: absolute;
+            }
+
+            .hienthi1 {
+                margin-top: -20px !important;
+                margin-left: -320px !important;
+                width: 400px;
+            }
         }
 
         .hienthi {
@@ -271,30 +375,104 @@
             cursor: pointer;
             position: absolute;
             margin-left: 10px;
-            margin-top: 4px;
+            margin-top: 10px;
+        }
+
+        .dau4 {
+            margin-top: -10px;
+            width: 500px;
+            margin-left: 50px;
+        }
+
+            .dau4 p {
+                margin: -2px 0px;
+            }
+
+            .dau4 p, h6 {
+                font-size: 13px;
+                font-style: italic;
+                color: #2d4747;
+            }
+
+            .dau4 h6 {
+                margin-top: 10px;
+                color: #4461F2;
+                font-style: italic;
+            }
+
+            .dau4 h3 {
+                margin-left: 35px;
+                font-style: italic;
+                color: #FFA500
+            }
+
+        .quen {
+            position: absolute;
+            margin-top: -10px;
+            margin-left: -60px;
+            color: #0051FF;
+            font-weight: 600;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .mail::placeholder {
+            padding-left: 0;
+        }
+
+        .mail {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .input-with-icon {
+            position: relative;
+            width: 250px;
+        }
+
+        .mail {
+            width: 280px;
+            padding: 10px 30px 10px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .email-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+        }
+
+        .anhnenqmk img {
+            width: 1200px;
+            height: 480px;
+            margin-top: -40px;
         }
     </style>
     <div class="tong">
+        <div class="anhnenqmk">
+            <img src="/img/Anhquenmatkhau.jpeg" />
+        </div>
         <div class="khung">
             <div style="text-align: center; margin-bottom: 20px; font-weight: bold; font-size: 18px">
                 <asp:Label CssClass="quen" ID="Label3" runat="server" Text="Quên Mật Khẩu"></asp:Label>
             </div>
             <div class="than1">
-                <table class="bang1">
-                    <tr>
-                        <td>
-                            <asp:Label ID="Label1" runat="server" Text="Nhập Email đã đăng ký: "></asp:Label>
+                <div class="bang1">
+                    <div class="input-with-icon">
 
-                        </td>
-                        <td style="margin-left: 20px;">
-                            <asp:TextBox CssClass="mail" ID="txtemail" runat="server" placeholder="Nhập email của bạn"></asp:TextBox>
-                            <asp:Label ID="Label6" runat="server" Text="" CssClass="hienthi">
+                        <asp:TextBox CssClass="mail" ID="txtemail" runat="server" placeholder="Nhập Email đã đăng ký"></asp:TextBox>
+                        <i class="fas fa-envelope email-icon"></i>
+                    </div>
+                    <asp:Label ID="Label6" runat="server" Text="" CssClass="hienthi">
                          
-                            </asp:Label>
-                        </td>
-                    </tr>
-                </table>
-                <div class="xacnhan" style="margin-top: 35px; margin-left: 30px;">
+                    </asp:Label>
+                </div>
+                <div class="xacnhan" style="margin-top: 5px; margin-left: 30px;">
                     <asp:Button CssClass="mau" ID="btnxacnhan" runat="server" Text="Xác nhận" OnClick="btnxacnhan_Click" />
                 </div>
                 <div class="quaylai">
@@ -316,23 +494,16 @@
                     <table class="bang2">
                         <tr>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text="Nhập mã xác nhận: "></asp:Label>
-                            </td>
-                            <td>
-                                <asp:TextBox CssClass="mail" ID="txtxacminh" runat="server"></asp:TextBox>
+                                <asp:TextBox CssClass="mail" ID="txtxacminh" placeholder="Nhập mã xác nhận" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
+
                             <td>
-                                <asp:Label ID="Label5" runat="server" Text="Nhập mật khẩu mới: "></asp:Label>
+                                <asp:TextBox CssClass="mail" ID="txtmatkhau" placeholder="Nhập mật khẩu mới" runat="server" TextMode="Password"></asp:TextBox>
+                                <span class="eye-icon" onclick="togglePasswordVisibility()"><i class="far fa-eye"></i>
+                                </span>
                             </td>
-                            
-                            <td>
-                        <asp:TextBox CssClass="mail" ID="txtmatkhau" runat="server" TextMode="Password"></asp:TextBox>
-                        <span class="eye-icon" onclick="togglePasswordVisibility()">
-                            👁️
-                        </span>
-                    </td>
                         </tr>
                     </table>
                     <div class="xacnhan1" style="margin-top: 130px; margin-left: 180px">
@@ -355,47 +526,46 @@
     <script>
         $(document).ready(function () {
             $("#<%= txtemail.ClientID %>").on("input", function () {
-               var email = $(this).val();
-               var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                var email = $(this).val();
+                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-               // Ẩn dòng thông báo lỗi khi bắt đầu nhập lại email
-               $("#<%= Label2.ClientID %>").text("").hide();
+                $("#<%= Label2.ClientID %>").text("").hide();
 
-               if (emailPattern.test(email)) {
-                   $.ajax({
-                       type: "POST",
-                       url: "Quen_Mat_Khau.aspx/CheckEmail",
-                       data: JSON.stringify({ email: email }),
-                       contentType: "application/json; charset=utf-8",
-                       dataType: "json",
-                       success: function (response) {
-                           if (response.d) {
-                               $("#<%= Label6.ClientID %>")
-                            .text("✔")
-                            .removeClass("error")
-                            .addClass("success")
-                            .css("display", "inline");
-                    } else {
-                        $("#<%= Label6.ClientID %>")
-                            .text("✖")
-                            .removeClass("success")
-                            .addClass("error")
-                            .css("display", "inline");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error("AJAX Error: " + status + error);
-                    $("#<%= Label6.ClientID %>")
-                        .text("✖")
-                        .removeClass("success")
-                        .addClass("error")
-                        .css("display", "inline");
+                if (emailPattern.test(email)) {
+                    $.ajax({
+                        type: "POST",
+                        url: "Quen_Mat_Khau.aspx/CheckEmail",
+                        data: JSON.stringify({ email: email }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response.d) {
+                                $("#<%= Label6.ClientID %>")
+                                    .text("✔")
+                                    .removeClass("error")
+                                    .addClass("success")
+                                    .css("display", "inline");
+                            } else {
+                                $("#<%= Label6.ClientID %>")
+                                    .text("✖")
+                                    .removeClass("success")
+                                    .addClass("error")
+                                    .css("display", "inline");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("AJAX Error: " + status + error);
+                            $("#<%= Label6.ClientID %>")
+                                .text("✖")
+                                .removeClass("success")
+                                .addClass("error")
+                                .css("display", "inline");
+                        }
+                    });
+                } else {
+                    $("#<%= Label6.ClientID %>").text("").removeClass("success error");
                 }
             });
-        } else {
-            $("#<%= Label6.ClientID %>").text("").removeClass("success error");
-               }
-           });
-       });
+        });
     </script>
 </asp:Content>

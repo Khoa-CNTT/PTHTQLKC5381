@@ -480,6 +480,7 @@
     <Compile Include="res\service\DoctorService.cs" />
     <Compile Include="res\service\MedicalRecordService.cs" />
     <Compile Include="res\service\PatientManagerment.cs" />
+    <Compile Include="res\service\PaymentService.cs" />
     <Compile Include="res\service\QlbvService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.cs">

@@ -56,6 +56,9 @@
     <Reference Include="MimeKit, Version=4.11.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.4.11.0\lib\net48\MimeKit.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
     </Reference>
@@ -185,9 +188,12 @@
     <Content Include="img\anhtraidatlai.jpg" />
     <Content Include="img\anhxoalogo.png" />
     <Content Include="img\khoa.png" />
+    <Content Include="js\appointment_manager.js" />
+    <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
+    <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
     <Content Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="img\anhnen_huykham.jpeg" />
     <Content Include="Patient\Dat_Lai_Mat_Khau.aspx" />
@@ -292,6 +298,7 @@
     <Content Include="style\manager\ManagerMasterpage_style.css" />
     <Content Include="style\manager\NewsManagement_style.css" />
     <Content Include="style\manager\patientManagerment.css" />
+    <Content Include="style\manager\QLBaiviet.css" />
     <Content Include="style\news_content_style.css" />
     <Content Include="style\new_dt.css" />
     <Content Include="style\Regist_form.css" />
@@ -344,6 +351,13 @@
     </Compile>
     <Compile Include="pages\Doctor\Xem_Lich_Kham.aspx.designer.cs">
       <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Bai_Viet.aspx.cs">
+      <DependentUpon>Quan_Ly_Bai_Viet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Bai_Viet.aspx.designer.cs">
+      <DependentUpon>Quan_Ly_Bai_Viet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx.cs">
       <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>

@@ -268,7 +268,7 @@ body {
         }
 
 
-.signout-btn {
+.signout-btn, .li-ttcn {
     display: none;
 }
 
@@ -431,15 +431,18 @@ body {
     #right-dropdown {
         display: none;
     }
-    .signout-btn {
+    .signout-btn, .li-ttcn {
         display: block;
     }
+
 
     .ttcn-btn {
         display: block;
     }
 
-
+    .contain-tttv {
+        margin-bottom: 1em;
+    }
 
 
 
@@ -562,11 +565,14 @@ body {
     #right-dropdown{
         display: none;
     }
-    .signout-btn{
+    .signout-btn, .li-ttcn {
         display: block
     }
     .ttcn-btn{
         display: block;
+    }
+    .contain-tttv{
+        margin-bottom: 1em;
     }
 
 

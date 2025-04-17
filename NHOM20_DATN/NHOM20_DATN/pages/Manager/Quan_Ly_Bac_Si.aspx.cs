@@ -261,6 +261,8 @@ namespace NHOM20_DATN.pages.Manager
             //int resultLK = kn.CapNhat(deleteAppointmentDoc, apDoc);
             //int resultPK = kn.CapNhat(deleteAppointmentPa, apPat);
 
+
+
             viewList();
         }
         //==============Cancel editing Grid view==============
@@ -367,9 +369,9 @@ namespace NHOM20_DATN.pages.Manager
             }
             else
             {
-                string js = "showAlert('Không có thông tin tương ứng');";
-                ClientScript.RegisterStartupScript(this.GetType(), "SuccessAlert", js, true);
-
+                string message = "Không tìm thấy dữ liệu";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
 
         }

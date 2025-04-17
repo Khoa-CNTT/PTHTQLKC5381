@@ -308,6 +308,7 @@
     <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll.config" />
     <Content Include="Web.config" />
     <Content Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx" />
+    <Content Include="Xem_Lich_Su_Kham.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cau_Hoi_Thuong_Gap.aspx.cs">
@@ -505,6 +506,13 @@
     </Compile>
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.designer.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Xem_Lich_Su_Kham.aspx.cs">
+      <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Xem_Lich_Su_Kham.aspx.designer.cs">
+      <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

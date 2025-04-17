@@ -165,13 +165,17 @@ namespace NHOM20_DATN.res.service
             DateTime time_db = DateTime.Parse(dt.Rows[0]["ThoiGianKham"].ToString());
             string time = time_db.ToString("HH:mm");
 
-            string subject = "Hủy Khám Ngày " + day;
-            string description = $"Kính gửi {name},\n\n" +
-                               $"Bác sĩ đã HỦY KHÁM của bạn!\n" +
-                               $"Mã phiếu: {idPk}\n" +
-                               $"Thời gian: {time} ngày {day}\n" +
-                               $"Lý do hủy: {reason}\n\n" +
-                               $"Xin lỗi vì sự bất tiện này.";
+            string subject = $"Thông Báo Hủy Lịch Khám Ngày" + day;
+            string description =
+                $"Kính gửi {name},\n\n" +
+                $"Chúng tôi rất tiếc phải thông báo rằng lịch khám của bạn đã bị **hủy**.\n\n" +
+                $"🔹 Mã phiếu: {idPk}\n" +
+                $"🔹 Thời gian: {time} ngày {day}\n" +
+                $"🔹 Lý do hủy: {reason}\n\n" +
+                $"Chúng tôi xin lỗi vì sự bất tiện này và mong bạn thông cảm.\n\n" +
+                $"Trân trọng,\n" +
+                $"Phòng Khám Banana Hospital";
+
 
             sendMai_gmail mailSender = new sendMai_gmail();
             mailSender.sendMail_gmail(email, subject, description);

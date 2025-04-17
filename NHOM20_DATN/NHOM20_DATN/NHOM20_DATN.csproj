@@ -56,6 +56,9 @@
     <Reference Include="MimeKit, Version=4.11.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.4.11.0\lib\net48\MimeKit.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
     </Reference>
@@ -301,6 +304,7 @@
     <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll.config" />
     <Content Include="Web.config" />
     <Content Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx" />
+    <Content Include="Xem_Lich_Su_Kham.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cau_Hoi_Thuong_Gap.aspx.cs">
@@ -491,6 +495,13 @@
     </Compile>
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.designer.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Xem_Lich_Su_Kham.aspx.cs">
+      <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Xem_Lich_Su_Kham.aspx.designer.cs">
+      <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

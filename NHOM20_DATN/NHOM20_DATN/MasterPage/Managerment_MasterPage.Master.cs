@@ -22,7 +22,8 @@ namespace NHOM20_DATN.MasterPage
                     Response.Redirect("~/Error_forbidden.html");
                 }
 
-            //}
+                //}
+            }
         }
         //Đăng xuất
         protected void btnDangXuat_Click(object sender, EventArgs e)

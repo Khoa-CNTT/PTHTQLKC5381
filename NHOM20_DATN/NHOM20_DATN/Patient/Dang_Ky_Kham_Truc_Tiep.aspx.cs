@@ -67,7 +67,7 @@ namespace NHOM20_DATN
                 }
                 txtEmail.ReadOnly = true; // không cho bệnh nhân chỉnh sửa khi load dữ liệu lên
                 gtRadioList.SelectedValue = row["GioiTinh"].ToString();
-
+                
                 if (row["NgaySinh"] != DBNull.Value)
                 {
                     txtNgaySinh.Text = Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd");
@@ -398,6 +398,7 @@ namespace NHOM20_DATN
             string idngaykham = txtNgayKham.Text;
             string idgiokham = DDLgiokham.SelectedValue;
             string buoiKham = ddlbuoikham.SelectedValue;
+            
 
             // kiểm tra xem đã chọn bác sĩ chưa
 
@@ -411,7 +412,7 @@ namespace NHOM20_DATN
 
             if (dtBacSi == null || dtBacSi.Rows.Count == 0 || Convert.ToInt32(dtBacSi.Rows[0][0]) == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bạn sí không hợp lệ vui lòng chọn lại.', 'warning');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bác sĩ không hợp lệ vui lòng chọn lại.', 'warning');", true);
                 return;
             }
 
@@ -540,13 +541,44 @@ namespace NHOM20_DATN
             LopKetNoi HSBA = new LopKetNoi();
             int resultHSBA = HSBA.CapNhat(inserthsba, parametersHSBA);
 
+            
+
+
+
             if (result > 0)
             {
+
+                string tenBacSi = "";
+                string sqlTenBacSi = "SELECT HoTen FROM BacSi WHERE IDBacSi = @IDBacSi";
+                SqlParameter[] paramTenBacSi = new SqlParameter[]
+                {
+        new SqlParameter("@IDBacSi", idBacSi)
+                };
+                LopKetNoi kbt = new LopKetNoi();
+                DataTable userData = kbt.docdulieu(sqlTenBacSi, paramTenBacSi);
+                if (userData != null && userData.Rows.Count > 0)
+                {
+                    tenBacSi = userData.Rows[0]["HoTen"].ToString();
+                }
                 //mailSender mailSender = new mailSender();
-                string tieude = "BANANA XIN CHÀO QUÝ KHÁCH !\n ";
-                string noidung = "Bạn đã đăng ký thành công bác sĩ\n" + idBacSi + "Giờ khám \n" + idgiokham + "Ngày\n" + idngaykham + "Bạn vui lòng đến trước giờ khám khoảng 10 phút để đề phòng những sự cố không mong muốn ! Xin cảm ơn!";
+                //string tieude = "BANANA XIN CHÀO QUÝ KHÁCH !\n ";
+                // string noidung = "Bạn đã đăng ký thành công bác sĩ\n" + idBacSi + "Giờ khám \n" + idgiokham + "Ngày\n" + idngaykham + "Bạn vui lòng đến trước giờ khám khoảng 10 phút để đề phòng những sự cố không mong muốn ! Xin cảm ơn!";
                 // //mail test
                 // mailSender.sendMail_CancelAppointment("rick38@ethereal.email",tieude ,noidung);
+
+                string tieude = "BANANA Hospital – Xác nhận đăng ký lịch khám";
+
+                string noidung = "Kính chào Quý khách,\n\n" +
+                "Quý khách đã đăng ký khám thành công với bác sĩ:\n\n" +
+                "🩺 Tên bác sĩ: " + tenBacSi + "\n" +
+                "🕒 Thời gian khám: " + idgiokham + "\n" +
+                "📅 Ngày khám: " + idngaykham + "\n\n" +
+                "Quý khách vui lòng đến trước giờ khám khoảng 10 phút để đảm bảo quy trình khám bệnh được diễn ra thuận lợi và tránh những sự cố không mong muốn.\n\n" +
+                "Xin chân thành cảm ơn Quý khách đã tin tưởng và lựa chọn Banana Hospital!\n\n" +
+                "Trân trọng,\n" +
+                "Ban Quản Lý\n" +
+                "BANANA HOSPITAL";
+
 
                 sendMai_gmail sendmail = new sendMai_gmail();
                 sendmail.sendMail_gmail(idemail, tieude, noidung);

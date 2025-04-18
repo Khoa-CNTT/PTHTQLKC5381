@@ -28,6 +28,7 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
             margin-top: 24px;
+            width:660px;
         }
 
         .group {
@@ -66,11 +67,13 @@
         .layout-wrapper {
             display: flex;
             gap: 24px;
+            
         }
 
         .info-wrapper {
             flex: 0.8;
             border-radius: var(--border-radius);
+             margin-left:80px;
         }
 
         .form-wrapper {
@@ -85,6 +88,7 @@
             font-weight: 600;
             position: relative;
             display: inline-block;
+            margin-left:50px;
         }
 
        
@@ -183,7 +187,7 @@
             font-weight: bold;
         }
 
-        h4 {
+        .medical-info h4 {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border-radius: var(--border-radius);
             padding: 14px 16px;

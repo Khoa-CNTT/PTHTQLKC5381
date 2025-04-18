@@ -59,7 +59,7 @@ namespace NHOM20_DATN
             }
             else
             {
-                Response.Write("Không có dữ liệu.");
+                Response.Write(" ");
             }
         }
         private void LoadNgayKham(DataTable dt)

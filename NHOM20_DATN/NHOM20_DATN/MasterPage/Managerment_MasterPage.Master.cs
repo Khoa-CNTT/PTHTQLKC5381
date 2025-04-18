@@ -22,7 +22,7 @@ namespace NHOM20_DATN.MasterPage
             //        Response.Redirect("~/Error_forbidden.html");
             //    }
 
-            }
+            //}
         }
         
         //Đăng xuất

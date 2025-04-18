@@ -122,7 +122,7 @@
             .Phankhung {
                 padding: 15px;
                 width: 450px;
-                margin-left: -40px;
+                margin-left: 540px !important;
                 box-sizing: border-box;
                 overflow: hidden;
             }
@@ -394,8 +394,8 @@
         }
 
         #content {
-            width: 75%;
-            margin: 0 auto;
+            width: 1100px;
+            margin-left: 370px;
         }
 
         tbody, td, tfoot, th, thead, tr {

@@ -4,7 +4,6 @@
   <link href="../../style/manager/doctor_register.css" rel='stylesheet'>
   <link href="../../style/manager/doctor_list_style.css" rel='stylesheet'>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <div id="container_regist">
@@ -248,8 +247,7 @@
            </div>
        </div>
    </div>
-
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function showAlert(notice, warn) {
         Swal.fire({
@@ -259,13 +257,13 @@
         });
     }
     function OpenForm() {
-        const btn_open = document.querySelector("#patientUpdate_container");
+        const btn_open = document.querySelector("#patientUpdate_container"); 
         btn_open.classList.add("d_block");
     }
     function CloseForm() {
         const btn_open = document.querySelector("#patientUpdate_container");
         btn_open.classList.remove("d_block");
     }
-</script>
+    </script>
    <script src="../../js/doctorCreateAccount.js"></script>
 </asp:Content>

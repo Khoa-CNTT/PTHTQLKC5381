@@ -11,19 +11,20 @@ namespace NHOM20_DATN.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                if ((string)Session["Role"] == null || (string)Session["Role"] == "")
-                {
-                    Response.Redirect("/Dang_Nhap.aspx");
-                }
-                else if ((string)Session["Role"] != "QuanLy")
-                {
-                    Response.Redirect("~/Error_forbidden.html");
-                }
+            //if (!IsPostBack)
+            //{
+            //    if ((string)Session["Role"] == null || (string)Session["Role"] == "")
+            //    {
+            //        Response.Redirect("/Dang_Nhap.aspx");
+            //    }
+            //    else if ((string)Session["Role"] != "QuanLy")
+            //    {
+            //        Response.Redirect("~/Error_forbidden.html");
+            //    }
 
             }
         }
+        
         //Đăng xuất
         protected void btnDangXuat_Click(object sender, EventArgs e)
         {

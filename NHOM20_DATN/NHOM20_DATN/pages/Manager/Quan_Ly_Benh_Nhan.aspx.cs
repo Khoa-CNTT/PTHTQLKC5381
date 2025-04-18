@@ -110,7 +110,11 @@ namespace NHOM20_DATN.pages.Manager
             {
                 string message = "Tên đăng nhập đã tồn tại";
                 string script = "showAlert('" + message + "','warning');";
+                btnEdit.Visible = true;
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
                 return;
             }
             string idBN = "BN" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
@@ -119,13 +123,21 @@ namespace NHOM20_DATN.pages.Manager
             {
                 string message = "Thêm bệnh nhân thành công";
                 string script = "showAlert('" + message + "','success');";
+                btnEdit.Visible = true;
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
             }
             else
             {
                 string message = "Thêm bệnh nhân thất bại!";
                 string script = "showAlert('" + message + "','error');";
+                btnEdit.Visible = true;
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
             }
         }
 
@@ -238,12 +250,17 @@ namespace NHOM20_DATN.pages.Manager
                 string message = "Cập nhật thành công!";
                 string script = "showAlert('" + message + "','success');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                cancelEdit.Visible = true;
+                viewListPatients();
+
             }
             else
             {
                 string message = "Cập nhật thất bại!";
                 string script = "showAlert('" + message + "','error');";
+                cancelEdit.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
             }
         }
 

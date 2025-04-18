@@ -16,7 +16,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
+    
     <form id="form1" runat="server">
                             <div class="dropdown-menu" id="dropdown-menu">
     <ul>
@@ -39,7 +39,7 @@
                     <div class="icon_User">
                         <div class="contain-profile">
                             <i class="fa-regular fa-circle-user"></i>
-                            <h4>BÁC SĨ</h4>
+                            <h4 runat="server" id="doctor_Name"></h4>
                         </div>
                         
 
@@ -50,26 +50,50 @@
                         </div>
                     </div>
                     <ul>
-                        <li><a href="/pages/Doctor/Xem_Thong_Tin_Phieu_Kham.aspx"><i class='bx bx-clipboard' ></i>Xem thông tin phiếu khám</a></li>
-                        <li><a href="/pages/Doctor/Quan_Ly_Thong_Tin_Ca_Nhan.aspx"><i class='bx bx-lock-alt'></i>Quản lý thông tin cá nhân</a></li>
-                        <li><a href="/pages/Doctor/Xem_Thong_Tin_Benh_Nhan.aspx"><i class='bx bx-user'></i>Xem Thông Tin Bệnh Nhân</a></li>
-                        <li><a href="/pages/Doctor/Cap_Nhat_Ho_So_Benh_An.aspx"><i class='bx bx-calendar-x' ></i>Cập Nhật Hồ Sơ Bệnh Án</a></li>
-                        <li><a href="/pages/Doctor/Xem_Lich_Kham.aspx"><i class='bx bx-calendar'></i>Xem Lịch Khám</a></li>
-                        <li><a href="/pages/Doctor/Dang_Ky_Lich_Kham.aspx"><i class='bx bx-calendar-plus'></i>Đăng ký lịch khám</a></li>
-                        <li><a href="/pages/Doctor/Xem_Thong_Tin_Tu_Van.aspx"><i class='bx bx-calendar-x' ></i>Xem thông tin tư vấn</a></li>
-                         <li class="ttcn-btn">
-
+                        <li class="li-ttcn">
      <a href="Quan_Ly_Thong_Tin_Ca_Nhan.aspx">
          <div class="contain-ttcn"><i class='bx bx-lock-alt'></i>Quản lý thông tin cá nhân</div>
      </a></li>
                        
-                        
-                        <li class="signout-btn">
-                            <div>
-                            <asp:LinkButton ID="LinkButton1" CssClass="btnOut" runat="server" OnClick="Logout_Click">
-                                 Đăng Xuất
-                            </asp:LinkButton>
+                        <li>
+
+                            <a href="/pages/Doctor/Xem_Thong_Tin_Benh_Nhan.aspx">
+                                <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Xem Thông Tin Bệnh Nhân</div>
+                            </a></li>
+                        <li>
+
+                            <a href="/pages/Doctor/Cap_Nhat_Ho_So_Benh_An.aspx">
+                                <div class="contain-cnhs"><i class="fa-solid fa-hospital-user"></i>Cập Nhật Hồ Sơ Bệnh Án</div>
+                            </a></li>
+                        <li>
+
+                            <a href="/pages/Doctor/Xem_Lich_Kham.aspx">
+                                <div class="contain-xlk"><i class='bx bx-calendar'></i>Xem Lịch Khám</div>
+                            </a></li>
+                        <li>
+
+                            <a href="/pages/Doctor/Dang_Ky_Lich_Kham.aspx">
+                                <div class="contain-dklk">
+                                    <i class='bx bx-calendar-plus'></i>Đăng ký lịch khám
                                 </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="Xem_Thong_Tin_Tu_Van.aspx">
+                                <div class="contain-tttv">
+                                    <i class="fa-solid fa-phone"></i>Xem thông tin tư vấn
+                                </div>
+                            </a></li>
+                        <li class="signout-btn">
+                        
+                            <asp:LinkButton ID="LinkButton1" CssClass="btnOut" runat="server" OnClick="Logout_Click">
+                                 <div>
+                                      Đăng Xuất
+                                      </div>
+                                
+                            </asp:LinkButton>
+                               
                         </li>
                             
                           

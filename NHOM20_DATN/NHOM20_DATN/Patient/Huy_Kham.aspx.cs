@@ -27,7 +27,7 @@ namespace NHOM20_DATN
                 else
                 {
                     Response.Write("<script>alert('Vui lòng đăng nhập!');</script>");
-                    Response.Redirect("~/Dang_Nhap.aspx");
+                    Response.Redirect("/Dang_Nhap.aspx");
                 }
             }
         }
@@ -51,7 +51,9 @@ namespace NHOM20_DATN
                 lbsdt.Text = row["SoDienThoai"].ToString();
                 lbgioitinh.Text = row["GioiTinh"].ToString();
                 lbdiachi.Text = row["DiaChi"].ToString();
-                lbthoigian.Text = $"{row["NgayKham"]} - {row["ThoiGianKham"]}";
+                DateTime ngayKham = Convert.ToDateTime(row["NgayKham"]);
+                TimeSpan thoiGianKham = TimeSpan.Parse(row["ThoiGianKham"].ToString());
+                lbthoigian.Text = $"{ngayKham.ToString("dd/MM/yyyy")} - {thoiGianKham.ToString(@"hh\:mm")}";
                 lbtrieuchung.Text = row["TrieuChung"].ToString();
                 lbphongkham.Text = row["IDPhongKham"].ToString();
 

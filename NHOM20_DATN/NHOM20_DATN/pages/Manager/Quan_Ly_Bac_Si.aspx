@@ -249,13 +249,9 @@
        </div>
    </div>
 
-      <script>
-      function showAlert(message, iconType) {
-          Swal.fire({
-              title: message,
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function ShowAlert(notice, warn) {
+    function showAlert(notice, warn) {
         Swal.fire({
             title: notice,
             icon: warn,
@@ -263,19 +259,13 @@
         });
     }
     function OpenForm() {
-        const btn_open = document.querySelector("#patientUpdate_container"); 
+        const btn_open = document.querySelector("#patientUpdate_container");
         btn_open.classList.add("d_block");
     }
     function CloseForm() {
         const btn_open = document.querySelector("#patientUpdate_container");
         btn_open.classList.remove("d_block");
     }
-    </script>
-
-              icon: iconType,
-              confirmButtonText: 'OK'
-          });
-      }
-      </script>
+</script>
    <script src="../../js/doctorCreateAccount.js"></script>
 </asp:Content>

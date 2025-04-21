@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Dang_Nhap.aspx.cs" Inherits="NHOM20_DATN.Dang_Nhap" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         #content_container #login_container {
@@ -108,7 +108,7 @@
         }
 
         #content_container #login_form .inp_submit .inp_btn input {
-            padding: 1em 2em;   
+            padding: 1em 2em;
             border: none;
             background: linear-gradient(to right, #57cdfd, #0eb5fd);
             border-radius: 2em;
@@ -117,9 +117,9 @@
             font-weight: 500;
         }
 
-         #content_container #login_form .inp_submit .inp_btn input:hover {
-            background: rgb(14, 181, 253);
-         }
+            #content_container #login_form .inp_submit .inp_btn input:hover {
+                background: rgb(14, 181, 253);
+            }
 
 
 
@@ -232,6 +232,10 @@
             margin: 0 auto;
             text-align: center;
         }
+
+            .form-control .text-center {
+                text-transform: uppercase;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -253,7 +257,7 @@
                     <div class="form-group text-center">
                         <div class="d-flex align-items-center justify-content-center gap-2">
                             <asp:Label ID="lblCaptcha" runat="server" CssClass="captcha-text fw-bold text-primary fs-4"></asp:Label>
-                            <asp:TextBox ID="txtCaptcha" CssClass="form-control text-center" placeholder="Nhập mã xác nhận" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtCaptcha" CssClass="form-control text-center" placeholder="Nhập mã xác nhận" runat="server" oninput="toUpperCase(this)"></asp:TextBox>
                         </div>
 
                         <asp:RequiredFieldValidator ControlToValidate="txtCaptcha" Display="Dynamic" ForeColor="Red"
@@ -270,6 +274,12 @@
         </div>
     </div>
     <script>
+        // Hàm chuyển giá trị thành chữ in hoa khi người dùng nhập
+        function toUpperCase(input) {
+            input.value = input.value.toUpperCase();
+        }
+    </script>
+    <script>
         function showAlert(message, iconType) {
             Swal.fire({
                 title: message,
@@ -277,6 +287,6 @@
                 confirmButtonText: 'OK'
             });
         }
-       
+
     </script>
 </asp:Content>

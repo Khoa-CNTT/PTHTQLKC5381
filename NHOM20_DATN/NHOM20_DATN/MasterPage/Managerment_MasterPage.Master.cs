@@ -19,11 +19,12 @@ namespace NHOM20_DATN.MasterPage
             //    }
             //    else if ((string)Session["Role"] != "QuanLy")
             //    {
-            //        Response.Redirect("/Error_forbidden.html");
+            //        Response.Redirect("~/Error_forbidden.html");
             //    }
 
             //}
         }
+        
         //Đăng xuất
         protected void btnDangXuat_Click(object sender, EventArgs e)
         {

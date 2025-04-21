@@ -124,58 +124,94 @@
         }
 
         /* MODAL */
-        .modall {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+       .modall {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
 
-        .modall-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
+.modall-content {
+  background: #ffffff;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
 
-        .modall .close {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+@keyframes fadeIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 
-        .question {
-            color: red;
-            cursor: pointer;
-            font-size: 15px;
-            margin-left: 20px;
-        }
+.image-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
 
-        .image-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            gap: 10px;
-        }
+.hinhbv, .hinhbs {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
 
-        .hinhbv, .hinhbs {
-            max-width: 80px;
-            height: auto;
-            border-radius: 10px;
-        }
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.modal-body {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+
+.close {
+  background: linear-gradient(135deg, #007BFF, #0056b3);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.close:hover {
+  background: linear-gradient(135deg, #0056b3, #003d80);
+}
+
+.question {
+  color: #e91e63;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 20px;
+  transition: color 0.2s;
+}
+
+.question:hover {
+  color: #c2185b;
+}
 
         /* CHO MÀN HÌNH NHỎ */
         @media (max-width: 600px) {
@@ -280,11 +316,7 @@
             </div>
             <div class="row">
                 <!-- Bệnh viện/phòng khám -->
-                <div class="form-group col-6">
-                    <label for="ddlPhongKham">Bệnh viện/phòng khám</label>
-                    <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true" CssClass="form-control">
-                    </asp:DropDownList>
-                </div>
+               
                 <!-- Chuyên khoa -->
                 <div class="form-group col-6">
                     <label for="ddlChuyenKhoa">Chuyên khoa</label>
@@ -293,6 +325,12 @@
                         CssClass="form-control">
                     </asp:DropDownList>
                 </div>
+                     <!-- Bệnh viện/phòng khám -->
+                 <div class="form-group col-6">
+     <label for="ddlPhongKham">Bệnh viện/phòng khám</label>
+     <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true" CssClass="form-control">
+     </asp:DropDownList>
+ </div>
             </div>
             <div class="row">
                 <!-- Bác sĩ -->
@@ -383,9 +421,9 @@
                 <div class="form-group col-6">
                     <label>Giới tính</label>
                     <div class="radio-group">
-                        <asp:RadioButtonList ID="gtRadioList" RepeatDirection="Horizontal" runat="server">
+                        <asp:RadioButtonList ID="gtRadioList" RepeatDirection="Horizontal" runat="server" Enabled="false">
                             <asp:ListItem Value="Nam">Nam</asp:ListItem>
-                            <asp:ListItem Value="Nữ">Nữ</asp:ListItem>
+                            <asp:ListItem Value="Nu">Nữ</asp:ListItem>
                         </asp:RadioButtonList>
                     </div>
                 </div>
@@ -424,7 +462,7 @@
                 <!--<button type="submit" id="btnPayment" class="btn btn-primary">Thanh toán với VNPay</button>-->
                 <div class="form-group col-6" style="display: flex; align-items: center;">
                     <!-- Link câu hỏi -->
-                    <a class="question" data-answer="Hãy chọn phần dịch vụ ...">Bạn muốn biết phiếu khám?</a>
+                    <a class="question" data-answer="Hãy chọn phần dịch vụ --> Hủy Khám">Bạn muốn biết phiếu khám?</a>
                 </div>
             </div>
         </div>
@@ -435,11 +473,11 @@
         <div class="modall-content">
             <div class="image-row">
                 <div class="hinhanhbv1">
-                    <img src="./IMG/logochinh.png" alt="logo" class="hinhbv">
+                    <img src="../img/logochinh.png" alt="logo" class="hinhbv">
                 </div>
             </div>
             <div class="header" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 10px;">
-                <img src="./IMG/bga.png" alt="" class="hinhbs">
+                <img src="../img/bga.png" alt="" class="hinhbs">
                 BANANA XIN CHÀO QUÝ KHÁCH
             </div>
             <div class="modal-body" id="modal-text" style="font-size: 1rem; color: #333; margin-bottom: 20px;">

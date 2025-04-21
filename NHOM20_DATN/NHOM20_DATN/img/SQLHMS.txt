@@ -1,0 +1,194 @@
+﻿CREATE TABLE TaiKhoan (
+    ID NVARCHAR(50) PRIMARY KEY,   
+    TenDangNhap VARCHAR(50) NOT NULL UNIQUE,   
+    MatKhau VARCHAR(20) NOT NULL, 
+    Email VARCHAR(100)                     
+)
+
+CREATE TABLE BenhNhan (
+    IDBenhNhan NVARCHAR(50) PRIMARY KEY,        
+    HoTen NVARCHAR(100),                        
+    NgaySinh DATETIME,                        
+    GioiTinh NVARCHAR(10) CHECK (GioiTinh IN ('Nam', 'Nu', 'Khac')), 
+    SoDienThoai VARCHAR(10), 
+	CanCuocCongDan VARCHAR(20),
+    Email VARCHAR(100),                        
+    DiaChi NVARCHAR(MAX),                      
+    CONSTRAINT FK_BenhNhan_TaiKhoan FOREIGN KEY (IDBenhNhan) REFERENCES TaiKhoan(ID) 
+)
+
+CREATE TABLE ChuyenKhoa (
+    IDChuyenKhoa INT PRIMARY KEY IDENTITY(1,1), 
+    TenChuyenKhoa NVARCHAR(100) NOT NULL UNIQUE,  
+    MoTa NVARCHAR(MAX)  
+);
+
+CREATE TABLE BacSi (
+    IDBacSi NVARCHAR(50) PRIMARY KEY,  
+    HoTen NVARCHAR(100) NOT NULL,  
+    ChuyenKhoaID INT NOT NULL,  
+    DiaChiPhongKham NVARCHAR(MAX),
+	TrinhDo NVARCHAR(50),  
+    SoDienThoai VARCHAR(10),  
+    Email VARCHAR(100), 
+	VaiTro NVARCHAR(20),
+	HinhAnh NVARCHAR(MAX),
+	FOREIGN KEY (IDBacSi) REFERENCES TaiKhoan(ID), 
+    CONSTRAINT FK_BacSi_ChuyenKhoa FOREIGN KEY (ChuyenKhoaID) REFERENCES ChuyenKhoa(IDChuyenKhoa)
+);
+
+CREATE TABLE QuanLy (
+    IDQuanLy NVARCHAR(50) PRIMARY KEY,        
+    HoTen NVARCHAR(100),                      
+	NgaySinh DATETIME,                        
+    GioiTinh NVARCHAR(10) CHECK (GioiTinh IN ('Nam', 'Nu', 'Khac')),
+	CanCuocCongDan VARCHAR(20),
+    SoDienThoai VARCHAR(10), 
+    Email VARCHAR(100),                        
+    CONSTRAINT FK_QuanLy_TaiKhoan FOREIGN KEY (IDQuanLy) REFERENCES TaiKhoan(ID)
+);
+
+CREATE TABLE TuVanVien (
+    IDTuVanVien NVARCHAR(50) PRIMARY KEY,        
+    HoTen NVARCHAR(100) NOT NULL,                        
+    SoDienThoai VARCHAR(10) NOT NULL UNIQUE, 
+    Email VARCHAR(100) NOT NULL UNIQUE,
+	FOREIGN KEY (IDTuVanVien) REFERENCES TaiKhoan(ID)
+);
+
+CREATE TABLE PhongKham (
+    IDPhongKham VARCHAR(10) PRIMARY KEY,  
+    IDChuyenKhoa INT,  
+    TenPhongKham NVARCHAR(100) NOT NULL,  
+    MoTa NVARCHAR(MAX),  
+    ViTri NVARCHAR(MAX),  
+    CONSTRAINT FK_PhongKham_ChuyenKhoa FOREIGN KEY (IDChuyenKhoa) REFERENCES ChuyenKhoa(IDChuyenKhoa)  
+);
+
+CREATE TABLE BuoiKham (
+    IDBuoi INT PRIMARY KEY IDENTITY(1,1),
+    IDBacSi NVARCHAR(50) NOT NULL,  
+    NgayKham DATE NOT NULL,
+	ThoiGianKham TIME,
+    Buoi NVARCHAR(50) NOT NULL CHECK (Buoi IN (N'Sáng', N'Chiều', N'Cả ngày')),
+    GhiChu NVARCHAR(MAX),
+    FOREIGN KEY (IDBacSi) REFERENCES BacSi(IDBacSi)
+);
+
+
+CREATE TABLE PhieuKham (
+    IDPhieu NVARCHAR(50) PRIMARY KEY,          
+    IDBacSi NVARCHAR(50),                       
+    IDPhongKham VARCHAR(10),                                             
+    IDBenhNhan NVARCHAR(50),
+	IDChuyenKhoa INT,
+	IDBuoi INT NOT NULL,
+    HoTen NVARCHAR(100),                              
+    NgaySinh DATETIME,                              
+    GioiTinh NVARCHAR(10) CHECK (GioiTinh IN ('Nam', 'Nu', 'Khac')),  
+    SoDienThoai VARCHAR(10),                         
+    Email VARCHAR(100),                              
+    DiaChi NVARCHAR(MAX),                            
+    NgayKham DATETIME,                              
+    ThoiGianKham TIME,                             
+    TrieuChung NVARCHAR(MAX),                      
+    CONSTRAINT FK_PhieuKham_BacSi FOREIGN KEY (IDBacSi) REFERENCES BacSi(IDBacSi),
+    CONSTRAINT FK_PhieuKham_PhongKham FOREIGN KEY (IDPhongKham) REFERENCES PhongKham(IDPhongKham),
+    CONSTRAINT FK_PhieuKham_BenhNhan FOREIGN KEY (IDBenhNhan) REFERENCES BenhNhan(IDBenhNhan),
+	FOREIGN KEY (IDChuyenKhoa ) REFERENCES ChuyenKhoa(IDChuyenKhoa),
+	FOREIGN KEY (IDBuoi) REFERENCES BUOIKHAM(IDBuoi)
+);
+
+CREATE TABLE LichKhamBacSi (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+	IDBenhNhan NVARCHAR(50),
+    IDBacSi NVARCHAR(50),
+    IDPhieu NVARCHAR(50),  
+	IDBuoi INT NOT NULL,
+    NgayKham DATE,
+    ThoiGianKham TIME,
+    SoPhongKham VARCHAR(10),
+    FOREIGN KEY (IDBacSi) REFERENCES BacSi(IDBacSi),
+    FOREIGN KEY (IDPhieu) REFERENCES PhieuKham(IDPhieu),
+	FOREIGN KEY (IDBuoi) REFERENCES BuoiKham(IDBuoi)
+);
+
+
+CREATE TABLE LichTuVan (
+    IDTuVan INT IDENTITY(1,1) PRIMARY KEY,
+    IDBenhNhan NVARCHAR(50) NOT NULL,
+    IDBacSi NVARCHAR(50) NOT NULL,
+    Ngay DATE NOT NULL,
+    Gio TIME NOT NULL,
+    TrieuChung NVARCHAR(MAX),
+    LinkJitsi VARCHAR(MAX), 
+    FOREIGN KEY (IDBenhNhan) REFERENCES BenhNhan(IDBenhNhan),
+    FOREIGN KEY (IDBacSi) REFERENCES BacSi(IDBacSi)
+);
+
+
+CREATE TABLE LichKhamBenhNhan (
+    ID INT PRIMARY KEY IDENTITY(1,1), 
+    IDBenhNhan NVARCHAR(50),
+    IDPhieu NVARCHAR(50),  -- Liên kết với phiếu khám
+	IDBuoi INT NOT NULL,
+    TrangThai VARCHAR(20),
+    NgayKham DATE,
+	ThoiGianKham TIME,
+    GhiChu NVARCHAR(MAX),
+	CONSTRAINT CK_TrangThai CHECK (TrangThai IN ('DaDangKy', 'DaHuy', 'DangCho')),
+    FOREIGN KEY (IDBenhNhan) REFERENCES BenhNhan(IDBenhNhan),
+	FOREIGN KEY (IDBuoi) REFERENCES BuoiKham(IDBuoi)
+);
+
+CREATE TABLE ThanhToan (
+    IDThanhToan INT PRIMARY KEY IDENTITY(1,1),        
+    IDBenhNhan NVARCHAR(50),  
+    IDPhieu NVARCHAR(50),  
+    SoTien DECIMAL(10,2) NOT NULL,  
+    TrangThai VARCHAR(20) DEFAULT 'ChuaThanhToan',  
+    ThoiGianThanhToan DATETIME NULL,  
+    FOREIGN KEY (IDBenhNhan) REFERENCES BenhNhan(IDBenhNhan),  
+    FOREIGN KEY (IDPhieu) REFERENCES PhieuKham(IDPhieu)  
+);
+
+
+
+CREATE TABLE LichSuKham (
+    IDLichSu INT PRIMARY KEY IDENTITY(1,1),        
+    IDBenhNhan NVARCHAR(50),  
+    IDPhieu NVARCHAR(50),  
+    ChanDoan NVARCHAR(500) NOT NULL,  
+    HuongDieuTri NVARCHAR(500) NOT NULL
+);
+
+CREATE TABLE HoSoBenhAn (
+    IDHS INT IDENTITY(1,1) PRIMARY KEY,    
+    IDBS nvarchar(50)  NULL,               
+    IDBN nvarchar(50)  NULL,                            
+    ChanDoan NVARCHAR(MAX),                  
+    DonThuoc NVARCHAR(MAX),                  
+    NgayCapNhat DATE,                    
+    GhiChu NVARCHAR(max),
+	
+);
+
+CREATE TABLE BaiVietSucKhoe (
+    IDBaiViet INT PRIMARY KEY IDENTITY(1,1),  
+    TieuDe NVARCHAR(255)  NULL UNIQUE,  
+    NoiDung TEXT  NULL,  
+    HinhAnh NVARCHAR(255) NULL,  
+    IDQuanLy NVARCHAR(50),  
+    NgayDang DATETIME DEFAULT GETDATE(),  
+    FOREIGN KEY (IDQuanLy) REFERENCES QuanLy(IDQuanLy)  
+);
+
+CREATE TABLE ThongKeBenhNhan (
+    IDThongKe INT PRIMARY KEY IDENTITY(1,1),  
+    IDPhieu NVARCHAR(50), 
+    Ngay DATETIME NOT NULL,  
+    SoLuongBenhNhan INT NOT NULL,  
+    
+);
+
+

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,7 +13,7 @@ namespace NHOM20_DATN.pages.Manager
     public partial class Quan_Ly_Benh_Nhan : System.Web.UI.Page
     {
         PatientManagerment patientManagerment = new PatientManagerment();
-
+        LopKetNoi ketNoi = new LopKetNoi();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -109,7 +110,11 @@ namespace NHOM20_DATN.pages.Manager
             {
                 string message = "Tên đăng nhập đã tồn tại";
                 string script = "showAlert('" + message + "','warning');";
+                btnEdit.Visible = true;
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
                 return;
             }
             string idBN = "BN" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
@@ -118,13 +123,21 @@ namespace NHOM20_DATN.pages.Manager
             {
                 string message = "Thêm bệnh nhân thành công";
                 string script = "showAlert('" + message + "','success');";
+                btnEdit.Visible = true;
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
             }
             else
             {
                 string message = "Thêm bệnh nhân thất bại!";
                 string script = "showAlert('" + message + "','error');";
+                btnEdit.Visible = true;
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
             }
         }
 
@@ -237,12 +250,17 @@ namespace NHOM20_DATN.pages.Manager
                 string message = "Cập nhật thành công!";
                 string script = "showAlert('" + message + "','success');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                cancelEdit.Visible = true;
+                viewListPatients();
+
             }
             else
             {
                 string message = "Cập nhật thất bại!";
                 string script = "showAlert('" + message + "','error');";
+                cancelEdit.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                viewListPatients();
             }
         }
 
@@ -257,6 +275,40 @@ namespace NHOM20_DATN.pages.Manager
             string js = $"closeForm('#patientUpdate_container')";
             Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", js, true);
 
+        }
+
+        protected void btnDetail_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string idBenhNhan = btn.CommandArgument;
+
+            string sql = @"SELECT * FROM BenhNhan WHERE IDBenhNhan = @IDBenhNhan";
+            SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@IDBenhNhan", idBenhNhan)
+    };
+
+            DataTable dt = ketNoi.docdulieu(sql, parameters);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                string details = $@"
+            <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]}</p>
+            <p><strong>Họ tên:</strong> {row["HoTen"]}</p>
+            <p><strong>Ngày sinh:</strong> {Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy")}</p>
+            <p><strong>Giới tính:</strong> {row["GioiTinh"]}</p>
+            <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]}</p>
+            <p><strong>Email:</strong> {row["Email"]}</p>
+            <p><strong>Địa chỉ:</strong> {row["DiaChi"]}</p>
+            
+        ";
+
+                patientDetails.InnerHtml = details;
+
+                // Hiển thị modal
+                ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
+                    "document.getElementById('detailModal').style.display='block';", true);
+            }
         }
     }
 }

@@ -16,7 +16,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
+    
     <form id="form1" runat="server">
                             <div class="dropdown-menu" id="dropdown-menu">
     <ul>
@@ -39,7 +39,7 @@
                     <div class="icon_User">
                         <div class="contain-profile">
                             <i class="fa-regular fa-circle-user"></i>
-                            <h4>BÁC SĨ</h4>
+                            <h4 runat="server" id="doctor_Name"></h4>
                         </div>
                         
 
@@ -50,8 +50,7 @@
                         </div>
                     </div>
                     <ul>
-                         <li class="ttcn-btn">
-
+                        <li class="li-ttcn">
      <a href="Quan_Ly_Thong_Tin_Ca_Nhan.aspx">
          <div class="contain-ttcn"><i class='bx bx-lock-alt'></i>Quản lý thông tin cá nhân</div>
      </a></li>
@@ -59,12 +58,12 @@
                         <li>
 
                             <a href="/pages/Doctor/Xem_Thong_Tin_Benh_Nhan.aspx">
-                                <div class="contain-ttbn"><i class='bx bx-user'></i>Xem Thông Tin Bệnh Nhân</div>
+                                <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Xem Thông Tin Bệnh Nhân</div>
                             </a></li>
                         <li>
 
                             <a href="/pages/Doctor/Cap_Nhat_Ho_So_Benh_An.aspx">
-                                <div class="contain-cnhs"><i class='bx bx-calendar-x'></i>Cập Nhật Hồ Sơ Bệnh Án</div>
+                                <div class="contain-cnhs"><i class="fa-solid fa-hospital-user"></i>Cập Nhật Hồ Sơ Bệnh Án</div>
                             </a></li>
                         <li>
 
@@ -83,15 +82,18 @@
                         <li>
                             <a href="Xem_Thong_Tin_Tu_Van.aspx">
                                 <div class="contain-tttv">
-                                    <i class='bx bx-calendar-x'></i>Xem thông tin tư vấn
+                                    <i class="fa-solid fa-phone"></i>Xem thông tin tư vấn
                                 </div>
                             </a></li>
                         <li class="signout-btn">
-                            <div>
+                        
                             <asp:LinkButton ID="LinkButton1" CssClass="btnOut" runat="server" OnClick="Logout_Click">
-                                 Đăng Xuất
+                                 <div>
+                                      Đăng Xuất
+                                      </div>
+                                
                             </asp:LinkButton>
-                                </div>
+                               
                         </li>
                             
                           

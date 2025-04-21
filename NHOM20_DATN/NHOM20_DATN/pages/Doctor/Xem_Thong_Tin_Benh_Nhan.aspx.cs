@@ -18,8 +18,6 @@ namespace NHOM20_DATN
 
             if (!IsPostBack)
             {
-                LoadChuyenKhoa();
-                LoadPhongKham();
                 LoadData();
             }
         }
@@ -30,11 +28,13 @@ namespace NHOM20_DATN
 
             if (Session["Role"].ToString() == "BacSi")
             {
-                sql = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-               p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa 
-               FROM PhieuKham p 
-               INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
-               WHERE p.IDBacSi = @IDBacSi";
+                sql = @"SELECT p.IDBenhNhan, p.HoTen, p.NgayKham, p.ThoiGianKham, 
+           p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+           FROM PhieuKham p 
+           LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+           WHERE p.IDBacSi = @IDBacSi
+           ORDER BY p.NgayKham DESC";
+
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
@@ -42,13 +42,16 @@ namespace NHOM20_DATN
             }
             else
             {
-                sql = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-               p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa 
-               FROM PhieuKham p 
-               INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa";
+                sql = @"SELECT p.IDBenhNhan, p.HoTen, p.NgayKham, p.ThoiGianKham, 
+           p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+           FROM PhieuKham p 
+           LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+           ORDER BY p.NgayKham DESC";
             }
 
             DataTable dt = ketNoi.docdulieu(sql, parameters);
+
+            LoadNgayKham(dt);
             if (dt != null && dt.Rows.Count > 0)
             {
                 GridView1.DataSource = dt;
@@ -56,75 +59,162 @@ namespace NHOM20_DATN
             }
             else
             {
-                Response.Write("Không có dữ liệu.");
+                Response.Write(" ");
             }
         }
-        private void LoadChuyenKhoa()
+        private void LoadNgayKham(DataTable dt)
         {
-            string sql_specialist = "SELECT * FROM ChuyenKhoa";
-            DataTable chuyenkhoa_DT = ketNoi.docdulieu(sql_specialist, null);
+            if (dt == null || dt.Rows.Count == 0) return;
+            var ngayKhamList = dt.AsEnumerable()
+                .Select(row => row.Field<DateTime>("NgayKham").Date)
+                .Distinct()
+                .OrderBy(date => date)
+                .ToList();
 
-            ddlChuyenKhoa.DataSource = chuyenkhoa_DT;
-            ddlChuyenKhoa.DataTextField = "TenChuyenKhoa";
-            ddlChuyenKhoa.DataValueField = "IDChuyenKhoa";
-            ddlChuyenKhoa.DataBind();
-            ddlChuyenKhoa.Items.Insert(0, new ListItem("Chọn chuyên khoa"));
+            ddlNgayKham.Items.Clear();
+            ddlNgayKham.Items.Add(new ListItem("Tất cả ngày", ""));
 
-        }
-        private void LoadPhongKham()
-        {
-            string sql_phongKham;
-            SqlParameter[] parameters = null;
-
-            if (Session["Role"].ToString() == "BacSi")
+            foreach (var ngay in ngayKhamList)
             {
-                string sqlBacSi = "SELECT ChuyenKhoaID FROM BacSi WHERE IDBacSi = @IDBacSi";
-                SqlParameter[] prBacSi = { new SqlParameter("@IDBacSi", Session["UserID"].ToString()) };
-                DataTable dtBacSi = ketNoi.docdulieu(sqlBacSi, prBacSi);
-
-                if (dtBacSi != null && dtBacSi.Rows.Count > 0)
-                {
-                    int chuyenKhoaID = Convert.ToInt32(dtBacSi.Rows[0]["ChuyenKhoaID"]);
-                    sql_phongKham = "SELECT * FROM PhongKham WHERE IDChuyenKhoa = @ChuyenKhoaID";
-                    parameters = new SqlParameter[] {
-                new SqlParameter("@ChuyenKhoaID", chuyenKhoaID)
-            };
-                }
-                else
-                {
-                    sql_phongKham = "SELECT * FROM PhongKham";
-                }
+                ddlNgayKham.Items.Add(new ListItem(ngay.ToString("dd/MM/yyyy"), ngay.ToString("yyyy-MM-dd")));
+            }
+        }
+        protected void ddlTrangThai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedTrangThai = ddlTrangThai.SelectedValue;
+            if (!string.IsNullOrEmpty(selectedTrangThai))
+            {
+                FilterByTrangThai(selectedTrangThai);
             }
             else
             {
-                sql_phongKham = "SELECT * FROM PhongKham";
+                LoadData();
             }
-
-            DataTable phongKham_DT = ketNoi.docdulieu(sql_phongKham, parameters);
-
-            ddlPhongKham.DataSource = phongKham_DT;
-            ddlPhongKham.DataTextField = "TenPhongKham";
-            ddlPhongKham.DataValueField = "IDPhongKham";
-            ddlPhongKham.DataBind();
-            ddlPhongKham.Items.Insert(0, new ListItem("Chọn phòng khám", ""));
         }
-        protected void ddlChuyenKhoa_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void FilterByTrangThai(string trangThai)
         {
-            string selectedChuyenKhoa = ddlChuyenKhoa.SelectedItem.Text;
-            if (selectedChuyenKhoa != "Chọn chuyên khoa")
+            string query;
+            SqlParameter[] parameters;
+
+            if (Session["Role"].ToString() == "BacSi")
             {
-                viewList_Filter1(selectedChuyenKhoa);
+                if (trangThai == "Chưa thanh toán")
+                {
+                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                     p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                     FROM PhieuKham p 
+                     LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                     WHERE (tt.TrangThai IS NULL OR tt.TrangThai = N'Chưa thanh toán')
+                     AND p.IDBacSi = @IDBacSi
+                     ORDER BY p.NgayKham DESC";
+                }
+                else
+                {
+                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                     p.TrieuChung, tt.TrangThai
+                     FROM PhieuKham p 
+                     INNER JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                     WHERE tt.TrangThai = @TrangThai
+                     AND p.IDBacSi = @IDBacSi
+                     ORDER BY p.NgayKham DESC";
+                }
+
+                parameters = new SqlParameter[] {
+            new SqlParameter("@TrangThai", trangThai),
+            new SqlParameter("@IDBacSi", Session["UserID"].ToString())
+        };
             }
-        }
-        protected void ddlPhongKham_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedPhongKham = ddlPhongKham.SelectedValue;
-            if (!string.IsNullOrEmpty(selectedPhongKham))
+            else
             {
-                viewList_Filter2(selectedPhongKham);
+                if (trangThai == "Chưa thanh toán")
+                {
+                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                     p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                     FROM PhieuKham p 
+                     LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                     WHERE (tt.TrangThai IS NULL OR tt.TrangThai = N'Chưa thanh toán')
+                     ORDER BY p.NgayKham DESC";
+                }
+                else
+                {
+                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                     p.TrieuChung, tt.TrangThai
+                     FROM PhieuKham p 
+                     INNER JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                     WHERE tt.TrangThai = @TrangThai
+                     ORDER BY p.NgayKham DESC";
+                }
+
+                parameters = new SqlParameter[] {
+            new SqlParameter("@TrangThai", trangThai)
+        };
+            }
+
+            DataTable dt = ketNoi.docdulieu(query, parameters);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+
+        protected void ddlNgayKham_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedNgay = ddlNgayKham.SelectedValue;
+            if (!string.IsNullOrEmpty(selectedNgay))
+            {
+                FilterByNgayKham(selectedNgay);
+            }
+            else
+            {
+                LoadData();
             }
         }
 
+        private void FilterByNgayKham(string ngayKham)
+        {
+            string query;
+            SqlParameter[] parameters;
+
+            DateTime ngay = DateTime.ParseExact(ngayKham, "yyyy-MM-dd", null);
+
+            if (Session["Role"].ToString() == "BacSi")
+            {
+                query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                 p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                 p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                 FROM PhieuKham p 
+                 LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                 WHERE CONVERT(date, p.NgayKham) = CONVERT(date, @NgayKham)
+                 AND p.IDBacSi = @IDBacSi
+                 ORDER BY p.ThoiGianKham";
+
+                parameters = new SqlParameter[] {
+            new SqlParameter("@NgayKham", ngay),
+            new SqlParameter("@IDBacSi", Session["UserID"].ToString())
+        };
+            }
+            else
+            {
+                query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                 p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                 p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                 FROM PhieuKham p 
+                 LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                 WHERE CONVERT(date, p.NgayKham) = CONVERT(date, @NgayKham)
+                 ORDER BY p.ThoiGianKham";
+
+                parameters = new SqlParameter[] {
+            new SqlParameter("@NgayKham", ngay)
+        };
+            }
+
+            DataTable dt = ketNoi.docdulieu(query, parameters);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
         protected void gridDoctor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             string query_list;
@@ -133,9 +223,11 @@ namespace NHOM20_DATN
             if (Session["Role"].ToString() == "BacSi")
             {
                 query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                      p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa 
+                      p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
+                      p.NgayKham, p.ThoiGianKham, p.TrieuChung, tt.TrangThai
                       FROM PhieuKham p 
                       INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
+                      LEFT JOIN ThanhToan tt ON p.IDPhieuKham = tt.IDPhieuKham
                       WHERE p.IDBacSi = @IDBacSi";
 
                 pr = new SqlParameter[] {
@@ -145,9 +237,11 @@ namespace NHOM20_DATN
             else
             {
                 query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                      p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa 
+                      p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
+                      p.NgayKham, p.ThoiGianKham, p.TrieuChung, tt.TrangThai
                       FROM PhieuKham p 
-                      INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa";
+                      INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
+                      LEFT JOIN ThanhToan tt ON p.IDPhieuKham = tt.IDPhieuKham";
                 pr = new SqlParameter[] { };
             }
 
@@ -158,110 +252,7 @@ namespace NHOM20_DATN
         }
 
 
-        public void viewList_Filter2(string selectedPhongKham)
-        {
-            string query_list;
-            SqlParameter[] sp;
-
-            if (Session["Role"].ToString() == "BacSi")
-            {
-                query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
-                     p.SoDienThoai, p.Email, p.IDPhongKham, 
-                     pk.TenPhongKham, ck.TenChuyenKhoa as ChuyenKhoa
-                     FROM PhieuKham p 
-                     INNER JOIN PhongKham pk ON pk.IDPhongKham = p.IDPhongKham
-                     INNER JOIN ChuyenKhoa ck ON ck.IDChuyenKhoa = p.IDChuyenKhoa
-                     WHERE p.IDPhongKham = @IDPhongKham 
-                     AND p.IDBacSi = @IDBacSi
-                     ORDER BY p.NgayKham, p.ThoiGianKham";
-
-                sp = new SqlParameter[] {
-            new SqlParameter("@IDPhongKham", selectedPhongKham),
-            new SqlParameter("@IDBacSi", Session["UserID"].ToString())
-        };
-            }
-            else
-            {
-                query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
-                     p.SoDienThoai, p.Email, p.IDPhongKham, 
-                     pk.TenPhongKham, ck.TenChuyenKhoa as ChuyenKhoa
-                     FROM PhieuKham p 
-                     INNER JOIN PhongKham pk ON pk.IDPhongKham = p.IDPhongKham
-                     INNER JOIN ChuyenKhoa ck ON ck.IDChuyenKhoa = p.IDChuyenKhoa
-                     WHERE p.IDPhongKham = @IDPhongKham
-                     ORDER BY p.NgayKham, p.ThoiGianKham";
-
-                sp = new SqlParameter[] {
-            new SqlParameter("@IDPhongKham", selectedPhongKham)
-        };
-            }
-
-            DataTable ds = ketNoi.docdulieu(query_list, sp);
-            if (ds != null && ds.Rows.Count > 0)
-            {
-                GridView1.DataSource = ds;
-                GridView1.DataBind();
-
-
-            }
-            else
-            {
-                GridView1.DataSource = null;
-                GridView1.DataBind();
-                ClientScript.RegisterStartupScript(this.GetType(), "ErrorMessage",
-                    "swal('Thông báo', 'Không có bệnh nhân nào đăng ký tại phòng này!', 'info');", true);
-            }
-        }
-
-        //==============Filter==============
-        public void viewList_Filter1(string specialty)
-        {
-            string query_list;
-            SqlParameter[] sp;
-
-            if (Session["Role"].ToString() == "BacSi")
-            {
-                query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                     p.IDPhongKham, c.TenChuyenKhoa as ChuyenKhoa, c.IDChuyenKhoa
-                     FROM PhieuKham p 
-                     INNER JOIN ChuyenKhoa c ON c.IDChuyenKhoa = p.IDChuyenKhoa 
-                     WHERE c.TenChuyenKhoa = @TenChuyenKhoa AND p.IDBacSi = @IDBacSi";
-
-                sp = new SqlParameter[] {
-            new SqlParameter("@TenChuyenKhoa", specialty),
-            new SqlParameter("@IDBacSi", Session["UserID"].ToString())
-        };
-            }
-            else
-            {
-                query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                     p.IDPhongKham, c.TenChuyenKhoa as ChuyenKhoa, c.IDChuyenKhoa
-                     FROM PhieuKham p 
-                     INNER JOIN ChuyenKhoa c ON c.IDChuyenKhoa = p.IDChuyenKhoa 
-                     WHERE c.TenChuyenKhoa = @TenChuyenKhoa";
-
-                sp = new SqlParameter[] {
-            new SqlParameter("@TenChuyenKhoa", specialty)
-        };
-            }
-
-            DataTable ds = ketNoi.docdulieu(query_list, sp);
-            if (ds != null && ds.Rows.Count > 0)
-            {
-                GridView1.DataSource = ds;
-                GridView1.DataBind();
-
-
-            }
-            else
-            {
-                GridView1.DataSource = null;
-                GridView1.DataBind();
-
-                ClientScript.RegisterStartupScript(this.GetType(), "FilterError",
-                    $"swal('Thông báo', 'Không có bệnh nhân nào thuộc chuyên khoa {specialty}!', 'info');", true);
-            }
-        }
+    
         protected void btn_Search_Click(object sender, EventArgs e)
         {
             string searchTerm = "%" + txt_Searching.Text.Trim() + "%";
@@ -270,11 +261,11 @@ namespace NHOM20_DATN
 
             if (Session["Role"].ToString() == "BacSi")
             {
-                sql_search = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                     p.IDPhongKham, ck.TenChuyenKhoa AS ChuyenKhoa, pk.TenPhongKham 
+                sql_search = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                     p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
                      FROM PhieuKham p 
-                     LEFT JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa 
-                     LEFT JOIN PhongKham pk ON p.IDPhongKham = pk.IDPhongKham 
+                     LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
                      WHERE (p.IDBenhNhan LIKE @id OR p.HoTen LIKE @term)
                      AND p.IDBacSi = @IDBacSi";
 
@@ -286,11 +277,11 @@ namespace NHOM20_DATN
             }
             else
             {
-                sql_search = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                      p.IDPhongKham, ck.TenChuyenKhoa AS ChuyenKhoa, pk.TenPhongKham 
+                sql_search = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+                      p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+                      p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
                       FROM PhieuKham p 
-                      LEFT JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa 
-                      LEFT JOIN PhongKham pk ON p.IDPhongKham = pk.IDPhongKham 
+                      LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
                       WHERE p.IDBenhNhan LIKE @id OR p.HoTen LIKE @term";
 
                 pr = new SqlParameter[] {
@@ -317,10 +308,43 @@ namespace NHOM20_DATN
         protected void btnRefresh_Click(object sender, EventArgs e)
         {
 
-            ddlChuyenKhoa.SelectedIndex = 0;
-            ddlPhongKham.SelectedIndex = 0;
+            ddlTrangThai.SelectedIndex = 0;
+            ddlNgayKham.SelectedIndex = 0;
             txt_Searching.Text = "";
             LoadData();
+        }
+        protected void btnDetail_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string idBenhNhan = btn.CommandArgument;
+
+            string sql = @"SELECT * FROM BenhNhan WHERE IDBenhNhan = @IDBenhNhan";
+            SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@IDBenhNhan", idBenhNhan)
+    };
+
+            DataTable dt = ketNoi.docdulieu(sql, parameters);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                string details = $@"
+            <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]}</p>
+            <p><strong>Họ tên:</strong> {row["HoTen"]}</p>
+            <p><strong>Ngày sinh:</strong> {Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy")}</p>
+            <p><strong>Giới tính:</strong> {row["GioiTinh"]}</p>
+            <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]}</p>
+            <p><strong>Email:</strong> {row["Email"]}</p>
+            <p><strong>Địa chỉ:</strong> {row["DiaChi"]}</p>
+            
+        ";
+
+                patientDetails.InnerHtml = details;
+
+                // Hiển thị modal
+                ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
+                    "document.getElementById('detailModal').style.display='block';", true);
+            }
         }
     }
 }

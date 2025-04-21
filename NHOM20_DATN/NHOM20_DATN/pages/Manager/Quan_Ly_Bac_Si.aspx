@@ -249,7 +249,7 @@
    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function ShowAlert(notice, warn) {
+    function showAlert(notice, warn) {
         Swal.fire({
             title: notice,
             icon: warn,
@@ -265,6 +265,5 @@
         btn_open.classList.remove("d_block");
     }
     </script>
-
    <script src="../../js/doctorCreateAccount.js"></script>
 </asp:Content>

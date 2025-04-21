@@ -11,21 +11,22 @@ namespace NHOM20_DATN.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UserID"] = "BS8ED6DB63";
-            Session["Role"] = "BacSi";
+            //Session["UserID"] = "BS8ED6DB63";
+            //Session["Role"] = "BacSi";
+            //Session["TenDangNhap"] = "Nguyenx văn việt";
             if (!IsPostBack)
             {
-
-
                 if ((string)Session["Role"] == null || (string)Session["Role"] == "")
                 {
-                    Response.Redirect("/Dang_Nhap.aspx");
+                    Response.Redirect("~/Dang_Nhap.aspx");
+
                 }
                 else if ((string)Session["Role"] != "BacSi")
                 {
-                    Response.Redirect("/Error_forbidden.html");
+                    Response.Redirect("~/Error_forbidden.html");
                 }
-
+                string name = (string)Session["TenDangNhap"];
+                doctor_Name.InnerText = name;
             }
         }
         protected void Logout_Click(object sender, EventArgs e)
@@ -33,7 +34,7 @@ namespace NHOM20_DATN.MasterPage
             // Xóa session và điều hướng về trang đăng nhập
             Session.Clear();
             Session.Abandon();
-            Response.Redirect("/Dang_Nhap.aspx");
+            Response.Redirect("~/Dang_Nhap.aspx");
         }
 
 

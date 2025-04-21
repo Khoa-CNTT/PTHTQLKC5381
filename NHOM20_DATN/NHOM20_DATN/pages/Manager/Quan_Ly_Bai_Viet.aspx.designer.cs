@@ -7,92 +7,110 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NHOM20_DATN
+namespace NHOM20_DATN.pages.Manager
 {
 
 
-    public partial class Quen_Mat_Khau
+    public partial class Quan_Ly_Bai_Viet
     {
 
         /// <summary>
-        /// Label3 control.
+        /// txt_Searching control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.TextBox txt_Searching;
 
         /// <summary>
-        /// txtemail control.
+        /// btn_Search control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtemail;
+        protected global::System.Web.UI.WebControls.LinkButton btn_Search;
 
         /// <summary>
-        /// Label6 control.
+        /// btn_add_news control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.LinkButton btn_add_news;
 
         /// <summary>
-        /// btnxacnhan control.
+        /// ds_baiviet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnxacnhan;
+        protected global::System.Web.UI.WebControls.DataList ds_baiviet;
 
         /// <summary>
-        /// Label2 control.
+        /// id_content control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.HiddenField id_content;
 
         /// <summary>
-        /// revEmail control.
+        /// create_date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
+        protected global::System.Web.UI.WebControls.HiddenField create_date;
 
         /// <summary>
-        /// txtxacminh control.
+        /// imageUrl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtxacminh;
+        protected global::System.Web.UI.WebControls.HiddenField imageUrl;
 
         /// <summary>
-        /// txtmatkhau control.
+        /// tieude_txt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtmatkhau;
+        protected global::System.Web.UI.WebControls.TextBox tieude_txt;
 
         /// <summary>
-        /// btndatlai control.
+        /// noiDung_txt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btndatlai;
+        protected global::System.Web.UI.WebControls.TextBox noiDung_txt;
+
+        /// <summary>
+        /// fileImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileImg;
+
+        /// <summary>
+        /// Button_Addnews control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button_Addnews;
     }
 }

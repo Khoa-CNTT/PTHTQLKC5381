@@ -183,11 +183,19 @@
     <Content Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="img\Anh2.jpg" />
+    <Content Include="img\anhnendatlai.jpg" />
+    <Content Include="img\Anhquenmatkhau.jpeg" />
+    <Content Include="img\anhquenmatkhau.png" />
+    <Content Include="img\anhtraidatlai.jpg" />
+    <Content Include="img\anhxoalogo.png" />
+    <Content Include="img\khoa.png" />
     <Content Include="js\appointment_manager.js" />
     <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
+    <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
     <Content Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="img\anhnen_huykham.jpeg" />
     <Content Include="Patient\Dat_Lai_Mat_Khau.aspx" />
@@ -292,6 +300,7 @@
     <Content Include="style\manager\ManagerMasterpage_style.css" />
     <Content Include="style\manager\NewsManagement_style.css" />
     <Content Include="style\manager\patientManagerment.css" />
+    <Content Include="style\manager\QLBaiviet.css" />
     <Content Include="style\news_content_style.css" />
     <Content Include="style\new_dt.css" />
     <Content Include="style\Regist_form.css" />
@@ -301,6 +310,7 @@
     <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll.config" />
     <Content Include="Web.config" />
     <Content Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx" />
+    <Content Include="Xem_Lich_Su_Kham.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cau_Hoi_Thuong_Gap.aspx.cs">
@@ -365,6 +375,13 @@
     </Compile>
     <Compile Include="pages\Doctor\Xem_Lich_Kham.aspx.designer.cs">
       <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Bai_Viet.aspx.cs">
+      <DependentUpon>Quan_Ly_Bai_Viet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Quan_Ly_Bai_Viet.aspx.designer.cs">
+      <DependentUpon>Quan_Ly_Bai_Viet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx.cs">
       <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
@@ -503,6 +520,7 @@
     <Compile Include="res\service\DoctorService.cs" />
     <Compile Include="res\service\MedicalRecordService.cs" />
     <Compile Include="res\service\PatientManagerment.cs" />
+    <Compile Include="res\service\PaymentService.cs" />
     <Compile Include="res\service\QlbvService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.cs">
@@ -511,6 +529,13 @@
     </Compile>
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.designer.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Xem_Lich_Su_Kham.aspx.cs">
+      <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Xem_Lich_Su_Kham.aspx.designer.cs">
+      <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

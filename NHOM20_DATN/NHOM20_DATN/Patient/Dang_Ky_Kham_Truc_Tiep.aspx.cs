@@ -19,10 +19,10 @@ namespace NHOM20_DATN
                 BindNgayKhamRepeater();
 
                 // Đặt thuộc tính min cho txtNgayKham
-                txtNgayKham.Attributes["min"] = DateTime.Now.ToString("yyyy-MM-dd");
+                txtNgayKham.Attributes["min"] = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
 
 
-                txtNgayKham.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                txtNgayKham.Text = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd");
                 if (Session["UserID"] != null)
                 {
                     string userID = Session["UserID"].ToString();
@@ -30,10 +30,10 @@ namespace NHOM20_DATN
                 }
                 else
                 {
-                    Response.Redirect("../Dang_Nhap.aspx");
+                    Response.Redirect("~/Dang_Nhap.aspx");
                 }
                 LoadChuyenKhoa();
-                LoadPhongKham();
+               
 
             }
         }
@@ -67,7 +67,7 @@ namespace NHOM20_DATN
                 }
                 txtEmail.ReadOnly = true; // không cho bệnh nhân chỉnh sửa khi load dữ liệu lên
                 gtRadioList.SelectedValue = row["GioiTinh"].ToString();
-
+                
                 if (row["NgaySinh"] != DBNull.Value)
                 {
                     txtNgaySinh.Text = Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd");
@@ -119,7 +119,7 @@ namespace NHOM20_DATN
             var listDates = new List<dynamic>();
 
             // Ví dụ: hiển thị hôm nay và 3 ngày tiếp theo (4 ngày tổng cộng)
-            for (int i = 0; i < 4; i++)
+            for (int i = 1; i < 5; i++)
             {
                 DateTime d = today.AddDays(i);
                 listDates.Add(new
@@ -175,25 +175,37 @@ namespace NHOM20_DATN
         }
         protected void ddlChuyenKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlChuyenKhoa.SelectedValue != "0")
+            if (ddlChuyenKhoa.SelectedIndex > 0) // Nếu chọn chuyên khoa hợp lệ
             {
-                LoadBacSi(ddlChuyenKhoa.SelectedValue);
-                // Đặt lại ddlbuoikham nếu cần khi chọn chuyên khoa mới
+                string chuyenKhoaId = ddlChuyenKhoa.SelectedValue;
+                LoadBacSi(chuyenKhoaId);
+                LoadPhongKham(chuyenKhoaId);
+
+                // Reset buổi khám
                 ddlbuoikham.Items.Clear();
                 ddlbuoikham.Items.Insert(0, new ListItem("Chọn buổi khám", ""));
             }
+            else
+            {
+                // Xóa danh sách nếu chọn "Chọn chuyên khoa"
+                ddlBacSi.Items.Clear();
+                ddlBacSi.Items.Insert(0, new ListItem("Chọn bác sĩ", "0"));
+                ddlPhongKham.Items.Clear();
+                ddlPhongKham.Items.Insert(0, new ListItem("Chọn phòng khám", ""));
+            }
         }
 
-        private void LoadPhongKham()
+        private void LoadPhongKham(string chuyenKhoaId)
         {
-            string sql_phongKham = "SELECT * FROM PhongKham ";
+            string sql = "SELECT * FROM PhongKham WHERE IDChuyenKhoa = @ChuyenKhoaID";
             SqlParameter[] parameters = {
+        new SqlParameter("@ChuyenKhoaID", chuyenKhoaId)
+    };
 
-            };
             LopKetNoi kn = new LopKetNoi();
+            DataTable dt = kn.docdulieu(sql, parameters);
 
-            DataTable phongKham_DT = kn.docdulieu(sql_phongKham, parameters);
-            ddlPhongKham.DataSource = phongKham_DT;
+            ddlPhongKham.DataSource = dt;
             ddlPhongKham.DataTextField = "TenPhongKham";
             ddlPhongKham.DataValueField = "IDPhongKham";
             ddlPhongKham.DataBind();
@@ -386,6 +398,7 @@ namespace NHOM20_DATN
             string idngaykham = txtNgayKham.Text;
             string idgiokham = DDLgiokham.SelectedValue;
             string buoiKham = ddlbuoikham.SelectedValue;
+            
 
             // kiểm tra xem đã chọn bác sĩ chưa
 
@@ -399,7 +412,7 @@ namespace NHOM20_DATN
 
             if (dtBacSi == null || dtBacSi.Rows.Count == 0 || Convert.ToInt32(dtBacSi.Rows[0][0]) == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bạn sí không hợp lệ vui lòng chọn lại.', 'warning');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Bác sĩ không hợp lệ vui lòng chọn lại.', 'warning');", true);
                 return;
             }
 
@@ -427,10 +440,11 @@ namespace NHOM20_DATN
                 return;
             }
             // Kiểm tra số lượng bệnh nhân đã đăng ký trong khung giờ
-            string checkSql = "SELECT COUNT(*) FROM PhieuKham WHERE NgayKham = @NgayKham AND ThoiGianKham = @ThoiGianKham";
+            string checkSql = "SELECT COUNT(*) FROM PhieuKham WHERE NgayKham = @NgayKham AND ThoiGianKham = @ThoiGianKham AND IDBacSi = @IDBacSi";
             SqlParameter[] checkParams = {
         new SqlParameter("@NgayKham", idngaykham),
-        new SqlParameter("@ThoiGianKham", idgiokham)
+        new SqlParameter("@ThoiGianKham", idgiokham),
+         new SqlParameter("@IDBacSi", idBacSi)
     };
 
             LopKetNoi checkDb = new LopKetNoi();
@@ -442,7 +456,7 @@ namespace NHOM20_DATN
                 count = Convert.ToInt32(dt.Rows[0][0]);
             }
 
-            if (count > 2)
+            if (count >= 2)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Khung giờ này đã đầy, vui lòng chọn giờ khác.', 'warning');", true);
                 return;
@@ -456,7 +470,8 @@ namespace NHOM20_DATN
 
             string insertSql = "INSERT INTO PhieuKham (IDPhieu, IDBenhNhan, IDBacSi, IDPhongKham, IDChuyenKhoa, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi, NgayKham, ThoiGianKham, TrieuChung,  IDBuoi) " +
                        "VALUES (@IDPhieu, @IDBenhNhan, @IDBacSi, @IDPhongKham, @IDChuyenKhoa, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai, @Email, @DiaChi, @NgayKham, @ThoiGianKham, @TrieuChung, @IDBuoi)";
-
+            string inserthsba = "INSERT INTO HoSoBenhAn (IDBS,IDBN) " +
+                     "VALUES (@IDBacSi,@IDBenhNhan)";
 
             string insertlkbs = "INSERT INTO LichKhamBacSi (IDBenhNhan, IDBacsi,IDPhieu,NgayKham,ThoiGianKham,SoPhongKham,IDBuoi) " +
                      "VALUES (@IDBenhNhan, @IDBacSi,@IDPhieu, @NgayKham, @ThoiGianKham, @SoPhongKham,@IDBuoi)";
@@ -487,6 +502,16 @@ namespace NHOM20_DATN
 
             };
 
+            SqlParameter[] parametersHSBA =
+          {
+                //new SqlParameter("@ID", newIdLKBN),
+                 new SqlParameter("@IDBacSi", idBacSi),
+                new SqlParameter("@IDBenhNhan", idBenhNhan),
+               
+            };
+
+
+
             SqlParameter[] parametersForPhieuKham = {
         new SqlParameter("@IDPhieu", newId),
         new SqlParameter("@IDBenhNhan", idBenhNhan),
@@ -511,15 +536,49 @@ namespace NHOM20_DATN
             int resultLkbs = lkbs.CapNhat(insertlkbs, parametersForLkbs);
 
             LopKetNoi lkbn = new LopKetNoi();
-            int resultLkbn = lkbs.CapNhat(insertlkbn, parametersLKBN);
+            int resultLkbn = lkbn.CapNhat(insertlkbn, parametersLKBN);
+
+            LopKetNoi HSBA = new LopKetNoi();
+            int resultHSBA = HSBA.CapNhat(inserthsba, parametersHSBA);
+
+            
+
+
 
             if (result > 0)
             {
+
+                string tenBacSi = "";
+                string sqlTenBacSi = "SELECT HoTen FROM BacSi WHERE IDBacSi = @IDBacSi";
+                SqlParameter[] paramTenBacSi = new SqlParameter[]
+                {
+        new SqlParameter("@IDBacSi", idBacSi)
+                };
+                LopKetNoi kbt = new LopKetNoi();
+                DataTable userData = kbt.docdulieu(sqlTenBacSi, paramTenBacSi);
+                if (userData != null && userData.Rows.Count > 0)
+                {
+                    tenBacSi = userData.Rows[0]["HoTen"].ToString();
+                }
                 //mailSender mailSender = new mailSender();
-                string tieude = "BANANA XIN CHÀO QUÝ KHÁCH !\n ";
-                string noidung = "Bạn đã đăng ký thành công bác sĩ\n" + idBacSi + "Giờ khám \n" + idgiokham + "Ngày\n" + idngaykham + "Bạn vui lòng đến trước giờ khám khoảng 10 phút để đề phòng những sự cố không mong muốn ! Xin cảm ơn!";
+                //string tieude = "BANANA XIN CHÀO QUÝ KHÁCH !\n ";
+                // string noidung = "Bạn đã đăng ký thành công bác sĩ\n" + idBacSi + "Giờ khám \n" + idgiokham + "Ngày\n" + idngaykham + "Bạn vui lòng đến trước giờ khám khoảng 10 phút để đề phòng những sự cố không mong muốn ! Xin cảm ơn!";
                 // //mail test
                 // mailSender.sendMail_CancelAppointment("rick38@ethereal.email",tieude ,noidung);
+
+                string tieude = "BANANA Hospital – Xác nhận đăng ký lịch khám";
+
+                string noidung = "Kính chào Quý khách,\n\n" +
+                "Quý khách đã đăng ký khám thành công với bác sĩ:\n\n" +
+                "🩺 Tên bác sĩ: " + tenBacSi + "\n" +
+                "🕒 Thời gian khám: " + idgiokham + "\n" +
+                "📅 Ngày khám: " + idngaykham + "\n\n" +
+                "Quý khách vui lòng đến trước giờ khám khoảng 10 phút để đảm bảo quy trình khám bệnh được diễn ra thuận lợi và tránh những sự cố không mong muốn.\n\n" +
+                "Xin chân thành cảm ơn Quý khách đã tin tưởng và lựa chọn Banana Hospital!\n\n" +
+                "Trân trọng,\n" +
+                "Ban Quản Lý\n" +
+                "BANANA HOSPITAL";
+
 
                 sendMai_gmail sendmail = new sendMai_gmail();
                 sendmail.sendMail_gmail(idemail, tieude, noidung);

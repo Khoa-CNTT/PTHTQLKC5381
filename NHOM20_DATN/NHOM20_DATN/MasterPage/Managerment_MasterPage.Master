@@ -14,19 +14,19 @@
 </head>
 <body>
     <form id="form1" runat="server">
-                                    <div class="dropdown-menu" id="dropdown-menu">
-    <ul>
-        <li>
-            <a href="#">Quản lý thông tin cá nhân</a>   <%-- Quan ly thong tin ca nhan --%>
-        </li>
-        <li>
-            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnDangXuat_Click">
+        <div class="dropdown-menu" id="dropdown-menu">
+            <ul>
+                <li>
+                    <a href="#">Quản lý thông tin cá nhân</a>   <%-- Quan ly thong tin ca nhan --%>
+                </li>
+                <li>
+                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnDangXuat_Click">
                     Đăng Xuất
-            </asp:LinkButton>
+                    </asp:LinkButton>
 
-        </li>
-    </ul>
-</div>
+                </li>
+            </ul>
+        </div>
         <div class="menu-container">
             <div id="btn_menu" class="btn_menu" onclick="display_bar()"><i class="fa-solid fa-bars"></i></div>
         </div>
@@ -38,13 +38,11 @@
                     <i class="fa-regular fa-circle-user"></i>
                     <h4>QUẢN LÝ</h4>
                 </div>
-
                 <ul>
                     <li>
-                       
-                            <a href="/pages/Manager/Quan_Ly_Benh_Nhan.aspx">
-                                 <div class="contain-qlbn"><i class="fa-solid fa-bed-pulse"></i>Quản lý bệnh nhân  </div></a>
-                      
+                        <a href="/pages/Manager/Quan_Ly_Benh_Nhan.aspx">
+                            <div class="contain-qlbn"><i class="fa-solid fa-bed-pulse"></i>Quản lý bệnh nhân  </div>
+                        </a>
                     </li>
                     <li>
 

@@ -222,6 +222,76 @@
             background-color: #ccc;
             border-radius: 3px;
         }
+
+        .chat-bubble-btn {
+            animation: bounce 2s infinite;
+            transition: transform 0.2s;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-4px);
+            }
+
+            60% {
+                transform: translateY(2px);
+            }
+        }
+
+        /*     Nếu bạn muốn rung khi hover thay vì liên tục, dùng đoạn sau:*/
+        .chat-bubble-btn:hover {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -453,15 +523,21 @@
                                 <div class="fw-bold text-primary mb-1">
                                     <i class="fas fa-user me-2 text-info"></i>Bạn hỏi:
                                 </div>
-                                <div class="text-dark mb-2 ps-3"><%# Eval("CauHoi") %></div>
 
-                                <div class="fw-bold text-success mb-1">
-                                    <i class="fas fa-user-md me-2 text-success"></i>Tư vấn viên:
+                                <div class="text-dark mb-2 ps-3 cau-hoi" style="cursor: pointer;" onclick="toggleTraLoi(this)">
+                                    <%# Eval("CauHoi") %>
                                 </div>
-                                <div class="text-dark ps-3"><%# Eval("TraLoi") %></div>
+
+                                <div class="tra-loi" style="display: none;">
+                                    <div class="fw-bold text-success mb-1">
+                                        <i class="fas fa-user-md me-2 text-success"></i>Tư vấn viên:
+                                    </div>
+                                    <div class="text-dark ps-3"><%# Eval("TraLoi") %></div>
+                                </div>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
+
 
                     <asp:Label ID="lblPhanHoi" runat="server" CssClass="alert alert-info d-block mt-2" Visible="false" />
 
@@ -474,11 +550,13 @@
         </div>
 
         <!-- Nút mở lại chatbot (ban đầu ẩn) -->
-        <div id="openChatBtn" style="position: fixed; bottom: 20px; right: 20px; z-index: 998; display: none;">
-            <button class="btn btn-primary rounded-circle" onclick="toggleChatBot()">
-                <i class="fas fa-comments"></i>
+        <div id="openChatBtn" style="position: fixed; bottom: 24px; right: 24px; z-index: 998; display: block;">
+            <button class="btn btn-primary rounded-circle shadow-lg chat-bubble-btn"
+                style="width: 64px; height: 64px;" onclick="toggleChatBot()">
+                <i class="fas fa-comments fa-2x"></i>
             </button>
         </div>
+
 
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -499,19 +577,16 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3oEddz63s3cF5OeLJ1vSOPUt/C+VRbN6z1yUlD9sMGZmIZzIQ2m0x0K5rRJH9I1" crossorigin="anonymous"></script>
     <script>
-        function toggleChatBot() {
-            const box = document.getElementById("chatbotBox");
-            const openBtn = document.getElementById("openChatBtn");
-
-            if (box.style.display === "none") {
-                box.style.display = "block";
-                openBtn.style.display = "none";
+        function toggleTraLoi(cauHoiDiv) {
+            var traLoiDiv = cauHoiDiv.parentElement.querySelector('.tra-loi');
+            if (traLoiDiv.style.display === "none") {
+                traLoiDiv.style.display = "block";
             } else {
-                box.style.display = "none";
-                openBtn.style.display = "block";
+                traLoiDiv.style.display = "none";
             }
         }
     </script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {

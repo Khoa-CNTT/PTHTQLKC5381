@@ -504,6 +504,9 @@
                 </div>
             </div>
         </div>
+        <!-- ScriptManager phải đặt trong trang hoặc master page -->
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
+
         <!-- ChatBot ở góc phải -->
         <div class="chatbot-box" id="chatbotBox" style="position: fixed; bottom: 20px; right: 20px; width: 350px; z-index: 999;">
             <div class="card shadow-lg border-0">
@@ -513,39 +516,49 @@
                         <i class="fas fa-times" title="Thu nhỏ"></i>
                     </a>
                 </div>
-                <div class="card-body p-3" id="chatbot-body" style="max-height: 400px; overflow-y: auto; background: #f9f9f9;">
-                    <hr />
-                    <p class="text-muted mb-2"><em>Lịch sử tư vấn:</em></p>
 
-                    <asp:Repeater ID="rptLichSuHoiDap" runat="server">
-                        <ItemTemplate>
-                            <div class="mb-2 border rounded p-2 bg-white shadow-sm">
-                                <div class="fw-bold text-primary mb-1">
-                                    <i class="fas fa-user me-2 text-info"></i>Bạn hỏi:
-                                </div>
+                <!-- ✅ Bọc UpdatePanel -->
+                <asp:UpdatePanel ID="upChatBot" runat="server">
+                    <ContentTemplate>
 
-                                <div class="text-dark mb-2 ps-3 cau-hoi" style="cursor: pointer;" onclick="toggleTraLoi(this)">
-                                    <%# Eval("CauHoi") %>
-                                </div>
+                        <div class="card-body p-3" id="chatbot-body" style="max-height: 400px; overflow-y: auto; background: #f9f9f9;">
+                            <hr />
+                            <p class="text-muted mb-2"><em>Lịch sử tư vấn:</em></p>
 
-                                <div class="tra-loi" style="display: none;">
-                                    <div class="fw-bold text-success mb-1">
-                                        <i class="fas fa-user-md me-2 text-success"></i>Tư vấn viên:
+                            <asp:Repeater ID="rptLichSuHoiDap" runat="server">
+                                <ItemTemplate>
+                                    <div class="mb-2 border rounded p-2 bg-white shadow-sm">
+                                        <div class="fw-bold text-primary mb-1">
+                                            <i class="fas fa-user me-2 text-info"></i>Bạn hỏi:
+                                        </div>
+
+                                        <div class="text-dark mb-2 ps-3 cau-hoi" style="cursor: pointer;" onclick="toggleTraLoi(this)">
+                                            <%# Eval("CauHoi") %>
+                                        </div>
+
+                                        <div class="tra-loi" style="display: none;">
+                                            <div class="fw-bold text-success mb-1">
+                                                <i class="fas fa-user-md me-2 text-success"></i>Tư vấn viên:
+                                            </div>
+                                            <div class="text-dark ps-3"><%# Eval("TraLoi") %></div>
+                                        </div>
                                     </div>
-                                    <div class="text-dark ps-3"><%# Eval("TraLoi") %></div>
-                                </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+
+                            <asp:Label ID="lblPhanHoi" runat="server" CssClass="alert alert-info d-block mt-2" Visible="false" />
+
+                            <div class="input-group mt-3">
+                                <asp:TextBox ID="txtCauHoiMoi" runat="server" CssClass="form-control" Placeholder="Gửi câu hỏi đến tư vấn viên..." />
+                                <asp:Button ID="btnGuiCauHoi" runat="server" Text="Gửi" CssClass="btn btn-success" OnClick="btnGuiCauHoi_Click" />
                             </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                        </div>
 
-
-                    <asp:Label ID="lblPhanHoi" runat="server" CssClass="alert alert-info d-block mt-2" Visible="false" />
-
-                    <div class="input-group mt-3">
-                        <asp:TextBox ID="txtCauHoiMoi" runat="server" CssClass="form-control" Placeholder="Gửi câu hỏi đến tư vấn viên..." />
-                        <asp:Button ID="btnGuiCauHoi" runat="server" Text="Gửi" CssClass="btn btn-success" OnClick="btnGuiCauHoi_Click" />
-                    </div>
-                </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btnGuiCauHoi" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
             </div>
         </div>
 
@@ -595,6 +608,27 @@
                 $(".cau-tra-loi").not($answer).slideUp(); // Ẩn các câu khác
                 $answer.slideToggle(); // Hiện/ẩn câu trả lời tương ứng
             });
+        });
+    </script>
+    <script>
+        function toggleTraLoi(el) {
+            var traLoiDiv = el.parentElement.querySelector('.tra-loi');
+            if (traLoiDiv) {
+                traLoiDiv.style.display = (traLoiDiv.style.display === 'none') ? 'block' : 'none';
+            }
+        }
+
+        function toggleChatBot() {
+            var box = document.getElementById("chatbotBox");
+            box.style.display = (box.style.display === 'none') ? 'block' : 'none';
+        }
+
+        // ✅ Auto scroll to bottom sau mỗi lần cập nhật
+        Sys.Application.add_load(function () {
+            var body = document.getElementById("chatbot-body");
+            if (body) {
+                body.scrollTop = body.scrollHeight;
+            }
         });
     </script>
 </body>

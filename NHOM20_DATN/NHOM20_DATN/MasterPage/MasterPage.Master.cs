@@ -103,6 +103,8 @@ namespace NHOM20_DATN.MasterPage
             lblPhanHoi.Text = "✅ Câu hỏi của bạn đã được gửi đến tư vấn viên. Vui lòng chờ phản hồi.";
             lblPhanHoi.Visible = true;
             txtCauHoiMoi.Text = "";
+
+            LoadLichSuHoiDap();
         }
 
 

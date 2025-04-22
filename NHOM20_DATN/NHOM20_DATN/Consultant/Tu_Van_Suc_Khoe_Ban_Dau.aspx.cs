@@ -49,10 +49,29 @@ namespace NHOM20_DATN.Consultant
                     new SqlParameter("@ID", id)
                 };
 
-                kn.CapNhat(sql, prms);
-
-                LoadDanhSachCauHoi(); // Reload danh sách sau khi trả lời
+                try
+                {
+                    kn.CapNhat(sql, prms);
+                    // Sau khi cập nhật, thông báo thành công cho người dùng
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "success", "alert('Phản hồi đã được gửi thành công!');", true);
+                    Response.Redirect(Request.RawUrl);  // Trang sẽ tự động reload
+                }
+                catch (Exception ex)
+                {
+                    // Nếu có lỗi, thông báo cho người dùng
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');", true);
+                }
             }
+            else
+            {
+                // Nếu không có phản hồi, thông báo cho người dùng
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "warning", "alert('Vui lòng nhập phản hồi trước khi gửi!');", true);
+            }
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            LoadDanhSachCauHoi(); // Tự động cập nhật danh sách câu hỏi
         }
     }
 }

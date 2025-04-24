@@ -179,6 +179,8 @@
     <Content Include="bin\System.ValueTuple.dll" />
     <Content Include="bin\System.ValueTuple.xml" />
     <Content Include="Cau_Hoi_Thuong_Gap.aspx" />
+    <Content Include="ChatbotHandler.aspx" />
+    <Content Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
     <Content Include="img\Anh2.jpg" />
@@ -318,6 +320,20 @@
     <Compile Include="Cau_Hoi_Thuong_Gap.aspx.designer.cs">
       <DependentUpon>Cau_Hoi_Thuong_Gap.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChatbotHandler.aspx.cs">
+      <DependentUpon>ChatbotHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChatbotHandler.aspx.designer.cs">
+      <DependentUpon>ChatbotHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx.cs">
+      <DependentUpon>Tu_Van_Suc_Khoe_Ban_Dau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx.designer.cs">
+      <DependentUpon>Tu_Van_Suc_Khoe_Ban_Dau.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dang_Ky.aspx.cs">
       <DependentUpon>Dang_Ky.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -338,6 +354,13 @@
     </Compile>
     <Compile Include="Lien_He.aspx.designer.cs">
       <DependentUpon>Lien_He.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage\MasterPage_TuVanVien.Master.cs">
+      <DependentUpon>MasterPage_TuVanVien.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\MasterPage_TuVanVien.Master.designer.cs">
+      <DependentUpon>MasterPage_TuVanVien.Master</DependentUpon>
     </Compile>
     <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.cs">
       <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
@@ -536,6 +559,7 @@
     <Content Include="obj\Debug\NHOM20_D.29673BB9.Up2Date" />
     <Content Include="obj\Debug\NHOM20_DATN.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\NHOM20_DATN.csproj.CoreCompileInputs.cache" />
+    <Content Include="MasterPage\MasterPage_TuVanVien.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

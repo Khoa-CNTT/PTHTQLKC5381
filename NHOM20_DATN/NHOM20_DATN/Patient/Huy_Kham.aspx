@@ -621,8 +621,9 @@
 
         .id5 {
             font-size: 22px;
-            margin-left: -5px;
+            margin-left: -15px;
             font-weight: bolder;
+            padding:0px 5px;
         }
 
         .thoigiankham5 {

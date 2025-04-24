@@ -253,6 +253,10 @@ input[type=number]::-webkit-outer-spin-button {
                   <asp:TextBox ID="txtUsername" placeholder="Tên đăng nhập" runat="server"></asp:TextBox>
               </div>
               <asp:RequiredFieldValidator ControlToValidate="txtUsername" Display="Dynamic" ErrorMessage="Không thể để trống" runat="server">Không thể để trống</asp:RequiredFieldValidator>
+              <asp:RegularExpressionValidator ControlToValidate="txtUsername" Display="Dynamic" ForeColor="Red" 
+                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$" 
+                ErrorMessage="Tên đăng nhập phải có ít nhất 10 ký tự, bao gồm cả chữ và số, không chứa ký tự đặc biệt." 
+                runat="server" />
 
               <div class="inp_mk">
                   <asp:TextBox ID="txtEmail" placeholder="Email" runat="server"></asp:TextBox>

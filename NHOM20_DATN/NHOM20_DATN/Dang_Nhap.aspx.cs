@@ -95,20 +95,13 @@ namespace NHOM20_DATN
                     Session["Role"] = "BenhNhan";
                     Session["TenDangNhap"] = username;
 
-                    // Lấy ID bệnh nhân từ bảng BenhNhan
-                    string sqlBenhNhan = "SELECT IDBenhNhan FROM BenhNhan WHERE IDBenhNhan = @IDBenhNhan";
-                    SqlParameter[] paramBenhNhan = {
-                new SqlParameter("@IDBenhNhan", userId)
-            };
-                    DataTable dtBenhNhan = kb.docdulieu(sqlBenhNhan, paramBenhNhan);
-
-                    if (dtBenhNhan.Rows.Count > 0)
-                    {
-                        Session["IDBenhNhan"] = dtBenhNhan.Rows[0]["IDBenhNhan"].ToString();  // Thiết lập Session IDBenhNhan
-                    }
+                    // Gán trực tiếp vì userId đã là IDBenhNhan
+                    Session["IDBenhNhan"] = userId;
 
                     Response.Redirect("Default.aspx");
                 }
+
+
                 else if (userId.StartsWith("BS") || userId.StartsWith("TK"))
                 {
                     // Bác sĩ
@@ -125,6 +118,15 @@ namespace NHOM20_DATN
                     Session["Role"] = "QuanLy";
                     Session["TenDangNhap"] = username;
                     Response.Redirect("pages/Manager/Quan_Ly_Bac_Si.aspx");
+                }
+
+                else if (userId.StartsWith("TV"))
+                {
+                    // Quản lý
+                    Session["UserID"] = userId;
+                    Session["Role"] = "TuVan";
+                    Session["TenDangNhap"] = username;
+                    Response.Redirect("~/Consultant/Tu_Van_Suc_Khoe_Ban_Dau.aspx");
                 }
             }
             else

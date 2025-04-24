@@ -122,7 +122,7 @@
             .Phankhung {
                 padding: 15px;
                 width: 450px;
-                margin-left: -40px;
+                margin-left: 540px !important;
                 box-sizing: border-box;
                 overflow: hidden;
             }
@@ -394,8 +394,8 @@
         }
 
         #content {
-            width: 75%;
-            margin: 0 auto;
+            width: 1100px;
+            margin-left: 370px;
         }
 
         tbody, td, tfoot, th, thead, tr {
@@ -426,62 +426,62 @@
             .btn-refresh i {
                 font-size: 14px;
             }
-            .btn-detail {
-    background-color: #4CAF50;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-}
+                    .btn-detail {
+            background-color: #4CAF50;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
 
-.btn-detail:hover {
-    background-color: #45a049;
-}
+        .btn-detail:hover {
+            background-color: #45a049;
+        }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.4);
-}
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-    border-radius: 5px;
-    position: relative;
-    top: 40px;
-    left:30px;
-}
+        .modal-content {
+            background-color: #fefefe;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            border-radius: 5px;
+            position: relative;
+            top: 40px;
+            left:30px;
+        }
 
-.modal-title {
-    text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: -10px;
-    color:#8A2BE2;
-}
+        .modal-title {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: -10px;
+            color:#8A2BE2;
+        }
 
-.close {
-    color: #aaa;
-    float: left;
-    margin-left:830px;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        .close {
+            color: #aaa;
+            float: left;
+            margin-left:830px;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-.close:hover {
-    color: red;
-}
+        .close:hover {
+            color: red;
+        }
     </style>
 
 </asp:Content>

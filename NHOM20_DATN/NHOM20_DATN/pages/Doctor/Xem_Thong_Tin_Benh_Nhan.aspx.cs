@@ -59,7 +59,7 @@ namespace NHOM20_DATN
             }
             else
             {
-                Response.Write("Không có dữ liệu.");
+                Response.Write(" ");
             }
         }
         private void LoadNgayKham(DataTable dt)
@@ -336,7 +336,7 @@ namespace NHOM20_DATN
             <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]}</p>
             <p><strong>Email:</strong> {row["Email"]}</p>
             <p><strong>Địa chỉ:</strong> {row["DiaChi"]}</p>
-            <!-- Thêm các thông tin khác nếu cần -->
+            
         ";
 
                 patientDetails.InnerHtml = details;

@@ -43,43 +43,53 @@ namespace NHOM20_DATN.pages.Manager
             string noiDung = noiDung_txt.Text;
             string tieuDe = tieude_txt.Text;
             string idContent = id_content.Value;
-            int idContentInt = int.Parse(idContent);
+            //create date and name file
+            DateTime date = DateTime.Now;
+            string createDate = date.ToString("MM/dd/yyyy");
+            //File upload
+            string img_String = "";
+
+            if (fileImg.HasFile && fileImg != null)
+            {
+                fileImg.SaveAs(Server.MapPath("~/img/BaiViet/" + fileImg.FileName));
+                img_String = "~/img/BaiViet/" + fileImg.FileName;
+            }
+            else
+            {
+                img_String = imgHidden.Value + "";
+            }
+            int idContentInt = -1;
+            if (idContent!= null&& idContent!="")
+            {
+                idContentInt = int.Parse(idContent);
+            }
             //check title and des is empty
             if (noiDung.Length <= 0 || tieuDe.Length <= 0)
             {
-                Response.Write("<script>alert('Bài viết không được trống')</script>");
+                string message = "Tiêu Đề và Nội Dung Bắt Buộc Phải Có!";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
             }
+            
+
             //check if exist ID,then just update
             DataTable dt = new DataTable();
             dt = qlbvService.getById(idContentInt);
-            if (dt.Rows.Count != 0)
+            if (dt != null && dt.Rows.Count>0)
             {
-
-
+                string scriptUpdate = updateNews(idContent, tieuDe, noiDung, img_String, createDate);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptUpdate, true);
+                LoadData();
+                return;
             }
-
-
-
-
-            //create date and name file
-            string filePath = "";
-            DateTime date = DateTime.Now;
-            string createDate = date.ToString("MM/dd/yyyy");
-            // get file img
-            if (fileImg.HasFile)
-            {
-                //get path
-                string fileFolder = Server.MapPath("img/BaiViet/" + fileImg.FileName);
-                filePath = "img/BaiViet/" + fileImg.FileName;
-                //save to folder
-                fileImg.SaveAs(fileFolder);
-            }
-
-            //console log result
-            int result = qlbvService.add(tieuDe, noiDung, filePath, createDate);
-
+            //         update
+            
+            string scriptAdd = addNews(tieuDe, noiDung, img_String, createDate);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptAdd, true);
             LoadData();
+         
+
 
         }
 
@@ -115,10 +125,10 @@ namespace NHOM20_DATN.pages.Manager
             listBaiViet = qlbvService.getById(idBaiViet);
 
             //======== 2 set value to form 
-            string tieude = listBaiViet.Rows[0]["Caption"].ToString();
-            string noiDung = listBaiViet.Rows[0]["Content"].ToString();
-            string anh = listBaiViet.Rows[0]["Image"].ToString();
-            DateTime getNgayDang = (DateTime)listBaiViet.Rows[0]["CreateDate"];
+            string tieude = listBaiViet.Rows[0]["TieuDe"].ToString();
+            string noiDung = listBaiViet.Rows[0]["NoiDung"].ToString();
+            string anh = listBaiViet.Rows[0]["HinhAnh"].ToString();
+            DateTime getNgayDang = (DateTime)listBaiViet.Rows[0]["NgayDang"];
             string ngayDang = getNgayDang.ToString("dd/MM/yyyy");
 
             id_content.Value = idBaiVietString;
@@ -132,6 +142,69 @@ namespace NHOM20_DATN.pages.Manager
 
         public void delete_News(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            DataListItem item = (DataListItem)btn.NamingContainer;
+            HiddenField hiddenField = (HiddenField)item.FindControl("id_Content");
+            string idBaiVietString = hiddenField.Value;
+            string result = deleteNews(idBaiVietString);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", result, true);
+            LoadData();
+
+
+        }
+
+
+        //                  FUNCTION
+
+
+
+        //      ADD
+        public string addNews(string tieuDe, string noiDung, string img_String, string createDate) {
+
+            int result = qlbvService.add(tieuDe, noiDung, img_String, createDate);
+            string message = "Thêm Thất Bại";
+            string script = "showAlert('" + message + "','error');";
+            //check
+            if (result != 0)
+            {
+                message = "Thêm Thành Công";
+                script = "showAlert('" + message + "','success');";
+                return script;
+            }
+            return script;
+        } 
+
+        //      UPDATE
+        public string updateNews(string id, string tieuDe, string noiDung, string img_String, string createDate)
+        {
+            int result = qlbvService.update(id,tieuDe, noiDung, img_String, createDate);
+            string message = "Cập Nhật Thất Bại";
+            string script = "showAlert('" + message + "','error');";
+            //check
+            if (result != 0)
+            {
+                 message = "Cập Nhật Thành Công";
+                 script = "showAlert('" + message + "','success');";
+                return script;
+            }
+            return script;
+            
+
+        }
+        //      DELETE
+        public string deleteNews(string id)
+        {
+            int result = qlbvService.delete(id);
+            string message = "Xóa Thất Bại";
+            string script = "showAlert('" + message + "','error');";
+            //check
+            if (result != 0)
+            {
+                message = "Xóa Thành Công";
+                script = "showAlert('" + message + "','success');";
+                return script;
+            }
+            return script;
 
 
         }
@@ -139,3 +212,4 @@ namespace NHOM20_DATN.pages.Manager
 
     }
 }
+

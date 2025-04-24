@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Managerment_MasterPage.Master" AutoEventWireup="true" CodeBehind="Quan_Ly_Bai_Viet.aspx.cs" Inherits="NHOM20_DATN.pages.Manager.Quan_Ly_Bai_Viet" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-      <link rel="stylesheet" href="style/managerment/QLBaiviet.css">
+      <link rel="stylesheet" href="../../style/manager/QLBaiviet.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="container">
@@ -24,26 +24,26 @@
                         <%-- Show list data news --%>
                         <div class="title_news">
                             <%-- ID content --%>
-                            <asp:HiddenField ID="id_Content" Value='<%# Eval("ID_Content") %>' runat="server" />
+                            <asp:HiddenField ID="id_Content" Value='<%# Eval("IDBaiViet") %>' runat="server" />
                             <%-- Image --%>
-                            <a href="TinTuc_d_1.aspx?maBV=<%# Eval("ID_Content") %>">
+                            <a href="TinTuc_d_1.aspx?maBV=<%# Eval("IDBaiViet") %>">
                                 <!--Link news-->
-                                <img src="<%# Eval("Image") %>" alt="Không có ảnh">
+                                <img src="<%# Eval("HinhAnh") %>" alt="Không có ảnh">
                             </a>
 
                             <div class="news_des">
                                 <!--Caption-->
-                                <a href="TinTuc_d_1.aspx?maBV=<%# Eval("ID_Content") %>">
-                                    <h3 title="<%# Eval("Caption") %>"><%# Eval("Caption") %></h3>
+                                <a href="TinTuc_d_1.aspx?maBV=<%# Eval("IDBaiViet") %>">
+                                    <h3 title="<%# Eval("TieuDe") %>"><%# Eval("TieuDe") %></h3>
                                 </a>
                                 <!--Caption-->
                                 <!--date-->
-                                <p><i class="fa-regular fa-calendar-days" style="margin-right: 5px;"></i><%# DateTime.Parse( Eval("CreateDate").ToString()).ToString("dd/MM/yyyy") %></p>
+                                <p><i class="fa-regular fa-calendar-days" style="margin-right: 5px;"></i><%# DateTime.Parse( Eval("NgayDang").ToString()).ToString("dd/MM/yyyy") %></p>
                                 <!--date-->
                                 <!--Edit news-->
                                 <div class="contain_btn_news">
                                     <!--detail-->
-                                    <div class="detail_news"><a href="TinTuc_d_1.aspx?maBV=<%# Eval("ID_Content") %>">Xem thêm</a></div>
+                                    <div class="detail_news"><a href="TinTuc_d_1.aspx?maBV=<%# Eval("IDBaiViet") %>">Xem thêm</a></div>
                                     <!--edit -->
                                     <asp:Button class="edit_btn" CssClass="edit_btn" ID="edit_btn" OnClick="edit_News" runat="server" Text="Sửa" />
                                     <!--delete-->
@@ -62,7 +62,7 @@
 <%-- Add news --%>
 <div id="form_add_News">
     <div id="btn_close_add" class="btn-close-add" onclick="close_formAddNews()"><i class="fa-solid fa-xmark"></i></div>
-    <asp:HiddenField ID="id_content" runat="server" />
+    <asp:HiddenField ID="id_content" Value="" runat="server" />
     <asp:HiddenField ID="create_date" runat="server" />
     <asp:HiddenField ID="imageUrl" runat="server" />
     <div class="form-group">
@@ -75,9 +75,10 @@
     </div>
     <div class="upfile-group">
         <asp:FileUpload ID="fileImg" class="file-img" runat="server" />
+        <asp:HiddenField ID="imgHidden"  runat="server" />
     </div>
     <div class="btn_submit_news">
-    <asp:Button ID="Button_Addnews" class="btn-addnews" runat="server" Text="Thêm" OnClick="Addnews_click" />
+    <asp:Button ID="Button_Addnews" class="btn-addnews" runat="server" Text="Cập Nhật" OnClick="Addnews_click" />
 </div>
 </div>
 <%-- Add news --%>
@@ -117,14 +118,12 @@
         open_formAddNews();
     }
 
-    function showAndHide() {
-        let notify = document.getElementById("alert-succeed");
-        notify.classList.add("show");
-
-        setTimeout(() => {
-            notify.classList.remove("show");
-        }, 3000);
+    function showAlert(notice, warn) {
+        Swal.fire({
+            title: notice,
+            icon: warn,
+            confirmButtonText: 'OK'
+        });
     }
-
 </script>
 </asp:Content>

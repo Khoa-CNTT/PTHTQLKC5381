@@ -14,7 +14,7 @@ namespace NHOM20_DATN.res.service
         public QlbvService() { }
         public int add(string Caption, string Content, string Image, string CreateDate)
         {
-            string add_query = "insert into BaiVietSK(TieuDe, NoiDung, HinhAnh, NgayDang) values (@TieuDe, @NoiDung,@HinhAnh,@NgayDang)";
+            string add_query = "insert into BaiVietSucKhoe(TieuDe, NoiDung, HinhAnh, NgayDang) values (@TieuDe, @NoiDung,@HinhAnh,@NgayDang)";
             //Truyen tham so
             SqlParameter[] pr_add = {
             new SqlParameter("@TieuDe", Content),
@@ -29,7 +29,7 @@ namespace NHOM20_DATN.res.service
 
         public int  update(string idContent, string Title, string Description, string Image, string CreateDate)
         {
-            string update_query = "UPDATE BaiVietSK" +
+            string update_query = "UPDATE BaiVietSucKhoe" +
             " SET TieuDe=  @TieuDe " +
             " ,NoiDung = @NoiDung" +
             " , HinhAnh =@HinhAnh" +
@@ -47,20 +47,20 @@ namespace NHOM20_DATN.res.service
             return result_update;
         }
 
-        public void delete(string idContent)
+        public int delete(string idContent)
         {
-            string delete_query = "delete BaiVietSK where IDBaiViet = @idContent";
+            string delete_query = "delete BaiVietSucKhoe where IDBaiViet = @idContent";
             //Truyen tham so
             SqlParameter[] pr_delete = new SqlParameter[] {
             new SqlParameter("@idContent", idContent)
             };
             int result_delete = db.CapNhat(delete_query, pr_delete);
-            
+            return result_delete;
         }
 
         public DataTable getAll()
         {
-            string bv_query = "Select * from  BaiVietSK";
+            string bv_query = "Select * from  BaiVietSucKhoe";
             SqlParameter[] pr_getAll = new SqlParameter[] { };
             DataTable result_BV = db.docdulieu(bv_query, pr_getAll);
             return result_BV;
@@ -69,7 +69,7 @@ namespace NHOM20_DATN.res.service
 
         public DataTable getById(int id_content)
         {
-            string bv_query = "Select * from  BaiVietSK WHERE IDBaiViet = @id_content ";
+            string bv_query = "Select * from  BaiVietSucKhoe WHERE IDBaiViet = @id_content ";
             SqlParameter[] pr_getAll = new SqlParameter[] {
             new SqlParameter("@id_content", id_content),
          };
@@ -82,7 +82,7 @@ namespace NHOM20_DATN.res.service
         public DataTable getCLoseResult(string searchTxt)
         {
             string nameKey = "%" + searchTxt + "%";
-            string sql_search = "SELECT * FROM BaiVietSK " +
+            string sql_search = "SELECT * FROM BaiVietSucKhoe " +
                 " WHERE (Caption COLLATE SQL_Latin1_General_CP1_CI_AI like @nameKey )";
             SqlParameter[] pr_key = new SqlParameter[]
             {

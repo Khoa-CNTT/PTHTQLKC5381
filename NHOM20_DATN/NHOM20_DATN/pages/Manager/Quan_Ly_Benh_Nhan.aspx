@@ -288,7 +288,14 @@
             modal.style.display = "block";
         }
     </script>
-
+    <script>
+        document.getElementById('<%= txt_searching.ClientID %>').addEventListener('input', function () {
+            if (this.value.trim() === '') {
+                // Gọi lại server để load danh sách đầy đủ
+                __doPostBack('<%= btn_search.UniqueID %>', '');
+        }
+    });
+    </script>
 
 
 </asp:Content>

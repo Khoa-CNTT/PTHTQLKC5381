@@ -31,14 +31,21 @@ namespace NHOM20_DATN.res.service
         //=============Search patiens
         public DataTable searchPatients(string key)
         {
-            key = "'%" + key + "%'";
-            string query = "select IdBenhNhan, HoTen, NgaySinh, SoDienThoai, DiaChi, Email,GioiTinh " +
-                "from BenhNhan " +
-                " where HoTen like N" + key +
-                " or IDBenhNhan like " + key;
-            SqlParameter[] pr = new SqlParameter[] { };
-            DataTable dt = kn.docdulieu(query, pr);
-            return dt;
+            string query = @"SELECT IDBenhNhan, HoTen, NgaySinh, SoDienThoai, Email, GioiTinh 
+                    FROM BenhNhan 
+                    WHERE HoTen LIKE @key 
+                    OR IDBenhNhan LIKE @key 
+                    OR SoDienThoai LIKE @key 
+                    OR Email LIKE @key 
+                    OR CONVERT(varchar, NgaySinh, 103) LIKE @key
+                    OR CONVERT(varchar, NgaySinh, 101) LIKE @key
+                    OR CONVERT(varchar, NgaySinh, 120) LIKE @key";
+
+            SqlParameter[] pr = new SqlParameter[] {
+        new SqlParameter("@key", "%" + key + "%")
+    };
+
+            return kn.docdulieu(query, pr);
         }
 
         public int checkUserExisting(string username)

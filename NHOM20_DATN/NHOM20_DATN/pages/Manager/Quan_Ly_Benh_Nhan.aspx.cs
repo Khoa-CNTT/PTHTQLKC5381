@@ -43,7 +43,13 @@ namespace NHOM20_DATN.pages.Manager
 
         protected void btn_search_Click(object sender, EventArgs e)
         {
-            string keySearch = txt_searching.Text;
+            string keySearch = txt_searching.Text.Trim();
+            if (string.IsNullOrEmpty(keySearch))
+            {
+                viewListPatients(); 
+                return;
+            }
+
             DataTable dt = patientManagerment.searchPatients(keySearch);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -94,10 +100,100 @@ namespace NHOM20_DATN.pages.Manager
 
 
         }
+
+
+        protected void ShowAlert(string message, string type)
+        {
+            string script = $"showAlert('{message}', '{type}');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+        }
+
+        private void ResetButtonStates()
+        {
+            btnEdit.Visible = true;
+            btnAdd.Visible = true;
+            btnDelete.Visible = true;
+            cancelEdit.Visible = false;
+            cancelDelete.Visible = false;
+            deleteSelect.Visible = false;
+            gridPatientsManager.Columns[0].Visible = false;
+            gridPatientsManager.Columns[1].Visible = false;
+        }
         //==========================
         //Panel Add
         protected void btn_Save_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTK.Text))
+            {
+                ShowAlert("Vui lòng nhập tên tài khoản", "warning");
+                ResetButtonStates();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtMK.Text))
+            {
+                ShowAlert("Vui lòng nhập mật khẩu", "warning");
+                ResetButtonStates();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                ShowAlert("Vui lòng nhập tên bệnh nhân", "warning");
+                ResetButtonStates();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtSDT.Text))
+            {
+                ShowAlert("Vui lòng nhập số điện thoại", "warning");
+                ResetButtonStates();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtEmail.Text))
+            {
+                ShowAlert("Vui lòng nhập email", "warning");
+                ResetButtonStates();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtNgaySinh.Text))
+            {
+                ShowAlert("Vui lòng chọn ngày sinh", "warning");
+                ResetButtonStates();
+                return;
+            }
+
+            if (radioGT.SelectedValue == null)
+            {
+                ShowAlert("Vui lòng chọn giới tính", "warning");
+                ResetButtonStates();
+                return;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(txtEmail.Text);
+                if (addr.Address != txtEmail.Text)
+                {
+                    ShowAlert("Email không hợp lệ", "warning");
+                    ResetButtonStates();
+                    return;
+                }
+            }
+            catch
+            {
+                ShowAlert("Email không hợp lệ", "warning");
+                ResetButtonStates();
+                return;
+            }
+            if (txtSDT.Text.Length < 10 || !txtSDT.Text.All(char.IsDigit))
+            {
+                ShowAlert("Số điện thoại không hợp lệ", "warning");
+                ResetButtonStates();
+                return;
+            }
+
             string username = txtTK.Text;
             string password = txtMK.Text;
             string name = txtName.Text;
@@ -110,9 +206,7 @@ namespace NHOM20_DATN.pages.Manager
             {
                 string message = "Tên đăng nhập đã tồn tại";
                 string script = "showAlert('" + message + "','warning');";
-                btnEdit.Visible = true;
-                btnAdd.Visible = true;
-                btnDelete.Visible = true;
+                ResetButtonStates();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 viewListPatients();
                 return;
@@ -121,11 +215,17 @@ namespace NHOM20_DATN.pages.Manager
             int result = patientManagerment.addPatient(idBN, username, password, name, birth, gender, phone, email);
             if (result != 0)
             {
+                txtTK.Text = string.Empty;
+                txtMK.Text = string.Empty;
+                txtName.Text = string.Empty;
+                txtNgaySinh.Text = string.Empty;
+                txtSDT.Text = string.Empty;
+                txtEmail.Text = string.Empty;
+                radioGT.ClearSelection();
+
                 string message = "Thêm bệnh nhân thành công";
                 string script = "showAlert('" + message + "','success');";
-                btnEdit.Visible = true;
-                btnAdd.Visible = true;
-                btnDelete.Visible = true;
+                ResetButtonStates();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 viewListPatients();
             }
@@ -133,9 +233,7 @@ namespace NHOM20_DATN.pages.Manager
             {
                 string message = "Thêm bệnh nhân thất bại!";
                 string script = "showAlert('" + message + "','error');";
-                btnEdit.Visible = true;
-                btnAdd.Visible = true;
-                btnDelete.Visible = true;
+                ResetButtonStates();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 viewListPatients();
             }
@@ -144,9 +242,7 @@ namespace NHOM20_DATN.pages.Manager
         protected void btn_Close_Click(object sender, EventArgs e)
         {
             pn_Add.Visible = false;
-            btnEdit.Visible = true;
-            btnAdd.Visible = true;
-            btnDelete.Visible = true;
+            ResetButtonStates();
             string js = $"closeForm('#patientAdd_container')";
             Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", js, true);
 

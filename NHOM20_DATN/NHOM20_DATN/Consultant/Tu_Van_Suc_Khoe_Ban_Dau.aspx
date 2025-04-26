@@ -56,7 +56,7 @@
                     <ItemTemplate>
                         <div class="card custom-card mb-4">
                             <div class="card-header fw-semibold d-flex justify-content-between align-items-center">
-                                <span>🧑 <%# Eval("HoTen") %></span>
+                                <span>🧑 Bệnh nhân <%# Eval("HoTen") %></span>
                                 <small class="text-light fst-italic">
                                     <i class="far fa-clock me-1"></i><%# Eval("ThoiGian", "{0:dd/MM/yyyy HH:mm}") %>
                                 </small>

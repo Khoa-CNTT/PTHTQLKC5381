@@ -33,10 +33,6 @@ E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.IO.FileSystem.Primitiv
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Net.Sockets.dll
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Reflection.Metadata.dll
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Encoding.dll
-E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Primitives.dll
-E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Text.Encoding.CodePages.dll
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Threading.Tasks.Extensions.dll
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.ValueTuple.dll
@@ -289,3 +285,4 @@ D:\TongHop\KLTN\CLONE_GIT_LAN3\NHOM20_DATN\NHOM20_DATN\bin\System.ValueTuple.xml
 D:\TongHop\KLTN\CLONE_GIT_LAN3\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_D.29673BB9.Up2Date
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\Newtonsoft.Json.dll
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\Newtonsoft.Json.xml
+E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Net.Http.dll

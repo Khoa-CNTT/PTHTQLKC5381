@@ -22,10 +22,12 @@ namespace NHOM20_DATN.Patient
 
         private void LoadBacSiTuVanOnline()
         {
-            string sql = "SELECT IDBacSi, HoTen, TrinhDo, Email, VaiTro, ChuyenKhoaID, HinhAnh FROM BacSi WHERE VaiTro = @VaiTro";
+            string sql = "SELECT b.IDBacSi, b.HoTen, b.TrinhDo, b.Email, b.VaiTro, b.ChuyenKhoaID, b.HinhAnh, c.TenChuyenKhoa FROM BacSi b " +
+                         "JOIN ChuyenKhoa c ON b.ChuyenKhoaID = c.IDChuyenKhoa " +
+                         "WHERE b.VaiTro = @VaiTro";
             SqlParameter[] parameters = {
-                new SqlParameter("@VaiTro", "Online")
-            };
+        new SqlParameter("@VaiTro", "Online")
+    };
 
             DataTable dt = db.docdulieu(sql, parameters);
 
@@ -50,23 +52,22 @@ namespace NHOM20_DATN.Patient
             }
             else
             {
-                // Lấy nút bấm đã được click
                 Button btn = (Button)sender;
-
-                // Tìm DataListItem chứa nút bấm này
                 DataListItem item = (DataListItem)btn.NamingContainer;
 
-                // Lấy thông tin bác sĩ từ các Label trong DataListItem
-                Label lblIDBacSi = (Label)item.FindControl("lbl_idbacsi"); // Thay đổi thành lbl_idbacsi
-                string idBacSi = lblIDBacSi.Text; // Lấy ID bác sĩ
-                string tenBacSi = ((Label)item.FindControl("lbl_hoten")).Text; // Lấy tên bác sĩ
+                string idBacSi = ((Label)item.FindControl("lbl_idbacsi")).Text;
+                string tenBacSi = ((Label)item.FindControl("lbl_hoten")).Text;
                 string chuyenKhoa = ((Label)item.FindControl("lbl_chuyenkhoa")).Text;
                 string trinhDo = ((Label)item.FindControl("lbl_trinhdo")).Text;
                 string email = ((Label)item.FindControl("lbl_email")).Text;
                 string vaiTro = ((Label)item.FindControl("lbl_vaitro")).Text;
 
-                // Điều hướng đến trang ThongTinTuVan và truyền thông tin bác sĩ
-                Response.Redirect($"../Patient/Thong_Tin_Tu_Van.aspx?IDBacSi={idBacSi}&TenBacSi={tenBacSi}&ChuyenKhoa={chuyenKhoa}&TrinhDo={trinhDo}&Email={email}&VaiTro={vaiTro}");
+                // Nếu không dùng UpdatePanel thì dùng Response.Redirect như sau:
+                // Response.Redirect($"../Patient/Thong_Tin_Tu_Van.aspx?...");
+
+                // Nếu có dùng UpdatePanel thì dùng dòng này:
+                string url = $"../Patient/Thong_Tin_Tu_Van.aspx?IDBacSi={idBacSi}&TenBacSi={tenBacSi}&ChuyenKhoa={chuyenKhoa}&TrinhDo={trinhDo}&Email={email}&VaiTro={vaiTro}";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "window.location='" + url + "';", true);
             }
         }
     }

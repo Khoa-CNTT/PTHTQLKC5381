@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace NHOM20_DATN
 {
@@ -13,27 +9,42 @@ namespace NHOM20_DATN
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) return;
+            if (!IsPostBack)
+            {
+                return;
+            }
         }
+
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
-            string email = txtEmail.Text;
-            string reEnterPassword = txtReEnterPassword.Text;
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string reEnterPassword = txtReEnterPassword.Text.Trim();
+
+            // Kiểm tra mật khẩu nhập lại
+            if (password != reEnterPassword)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    "Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Mật khẩu nhập lại không khớp!' });", true);
+                return;
+            }
+
             LopKetNoi db = new LopKetNoi();
 
-            // Kiểm tra tên đăng nhập đã tồn tại chưa
+            // Kiểm tra tên đăng nhập
             string checkUserQuery = "SELECT COUNT(*) FROM TaiKhoan WHERE TenDangNhap = @TenDangNhap";
             SqlParameter[] checkParams = { new SqlParameter("@TenDangNhap", username) };
-            DataTable dt = db.docdulieu(checkUserQuery, checkParams); // truyền tham số vào dt
+            DataTable dt = db.docdulieu(checkUserQuery, checkParams);
 
             if (dt != null && Convert.ToInt32(dt.Rows[0][0]) > 0)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-            "Swal.fire({ icon: 'error', title: 'Đăng nhập thất bại', text: 'Tên đăng nhập đã tồn tại  !' });", true);
+                    "Swal.fire({ icon: 'error', title: 'Đăng ký thất bại', text: 'Tên đăng nhập đã tồn tại!' });", true);
+                return;
             }
-            // Kiểm tra email đã tồn tại chưa
+
+            // Kiểm tra email
             string checkEmailQuery = "SELECT COUNT(*) FROM TaiKhoan WHERE Email = @Email";
             SqlParameter[] checkEmailParams = { new SqlParameter("@Email", email) };
             DataTable dtEmail = db.docdulieu(checkEmailQuery, checkEmailParams);
@@ -41,49 +52,53 @@ namespace NHOM20_DATN
             if (dtEmail != null && Convert.ToInt32(dtEmail.Rows[0][0]) > 0)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-            "Swal.fire({ icon: 'error', title: 'Đăng nhập thất bại', text: 'Email đã tồn tại!' });", true);
+                    "Swal.fire({ icon: 'error', title: 'Đăng ký thất bại', text: 'Email đã tồn tại!' });", true);
                 return;
             }
+
             // Tạo ID mới cho bệnh nhân
             string newId = GenerateUniqueId("BN");
 
-            // Thêm tài khoản vào bảng TaiKhoan
+            // Thêm vào bảng TaiKhoan
             string insertUserQuery = "INSERT INTO TaiKhoan (ID, TenDangNhap, MatKhau, Email) VALUES (@ID, @TenDangNhap, @MatKhau, @Email)";
             SqlParameter[] insertUserParams = {
-            new SqlParameter("@ID", newId),
-            new SqlParameter("@TenDangNhap", username),
-            new SqlParameter("@MatKhau", password),
-            new SqlParameter("@Email", email)
-    };
+                new SqlParameter("@ID", newId),
+                new SqlParameter("@TenDangNhap", username),
+                new SqlParameter("@MatKhau", password),
+                new SqlParameter("@Email", email)
+            };
             int result = db.CapNhat(insertUserQuery, insertUserParams);
 
             if (result <= 0)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-             "Swal.fire({ icon: 'error', title: 'Đăng ký thất bại' });", true);
+                    "Swal.fire({ icon: 'error', title: 'Đăng ký thất bại', text: 'Không thể thêm tài khoản.' });", true);
+                return;
             }
-            else
-            {
-                // Thêm thông tin vào bảng BenhNhan
-                string insertPatientQuery = "INSERT INTO BenhNhan (IDBenhNhan, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi) VALUES (@IDBenhNhan, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai, @Email, @DiaChi)";
-                SqlParameter[] patientParams = {
-            new SqlParameter("@IDBenhNhan", newId),
-            new SqlParameter("@HoTen", ""),
-            new SqlParameter("@NgaySinh", DBNull.Value),
-            new SqlParameter("@GioiTinh", "Khac"),
-            new SqlParameter("@SoDienThoai", ""),
-            new SqlParameter("@Email", email),
-            new SqlParameter("@DiaChi", "")
-        };
-                db.CapNhat(insertPatientQuery, patientParams);
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-             "Swal.fire({ icon: 'success', title: 'Đăng ký thành công' });", true);
-            }
+            // Thêm vào bảng BenhNhan
+            string insertPatientQuery = @"
+                INSERT INTO BenhNhan (IDBenhNhan, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi) 
+                VALUES (@IDBenhNhan, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai, @Email, @DiaChi)";
+            SqlParameter[] patientParams = {
+                new SqlParameter("@IDBenhNhan", newId),
+                new SqlParameter("@HoTen", ""),
+                new SqlParameter("@NgaySinh", DBNull.Value),
+                new SqlParameter("@GioiTinh", "Khac"),
+                new SqlParameter("@SoDienThoai", ""),
+                new SqlParameter("@Email", email),
+                new SqlParameter("@DiaChi", "")
+            };
+            db.CapNhat(insertPatientQuery, patientParams);
+
+            // Đăng ký thành công
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire({ icon: 'success', title: 'Đăng ký thành công' });", true);
         }
+
         private string GenerateUniqueId(string prefix)
         {
-            return prefix + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+            return prefix + Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper();
         }
     }
 }

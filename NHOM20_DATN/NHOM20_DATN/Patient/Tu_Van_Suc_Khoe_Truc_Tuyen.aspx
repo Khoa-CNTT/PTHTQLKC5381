@@ -331,7 +331,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td><b>Chuyên khoa :</b>
-                                                            <asp:Label ID="lbl_chuyenkhoa" runat="server" Text='<%# Eval("ChuyenKhoaID") %>'></asp:Label></td>
+                                                            <asp:Label ID="lbl_chuyenkhoa" runat="server" Text='<%# Eval("TenChuyenKhoa") %>'></asp:Label></td>
                                                     </tr>
                                                     <tr>
                                                         <td><b>Vai trò :</b>

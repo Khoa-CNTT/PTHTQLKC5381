@@ -1185,7 +1185,6 @@
                 <p>Đang xử lý...</p>
             </div>
         </div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
     </div>
     <script type="text/javascript">
         function showPhongKhamInfo(phongKhamInfo) {

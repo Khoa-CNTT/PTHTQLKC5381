@@ -16,6 +16,7 @@ namespace NHOM20_DATN
             string sqlCon = @"Data Source=LAPTOP-B847QUT4;Initial Catalog=TEST2;Integrated Security=True;TrustServerCertificate=True";
             con = new SqlConnection(sqlCon);
             con.Open();
+            //Data Source = DESKTOP - DU79F74; Initial Catalog = KLTNQUANLYKHAMBENH; Integrated Security = True; Connect Timeout = 30; Encrypt = True; TrustServerCertificate = True
         }
         private void dongketnoi()
         {

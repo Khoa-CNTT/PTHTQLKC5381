@@ -629,7 +629,7 @@
         .thoigiankham5 {
             font-style: italic;
             font-size: 13px;
-            margin-left: -35px;
+            margin-left: -15px;
         }
 
         .phong5 {
@@ -741,11 +741,16 @@
             .danh-sach-phieu-container, .ZX, .ZY, .tieude5, .ghichu, .web, .nen5 {
                 display: none !important;
             }
-
+            #openChatBtn,#chatbotBox{
+                display:none !important;
+            }
             body, .tong5, .trai5, .phai5, .tieudephieu5 {
                 white-space: nowrap !important;
             }
-
+            .DC{
+                display: block !important;
+                margin-left:110px !important;
+            }
             body, .tong5 {
                 background-color: white !important;
                 color: black !important;
@@ -763,12 +768,13 @@
 
             .phongkham5 {
                 margin-left: 0px !important;
+                
             }
-
+            
             .logo5 {
                 position: fixed;
-                top: 10px;
-                right: 10px;
+                top: 13px;
+                left: 140px;
                 width: 80px;
                 height: auto;
             }
@@ -785,48 +791,65 @@
             .tong5 {
                 display: block !important;
                 left: -200px !important;
-                width: 500px !important;
+                width: 550px !important;
                 margin-top: 0 !important;
                 font-size: 15px !important;
             }
-
+            .nguoidangky{
+                display:block !important;
+                margin-left:-20px !important;
+                margin-top:20px !important;
+                text-align:center;
+            }
             .thoigiankham5 {
-                font-style: italic !important;
-                width: 500px !important;
-            }
-
+        display: inline-block !important;
+        left: 190px !important;
+    }
+            .br {
+        display: none !important;
+    }
             .id5 {
-                font-weight: normal !important;
-            }
+        font-weight: normal !important;
+        position: relative !important;
+        left: 0 !important;
+        display: inline-block !important;
+        top: -30px !important;
+        font-size: 15px !important;
+        padding: 0 !important;
+        left: 330px !important;
+    }
 
             .tieudephieu5 {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                white-space: nowrap;
-                text-align: center;
-                padding-bottom: 10px;
-                border-bottom: 1px solid #ddd;
-                margin-top: 60px !important;
-            }
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        white-space: nowrap;
+        text-align: left;
+        padding-bottom: 10px;
+        margin-top: -50px !important;
+    }
 
                 .tieudephieu5 .id5 {
                     display: inline !important;
                     white-space: nowrap !important;
-                    margin-right: 5px !important;
+                     
                 }
-
+                .tieudephieu5 > * {
+        margin-bottom: 5px;
+        display: block;
+    }
             .phieukham5 {
-                display: block;
-                left: 180px !important;
-                font-size: 32px !important;
-                margin: 30px 0 20px 0 !important;
-                color: #000 !important;
-                font-weight: bold;
-                margin-bottom: 10px;
-                top: 45px;
-            }
-
+        display: block;
+        left: 180px !important;
+        font-size: 32px !important;
+        margin: 30px 0 20px 0 !important;
+        color: #000 !important;
+        font-weight: bold;
+        margin-bottom: 10px;
+        top: -15px;
+        padding: 20px 0px;
+    }
+          
             .tieudephieu5 {
                 text-align: left;
                 margin: 0 !important;
@@ -835,15 +858,17 @@
 
             .id5, .phong5, .thoigiankham5 {
                 display: inline-block !important;
-                margin: 10px 20px 10px 0 !important;
+                margin-top: -55px !important;
                 font-size: 15px !important;
             }
 
             .trai5, .phai5 {
                 width: 100% !important;
                 float: none !important;
-                margin: 0 !important;
+                margin: 0px 0px !important;
                 padding: 0 !important;
+                margin-top:-25px !important;
+                
             }
 
                 .trai5 h3, .phai5 h3 {
@@ -883,7 +908,7 @@
                 box-shadow: none !important;
                 padding: 0 !important;
                 margin: 0 0 0 5px !important;
-                width: auto !important;
+                width: 250px !important;
                 font-weight: bold !important;
             }
 
@@ -1084,17 +1109,27 @@
                 transform: translate(-50%, -50%) rotate(360deg);
             }
         }
+        .DC{
+            display:none;
+        }
+        .nguoidangky{
+            display:none;
+        }
     </style>
 
     <div class="tong5">
-
+        <div class="DC">
+           <h4>BỆNH VIỆN HOSPITAL BANANA</h4>
+           <p>Địa chỉ: 220 Phan Thanh, Hải Châu , TP.Đà Nẵng</p>
+         </div>
         <div class="Tren1">
             <asp:Label ID="Label1" CssClass="tieude5" runat="server" Text="HUỶ KHÁM"></asp:Label>
         </div>
         <div class=" anhnenhuykham">
             <img class="anhhuykham" src="../img/anhnen_huykham.jpeg" />
+            
             <div class="Trai1">
-
+                    
                 <div class="danh-sach-phieu-container">
                     <asp:GridView ID="gvDanhSachPhieu" runat="server" AutoGenerateColumns="False"
                         CssClass="grid-view-simple"
@@ -1122,13 +1157,12 @@
                 </div>
                 <div class="bienvien5">
                     <asp:Label ID="Label2" CssClass="lb2" runat="server" Text="Bệnh Viện Banana"></asp:Label>
-                    <br />
+                    <br class="br" />
                     <asp:Label ID="Label3" CssClass="lb3" runat="server" Text="Nhiệt Tình - Tâm Huyết - Tỉ Mỉ"></asp:Label>
                 </div>
                 <div class="tieudephieu5">
                     <asp:Label ID="Label4" CssClass="phieukham5" runat="server" Text="Phiếu Khám Bệnh"></asp:Label>
-                    <br />
-                    <div class="id-wrapper" style="display: inline-block; white-space: nowrap;">
+                    <div>
                         <asp:Label ID="Label7" CssClass="id5" runat="server" Text="Mã Phiếu:"></asp:Label>
                         <asp:Label ID="lbid" CssClass="id5" runat="server" Text=" PK89D962"></asp:Label>
                     </div>
@@ -1140,7 +1174,6 @@
                         <asp:Label ID="Label6" runat="server" Text="Thời gian khám:"></asp:Label>
                         <asp:Label ID="lbthoigian" runat="server" Text="25/05/2024 12:00:00 AM"></asp:Label>
                     </span>
-
                 </div>
                 <div class="chinh5">
                     <div class="nentrong"></div>
@@ -1184,6 +1217,11 @@
                 <div class="spinner"></div>
                 <p>Đang xử lý...</p>
             </div>
+        </div>
+       <div class="nguoidangky">
+            <p class="text-end">Người đăng ký</p>
+            <br><br>
+            <p class="text-end">(Ký và ghi rõ họ tên)</p>
         </div>
     </div>
     <script type="text/javascript">

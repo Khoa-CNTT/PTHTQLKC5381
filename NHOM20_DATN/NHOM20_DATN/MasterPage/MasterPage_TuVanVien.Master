@@ -113,6 +113,11 @@
                         <i class="fas fa-notes-medical"></i>Tư vấn ban đầu
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="../Consultant/Ho_Tro_Dat_Lich_Kham.aspx">
+                        <i class="fas fa-file-medical"></i>Hỗ trợ đặt lịch khám
+                    </a>
+                </li>
                 <%-- Thêm các mục khác tại đây --%>
             </ul>
         </div>

@@ -63,20 +63,32 @@
 
                     </li>
                     <li>
-                        <a href="Quan_Ly_Bai_Viet_SK.aspx">
+                        <a href="/pages/Manager/Quan_Ly_Bai_Viet.aspx">
                             <div class="contain-qlbvsk">
                                 <i class="fa-solid fa-newspaper"></i>Quản lý bài viết
                             </div>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="#">
+                            <div class="contain-tkbn">
+                                <i class="fa-solid fa-users-rectangle"></i>Thống Kê Số Lượng Bệnh Nhân
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="contain-tkdt">
+                                <i class="fa-solid fa-chart-line"></i>Thống Kê Doanh Thu
+                            </div>
+                        </a>
+                    </li>
                 </ul>
 
                 <div class="out">
                     <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="btnDangXuat_Click" OnClientClick="return confirm('Bạn có chắc chắn muốn đăng xuất?');">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng Xuất
                     </asp:LinkButton>
-
                 </div>
 
             </div>

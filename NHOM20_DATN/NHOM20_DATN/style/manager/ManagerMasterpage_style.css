@@ -213,7 +213,9 @@ body {
 .contain-qlbn,
 .contain-qlbs,
 .contain-qllk,
-.contain-qlbvsk {
+.contain-qlbvsk,
+.contain-tkbn,
+.contain-tkdt {
     padding: 15px 15px;
 }
 
@@ -221,7 +223,9 @@ body {
     .contain-qlbn:hover,
     .contain-qlbs:hover,
     .contain-qllk:hover,
-    .contain-qlbvsk:hover {
+    .contain-qlbvsk:hover,
+    .contain-tkbn:hover,
+    .contain-tkdt:hover {
         background-color: #d9d9d96e;
     }
 

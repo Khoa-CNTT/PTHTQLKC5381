@@ -263,9 +263,11 @@ body {
            
             background-color: #d9d9d96e;
         }
-        #dropdown-menu ul li a {
-            font-size: 13px;
-        }
+            #dropdown-menu ul li a {
+                display: block;
+                width: 100%;
+                font-size: 13px;
+            }
 
 
 .signout-btn, .li-ttcn {

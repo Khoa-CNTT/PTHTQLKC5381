@@ -18,14 +18,34 @@ namespace NHOM20_DATN.pages.Manager
             {
                 LoadData();
             }
-        }
+            else
+            {
+                string eventTarget = Request["__EVENTTARGET"];
+                string eventArgument = Request["__EVENTARGUMENT"];
 
+                if (eventTarget == "deleteNews")
+                {
+                    string[] args = eventArgument.Split('|');
+                    string idNews = args[0];
+                    deleteNews(idNews);
+                    return;
+                }else if (eventTarget == "closeForm")
+                {
+                    Closenews_click(sender,e);
+                    return;
+                }
+
+
+
+            }
+        }
         public void LoadData()
         {
             //DataTable dt = new DataTable();
             //dt = qlbvService.getAll();
             ds_baiviet.DataSource = qlbvService.getAll();
             ds_baiviet.DataBind();
+            return;
         }
 
         //public void openAddNews(object sender, EventArgs e)
@@ -51,8 +71,8 @@ namespace NHOM20_DATN.pages.Manager
 
             if (fileImg.HasFile && fileImg != null)
             {
-                fileImg.SaveAs(Server.MapPath("~/img/BaiViet/" + fileImg.FileName));
-                img_String = "~/img/BaiViet/" + fileImg.FileName;
+                fileImg.SaveAs(Server.MapPath("/img/BaiViet/" + fileImg.FileName));//thêm ~ trước /img nếu không load được ảnh
+                img_String = "/img/BaiViet/" + fileImg.FileName;//thêm ~ trước /img nếu không load được ảnh
             }
             else
             {
@@ -69,29 +89,54 @@ namespace NHOM20_DATN.pages.Manager
                 string message = "Tiêu Đề và Nội Dung Bắt Buộc Phải Có!";
                 string script = "showAlert('" + message + "','warning');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                LoadData();
                 return;
             }
-            
-
+            DataTable dtTieuDe = new DataTable();
+            dtTieuDe = qlbvService.getCLoseResult(tieuDe);
+            bool existsNews = dtTieuDe.AsEnumerable()
+                .Any(row => row["TieuDe"].ToString() == tieuDe);
+            if (existsNews && idContentInt == -1 )
+            {
+                string message = "Đã có tiêu đề này!";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                LoadData();
+                return;
+            }
             //check if exist ID,then just update
             DataTable dt = new DataTable();
             dt = qlbvService.getById(idContentInt);
-            if (dt != null && dt.Rows.Count>0)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 string scriptUpdate = updateNews(idContent, tieuDe, noiDung, img_String, createDate);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptUpdate, true);
                 LoadData();
                 return;
             }
-            //         update
-            
             string scriptAdd = addNews(tieuDe, noiDung, img_String, createDate);
             ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptAdd, true);
             LoadData();
-         
+  
+            return;
 
 
         }
+
+        //close form
+        public void Closenews_click(object sender, EventArgs e)
+        {
+            id_content.Value = "";
+            create_date.Value = "";
+            imageUrl.Value = "";
+            tieude_txt.Text = "";
+            noiDung_txt.Text = "";
+            string script = "close_formAddNews();";
+            ScriptManager.RegisterStartupScript(this, GetType(), "display", script, true);
+            LoadData() ;
+            return;
+        }
+
 
 
         //Search News
@@ -136,22 +181,24 @@ namespace NHOM20_DATN.pages.Manager
             tieude_txt.Text = tieude;
             noiDung_txt.Text = noiDung;
             imageUrl.Value = anh;
+            imgHidden.Value = anh;
             ClientScript.RegisterStartupScript(this.GetType(), "update", "open_formAddNews();", true);
 
         }
 
-        public void delete_News(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            DataListItem item = (DataListItem)btn.NamingContainer;
-            HiddenField hiddenField = (HiddenField)item.FindControl("id_Content");
-            string idBaiVietString = hiddenField.Value;
-            string result = deleteNews(idBaiVietString);
-            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", result, true);
-            LoadData();
+        //public void delete_News(object sender, EventArgs e)
+        //{
+
+        //    Button btn = (Button)sender;
+        //    DataListItem item = (DataListItem)btn.NamingContainer;
+        //    HiddenField hiddenField = (HiddenField)item.FindControl("id_Content");
+        //    string idBaiVietString = hiddenField.Value;
+        //    string result = deleteNews(idBaiVietString);
+        //    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", result, true);
+        //    LoadData();
 
 
-        }
+        //}
 
 
         //                  FUNCTION
@@ -192,7 +239,7 @@ namespace NHOM20_DATN.pages.Manager
 
         }
         //      DELETE
-        public string deleteNews(string id)
+        public void deleteNews(string id)
         {
             int result = qlbvService.delete(id);
             string message = "Xóa Thất Bại";
@@ -202,9 +249,16 @@ namespace NHOM20_DATN.pages.Manager
             {
                 message = "Xóa Thành Công";
                 script = "showAlert('" + message + "','success');";
-                return script;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                LoadData();
+                return;
+
             }
-            return script;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+            LoadData();
+            return;
+           
+
 
 
         }

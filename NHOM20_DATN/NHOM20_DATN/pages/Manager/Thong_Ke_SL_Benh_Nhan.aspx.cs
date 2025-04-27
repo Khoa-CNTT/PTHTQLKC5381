@@ -11,7 +11,36 @@ namespace NHOM20_DATN.pages.Manager
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack) return;
+            loadChart();
+            
 
         }
+
+        public void loadChart()
+        {
+            var data = new Dictionary<string, (int Nam, int Nu)>
+        {
+            { "Tháng 1", (20, 25) },
+            { "Tháng 2", (30, 28) },
+            { "Tháng 3", (15, 22) },
+            { "Tháng 4", (25, 30) }
+        };
+
+            foreach (var item in data)
+            {
+                Chart1.Series["Nam"].Points.AddXY(item.Key, item.Value.Nam);
+                Chart1.Series["Nữ"].Points.AddXY(item.Key, item.Value.Nu);
+            }
+
+
+
+
+        }
+
+
+
+
+
     }
 }

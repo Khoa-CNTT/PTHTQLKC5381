@@ -17,8 +17,8 @@ namespace NHOM20_DATN.res.service
             string add_query = "insert into BaiVietSucKhoe(TieuDe, NoiDung, HinhAnh, NgayDang) values (@TieuDe, @NoiDung,@HinhAnh,@NgayDang)";
             //Truyen tham so
             SqlParameter[] pr_add = {
-            new SqlParameter("@TieuDe", Content),
-            new SqlParameter("@NoiDung", Caption),
+            new SqlParameter("@TieuDe", Caption),
+            new SqlParameter("@NoiDung", Content),
             new SqlParameter("@HinhAnh", Image),
             new SqlParameter("@NgayDang", CreateDate)
         };
@@ -83,7 +83,7 @@ namespace NHOM20_DATN.res.service
         {
             string nameKey = "%" + searchTxt + "%";
             string sql_search = "SELECT * FROM BaiVietSucKhoe " +
-                " WHERE (Caption COLLATE SQL_Latin1_General_CP1_CI_AI like @nameKey )";
+                " WHERE (TieuDe  COLLATE SQL_Latin1_General_CP1_CI_AI like @nameKey)";
             SqlParameter[] pr_key = new SqlParameter[]
             {
                 new SqlParameter("@nameKey", nameKey)

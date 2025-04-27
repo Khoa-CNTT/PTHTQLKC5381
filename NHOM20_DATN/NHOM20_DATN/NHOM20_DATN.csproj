@@ -83,6 +83,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -183,12 +184,21 @@
     <Content Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="Home_Component\List_Tin_Tuc.aspx" />
+    <Content Include="Home_Component\Tin_Tuc.aspx" />
     <Content Include="img\Anh2.jpg" />
     <Content Include="img\anhnendatlai.jpg" />
     <Content Include="img\Anhquenmatkhau.jpeg" />
     <Content Include="img\anhquenmatkhau.png" />
     <Content Include="img\anhtraidatlai.jpg" />
     <Content Include="img\anhxoalogo.png" />
+    <Content Include="img\bacsikientrung.png" />
+    <Content Include="img\bacsiminhtrung.jpg" />
+    <Content Include="img\bacsixuanhai.jpg" />
+    <Content Include="img\bacsi_nguyenthivan.jpg" />
+    <Content Include="img\bacsi_vuhoailinh.jpg" />
+    <Content Include="img\BaiViet\1378decb333cf762ae2d.jpg" />
+    <Content Include="img\BaiViet\new_detail_1.png" />
     <Content Include="img\khoa.png" />
     <Content Include="js\appointment_manager.js" />
     <Content Include="js\patient_manager.js" />
@@ -196,6 +206,7 @@
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
+    <Content Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx" />
     <Content Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="img\anhnen_huykham.jpeg" />
     <Content Include="Patient\Dat_Lai_Mat_Khau.aspx" />
@@ -348,6 +359,20 @@
     <Compile Include="Dang_Nhap.aspx.designer.cs">
       <DependentUpon>Dang_Nhap.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Home_Component\List_Tin_Tuc.aspx.cs">
+      <DependentUpon>List_Tin_Tuc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home_Component\List_Tin_Tuc.aspx.designer.cs">
+      <DependentUpon>List_Tin_Tuc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home_Component\Tin_Tuc.aspx.cs">
+      <DependentUpon>Tin_Tuc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home_Component\Tin_Tuc.aspx.designer.cs">
+      <DependentUpon>Tin_Tuc.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Lien_He.aspx.cs">
       <DependentUpon>Lien_He.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -382,6 +407,13 @@
     </Compile>
     <Compile Include="pages\Manager\Quan_Ly_Bai_Viet.aspx.designer.cs">
       <DependentUpon>Quan_Ly_Bai_Viet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx.cs">
+      <DependentUpon>Thong_Ke_SL_Benh_Nhan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx.designer.cs">
+      <DependentUpon>Thong_Ke_SL_Benh_Nhan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx.cs">
       <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
@@ -522,6 +554,7 @@
     <Compile Include="res\service\PatientManagerment.cs" />
     <Compile Include="res\service\PaymentService.cs" />
     <Compile Include="res\service\QlbvService.cs" />
+    <Compile Include="res\service\ThongKe\ThongKeBenhNhanService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
@@ -570,7 +603,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\BaiViet\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>

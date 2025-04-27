@@ -26,14 +26,14 @@
                             <%-- ID content --%>
                             <asp:HiddenField ID="id_Content" Value='<%# Eval("IDBaiViet") %>' runat="server" />
                             <%-- Image --%>
-                            <a href="TinTuc_d_1.aspx?maBV=<%# Eval("IDBaiViet") %>">
+                            <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
                                 <!--Link news-->
-                                <img src="<%# Eval("HinhAnh") %>" alt="Không có ảnh">
+                                <img src='<%# Eval("HinhAnh") %>' alt="">
                             </a>
 
                             <div class="news_des">
                                 <!--Caption-->
-                                <a href="TinTuc_d_1.aspx?maBV=<%# Eval("IDBaiViet") %>">
+                                <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
                                     <h3 title="<%# Eval("TieuDe") %>"><%# Eval("TieuDe") %></h3>
                                 </a>
                                 <!--Caption-->
@@ -43,11 +43,11 @@
                                 <!--Edit news-->
                                 <div class="contain_btn_news">
                                     <!--detail-->
-                                    <div class="detail_news"><a href="TinTuc_d_1.aspx?maBV=<%# Eval("IDBaiViet") %>">Xem thêm</a></div>
+                                    <div class="detail_news"><a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">Xem thêm</a></div>
                                     <!--edit -->
                                     <asp:Button class="edit_btn" CssClass="edit_btn" ID="edit_btn" OnClick="edit_News" runat="server" Text="Sửa" />
                                     <!--delete-->
-                                    <asp:Button ID="delete_btn" CssClass="delete_btn" OnClick="delete_News" runat="server" Text="Xóa" />
+                                    <asp:Button ID="delete_btn" CssClass="delete_btn" OnClientClick='<%# "showCancelDialog(\"" + Eval("IDBaiViet") + "\"); return false;" %>'  runat="server" Text="Xóa" />
                                 </div>
                                 <!--Edit news-->
                             </div>
@@ -59,42 +59,39 @@
     </div>
 </div>
 
-<%-- Add news --%>
-<div id="form_add_News">
-    <div id="btn_close_add" class="btn-close-add" onclick="close_formAddNews()"><i class="fa-solid fa-xmark"></i></div>
-    <asp:HiddenField ID="id_content" Value="" runat="server" />
-    <asp:HiddenField ID="create_date" runat="server" />
-    <asp:HiddenField ID="imageUrl" runat="server" />
-    <div class="form-group">
-        <b for="tieude_txt">Tiêu Đề</b>
-        <asp:TextBox ID="tieude_txt" class="form-control" runat="server" placeholder=""></asp:TextBox>
+    <%-- Add news --%>
+    <div id="container-addNews" class="">
+        <div id="form_add_News">
+            <h2>Cập Nhật Bài Viết</h2>
+            <div id="btn_close_add" class="btn-close-add" onclick="callCloseForm()"><i class="fa-solid fa-xmark"></i></div>
+            <asp:HiddenField ID="id_content" Value="" runat="server" />
+            <asp:HiddenField ID="create_date" runat="server" />
+            <asp:HiddenField ID="imageUrl" runat="server" />
+            <div class="form-group">
+                <b for="tieude_txt">Tiêu Đề</b>
+                <asp:TextBox ID="tieude_txt" class="form-control" runat="server" placeholder=""></asp:TextBox>
+            </div>
+            <div class="form-group">
+                <b for="noiDung_txt">Nội Dung</b>
+                <asp:TextBox ID="noiDung_txt" runat="server" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+            </div>
+            <div class="upfile-group">
+                <asp:FileUpload ID="fileImg" class="file-img" runat="server" />
+                <asp:HiddenField ID="imgHidden" runat="server" />
+            </div>
+            <div class="btn_submit_news">
+                <asp:Button ID="Button_Addnews" class="btn-addnews" runat="server" Text="Cập Nhật" OnClick="Addnews_click" />
+                <asp:Button ID="Button_Close_Addnews" class="btn-closenews" runat="server" Text="Đóng" OnClick="Closenews_click" />
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <b for="noiDung_txt">Nội Dung</b>
-        <asp:TextBox ID="noiDung_txt" runat="server" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
-    </div>
-    <div class="upfile-group">
-        <asp:FileUpload ID="fileImg" class="file-img" runat="server" />
-        <asp:HiddenField ID="imgHidden"  runat="server" />
-    </div>
-    <div class="btn_submit_news">
-    <asp:Button ID="Button_Addnews" class="btn-addnews" runat="server" Text="Cập Nhật" OnClick="Addnews_click" />
-</div>
-</div>
-<%-- Add news --%>
-
-<%-- ======Notification========== --%>
-<div id="alert-succeed" class="alert alert-primary " role="alert">
-    A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-</div>
 
 
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     //close form add new 
     const btn_close = document.querySelector("#btn_close_add");
-    const formNew = document.querySelector("#form_add_News");
+    const formNew = document.querySelector("#container-addNews");
     //open button
     const btn_open = document.querySelector("#btn_add_news");
     //noidung
@@ -107,6 +104,11 @@
     function close_formAddNews() {
         formNew.classList.remove("d_block")
     }
+
+    function callCloseForm() {
+        __doPostBack('closeForm');
+    }
+
     //open form function
     function open_formAddNews() {
         formNew.classList.add("d_block")
@@ -125,5 +127,21 @@
             confirmButtonText: 'OK'
         });
     }
+    function showCancelDialog(id) {
+        Swal.fire({
+            title: 'Bạn Có Muốn Xóa Bài Viết Không',
+            showCancelButton: true,
+            icon: 'warning', 
+            confirmButtonText: 'Tiếp tục',
+            cancelButtonText: 'Hủy bỏ'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                __doPostBack('deleteNews', id);
+            }
+        });
+    }
+   
+
+
 </script>
 </asp:Content>

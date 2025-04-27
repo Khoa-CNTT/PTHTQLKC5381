@@ -214,11 +214,4 @@
     </script>
     <script src="/js/appointment_manager.js">
     </script>
-
-
-        icon: iconType,
-        confirmButtonText: 'OK'
-    });
-}
-    </script>
 </asp:Content>

@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NHOM20_DATN.pages.Manager
+namespace NHOM20_DATN.Home_Component
 {
 
 
-    public partial class Thong_Ke_SL_Benh_Nhan
+    public partial class List_Tin_Tuc
     {
 
         /// <summary>
-        /// Chart1 control.
+        /// ListNews control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::System.Web.UI.WebControls.DataList ListNews;
     }
 }

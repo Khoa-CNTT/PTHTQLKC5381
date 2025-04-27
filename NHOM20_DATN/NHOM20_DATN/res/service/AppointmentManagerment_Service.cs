@@ -57,17 +57,6 @@ namespace NHOM20_DATN.res.service
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         //===============
         public List<string> availableHour(string day, string doctorId)
         {

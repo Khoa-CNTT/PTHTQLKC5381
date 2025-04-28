@@ -26,8 +26,8 @@ namespace NHOM20_DATN.Patient
         private string partnerCode = "MOMO";
         private string accessKey = "F8BBA842ECF85";
         private string secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        private string redirectUrl = "https://8619-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
-        private string ipnUrl = "https://8619-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string redirectUrl = "https://f66e-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string ipnUrl = "https://f66e-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -394,7 +394,7 @@ namespace NHOM20_DATN.Patient
             }
             catch (Exception ex)
             {
-                Response.Write($"<script>alert('{ex.Message}');</script>");
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('{ex.Message}');", true);
             }
         }
 
@@ -542,11 +542,6 @@ namespace NHOM20_DATN.Patient
                 Response.Write($"<script>alert('{errorMessage}');</script>");
             }
         }
-
-
-
-
-
 
         private string LayEmailBenhNhan(string idBenhNhan)
         {

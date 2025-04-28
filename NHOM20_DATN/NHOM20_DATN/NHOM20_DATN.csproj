@@ -226,6 +226,7 @@
     <Content Include="img\anhquenmatkhau.png" />
     <Content Include="img\anhtraidatlai.jpg" />
     <Content Include="img\anhxoalogo.png" />
+    <Content Include="img\icon_lich.png" />
     <Content Include="img\khoa.png" />
     <Content Include="js\appointment_manager.js" />
     <Content Include="js\patient_manager.js" />
@@ -326,6 +327,7 @@
     <Content Include="pages\Manager\Quan_Ly_Bac_Si.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Lich_Kham.aspx" />
+    <Content Include="Patient\Huy_Tu_Van.aspx" />
     <Content Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx" />
     <Content Include="Patient\Quen_Mat_Khau.aspx" />
     <Content Include="style\doctor\doctor_appointment.css" />
@@ -538,6 +540,13 @@
     </Compile>
     <Compile Include="pages\Manager\Quan_Ly_Lich_Kham.aspx.designer.cs">
       <DependentUpon>Quan_Ly_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Patient\Huy_Tu_Van.aspx.cs">
+      <DependentUpon>Huy_Tu_Van.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Patient\Huy_Tu_Van.aspx.designer.cs">
+      <DependentUpon>Huy_Tu_Van.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs">
       <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan.aspx</DependentUpon>

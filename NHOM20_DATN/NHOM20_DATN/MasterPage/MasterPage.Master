@@ -381,7 +381,7 @@
                                                     <li><a class="dropdown-item" href="/Patient/Dang_Ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
                                                     <li><a class="dropdown-item" href="/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
                                                     <li><a class="dropdown-item" href="/Patient/Huy_Kham.aspx">Hủy khám</a></li>
-                                                    <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>
+                                                    <li><a class="dropdown-item" href="/Patient/Huy_Tu_Van.aspx">Hủy tư vấn</a></li>
 
                                                 </ul>
                                             </li>

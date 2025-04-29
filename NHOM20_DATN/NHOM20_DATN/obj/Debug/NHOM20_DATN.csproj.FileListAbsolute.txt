@@ -320,10 +320,6 @@ D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.IO.File
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Net.Sockets.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Reflection.Metadata.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Encoding.dll
-D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Primitives.dll
-D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Text.Encoding.CodePages.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Threading.Tasks.Extensions.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.ValueTuple.dll
@@ -344,3 +340,4 @@ D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_D.29673B
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.pdb
 E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Net.Http.dll
+D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Net.Http.dll

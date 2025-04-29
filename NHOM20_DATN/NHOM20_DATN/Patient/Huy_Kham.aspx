@@ -1172,7 +1172,7 @@
                     </div>
                     <span class="thoigiankham5">
                         <asp:Label ID="Label6" runat="server" Text="Thời gian khám:"></asp:Label>
-                        <asp:Label ID="lbthoigian" runat="server" Text="25/05/2024 12:00:00 AM"></asp:Label>
+                        <asp:Label ID="lbthoigian" runat="server" Text="25/05/2025"></asp:Label>
                     </span>
                 </div>
                 <div class="chinh5">

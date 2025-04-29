@@ -41,10 +41,32 @@ namespace NHOM20_DATN
                 return;
             }
 
-            // Nếu email tồn tại, tiếp tục gửi mã xác nhận
             String TieuDe = "Mã Xác Nhận Của Bạn Gửi Từ Hệ Thống Bệnh Viện Banana Hospital";
-            String maXacNhan = taoMa();
-            String NoiDung = "Mã xác nhận của bạn là: " + maXacNhan;
+            String maXacNhan = taoMa(); // Giả sử hàm taoMa() tạo ra mã xác nhận
+            String NoiDung = @"
+                <div style='background-color: #f5f5f5; padding: 10px 0; font-family: Arial, sans-serif;'> 
+                  <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+                    <div style='background-color: #13bdbd; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                      Bệnh viện BANANA HOSPITAL
+                    </div>
+                    <div style='padding: 30px; text-align: left;'>
+                      <h2 style='color: #13bdbd;'>Mã Xác Nhận Của Bạn</h2>
+      
+                      <p>Xin chào <strong style='color: #13bdbd;'>Quý khách</strong>,</p>
+                      <p>Chúng tôi xin gửi mã xác nhận cho việc yêu cầu <strong style='color: #13bdbd;'>đặt lại mật khẩu</strong> của Quý khách:</p>
+
+                      <ul style='list-style: none; padding-left: 0;'>
+                          <li>🧾 <strong>Mã xác nhận:</strong> " + maXacNhan + @"</li>
+                      </ul>
+
+                      <p>Nếu bạn không yêu cầu thay đổi mật khẩu, vui lòng bỏ qua email này.</p>
+                      <p>Nếu gặp bất kỳ vấn đề nào, Quý khách vui lòng liên hệ với chúng tôi để được hỗ trợ.</p>
+                      <p style='margin-top: 10px;'>Xin chân thành cảm ơn Quý khách đã tin tưởng <strong style='color: #13bdbd;'>BANANA Hospital</strong></p>
+                      <p>Trân trọng,</p>
+                      <p><strong style='color: #13bdbd;'>Bệnh viện BANANA HOSPITAL</strong></p>
+                    </div>
+                  </div>
+                </div>";
 
             sendMai_gmail sendmail = new sendMai_gmail();
             int emailResult = sendmail.sendMail_gmail(Email, TieuDe, NoiDung);

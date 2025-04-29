@@ -15,10 +15,17 @@ namespace NHOM20_DATN
         protected void Page_Load(object sender, EventArgs e)
         {
           
-
             if (!IsPostBack)
             {
-                LoadData();
+                if (Session["UserID"] != null)
+                {
+                   LoadData();
+                }
+                else
+                {
+                    Response.Redirect("/Dang_Nhap.aspx"); 
+                }
+                
             }
         }
         private void LoadData()
@@ -29,11 +36,11 @@ namespace NHOM20_DATN
             if (Session["Role"].ToString() == "BacSi")
             {
                 sql = @"SELECT p.IDBenhNhan, p.HoTen, p.NgayKham, p.ThoiGianKham, 
-           p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
-           FROM PhieuKham p 
-           LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
-           WHERE p.IDBacSi = @IDBacSi
-           ORDER BY p.NgayKham DESC";
+               p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
+               FROM PhieuKham p 
+               LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
+               WHERE p.IDBacSi = @IDBacSi
+               ORDER BY p.NgayKham DESC";
 
 
                 parameters = new SqlParameter[] {
@@ -43,10 +50,10 @@ namespace NHOM20_DATN
             else
             {
                 sql = @"SELECT p.IDBenhNhan, p.HoTen, p.NgayKham, p.ThoiGianKham, 
-           p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
-           FROM PhieuKham p 
-           LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
-           ORDER BY p.NgayKham DESC";
+                   p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
+                   FROM PhieuKham p 
+                   LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
+                   ORDER BY p.NgayKham DESC";
             }
 
             DataTable dt = ketNoi.docdulieu(sql, parameters);
@@ -99,28 +106,14 @@ namespace NHOM20_DATN
 
             if (Session["Role"].ToString() == "BacSi")
             {
-                if (trangThai == "Chưa thanh toán")
-                {
-                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
-                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                     p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
-                     FROM PhieuKham p 
-                     LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
-                     WHERE (tt.TrangThai IS NULL OR tt.TrangThai = N'Chưa thanh toán')
-                     AND p.IDBacSi = @IDBacSi
-                     ORDER BY p.NgayKham DESC";
-                }
-                else
-                {
-                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
-                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                     p.TrieuChung, tt.TrangThai
-                     FROM PhieuKham p 
-                     INNER JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
-                     WHERE tt.TrangThai = @TrangThai
-                     AND p.IDBacSi = @IDBacSi
-                     ORDER BY p.NgayKham DESC";
-                }
+                query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+             p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+             p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
+             FROM PhieuKham p 
+             LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
+             WHERE (lk.TrangThai = @TrangThai OR (@TrangThai = N'Đã đăng ký' AND lk.TrangThai IS NULL))
+             AND p.IDBacSi = @IDBacSi
+             ORDER BY p.NgayKham DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@TrangThai", trangThai),
@@ -129,26 +122,13 @@ namespace NHOM20_DATN
             }
             else
             {
-                if (trangThai == "Chưa thanh toán")
-                {
-                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
-                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                     p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
-                     FROM PhieuKham p 
-                     LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
-                     WHERE (tt.TrangThai IS NULL OR tt.TrangThai = N'Chưa thanh toán')
-                     ORDER BY p.NgayKham DESC";
-                }
-                else
-                {
-                    query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
-                     p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                     p.TrieuChung, tt.TrangThai
-                     FROM PhieuKham p 
-                     INNER JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
-                     WHERE tt.TrangThai = @TrangThai
-                     ORDER BY p.NgayKham DESC";
-                }
+                query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
+             p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
+             p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
+             FROM PhieuKham p 
+             LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
+             WHERE (lk.TrangThai = @TrangThai OR (@TrangThai = N'Đã đăng ký' AND lk.TrangThai IS NULL))
+             ORDER BY p.NgayKham DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@TrangThai", trangThai)
@@ -184,9 +164,9 @@ namespace NHOM20_DATN
             {
                 query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
                  p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                 p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                 p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
                  FROM PhieuKham p 
-                 LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                 LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
                  WHERE CONVERT(date, p.NgayKham) = CONVERT(date, @NgayKham)
                  AND p.IDBacSi = @IDBacSi
                  ORDER BY p.ThoiGianKham";
@@ -200,9 +180,9 @@ namespace NHOM20_DATN
             {
                 query = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
                  p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                 p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                 p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
                  FROM PhieuKham p 
-                 LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                 LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
                  WHERE CONVERT(date, p.NgayKham) = CONVERT(date, @NgayKham)
                  ORDER BY p.ThoiGianKham";
 
@@ -223,12 +203,12 @@ namespace NHOM20_DATN
             if (Session["Role"].ToString() == "BacSi")
             {
                 query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                      p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
-                      p.NgayKham, p.ThoiGianKham, p.TrieuChung, tt.TrangThai
-                      FROM PhieuKham p 
-                      INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
-                      LEFT JOIN ThanhToan tt ON p.IDPhieuKham = tt.IDPhieuKham
-                      WHERE p.IDBacSi = @IDBacSi";
+                  p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
+                  p.NgayKham, p.ThoiGianKham, p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
+                  FROM PhieuKham p 
+                  INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
+                  LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
+                  WHERE p.IDBacSi = @IDBacSi";
 
                 pr = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
@@ -237,11 +217,11 @@ namespace NHOM20_DATN
             else
             {
                 query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                      p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
-                      p.NgayKham, p.ThoiGianKham, p.TrieuChung, tt.TrangThai
-                      FROM PhieuKham p 
-                      INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
-                      LEFT JOIN ThanhToan tt ON p.IDPhieuKham = tt.IDPhieuKham";
+                  p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
+                  p.NgayKham, p.ThoiGianKham, p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
+                  FROM PhieuKham p 
+                  INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
+                  LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu";
                 pr = new SqlParameter[] { };
             }
 
@@ -263,9 +243,9 @@ namespace NHOM20_DATN
             {
                 sql_search = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
                      p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                     p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                     p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
                      FROM PhieuKham p 
-                     LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                     LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
                      WHERE (p.IDBenhNhan LIKE @id OR p.HoTen LIKE @term)
                      AND p.IDBacSi = @IDBacSi";
 
@@ -279,9 +259,9 @@ namespace NHOM20_DATN
             {
                 sql_search = @"SELECT p.IDPhieu, p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, 
                       p.SoDienThoai, p.Email, p.NgayKham, p.ThoiGianKham, 
-                      p.TrieuChung, ISNULL(tt.TrangThai, N'Chưa thanh toán') AS TrangThai
+                      p.TrieuChung, ISNULL(lk.TrangThai, N'Đã đăng ký') AS TrangThai
                       FROM PhieuKham p 
-                      LEFT JOIN ThanhToan tt ON p.IDPhieu = tt.IDPhieu
+                      LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
                       WHERE p.IDBenhNhan LIKE @id OR p.HoTen LIKE @term";
 
                 pr = new SqlParameter[] {

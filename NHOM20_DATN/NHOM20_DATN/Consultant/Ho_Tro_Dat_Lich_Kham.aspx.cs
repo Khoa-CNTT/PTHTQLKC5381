@@ -660,16 +660,31 @@ namespace NHOM20_DATN.Consultant
 
                     // Gửi email xác nhận
                     string tieude = "BANANA Hospital – Xác nhận đăng ký lịch khám";
-                    string noidung = "Kính chào Quý khách,\n\n" +
-                        "Quý khách đã đăng ký khám thành công với bác sĩ:\n\n" +
-                        "🩺 Tên bác sĩ: " + tenBacSi + "\n" +
-                        "🕒 Thời gian khám: " + idgiokham + "\n" +
-                        "📅 Ngày khám: " + idngaykham + "\n\n" +
-                        "Quý khách vui lòng đến trước giờ khám khoảng 10 phút để đảm bảo quy trình khám bệnh được diễn ra thuận lợi và tránh những sự cố không mong muốn.\n\n" +
-                        "Xin chân thành cảm ơn Quý khách đã tin tưởng và lựa chọn Banana Hospital!\n\n" +
-                        "Trân trọng,\n" +
-                        "Ban Quản Lý\n" +
-                        "BANANA HOSPITAL";
+                    string noidung = @"
+                        <div style='background-color: #f5f5f5; padding: 10px 0; font-family: Arial, sans-serif;'>
+                          <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+                            <div style='background-color: #13bdbd; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                              Bệnh viện BANANA HOSPITAL
+                            </div>
+                            <div style='padding: 30px; text-align: left;'>
+                              <h2 style='color: #13bdbd;'>Xác nhận đăng ký lịch khám thành công</h2>
+      
+                              <p>Xin chào <strong style='color: #13bdbd;'>Quý khách</strong>,</p>
+                              <p>Chúng tôi xin xác nhận rằng Quý khách đã <strong style='color: #13bdbd;'>đăng ký thành công</strong> lịch khám với bác sĩ:</p>
+
+                              <ul style='list-style: none; padding-left: 0;'>
+                                  <li>🧾 <strong>Tên bác sĩ:</strong> " + tenBacSi + @"</li>
+                                  <li>👤 <strong>Giờ khám:</strong> " + idgiokham + @"</li>
+                                  <li>🕒 <strong>Ngày Khám:</strong> " + idngaykham + @"</li>
+                              </ul>
+
+                              <p>Vui lòng đến đúng thời gian đã hẹn trước 10 phút. Nếu có bất kỳ thay đổi nào, xin vui lòng liên hệ với chúng tôi để được hỗ trợ.</p>
+                              <p style='margin-top: 10px;'>Xin chân thành cảm ơn Quý khách đã tin tưởng <strong style='color: #13bdbd;'>BANANA Hospital</strong></p>
+                              <p>Trân trọng,</p>
+                              <p><strong style='color: #13bdbd;'>Bệnh viện BANANA HOSPITAL</strong></p>
+                            </div>
+                          </div>
+                        </div>";
 
                     sendMai_gmail sendmail = new sendMai_gmail();
                     sendmail.sendMail_gmail(idemail, tieude, noidung);

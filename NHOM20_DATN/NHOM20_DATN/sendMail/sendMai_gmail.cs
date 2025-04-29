@@ -18,7 +18,7 @@ namespace NHOM20_DATN.sendMail
                 message.From.Add(new MailboxAddress("Bệnh viện Hospital", "banana1999@gmail.com"));
                 message.To.Add(new MailboxAddress("", mail));
                 message.Subject = subject;
-                var bodyBuilder = new BodyBuilder { TextBody = description };
+                var bodyBuilder = new BodyBuilder { HtmlBody = description };
                 message.Body = bodyBuilder.ToMessageBody();
 
                 using (var client = new MailKit.Net.Smtp.SmtpClient())

@@ -78,7 +78,7 @@
 
         /* GridView */
         .doctor_tb {
-            width: 1120px;
+            width: 1080px;
             border: none;
             margin-top: 20px;
             margin-left: -8px;
@@ -499,8 +499,9 @@
                 <asp:DropDownList ID="ddlTrangThai" runat="server" AutoPostBack="true"
                     OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                     <asp:ListItem Text="Tất cả trạng thái" Value="" Selected="True"></asp:ListItem>
-                    <asp:ListItem Text="Đã thanh toán" Value="Đã thanh toán"></asp:ListItem>
-                    <asp:ListItem Text="Chưa thanh toán" Value="Chưa thanh toán"></asp:ListItem>
+                    <asp:ListItem Text="Đã đăng ký" Value="DaDangKy"></asp:ListItem>
+                    <asp:ListItem Text="Đã huỷ" Value="DaHuy"></asp:ListItem>
+                    <asp:ListItem Text="Đang chờ" Value="DangCho"></asp:ListItem>
                 </asp:DropDownList>
                 <asp:DropDownList ID="ddlNgayKham" runat="server" AutoPostBack="true"
                     OnSelectedIndexChanged="ddlNgayKham_SelectedIndexChanged">
@@ -550,7 +551,7 @@
         <div id="patientDetails" runat="server"></div>
     </div>
 </div>
-
+          </div>
 <script>
 
     // Lấy modal
@@ -577,5 +578,5 @@
     }
 </script>
 
-    </div>
+  
 </asp:Content>

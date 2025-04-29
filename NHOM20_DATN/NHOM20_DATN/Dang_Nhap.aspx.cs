@@ -134,7 +134,7 @@ namespace NHOM20_DATN
                     Session["UserID"] = userId;
                     Session["Role"] = "BacSiOn";
                     Session["TenDangNhap"] = username;
-                    Response.Redirect("pages/DoctorOnline/Xem_Thong_Tin_Tu_Van.aspx");
+                    Response.Redirect("pages/DoctorOnline/Quan_Ly_Thong_Tin_Bac_Si_Online.aspx");
                 }
             }
             else

@@ -33,24 +33,6 @@ namespace NHOM20_DATN.pages.Doctor
         protected global::System.Web.UI.WebControls.LinkButton btn_Search;
 
         /// <summary>
-        /// btnEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnEdit;
-
-        /// <summary>
-        /// cancelEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton cancelEdit;
-
-        /// <summary>
         /// gridMedicalRecord control.
         /// </summary>
         /// <remarks>
@@ -58,6 +40,15 @@ namespace NHOM20_DATN.pages.Doctor
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridMedicalRecord;
+
+        /// <summary>
+        /// patientDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl patientDetails;
 
         /// <summary>
         /// hiddenIdBN control.

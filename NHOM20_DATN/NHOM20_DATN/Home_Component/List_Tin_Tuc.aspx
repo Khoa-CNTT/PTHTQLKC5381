@@ -24,7 +24,7 @@
                                     </a>
                                     <p>
                                         <i class="fa-regular fa-calendar-days"></i>
-                                        <%# Eval("NgayDang") %>
+                                        <%#DateTime.TryParse(Eval("NgayDang")?.ToString(), out DateTime ngaycn) ? ngaycn.ToString("dd/MM/yyyy") : "" %>
                                     </p>
                                     <div class="detail_news"><a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">Xem thêm</a></div>
                                 </div>

@@ -57,6 +57,24 @@ namespace NHOM20_DATN.res.service
 
         }
 
+        //===============
+
+
+        //=============== find by id
+        public DataTable findById(string id)
+        {
+            string query = "SELECT * FROM BenhNhan WHERE IDBenhNhan = @IDBenhNhan";
+              
+            SqlParameter[] pr = new SqlParameter[] { 
+             new SqlParameter("@IDBenhNhan",id)
+            };
+            DataTable dt = kn.docdulieu(query, pr);
+            return dt;
+        }
+
+
+
+
 
 
         //===============

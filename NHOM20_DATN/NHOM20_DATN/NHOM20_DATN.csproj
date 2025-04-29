@@ -201,6 +201,7 @@
     <Content Include="img\BaiViet\new_detail_1.png" />
     <Content Include="img\khoa.png" />
     <Content Include="js\appointment_manager.js" />
+    <Content Include="js\medical_record.js" />
     <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
@@ -312,6 +313,7 @@
     <Content Include="style\manager\NewsManagement_style.css" />
     <Content Include="style\manager\patientManagerment.css" />
     <Content Include="style\manager\QLBaiviet.css" />
+    <Content Include="style\manager\thongkeBN_style.css" />
     <Content Include="style\news_content_style.css" />
     <Content Include="style\new_dt.css" />
     <Content Include="style\Regist_form.css" />

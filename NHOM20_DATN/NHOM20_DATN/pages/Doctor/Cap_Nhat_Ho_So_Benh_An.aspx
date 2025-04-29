@@ -14,18 +14,18 @@
                 <asp:LinkButton ID="btn_Search" CssClass="btn_search" OnClick="btn_Search_Click" runat="server"><i class="fa-solid fa-magnifying-glass"></i></asp:LinkButton>
             </div>
             <%-- Edit --%>
-            <div class="btn_edit" id="btn_edit">
+       <%--     <div class="btn_edit" id="btn_edit">
                 <asp:LinkButton ID="btnEdit" OnClick="btnEdit_Click" runat="server">
                     <i class="fa-solid fa-pen-to-square"></i>
                     Sửa
                 </asp:LinkButton>
-            </div>
+            </div>--%>
             <%-- Cancel Edit --%>
-            <div class="btn_cancelEdit" id="btn_cancelEdit">
+        <%--    <div class="btn_cancelEdit" id="btn_cancelEdit">
                 <asp:LinkButton ID="cancelEdit" Visible="false" OnClick="cancelEdit_Click" runat="server">
                     Hủy
                 </asp:LinkButton>
-            </div>
+            </div>--%>
         </div>
 
 
@@ -38,7 +38,7 @@
                 <columns>
                     <%-- ==============     Check list  =============== --%>
                     <%-- ==============    edit  =============== --%>
-                    <asp:TemplateField Visible="false">
+                    <asp:TemplateField Visible="true">
                         <itemtemplate>
                             <asp:LinkButton ID="btnEditRow"
                                 CommandArgument='<%#Eval("IDHS") +","+Eval("IDBN") +","+Eval("HoTen")+","+Eval("ChanDoan")+","+Eval("DonThuoc")+","+Eval("GhiChu") %>'
@@ -102,10 +102,26 @@
                             <asp:Label ID="lbl_GhiChu" title='<%#Eval("GhiChu") %>' runat="server" Text='<%#Eval("GhiChu") %>'></asp:Label>
                         </itemtemplate>
                     </asp:TemplateField>
+                    <%--============== Xem thông tin bệnh nhân ===============--%>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <asp:Button ID="btnDetail" runat="server" Text="Xem chi tiết"
+                                CommandArgument='<%# Eval("IDBN") %>'
+                                OnClick="btnDetail_Click" CssClass="btn-detail" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                 </columns>
                 <pagerstyle backcolor="" forecolor="" horizontalalign="Left" cssclass="pagination" />
             </asp:GridView>
+        </div>
+    </div>
+
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Thông tin bệnh nhân</h2>
+            <div id="patientDetails" runat="server"></div>
         </div>
     </div>
     <asp:HiddenField ID="hiddenIdBN" runat="server" />
@@ -116,6 +132,7 @@
     <asp:HiddenField ID="hiddenGhiChu" runat="server" />
 
     <%-- Panel update --%>
+    <div id ="patientUpdate-container-dad">
     <div id="patientUpdate_container" class="">
         <asp:Panel ID="pn_Update" runat="server" Visible="false" CssClass="pnl_Update">
             <div class="chTime_content">
@@ -151,7 +168,9 @@
             </div>
         </asp:Panel>
     </div>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
     <script>
         function ShowAlert(notice, warn) {
             Swal.fire({
@@ -168,15 +187,8 @@
             const btn_open = document.querySelector("#patientUpdate_container");
             btn_open.classList.remove("d_block");
         }
-
-
-
-
-
-
     </script>
-
-
+     <script src="/js/medical_record.js"></script>
 
     <script src="/js/doctorCreateAccount.js"></script>
 </asp:Content>

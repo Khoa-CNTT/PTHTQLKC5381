@@ -84,13 +84,6 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <div class="contain-tkdt">
-                                <i class="fa-solid fa-chart-line"></i>Thống Kê Doanh Thu
-                            </div>
-                        </a>
-                    </li>
                 </ul>
 
                 <div class="out">

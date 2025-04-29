@@ -204,6 +204,7 @@
     <Content Include="js\medical_record.js" />
     <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />
+    <Content Include="pages\DoctorOnline\Xem_Thong_Tin_Tu_Van.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
@@ -382,12 +383,26 @@
     <Compile Include="Lien_He.aspx.designer.cs">
       <DependentUpon>Lien_He.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterPage\DoctorOnline_MasterPage.Master.cs">
+      <DependentUpon>DoctorOnline_MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage\DoctorOnline_MasterPage.Master.designer.cs">
+      <DependentUpon>DoctorOnline_MasterPage.Master</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage\MasterPage_TuVanVien.Master.cs">
       <DependentUpon>MasterPage_TuVanVien.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MasterPage\MasterPage_TuVanVien.Master.designer.cs">
       <DependentUpon>MasterPage_TuVanVien.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\DoctorOnline\Xem_Thong_Tin_Tu_Van.aspx.cs">
+      <DependentUpon>Xem_Thong_Tin_Tu_Van.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\DoctorOnline\Xem_Thong_Tin_Tu_Van.aspx.designer.cs">
+      <DependentUpon>Xem_Thong_Tin_Tu_Van.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.cs">
       <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
@@ -595,6 +610,7 @@
     <Content Include="obj\Debug\NHOM20_DATN.csproj.AssemblyReference.cache" />
     <Content Include="obj\Debug\NHOM20_DATN.csproj.CoreCompileInputs.cache" />
     <Content Include="MasterPage\MasterPage_TuVanVien.Master" />
+    <Content Include="MasterPage\DoctorOnline_MasterPage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

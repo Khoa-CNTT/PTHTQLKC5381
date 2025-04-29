@@ -215,9 +215,13 @@
 }
 
 
+.seach_bar input {
+    padding: 0.4em 1em;
+    border: 1px solid #ccc;
+    border-radius:5px !important;
+}
 
-
-.seach_bar input, .filter_bar select {
+.filter_bar select {
     padding: 0.4em 1em;
     border: 1px solid #ccc;
     border-radius: 1em;
@@ -225,15 +229,15 @@
 
 .btn_search {
     padding: 0.6em 2em;
-    background: #95e4c8;
+    background: #1ac689;
     text-decoration: none;
     color: azure;
     font-weight: 600;
-    border-radius: 1em;
+    border-radius: 10px;
 }
 
     .btn_search:hover {
-        background: #64cba6;
+        background: #038d5c;
     }
 
 

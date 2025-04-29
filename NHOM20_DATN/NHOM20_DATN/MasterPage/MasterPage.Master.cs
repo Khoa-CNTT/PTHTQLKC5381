@@ -26,7 +26,7 @@ namespace NHOM20_DATN.MasterPage
             if (Session["TenDangNhap"] != null)
             {
                 string tenDN = Session["TenDangNhap"].ToString();
-                lnkDangNhapDangKy.InnerHtml = $"<img style='width: 28px; padding-right: 5px;' src='img/icon_nguoidung.png' /> {tenDN}";
+                lnkDangNhapDangKy.InnerHtml = $"<img style='width: 28px; padding-right: 5px;' src='../img/icon_nguoidung.png' /> {tenDN}";
                 lnkDangNhapDangKy.HRef = "#";
                 caidat.PostBackUrl = "~/Dang_Nhap.aspx";
                 quanLyThongTin.Visible = true;

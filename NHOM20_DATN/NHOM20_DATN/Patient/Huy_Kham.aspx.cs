@@ -47,7 +47,15 @@ namespace NHOM20_DATN
                 lbid.Text = row["IDPhieu"].ToString();
                 lbhoten.Text = row["HoTen"].ToString();
                 lbemail.Text = row["Email"].ToString();
-                lbngaysinh.Text = row["NgaySinh"].ToString();
+                if (row["NgaySinh"] != DBNull.Value)
+                {
+                    DateTime ngaySinh = Convert.ToDateTime(row["NgaySinh"]);
+                    lbngaysinh.Text = ngaySinh.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    lbngaysinh.Text = "";
+                }
                 lbsdt.Text = row["SoDienThoai"].ToString();
                 lbgioitinh.Text = row["GioiTinh"].ToString();
                 lbdiachi.Text = row["DiaChi"].ToString();
@@ -113,11 +121,34 @@ namespace NHOM20_DATN
                         Session["DaXuLyHuy"] = true;
                         try
                         {
-                            string noidung = $"Bạn đã hủy đăng ký khám thành công\n\n" +
-                             $"ID Phiếu: {idPhieu}\n" +
-                             $"Họ tên: {lbhoten.Text}\n" +
-                             $"Thời gian: {lbthoigian.Text}";
-                            new sendMai_gmail().sendMail_gmail(lbemail.Text, "Xác nhận đã hủy đăng ký", noidung);
+                            string tieude = "BANANA Hospital – Xác nhận huỷ đăng ký khám";
+                            string noidung = @"
+                            <div style='background-color: #f5f5f5; padding: 10px 0; font-family: Arial, sans-serif;'>
+                              <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+                                <div style='background-color: #13bdbd; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                                  Bệnh viện BANANA HOSPITAL
+                                </div>
+                                <div style='padding: 30px; text-align: left;'>
+                                  <h2 style='color: #13bdbd;'>Xác nhận huỷ đăng ký lịch khám</h2>
+      
+                                  <p>Xin chào <strong style='color: #13bdbd;'>Quý khách</strong>,</p>
+                                  <p>Chúng tôi xin xác nhận rằng Quý khách đã <strong style='color: #13bdbd;'>huỷ thành công</strong> đăng ký khám với bác sĩ:</p>
+
+                                  <ul style='list-style: none; padding-left: 0;'>
+                                      <li>🧾 <strong>Mã phiếu:</strong> " + idPhieu + @"</li>
+                                      <li>👤 <strong>Họ và tên:</strong> " + lbhoten.Text + @"</li>
+                                      <li>🕒 <strong>Thời gian:</strong> " + lbthoigian.Text + @"</li>
+                                  </ul>
+
+                                  <p>Chúng tôi rất tiếc khi Quý khách huỷ lịch hẹn. Hy vọng sẽ được phục vụ Quý khách trong những lần tới.</p>
+                                  <p>Nếu đây là sự nhầm lẫn, Quý khách vui lòng liên hệ với chúng tôi để được hỗ trợ kịp thời.</p>
+                                  <p style='margin-top: 10px;'>Xin chân thành cảm ơn Quý khách đã tin tưởng <strong style='color: #13bdbd;'>BANANA Hospital</strong></p>
+                                  <p>Trân trọng,</p>
+                                  <p><strong style='color: #13bdbd;'>Bệnh viện BANANA HOSPITAL</strong></p>
+                                </div>
+                              </div>
+                            </div>";
+                            new sendMai_gmail().sendMail_gmail(lbemail.Text, tieude , noidung);
                         }
                         catch { }
 

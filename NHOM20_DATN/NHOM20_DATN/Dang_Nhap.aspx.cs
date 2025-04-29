@@ -95,10 +95,10 @@ namespace NHOM20_DATN
                     Session["Role"] = "BenhNhan";
                     Session["TenDangNhap"] = username;
 
-                    // Gán trực tiếp vì userId đã là IDBenhNhan
                     Session["IDBenhNhan"] = userId;
 
                     Response.Redirect("Default.aspx");
+
                 }
 
 
@@ -127,6 +127,14 @@ namespace NHOM20_DATN
                     Session["Role"] = "TuVan";
                     Session["TenDangNhap"] = username;
                     Response.Redirect("~/Consultant/Tu_Van_Suc_Khoe_Ban_Dau.aspx");
+                }
+                else if (userId.StartsWith("BO"))
+                {
+                    // Quản lý
+                    Session["UserID"] = userId;
+                    Session["Role"] = "BacSiOn";
+                    Session["TenDangNhap"] = username;
+                    Response.Redirect("pages/DoctorOnline/Xem_Thong_Tin_Tu_Van.aspx");
                 }
             }
             else

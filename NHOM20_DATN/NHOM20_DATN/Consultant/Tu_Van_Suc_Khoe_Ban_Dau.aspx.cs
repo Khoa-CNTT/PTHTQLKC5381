@@ -13,7 +13,9 @@ namespace NHOM20_DATN.Consultant
         LopKetNoi kn = new LopKetNoi();
 
         protected void Page_Load(object sender, EventArgs e)
+
         {
+
             if (!IsPostBack)
             {
                 LoadDanhSachCauHoi();
@@ -54,7 +56,9 @@ namespace NHOM20_DATN.Consultant
                     kn.CapNhat(sql, prms);
                     // Sau khi cập nhật, thông báo thành công cho người dùng
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "success", "alert('Phản hồi đã được gửi thành công!');", true);
-                    Response.Redirect(Request.RawUrl);  // Trang sẽ tự động reload
+                    txtTraLoi.Text = "";
+                    LoadDanhSachCauHoi();
+                    UpdatePanel1.Update();
                 }
                 catch (Exception ex)
                 {
@@ -73,5 +77,20 @@ namespace NHOM20_DATN.Consultant
         {
             LoadDanhSachCauHoi(); // Tự động cập nhật danh sách câu hỏi
         }
+
+    //    private void LoadLichSu(string idBenhNhan)
+    //    {
+    //        string sql = @"SELECT CauHoi, ThoiGian, TraLoi
+    //               FROM TinNhanChatBot
+    //               WHERE IDBenhNhan = @IDBenhNhan
+    //               ORDER BY ThoiGian DESC";
+
+    //        SqlParameter[] prms = {
+    //    new SqlParameter("@IDBenhNhan", idBenhNhan)
+    //};
+
+    //        rptLichSu.DataSource = kn.docdulieu(sql, prms);
+    //        rptLichSu.DataBind();
+    //    }
     }
 }

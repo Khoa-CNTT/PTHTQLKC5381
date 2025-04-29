@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NHOM20_DATN.Default" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <style>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
         .chucnang {
@@ -101,12 +102,12 @@
 
             .thongtin_lienket img {
                 width: 150px;
+                transition: transform 400ms ease-in-out; /* Đặt transition cho cả hai trạng thái */
             }
 
                 .thongtin_lienket img:hover {
                     transform-style: preserve-3d;
-                    transform: rotateY(-180deg);
-                    transition: transform 650ms ease-in-out, filter 650ms ease-in-out;
+                    transform: rotateY(90deg); /* Quay hình ảnh khi hover */
                 }
 
 

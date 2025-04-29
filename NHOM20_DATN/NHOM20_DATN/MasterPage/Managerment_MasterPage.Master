@@ -70,6 +70,14 @@
                         </a>
                     </li>
                     <li>
+                        <a href="/pages/Manager/Quan_Ly_Thanh_Toan.aspx">
+                            <div class="contain-qlbvsk">
+                                <i class="fa-solid fa-newspaper"></i>Quản lý thanh toán
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="#">
                             <div class="contain-tkbn">
                                 <i class="fa-solid fa-users-rectangle"></i>Thống Kê Số Lượng Bệnh Nhân

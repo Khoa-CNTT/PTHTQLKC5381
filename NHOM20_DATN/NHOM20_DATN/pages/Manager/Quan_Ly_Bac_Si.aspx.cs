@@ -45,6 +45,7 @@ namespace NHOM20_DATN.pages.Manager
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string email = txtEmail.Text;
+            string vaiTro = ddlVaiTro.SelectedItem.Value;
 
             string checkUserQuery = "SELECT COUNT(*) FROM TaiKhoan WHERE TenDangNhap = @TenDangNhap";
             SqlParameter[] checkParams = { new SqlParameter("@TenDangNhap", username) };
@@ -59,7 +60,15 @@ namespace NHOM20_DATN.pages.Manager
                 return;
             }
             // Tạo ID mới cho bs
-            string newId = "BS" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+            string newId = "" ;
+            if (vaiTro == "Online")
+            {
+                newId = "BO" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+            }
+            else
+            {
+                newId = "BS" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+            }
             // Thêm tài khoản 
             string insertUserQuery = "INSERT INTO TaiKhoan (ID, TenDangNhap, MatKhau, Email) VALUES (@ID, @TenDangNhap, @MatKhau, @Email)";
             SqlParameter[] insertUserParams = {

@@ -23,14 +23,39 @@ namespace NHOM20_DATN
             string description = txtDes.Text.Trim();
 
             // Tiêu đề email
-            string subject = "YÊU CẦU ĐĂNG KÝ TỪ WEBSITE";
+            // Tiêu đề email
+            string subject = "YÊU CẦU LIÊN HÊ TỪ WEBSITE";
 
             // Nội dung gửi đến email bệnh viện
-            string body = $"Khách hàng đã đăng ký khám với thông tin sau:\n" +
-                          $"- Họ tên: {name}\n" +
-                          $"- Email: {email}\n" +
-                          $"- Số điện thoại: {phone}\n" +
-                          $"- Ghi chú: {description}";
+            string body = $@"
+<div style='background-color: #f5f5f5; padding: 20px 0; font-family: Arial, sans-serif;'>
+  <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+    
+    <div style='background-color: #006666; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+      BANANA HOSPITAL
+    </div>
+    
+    <div style='padding: 30px; text-align: left; color: #333;'>
+      <h2 style='color: #333;'>Xác nhận thông tin liên hệ</h2>
+      
+      <p>Khách hàng đã liên hệ với thông tin sau:</p>
+
+      <ul style='list-style: none; padding-left: 0;'>
+        <li>👤 <strong>Họ tên:</strong> {name}</li>
+        <li>📧 <strong>Email:</strong> {email}</li>
+        <li>📞 <strong>Số điện thoại:</strong> {phone}</li>
+        <li>📝 <strong>Ghi chú:</strong> {description}</li>
+      </ul>
+
+      <p style='margin-top: 30px;'>Vui lòng kiểm tra và xác nhận lại thông tin!</p>
+
+      <p>Trân trọng,<br/>
+      <strong>Phòng Khám BANANA Hospital</strong></p>
+    </div>
+
+  </div>
+</div>";
+
 
             // Tạo đối tượng gửi mail
             sendMai_gmail sendmail = new sendMai_gmail();
@@ -41,7 +66,7 @@ namespace NHOM20_DATN
             // Thông báo kết quả
             if (result == 1)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Gui lien he thanh cong.', 'success');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Gửi liên hệ thành công.', 'success');", true);
             }
             else
             {

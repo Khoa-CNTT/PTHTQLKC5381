@@ -76,6 +76,13 @@
                             </div>
                         </a>
                     </li>
+                      <li>
+      <a href="/pages/Manager/Xuat_Phieu_Kham.aspx">
+          <div class="contain-qlbvsk">
+              <i class="fa-solid fa-newspaper"></i>Xuất Phiếu Khám
+          </div>
+      </a>
+  </li>
 
                     <li>
                         <a href="#">

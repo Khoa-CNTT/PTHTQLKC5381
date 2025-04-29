@@ -568,16 +568,33 @@ namespace NHOM20_DATN
 
                 string tieude = "BANANA Hospital – Xác nhận đăng ký lịch khám";
 
-                string noidung = "Kính chào Quý khách,\n\n" +
-                "Quý khách đã đăng ký khám thành công với bác sĩ:\n\n" +
-                "🩺 Tên bác sĩ: " + tenBacSi + "\n" +
-                "🕒 Thời gian khám: " + idgiokham + "\n" +
-                "📅 Ngày khám: " + idngaykham + "\n\n" +
-                "Quý khách vui lòng đến trước giờ khám khoảng 10 phút để đảm bảo quy trình khám bệnh được diễn ra thuận lợi và tránh những sự cố không mong muốn.\n\n" +
-                "Xin chân thành cảm ơn Quý khách đã tin tưởng và lựa chọn Banana Hospital!\n\n" +
-                "Trân trọng,\n" +
-                "Ban Quản Lý\n" +
-                "BANANA HOSPITAL";
+                string noidung = @"
+<div style='background-color: #f5f5f5; padding: 20px 0; font-family: Arial, sans-serif;'>
+  <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+    <div style='background-color: #006666; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+      BANANA HOSPITAL
+    </div>
+    <div style='padding: 30px; text-align: left;'>
+      <h2 style='color: #333;'>Xác nhận đăng ký lịch khám</h2>
+      <p>Xin chào <strong>Quý khách</strong>,</p>
+
+      <p>Chúc mừng Quý khách đã đăng ký khám thành công với bác sĩ:</p>
+
+      <ul style='list-style: none; padding-left: 0;'>
+          <li>🩺 <strong>Tên bác sĩ:</strong> " + tenBacSi + @"</li>
+          <li>🕒 <strong>Thời gian khám:</strong> " + idgiokham + @"</li>
+          <li>📅 <strong>Ngày khám:</strong> " + idngaykham + @"</li>
+      </ul>
+
+      <p>Quý khách vui lòng đến trước giờ khám khoảng <strong>10 phút</strong> để đảm bảo quy trình khám bệnh được diễn ra thuận lợi và tránh những sự cố không mong muốn.</p>
+
+      <p style='margin-top: 30px;'>Xin chân thành cảm ơn Quý khách đã tin tưởng và lựa chọn <strong>BANANA Hospital</strong>!</p>
+
+      <p>Trân trọng,</p>
+      <p><strong>Ban Quản Lý</strong><br/>BANANA HOSPITAL</p>
+    </div>
+  </div>
+</div>";
 
 
                 sendMai_gmail sendmail = new sendMai_gmail();

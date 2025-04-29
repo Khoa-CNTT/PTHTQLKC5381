@@ -9,6 +9,9 @@
     padding: 2px 0;
 }
 
+#content{
+    height: 100vh;
+}
 
 .seach_bar {
     margin-bottom: 1em;
@@ -71,27 +74,31 @@
         color: #4d4c4c;
     }
 
-    .gridview-table td {
-        padding: 6px;
-        border-top: 1px solid #ccc;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100px;
-        background-color: white;
-    }
+        .gridview-table th a{
+            font-size: 14px;
+        }
+
+        .gridview-table td {
+            padding: 6px;
+            border-top: 1px solid #ccc;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+            background-color: white;
+        }
 
 
     .gridview-table td {
-        font-size: 14px;
+        font-size: 13px;
         word-wrap: break-word;
         background-color: white;
     }
 
         .gridview-table td a {
             margin: 5px 0;
-            font-size: 14px;
+            font-size: 13px;
             text-decoration: none;
             display: block;
             width: 6em;

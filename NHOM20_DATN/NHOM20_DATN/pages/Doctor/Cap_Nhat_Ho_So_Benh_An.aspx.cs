@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,7 @@ namespace NHOM20_DATN.pages.Doctor
     public partial class Cap_Nhat_Ho_So_Benh_An : System.Web.UI.Page
     {
         MedicalRecordService medicalRecordService = new MedicalRecordService();
+        PatientManagerment patientService = new PatientManagerment();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,23 +33,23 @@ namespace NHOM20_DATN.pages.Doctor
         }
 
         //      BTN EDIT
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-            gridMedicalRecord.Columns[0].Visible = true;
-            btnEdit.Visible = false;
-            cancelEdit.Visible = true;
+        //protected void btnEdit_Click(object sender, EventArgs e)
+        //{
+        //    gridMedicalRecord.Columns[0].Visible = true;
+        //    btnEdit.Visible = false;
+        //    cancelEdit.Visible = true;
 
 
 
-        }
+        //}
         //      CANCEL EDITING
-        protected void cancelEdit_Click(object sender, EventArgs e)
-        {
-            gridMedicalRecord.Columns[0].Visible = false;
-            btnEdit.Visible = true;
-            cancelEdit.Visible = false;
+        //protected void cancelEdit_Click(object sender, EventArgs e)
+        //{
+        //    gridMedicalRecord.Columns[0].Visible = false;
+        //    btnEdit.Visible = true;
+        //    cancelEdit.Visible = false;
 
-        }
+        //}
 
 
         //Command event
@@ -70,7 +72,7 @@ namespace NHOM20_DATN.pages.Doctor
                 txtDonThuoc_edit.Text = donthuoc;
                 txtGhiChu_edit.Text = ghichu;
                 pn_Update.Visible = true;
-                cancelEdit.Visible = false;
+                //cancelEdit.Visible = false;
                 string script = "OpenForm();";
                 ScriptManager.RegisterStartupScript(this, GetType(), "display", script, true);
             }
@@ -96,7 +98,7 @@ namespace NHOM20_DATN.pages.Doctor
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 // Close form after finish update
                 pn_Update.Visible = false;
-                cancelEdit.Visible = true;
+                //cancelEdit.Visible = true;
                 // then load page
                 loadData();
             }
@@ -118,7 +120,7 @@ namespace NHOM20_DATN.pages.Doctor
             txtDonThuoc_edit.Text = "";
             txtGhiChu_edit.Text = "";
             pn_Update.Visible = false;
-            cancelEdit.Visible = true;
+            //cancelEdit.Visible = true;
             string script = "CloseForm();";
             ScriptManager.RegisterStartupScript(this, GetType(), "display", script, true);
         }
@@ -156,9 +158,39 @@ namespace NHOM20_DATN.pages.Doctor
             }
             gridMedicalRecord.DataSource = dt;
             gridMedicalRecord.DataBind();
-
-
-
         }
+
+
+        //=========== Xem thông tin bệnh nhân ===============
+        protected void btnDetail_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string idBenhNhan = btn.CommandArgument;
+
+            DataTable dt = patientService.findById(idBenhNhan);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                string details = $@"
+            <div><p><strong>Họ tên:</strong> {row["HoTen"]}</p></div>
+            <div><p><strong>Ngày sinh:</strong> {Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy")}</p></div>
+            <div><p><strong>Giới tính:</strong> {row["GioiTinh"]}</p></div>
+            <div><p><strong>Số điện thoại:</strong> {row["SoDienThoai"]}</p></div>
+            <div><p><strong>Email:</strong> {row["Email"]}</p></div>
+            <div><p><strong>Địa chỉ:</strong> {row["DiaChi"]}</p></div>
+            
+        ";
+                patientDetails.InnerHtml = details;
+                // Hiển thị modal
+                ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
+                    "document.getElementById('detailModal').style.display='block';", true);
+            }
+        }
+
+
+
+
+
     }
 }

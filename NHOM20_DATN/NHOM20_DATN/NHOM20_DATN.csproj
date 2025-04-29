@@ -62,56 +62,21 @@
     <Reference Include="System.Buffers, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.6.0\lib\net462\System.Buffers.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Formats.Asn1, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Formats.Asn1.8.0.1\lib\net462\System.Formats.Asn1.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Memory, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.6.0\lib\net462\System.Memory.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.6.0\lib\net462\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.0\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
-    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.0\lib\net462\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -119,7 +84,6 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DataVisualization" />
-    <Reference Include="System.Web.DataVisualization.Design" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -182,6 +146,7 @@
     <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
     <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
     <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Net.Http.dll" />
     <Content Include="bin\roslyn\System.Net.Sockets.dll" />
     <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
     <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
@@ -216,26 +181,34 @@
     <Content Include="bin\System.ValueTuple.xml" />
     <Content Include="Cau_Hoi_Thuong_Gap.aspx" />
     <Content Include="ChatbotHandler.aspx" />
-    <Content Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx" />
     <Content Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
+    <Content Include="Home_Component\List_Tin_Tuc.aspx" />
+    <Content Include="Home_Component\Tin_Tuc.aspx" />
     <Content Include="img\Anh2.jpg" />
     <Content Include="img\anhnendatlai.jpg" />
     <Content Include="img\Anhquenmatkhau.jpeg" />
     <Content Include="img\anhquenmatkhau.png" />
     <Content Include="img\anhtraidatlai.jpg" />
     <Content Include="img\anhxoalogo.png" />
-    <Content Include="img\icon_lich.png" />
+    <Content Include="img\bacsikientrung.png" />
+    <Content Include="img\bacsiminhtrung.jpg" />
+    <Content Include="img\bacsixuanhai.jpg" />
+    <Content Include="img\bacsi_nguyenthivan.jpg" />
+    <Content Include="img\bacsi_vuhoailinh.jpg" />
+    <Content Include="img\BaiViet\1378decb333cf762ae2d.jpg" />
+    <Content Include="img\BaiViet\new_detail_1.png" />
     <Content Include="img\khoa.png" />
     <Content Include="js\appointment_manager.js" />
+    <Content Include="js\medical_record.js" />
     <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />
     <Content Include="pages\DoctorOnline\Xem_Thong_Tin_Tu_Van.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
-    <Content Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx" />
+    <Content Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx" />
     <Content Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="img\anhnen_huykham.jpeg" />
     <Content Include="Patient\Dat_Lai_Mat_Khau.aspx" />
@@ -328,11 +301,9 @@
     <Content Include="pages\Manager\Quan_Ly_Bac_Si.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Benh_Nhan.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Lich_Kham.aspx" />
-    <Content Include="Patient\Huy_Tu_Van.aspx" />
     <Content Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx" />
     <Content Include="Patient\Quen_Mat_Khau.aspx" />
     <Content Include="style\doctor\doctor_appointment.css" />
-    <Content Include="style\doctor\Doctor_Online.css" />
     <Content Include="style\doctor\doctor_side_style.css" />
     <Content Include="style\doctor\medical_records.css" />
     <Content Include="style\login_content_style.css" />
@@ -343,6 +314,7 @@
     <Content Include="style\manager\NewsManagement_style.css" />
     <Content Include="style\manager\patientManagerment.css" />
     <Content Include="style\manager\QLBaiviet.css" />
+    <Content Include="style\manager\thongkeBN_style.css" />
     <Content Include="style\news_content_style.css" />
     <Content Include="style\new_dt.css" />
     <Content Include="style\Regist_form.css" />
@@ -352,7 +324,8 @@
     <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll.config" />
     <Content Include="Web.config" />
     <Content Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx" />
-    <Content Include="Xem_Lich_Su_Kham.aspx" />
+    <Content Include="Patient\Xem_Lich_Su_Kham.aspx" />
+    <Content Include="pages\Manager\Xuat_Phieu_Kham.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cau_Hoi_Thuong_Gap.aspx.cs">
@@ -368,13 +341,6 @@
     </Compile>
     <Compile Include="ChatbotHandler.aspx.designer.cs">
       <DependentUpon>ChatbotHandler.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx.cs">
-      <DependentUpon>Ho_Tro_Dat_Lich_Kham.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx.designer.cs">
-      <DependentUpon>Ho_Tro_Dat_Lich_Kham.aspx</DependentUpon>
     </Compile>
     <Compile Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx.cs">
       <DependentUpon>Tu_Van_Suc_Khoe_Ban_Dau.aspx</DependentUpon>
@@ -396,6 +362,20 @@
     </Compile>
     <Compile Include="Dang_Nhap.aspx.designer.cs">
       <DependentUpon>Dang_Nhap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home_Component\List_Tin_Tuc.aspx.cs">
+      <DependentUpon>List_Tin_Tuc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home_Component\List_Tin_Tuc.aspx.designer.cs">
+      <DependentUpon>List_Tin_Tuc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home_Component\Tin_Tuc.aspx.cs">
+      <DependentUpon>Tin_Tuc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home_Component\Tin_Tuc.aspx.designer.cs">
+      <DependentUpon>Tin_Tuc.aspx</DependentUpon>
     </Compile>
     <Compile Include="Lien_He.aspx.cs">
       <DependentUpon>Lien_He.aspx</DependentUpon>
@@ -446,12 +426,12 @@
     <Compile Include="pages\Manager\Quan_Ly_Bai_Viet.aspx.designer.cs">
       <DependentUpon>Quan_Ly_Bai_Viet.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx.cs">
-      <DependentUpon>Quan_Ly_Thanh_Toan.aspx</DependentUpon>
+    <Compile Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx.cs">
+      <DependentUpon>Thong_Ke_SL_Benh_Nhan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx.designer.cs">
-      <DependentUpon>Quan_Ly_Thanh_Toan.aspx</DependentUpon>
+    <Compile Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx.designer.cs">
+      <DependentUpon>Thong_Ke_SL_Benh_Nhan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx.cs">
       <DependentUpon>Dang_Ky_Kham_Truc_Tiep.aspx</DependentUpon>
@@ -557,13 +537,6 @@
     <Compile Include="pages\Manager\Quan_Ly_Lich_Kham.aspx.designer.cs">
       <DependentUpon>Quan_Ly_Lich_Kham.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Patient\Huy_Tu_Van.aspx.cs">
-      <DependentUpon>Huy_Tu_Van.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Patient\Huy_Tu_Van.aspx.designer.cs">
-      <DependentUpon>Huy_Tu_Van.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx.cs">
       <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -599,6 +572,7 @@
     <Compile Include="res\service\PatientManagerment.cs" />
     <Compile Include="res\service\PaymentService.cs" />
     <Compile Include="res\service\QlbvService.cs" />
+    <Compile Include="res\service\ThongKe\ThongKeBenhNhanService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
@@ -607,12 +581,19 @@
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.designer.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Xem_Lich_Su_Kham.aspx.cs">
+    <Compile Include="Patient\Xem_Lich_Su_Kham.aspx.cs">
       <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Xem_Lich_Su_Kham.aspx.designer.cs">
+    <Compile Include="Patient\Xem_Lich_Su_Kham.aspx.designer.cs">
       <DependentUpon>Xem_Lich_Su_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Xuat_Phieu_Kham.aspx.cs">
+      <DependentUpon>Xuat_Phieu_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Xuat_Phieu_Kham.aspx.designer.cs">
+      <DependentUpon>Xuat_Phieu_Kham.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -648,7 +629,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="img\BaiViet\" />
     <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>

@@ -373,7 +373,7 @@
                                                 <a class="nav-link active" aria-current="page" href="../Home_Component/Gioi_Thieu.aspx">Giới thiệu</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="TinTuc.aspx">Tin tức</a>
+                                                <a class="nav-link" href="../Home_Component/List_Tin_Tuc.aspx">Tin tức</a>
                                             </li>
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dịch vụ</a>
@@ -382,7 +382,7 @@
                                                     <li><a class="dropdown-item" href="/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
                                                     <li><a class="dropdown-item" href="/Patient/Huy_Kham.aspx">Hủy khám</a></li>
                                                     <li><a class="dropdown-item" href="/Patient/Huy_Tu_Van.aspx">Hủy tư vấn</a></li>
-
+                                                    <li><a class="dropdown-item" href="/Patient/Xem_Lich_Su_Kham.aspx">Xem lịch sử khám</a></li>
                                                 </ul>
                                             </li>
                                             <li class="nav-item dropdown">

@@ -166,15 +166,33 @@ namespace NHOM20_DATN.res.service
             string time = time_db.ToString("HH:mm");
 
             string subject = $"Thông Báo Hủy Lịch Khám Ngày" + day;
-            string description =
-                $"Kính gửi {name},\n\n" +
-                $"Chúng tôi rất tiếc phải thông báo rằng lịch khám của bạn đã bị **hủy**.\n\n" +
-                $"🔹 Mã phiếu: {idPk}\n" +
-                $"🔹 Thời gian: {time} ngày {day}\n" +
-                $"🔹 Lý do hủy: {reason}\n\n" +
-                $"Chúng tôi xin lỗi vì sự bất tiện này và mong bạn thông cảm.\n\n" +
-                $"Trân trọng,\n" +
-                $"Phòng Khám Banana Hospital";
+            string description = $@"
+<div style='background-color: #f5f5f5; padding: 20px 0; font-family: Arial, sans-serif;'>
+  <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+    
+    <div style='background-color: #cc0000; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+      BANANA HOSPITAL
+    </div>
+    
+    <div style='padding: 30px; text-align: left; color: #333;'>
+      <p>Kính gửi <strong>{name}</strong>,</p>
+
+      <p>Chúng tôi rất tiếc phải thông báo rằng lịch khám của bạn đã bị <strong style='color: red;'>hủy</strong>.</p>
+
+      <ul style='list-style: none; padding-left: 0;'>
+        <li>🔹 <strong>Mã phiếu:</strong> {idPk}</li>
+        <li>🔹 <strong>Thời gian:</strong> {time} ngày {day}</li>
+        <li>🔹 <strong>Lý do hủy:</strong> {reason}</li>
+      </ul>
+
+      <p>Chúng tôi xin lỗi vì sự bất tiện này và mong bạn thông cảm.</p>
+
+      <p>Trân trọng,<br/>
+      <strong>Phòng Khám BANANA Hospital</strong></p>
+    </div>
+
+  </div>
+</div>";
 
 
             sendMai_gmail mailSender = new sendMai_gmail();

@@ -66,8 +66,22 @@ a {
     color: #9b9b9b;
 }
 
-@media screen and (min-width: 100px) and (max-device-width: 769px) {
 
+/*CSS HERE*/
+.table_news tbody {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 100px) and (max-device-width: 769px) {
     #container .slide_bar .content_item {
         min-width: 100%;
         padding: 0;

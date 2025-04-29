@@ -105,6 +105,15 @@ namespace NHOM20_DATN.pages.Manager
         protected global::System.Web.UI.WebControls.FileUpload fileImg;
 
         /// <summary>
+        /// imgHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField imgHidden;
+
+        /// <summary>
         /// Button_Addnews control.
         /// </summary>
         /// <remarks>
@@ -112,5 +121,14 @@ namespace NHOM20_DATN.pages.Manager
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button_Addnews;
+
+        /// <summary>
+        /// Button_Close_Addnews control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button_Close_Addnews;
     }
 }

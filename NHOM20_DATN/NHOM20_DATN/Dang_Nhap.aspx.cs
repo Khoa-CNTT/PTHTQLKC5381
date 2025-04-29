@@ -95,10 +95,10 @@ namespace NHOM20_DATN
                     Session["Role"] = "BenhNhan";
                     Session["TenDangNhap"] = username;
 
-                    // Gán trực tiếp vì userId đã là IDBenhNhan
                     Session["IDBenhNhan"] = userId;
 
                     Response.Redirect("Default.aspx");
+
                 }
 
 

@@ -381,15 +381,15 @@
                                                     <li><a class="dropdown-item" href="/Patient/Dang_Ky_Kham_Truc_Tiep.aspx">Đăng ký khám trực tiếp</a></li>
                                                     <li><a class="dropdown-item" href="/Patient/Tu_Van_Suc_Khoe_Truc_Tuyen.aspx">Tư vấn sức khỏe trực tuyến</a></li>
                                                     <li><a class="dropdown-item" href="/Patient/Huy_Kham.aspx">Hủy khám</a></li>
-                                                    <li><a class="dropdown-item" href="HuyTuVan.aspx">Hủy tư vấn</a></li>
+                                                    <li><a class="dropdown-item" href="/Patient/Huy_Tu_Van.aspx">Hủy tư vấn</a></li>
 
                                                 </ul>
                                             </li>
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hướng dẫn</a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="Huong_Dan_Dat_Lich_Kham.aspx">Đặt lịch khám</a></li>
-                                                    <li><a class="dropdown-item" href="Huong_Dan_Quy_Trinh_Di_Kham.aspx">Quy trình đi khám</a></li>
+                                                    <li><a class="dropdown-item" href="../Huong_Dan_Dat_Lich_Kham.aspx">Đặt lịch khám</a></li>
+                                                    <li><a class="dropdown-item" href="../Huong_Dan_Quy_Trinh_Di_Kham.aspx">Quy trình đi khám</a></li>
                                                     <li><a class="dropdown-item" href="../Cau_Hoi_Thuong_Gap.aspx">Câu hỏi thường gặp</a></li>
                                                 </ul>
                                             </li>
@@ -472,11 +472,11 @@
                                 <h4 class="title_footer">HƯỚNG DẪN BỆNH NHÂN :</h4>
                                 <ul id="menu_footercenter">
                                     <li>
-                                        <img style="width: 18px;" src="../img/next.png" /><a style="margin-top: -15px;" href="">Đặt lịch khám</a></li>
+                                        <img style="width: 18px;" src="../img/next.png" /><a style="margin-top: -15px;" href="../Huong_Dan_Dat_Lich_Kham.aspx">Đặt lịch khám</a></li>
                                     <li>
-                                        <img style="width: 18px;" src="../img/next.png" /><a style="margin-top: -15px;" href="">Quy trình đi khám</a></li>
+                                        <img style="width: 18px;" src="../img/next.png" /><a style="margin-top: -15px;" href="../Huong_Dan_Quy_Trinh_Di_Kham.aspx">Quy trình đi khám</a></li>
                                     <li>
-                                        <img style="width: 18px;" src="../img/next.png" /><a style="margin-top: -15px;" href="">Câu hỏi thường gặp</a></li>
+                                        <img style="width: 18px;" src="../img/next.png" /><a style="margin-top: -15px;" href="../Cau_Hoi_Thuong_Gap.aspx">Câu hỏi thường gặp</a></li>
                                 </ul>
                             </div>
                             <div class="col-xl-4">
@@ -504,7 +504,6 @@
                 </div>
             </div>
         </div>
-        <!-- ScriptManager phải đặt trong trang hoặc master page -->
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
 
         <!-- ChatBot ở góc phải -->

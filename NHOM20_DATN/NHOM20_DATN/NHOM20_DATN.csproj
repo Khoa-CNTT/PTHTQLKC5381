@@ -181,6 +181,7 @@
     <Content Include="bin\System.ValueTuple.xml" />
     <Content Include="Cau_Hoi_Thuong_Gap.aspx" />
     <Content Include="ChatbotHandler.aspx" />
+    <Content Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx" />
     <Content Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
@@ -345,6 +346,13 @@
     </Compile>
     <Compile Include="ChatbotHandler.aspx.designer.cs">
       <DependentUpon>ChatbotHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx.cs">
+      <DependentUpon>Ho_Tro_Dat_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Ho_Tro_Dat_Lich_Kham.aspx</DependentUpon>
     </Compile>
     <Compile Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx.cs">
       <DependentUpon>Tu_Van_Suc_Khoe_Ban_Dau.aspx</DependentUpon>

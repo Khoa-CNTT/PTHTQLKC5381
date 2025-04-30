@@ -25,12 +25,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="dropdown-menu" id="dropdown-menu">
-            <ul>
-
-                <li></li>
-            </ul>
-        </div>
         <div id="btn_menu" class="btn_menu" onclick="display_bar()"><i class="fa-solid fa-bars"></i></div>
         <div class="d_flex">
             <div class="ZX">
@@ -41,8 +35,6 @@
                             <i class="fa-regular fa-circle-user"></i>
                             <h4 runat="server" id="doctor_Name"></h4>
                         </div>
-
-
                         <div class="btn-group dropright">
                             <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="Logout_Click">
                     <i class="fa-solid fa-arrow-right-from-bracket" style="font-size:20px;"></i> 
@@ -50,35 +42,13 @@
                         </div>
                     </div>
                     <ul>
-
                         <li>
-
                             <a href="/pages/DoctorOnline/Xem_Thong_Tin_Tu_Van.aspx">
                                 <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Xem thông tin tư vấn</div>
-                            </a></li>
-                        <li>
-                        <li>
-
-                            <a href="/pages/DoctorOnline/Quan_Ly_Thong_Tin_Bac_Si_Online.aspx">
-                                <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Quản lý thông tin cá nhân</div>
-                            </a></li>
-                        <li>
-
-                        <li class="signout-btn">
-
-                            <asp:LinkButton ID="LinkButton1" CssClass="btnOut" runat="server" OnClick="Logout_Click">
-                                 <div>
-                                      Đăng Xuất
-                                      </div>
-                                
-                            </asp:LinkButton>
-
+                            </a>
                         </li>
-
-
+                            <%--Thêm ở đây menu--%> 
                     </ul>
-
-
                 </div>
             </div>
 
@@ -107,9 +77,9 @@
                             if (result.isConfirmed) {
                                 // Gọi postback để kích hoạt sự kiện Logout_Click
                                 __doPostBack('<%= btnDangXuat.UniqueID %>', '');
-                            }
-                        });
-                    });
+                    }
+                });
+            });
                 }
             };
         </script>

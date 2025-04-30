@@ -11,9 +11,6 @@ namespace NHOM20_DATN.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UserID"] = "BS8ED6DB63";
-            Session["Role"] = "BacSi";
-            Session["TenDangNhap"] = "Nguyenx văn việt";
             if (!IsPostBack)
             {
                 if ((string)Session["Role"] == null || (string)Session["Role"] == "")
@@ -26,7 +23,7 @@ namespace NHOM20_DATN.MasterPage
                     Response.Redirect("~/Error_forbidden.html");
                 }
                 string name = (string)Session["TenDangNhap"];
-                doctor_Name.InnerText = name;
+                doctor_Name.InnerText = name.ToUpper();
             }
         }
         protected void Logout_Click(object sender, EventArgs e)

@@ -32,7 +32,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
             string sql;
             SqlParameter[] parameters = null;
 
-            if (Session["Role"].ToString() == "BacSi")
+            if (Session["Role"].ToString() == "BacSiOn")
             {
                 sql = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
                lt.TrieuChung, lt.LinkJitsi AS Link

@@ -26,8 +26,8 @@ namespace NHOM20_DATN.Patient
         private string partnerCode = "MOMO";
         private string accessKey = "F8BBA842ECF85";
         private string secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        private string redirectUrl = "https://f66e-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
-        private string ipnUrl = "https://f66e-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string redirectUrl = "https://3e20-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string ipnUrl = "https://3e20-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -107,7 +107,8 @@ namespace NHOM20_DATN.Patient
                                  orderInfo, orderType, transId, int.Parse(resultCode), message,
                                  payType, responseTime, extraData, signature);
 
-                    Response.Write("<script>console.log('Lưu thanh toán thành công');</script>");
+                    string script = "Swal.fire({ icon: 'success', title: 'Thanh toán thành công', text: 'Thông tin thanh toán đã được ghi nhận!' });";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "thongbao", script, true);
                 }
                 catch (Exception ex)
                 {
@@ -419,13 +420,15 @@ namespace NHOM20_DATN.Patient
             new SqlParameter("@LinkJitsi", linkJitsi)
         };
 
-                // Thực hiện câu lệnh SQL
                 int result = db.CapNhat(sql, parameters);
 
                 // Kiểm tra kết quả và gửi email nếu thành công
                 if (result > 0)
                 {
                     GửiEmailThamSoBenhNhan(idTuVan, idBenhNhan, linkJitsi, ngay, gio);
+
+                    // Hiển thị bảng thông báo
+                    popupThongBao.Visible = true;
                 }
                 else
                 {

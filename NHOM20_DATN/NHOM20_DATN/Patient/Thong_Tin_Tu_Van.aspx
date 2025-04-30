@@ -68,6 +68,38 @@
                 transform: rotate(360deg);
             }
         }
+
+        .popup-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+        }
+
+            .popup-content button {
+                margin-top: 15px;
+                padding: 8px 16px;
+                border: none;
+                background-color: #28a745;
+                color: #fff;
+                border-radius: 6px;
+                cursor: pointer;
+            }
     </style>
 
     <div class="container chitiet">
@@ -165,12 +197,20 @@
                     <asp:Button ID="btnDangKy" runat="server" Text="Đăng Ký" CssClass="btn btn-primary btn-block"
                         OnClick="btnDangKy_Click" OnClientClick="showOverlay(); return true;"
                         ValidationGroup="DangKyGroup" />
+                    <div id="popupThongBao" class="popup-alert" runat="server" visible="false">
+                        <div class="popup-content">
+                            <h4>Đăng ký tư vấn thành công!</h4>
+                            <p>Bạn sẽ nhận được email với thông tin chi tiết.</p>
+                            <button onclick="dongThongBao()">Đóng</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -181,6 +221,11 @@
         function hideOverlay() {
             document.getElementById("loadingOverlay").style.display = "none"; // Ẩn overlay khi hoàn thành
         }
+
+        function dongThongBao() {
+            document.getElementById('<%= popupThongBao.ClientID %>').style.display = 'none';
+        }
     </script>
+
 
 </asp:Content>

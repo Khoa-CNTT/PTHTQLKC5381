@@ -16,7 +16,7 @@ namespace NHOM20_DATN.Patient
             {
                 if (Session["IDBenhNhan"] == null)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Vui lòng đăng nhập!'); window.location='DangNhap.aspx';", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Vui lòng đăng nhập!'); window.location='Dang_Nhap.aspx';", true);
                     btnHuy.Enabled = false;
                 }
             }
@@ -125,8 +125,8 @@ namespace NHOM20_DATN.Patient
                             display: inline-block;
                             margin-top: 20px;
                             padding: 12px 24px;
-                            background-color: #0d6efd;
-                            color: #ffffff;
+                            background-color: #FD1D1D;
+                            color: #FFFFFF;
                             text-decoration: none;
                             border-radius: 5px;
                             font-weight: bold;
@@ -135,7 +135,7 @@ namespace NHOM20_DATN.Patient
                 </head>
                 <body>
                     <div class='email-container'>
-                        <h2 class='email-header'>Xác nhận hủy tư vấn</h2>
+                        <h2 class='email-header'>XÁC NHẬN HỦY TƯ VẤN</h2>
                         <div class='email-content'>
                             <p>Chào bạn,</p>
                             <p>Chúng tôi xin xác nhận rằng yêu cầu hủy tư vấn với mã <strong>" + idTuVan + @"</strong> của bạn đã được xử lý thành công.</p>
@@ -146,7 +146,7 @@ namespace NHOM20_DATN.Patient
                             <p>Chúc bạn một ngày tốt lành! Xin cảm ơn bạn!</p>
                         </div>
                         <div class='email-footer'>
-                            &copy; 2025 Your Company. All rights reserved.
+                            &copy; 2025 Banana Hospital. All rights reserved.
                         </div>
                     </div>
                 </body>
@@ -202,7 +202,18 @@ namespace NHOM20_DATN.Patient
 
         private void ThongBao(string message)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "HideOverlayAndAlert", "hideOverlay(); alert('Hủy tư vấn thành công.');", true);
+            string script = $@"
+        hideOverlay();
+        var msgBox = document.getElementById('successMessage');
+        if (msgBox) {{
+            msgBox.innerText = '{message}';
+            msgBox.style.display = 'block';
+            setTimeout(function() {{
+                msgBox.style.display = 'none';
+            }}, 3000);
+        }}";
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "CustomAlert", script, true);
         }
     }
 }

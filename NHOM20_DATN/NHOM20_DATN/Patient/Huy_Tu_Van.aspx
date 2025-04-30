@@ -116,13 +116,13 @@
             color: #777;
             font-size: 14px;
             margin-bottom: 25px;
-            font-weight:bold;
+            font-weight: bold;
         }
 
         .cancel-header {
             font-size: 24px;
             font-weight: bold;
-            color: #57C785; 
+            color: #57C785;
             display: flex;
             align-items: center;
             gap: 10px; /* Khoảng cách giữa icon và text */
@@ -145,12 +145,14 @@
             <div class="row">
                 <div class="form-container col-xl-6">
                     <h3 class="cancel-header">
-                        <img src="../img/icon_lich.png" style="width:30px; height:30px;" />Hủy Tư Vấn
+                        <img src="../img/icon_lich.png" style="width: 30px; height: 30px;" />Hủy Tư Vấn
                     </h3>
                     <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
                     <asp:Label ID="lblErrorMessage" runat="server" CssClass="text-danger"></asp:Label>
                     <hr />
-                    <p class="sub-text">Nhập mã tư vấn bạn muốn hủy. <br />Chúng tôi rất tiếc khi phải hủy lịch hẹn của bạn.</p>
+                    <p class="sub-text">Nhập mã tư vấn bạn muốn hủy.
+                        <br />
+                        Chúng tôi rất tiếc khi phải hủy lịch hẹn của bạn.</p>
                     <br />
                     <div class="form-group">
                         <label for="lblIDTuVan">Nhập mã ID tư vấn:</label><br />
@@ -173,6 +175,9 @@
                     <img style="width: 125%" src="../img/camketbacsi.png" />
                 </div>
             </div>
+        </div>
+        <div id="successMessage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background-color: #d4edda; color: #155724; padding: 20px 40px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 9999; font-size: 18px; text-align: center;">
+            Hủy tư vấn thành công.
         </div>
     </div>
     <script>

@@ -119,7 +119,7 @@
                 </li>
             </ul>
             <div class="btn-group dropright">
-                <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="Logout_Click">
+                <%--<asp:LinkButton ID="btnDangXuat" runat="server" OnClick="Logout_Click">--%>
             </div>
 
             <!-- Content -->

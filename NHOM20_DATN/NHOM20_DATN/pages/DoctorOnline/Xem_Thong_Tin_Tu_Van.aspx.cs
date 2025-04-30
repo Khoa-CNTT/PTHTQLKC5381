@@ -108,7 +108,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
 
             DateTime ngay = DateTime.ParseExact(ngayKham, "yyyy-MM-dd", null);
 
-            if (Session["Role"].ToString() == "BacSi")
+            if (Session["Role"].ToString() == "BacSiOn")
             {
                 query = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
                  lt.TrieuChung, lt.LinkJitsi AS Link
@@ -146,7 +146,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
             string query_list;
             SqlParameter[] pr;
 
-            if (Session["Role"].ToString() == "BacSi")
+            if (Session["Role"].ToString() == "BacSiOn")
             {
                 query_list = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
                       lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
@@ -190,7 +190,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
             SqlParameter[] pr;
             string searchTerm = "%" + searchText + "%"; // Thêm wildcard để tìm kiếm phần tử
 
-            if (Session["Role"].ToString() == "BacSi")
+            if (Session["Role"].ToString() == "BacSiOn")
             {
                 sql_search = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, 
                      lt.Ngay, lt.Gio, lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai

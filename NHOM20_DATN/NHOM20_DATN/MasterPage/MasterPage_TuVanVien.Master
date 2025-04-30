@@ -117,15 +117,15 @@
                         <i class="fas fa-file-medical"></i>Hỗ trợ đặt lịch khám
                     </a>
                 </li>
-                <%-- Thêm các mục khác tại đây --%>
             </ul>
-        </div>
+            <div class="btn-group dropright">
+                <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="Logout_Click">
+            </div>
 
-        <!-- Content -->
-        <div class="main-content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
-        </div>
-
+            <!-- Content -->
+            <div class="main-content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+            </div>
     </form>
 
     <!-- Bootstrap JS -->

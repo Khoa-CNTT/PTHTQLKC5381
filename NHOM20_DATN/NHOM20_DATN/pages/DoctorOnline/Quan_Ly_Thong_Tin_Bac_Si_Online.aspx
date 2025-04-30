@@ -59,13 +59,19 @@
         <h2 class="text-center">Thông tin cá nhân - Bác sĩ Online</h2>
 
         <asp:DetailsView ID="dvThongTin" runat="server" AutoGenerateRows="False" DefaultMode="Edit"
-            CssClass="table table-bordered table-striped">
+            CssClass="table table-bordered table-striped"
+            OnItemUpdating="dvThongTin_ItemUpdating"
+            OnModeChanging="dvThongTin_ModeChanging">
             <Fields>
-                <asp:BoundField DataField="HoTen" HeaderText="👨‍⚕️ Họ tên" />
+                <asp:BoundField DataField="HoTen" HeaderText="👨‍⚕️ Họ tên" ReadOnly="True" />
                 <asp:BoundField DataField="ChuyenKhoa" HeaderText="🏥 Chuyên khoa" ReadOnly="True" />
                 <asp:BoundField DataField="TrinhDo" HeaderText="🎓 Trình độ" />
+                <asp:BoundField DataField="DiaChiPhongKham" HeaderText="📍 Địa chỉ phòng khám" />
                 <asp:BoundField DataField="SoDienThoai" HeaderText="📱 Số điện thoại" />
                 <asp:BoundField DataField="Email" HeaderText="📧 Email" />
+                <asp:BoundField DataField="VaiTro" HeaderText="🧩 Vai trò" ReadOnly="True" />
+                <asp:ImageField DataImageUrlField="HinhAnh" HeaderText="🖼 Ảnh đại diện" ReadOnly="True" ControlStyle-Width="100px" ControlStyle-Height="100px" />
+
                 <asp:CommandField ShowEditButton="True" UpdateText="💾 Lưu" CancelText="❌ Hủy" EditText="✏️ Sửa" />
             </Fields>
         </asp:DetailsView>

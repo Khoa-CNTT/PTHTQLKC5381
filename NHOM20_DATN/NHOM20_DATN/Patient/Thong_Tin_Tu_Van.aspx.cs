@@ -107,7 +107,8 @@ namespace NHOM20_DATN.Patient
                                  orderInfo, orderType, transId, int.Parse(resultCode), message,
                                  payType, responseTime, extraData, signature);
 
-                    Response.Write("<script>console.log('Lưu thanh toán thành công');</script>");
+                    string script = "Swal.fire({ icon: 'success', title: 'Thanh toán thành công', text: 'Thông tin thanh toán đã được ghi nhận!' });";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "thongbao", script, true);
                 }
                 catch (Exception ex)
                 {

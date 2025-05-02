@@ -136,9 +136,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                            <asp:LinkButton ID="btnDangXuat" runat="server" CssClass="btn btn-danger" OnClick="Logout_Click">
+                            <%--<asp:LinkButton ID="btnDangXuat" runat="server" CssClass="btn btn-danger" OnClick="Logout_Click">
                              Đăng xuất
-                            </asp:LinkButton>
+                            </asp:LinkButton>--%>
                         </div>
                     </div>
                 </div>

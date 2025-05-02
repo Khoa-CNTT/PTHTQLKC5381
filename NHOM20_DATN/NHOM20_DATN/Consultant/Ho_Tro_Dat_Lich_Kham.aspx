@@ -7,7 +7,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            overflow-y: auto;
+          
         }
 
         body {
@@ -126,10 +126,10 @@
             border-radius: 4px;
             font-size: 14px;
             cursor: pointer;
-            margin-top: 10px;
-            width: 110px;
+            margin-top: 20px;
+            width: 110px !important;
             font-weight:bold;
-            font-family:'Times New Roman', Times, serif
+            font-family:'Times New Roman', Times, serif;
             
         }
             .btn-submitt:hover {

@@ -114,7 +114,7 @@ namespace NHOM20_DATN.Consultant
             DateTime today = DateTime.Today;
             var listDates = new List<NgayKhamInfo>();
 
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 7; i++)
             {
                 DateTime d = today.AddDays(i);
                 listDates.Add(new NgayKhamInfo
@@ -451,7 +451,8 @@ namespace NHOM20_DATN.Consultant
                     MAX(CASE WHEN TrangThai = 'DaHuy' THEN 1 ELSE 0 END) as CoLichDaHuy
                 FROM LichKhamBenhNhan 
                 WHERE IDBenhNhan = @IDBenhNhan 
-                AND CAST(NgayKham AS DATE) = CAST(@NgayKham AS DATE)";
+                AND CAST(NgayKham AS DATE) = CAST(@NgayKham AS DATE)
+                AND TrangThai <> 'DaHuy'";
 
             SqlParameter[] checkDuplicateParams = {
                 new SqlParameter("@IDBenhNhan", idBenhNhan),
@@ -465,18 +466,6 @@ namespace NHOM20_DATN.Consultant
             {
 
                 int soLuong = Convert.ToInt32(dtDuplicate.Rows[0]["SoLuong"]);
-
-                if (soLuong > 0)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
-                        "Swal.fire({ " +
-                        "title: 'Đã đăng ký', " +
-                        "text: 'Bệnh nhân đã đăng ký khám trong ngày này. Mỗi bệnh nhân chỉ được đăng ký một lần mỗi ngày.', " +
-                        "icon: 'warning', " +
-                        "confirmButtonText: 'OK' " +
-                        "});", true);
-                    return;
-                }
                 bool coLichDangKy = dtDuplicate.Rows[0]["CoLichDangKy"] != DBNull.Value && Convert.ToInt32(dtDuplicate.Rows[0]["CoLichDangKy"]) == 1;
                 bool coLichDaHuy = dtDuplicate.Rows[0]["CoLichDaHuy"] != DBNull.Value && Convert.ToInt32(dtDuplicate.Rows[0]["CoLichDaHuy"]) == 1;
 
@@ -484,22 +473,22 @@ namespace NHOM20_DATN.Consultant
                 {
                     // Lấy thông tin lịch khám hiện có
                     string existingAppointmentSql = @"
-                    SELECT TOP 1 
-                        b.HoTen as TenBacSi,
-                        p.TenPhongKham,
-                        lk.NgayKham,
-                        lk.ThoiGianKham
-                    FROM LichKhamBenhNhan lk
-                    JOIN BacSi b ON lk.IDBacSi = b.IDBacSi
-                    JOIN PhongKham p ON lk.SoPhongKham = p.IDPhongKham
-                    WHERE lk.IDBenhNhan = @IDBenhNhan
-                    AND CAST(lk.NgayKham AS DATE) = CAST(@NgayKham AS DATE)
-                    AND lk.TrangThai = 'DaDangKy'";
+                        SELECT TOP 1 
+                            b.HoTen as TenBacSi,
+                            p.TenPhongKham,
+                            lk.NgayKham,
+                            lk.ThoiGianKham
+                        FROM LichKhamBenhNhan lk
+                        JOIN BacSi b ON lk.IDBacSi = b.IDBacSi
+                        JOIN PhongKham p ON lk.SoPhongKham = p.IDPhongKham
+                        WHERE lk.IDBenhNhan = @IDBenhNhan
+                        AND CAST(lk.NgayKham AS DATE) = CAST(@NgayKham AS DATE)
+                        AND lk.TrangThai = 'DaDangKy'";
 
-                    SqlParameter[] existingAppointmentParams = {
-            new SqlParameter("@IDBenhNhan", idBenhNhan),
-            new SqlParameter("@NgayKham", idngaykham)
-        };
+                                SqlParameter[] existingAppointmentParams = {
+                        new SqlParameter("@IDBenhNhan", idBenhNhan),
+                        new SqlParameter("@NgayKham", idngaykham)
+                    };
 
                     DataTable dtExisting = checkDbb.docdulieu(existingAppointmentSql, existingAppointmentParams);
 
@@ -537,6 +526,7 @@ namespace NHOM20_DATN.Consultant
                         "});", true);
                     return;
                 }
+
                 // Kiểm tra số lượng bệnh nhân đã đăng ký trong khung giờ
                 string checkSql = "SELECT COUNT(*) FROM PhieuKham WHERE NgayKham = @NgayKham AND ThoiGianKham = @ThoiGianKham AND IDBacSi = @IDBacSi";
                 SqlParameter[] checkParams = {
@@ -561,23 +551,26 @@ namespace NHOM20_DATN.Consultant
                 }
 
 
-                //string newIdLKBN = "LKBN" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
                 string newId = "PK" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
-                //string newIdLKBS = "LKBS" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
+                string newIdlsk = "LS" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
 
 
                 string insertSql = "INSERT INTO PhieuKham (IDPhieu, IDBenhNhan, IDBacSi, IDPhongKham, IDChuyenKhoa, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi, NgayKham, ThoiGianKham, TrieuChung,  IDBuoi) " +
                            "VALUES (@IDPhieu, @IDBenhNhan, @IDBacSi, @IDPhongKham, @IDChuyenKhoa, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai, @Email, @DiaChi, @NgayKham, @ThoiGianKham, @TrieuChung, @IDBuoi)";
-                string inserthsba = "INSERT INTO HoSoBenhAn (IDBS,IDBN) " +
-                         "VALUES (@IDBacSi,@IDBenhNhan)";
+
+                string inserthsba = "INSERT INTO HoSoBenhAn (IDBS, IDBN, IDLSK) " +
+                     "VALUES (@IDBacSi, @IDBenhNhan, @IDLSK)";
+
+                string insertlsk = "INSERT INTO LichSuKham (IDLichSu, IDBenhNhan, IDPhieu) " +
+                     "VALUES (@IDLichSu, @IDBenhNhan, @IDPhieu)";
 
                 string insertlkbs = "INSERT INTO LichKhamBacSi (IDBenhNhan, IDBacsi,IDPhieu,NgayKham,ThoiGianKham,SoPhongKham,IDBuoi) " +
                          "VALUES (@IDBenhNhan, @IDBacSi,@IDPhieu, @NgayKham, @ThoiGianKham, @SoPhongKham,@IDBuoi)";
 
                 string insertlkbn = "INSERT INTO LichKhamBenhNhan(IDBenhNhan,IDPhieu,IDBuoi,TrangThai,NgayKham,ThoiGianKham)" +
                     "VALUES (@IDBenhNhan,@IDPhieu,@IDBuoi,@TrangThai,@NgayKham,@ThoiGianKham)";
+
                 SqlParameter[] parametersForLkbs = {
-                //new SqlParameter("@ID", newIdLKBS),
                 new SqlParameter("@IDBacSi", idBacSi),
                 new SqlParameter("@NgayKham", idngaykham),
                 new SqlParameter("@ThoiGianKham", idgiokham),
@@ -602,12 +595,16 @@ namespace NHOM20_DATN.Consultant
 
                 SqlParameter[] parametersHSBA =
               {
-                //new SqlParameter("@ID", newIdLKBN),
-                 new SqlParameter("@IDBacSi", idBacSi),
+                new SqlParameter("@IDBacSi", idBacSi),
                 new SqlParameter("@IDBenhNhan", idBenhNhan),
+                new SqlParameter("@IDLSK", newIdlsk)
 
             };
-
+                SqlParameter[] parametersLSK = {
+                new SqlParameter("@IDLichSu", newIdlsk),
+                new SqlParameter("@IDBenhNhan", idBenhNhan),
+                new SqlParameter("@IDPhieu", newId)
+            };
 
 
                 SqlParameter[] parametersForPhieuKham = {
@@ -627,17 +624,13 @@ namespace NHOM20_DATN.Consultant
                 new SqlParameter("@TrieuChung", lyDoKham),
                 new SqlParameter("@IDBuoi", buoiKham)
             };
-                LopKetNoi kb = new LopKetNoi();
-                int result = kb.CapNhat(insertSql, parametersForPhieuKham);
 
-                LopKetNoi lkbs = new LopKetNoi();
-                int resultLkbs = lkbs.CapNhat(insertlkbs, parametersForLkbs);
-
-                LopKetNoi lkbn = new LopKetNoi();
-                int resultLkbn = lkbn.CapNhat(insertlkbn, parametersLKBN);
-
-                LopKetNoi HSBA = new LopKetNoi();
-                int resultHSBA = HSBA.CapNhat(inserthsba, parametersHSBA);
+                LopKetNoi kn = new LopKetNoi();
+                int result = kn.CapNhat(insertSql, parametersForPhieuKham);
+                int resultLkbs = kn.CapNhat(insertlkbs, parametersForLkbs);
+                int resultLkbn = kn.CapNhat(insertlkbn, parametersLKBN);
+                int resultLSK = kn.CapNhat(insertlsk, parametersLSK);
+                int resultHSBA = kn.CapNhat(inserthsba, parametersHSBA);
 
 
 
@@ -649,7 +642,7 @@ namespace NHOM20_DATN.Consultant
                     string sqlTenBacSi = "SELECT HoTen FROM BacSi WHERE IDBacSi = @IDBacSi";
                     SqlParameter[] paramTenBacSi = new SqlParameter[]
                     {
-        new SqlParameter("@IDBacSi", idBacSi)
+                     new SqlParameter("@IDBacSi", idBacSi)
                     };
                     LopKetNoi kbt = new LopKetNoi();
                     DataTable userData = kbt.docdulieu(sqlTenBacSi, paramTenBacSi);

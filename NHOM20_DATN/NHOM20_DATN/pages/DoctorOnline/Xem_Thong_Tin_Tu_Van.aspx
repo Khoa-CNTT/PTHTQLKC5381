@@ -526,7 +526,13 @@
                     <asp:BoundField DataField="Ngay" HeaderText="Ngày Tư Vấn" DataFormatString="{0:dd/MM/yyyy}" />
                     <asp:BoundField DataField="Gio" HeaderText="Giờ Tư Vấn" />
                     <asp:BoundField DataField="TrieuChung" HeaderText="Triệu Chứng" />
-                   <asp:BoundField DataField="Link" HeaderText="Link Jitsi" />
+                   <asp:TemplateField HeaderText="Link Jitsi">
+                        <ItemTemplate>
+                            <a href='<%# Eval("Link") %>' target="_blank" title="Mở phòng tư vấn">
+                                <%# Eval("Link") %>
+                            </a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Thao tác">
                         <ItemTemplate>
                             <asp:Button ID="btnDetail" runat="server" Text="Xem chi tiết" 

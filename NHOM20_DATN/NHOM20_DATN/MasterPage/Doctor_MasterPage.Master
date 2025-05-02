@@ -82,7 +82,7 @@
                         <li>
                             <a href="/pages/Doctor/Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx">
                                 <div class="contain-tttv">
-                                    <i class="fa-solid fa-phone"></i>Quản lý thông tin cá nhân
+                                    <i class="fa-solid fa-user-lock"></i>Quản lý thông tin cá nhân
                                 </div>
                             </a>
 

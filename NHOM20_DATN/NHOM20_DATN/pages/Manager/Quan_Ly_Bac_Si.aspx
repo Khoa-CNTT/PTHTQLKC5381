@@ -81,7 +81,7 @@
        <asp:HiddenField runat="server" ID="lastSortExpression" />
        <div id="list_here">
 
-           <div class="d_flex">
+           <div id="contain-search-filter" class="d_flex">
                <div class="seach_bar">
                    <asp:TextBox ID="txt_Searching" placeholder="Tìm kiếm" runat="server"></asp:TextBox>
                    <asp:LinkButton ID="btn_Search" CssClass="btn_search" OnClick="btn_Search_Click" runat="server"><i class="fa-solid fa-magnifying-glass"></i> </asp:LinkButton>

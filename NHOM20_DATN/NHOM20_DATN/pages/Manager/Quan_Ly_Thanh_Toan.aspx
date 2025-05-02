@@ -7,6 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
+
+        .contain-qltt{
+             background-color: #d9d9d96e;
+        }
+
         .filter-buttons {
             margin-bottom: 20px;
         }

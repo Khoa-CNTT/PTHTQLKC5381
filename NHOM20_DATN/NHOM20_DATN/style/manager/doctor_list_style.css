@@ -1,5 +1,5 @@
 ﻿#list_here {
-    margin-top: 3em;
+    margin-top: 10px;
     max-width: fit-content;
 }
 
@@ -14,22 +14,23 @@
 }
 
 .seach_bar {
-    margin-bottom: 1em;
+  
 }
 
     .seach_bar input, .filter_bar select {
         padding: 0.4em 1em;
         border: 1px solid #ccc;
-        border-radius: 1em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
 .btn_search {
     padding: 0.6em 2em;
-    background: #95e4c8;
+    background: #191aff87;
     text-decoration: none;
     color: azure;
     font-weight: 600;
-    border-radius: 1em;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
     .btn_search:hover {
@@ -68,7 +69,7 @@
         border-bottom: 1px solid #ccc;
         text-align: center;
         white-space: nowrap;
-        background-color: #72c1f6;
+        background-color: #b3e0ff;
         overflow: hidden;
         text-overflow: ellipsis;
         color: #4d4c4c;
@@ -104,6 +105,7 @@
             width: 6em;
             border-radius: 5em;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
 
@@ -234,8 +236,41 @@
 }
 
 .table_doctor {
-    box-shadow: 0 0 5px #888888;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+#contain-search-filter {
+    background-color: white;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media only screen and (max-width: 1500px) {
@@ -411,6 +446,7 @@
         border: 1px solid #ccc;
         width: 80%;
         border-radius: 1em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .ddl_filter option {

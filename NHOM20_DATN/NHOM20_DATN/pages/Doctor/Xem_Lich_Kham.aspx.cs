@@ -184,7 +184,7 @@ namespace NHOM20_DATN
                 hiddenOldDay.Value = dayWork;
                 hiddenOldTime.Value = timeWork;
                 string docID = (string)Session["UserID"];
-                //string docID = "TK001";
+                
                 pn_AT.Visible = true;
                 lbl_idPk.Text = idPk;
                 //Reset list giờ
@@ -196,6 +196,7 @@ namespace NHOM20_DATN
                 {
                     ListItem item = new ListItem("Lịch làm của bạn đã Full", "");
                     ddl_aT.Items.Add(item);
+                    return;
                 }
                 else
                 {

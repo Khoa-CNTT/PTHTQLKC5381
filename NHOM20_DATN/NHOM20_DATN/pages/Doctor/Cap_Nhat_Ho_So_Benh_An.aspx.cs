@@ -133,7 +133,6 @@ namespace NHOM20_DATN.pages.Doctor
             gridMedicalRecord.DataSource = dt;
             gridMedicalRecord.PageIndex = e.NewPageIndex;
             gridMedicalRecord.DataBind();
-
         }
         //              Search
         protected void btn_Search_Click(object sender, EventArgs e)
@@ -145,7 +144,6 @@ namespace NHOM20_DATN.pages.Doctor
 
             if (!(dt.Rows.Count >= 1))
             {
-
                 string message = "Không tìm thấy bệnh nhân";
                 string script = "ShowAlert('" + message + "','error');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);

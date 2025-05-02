@@ -8,6 +8,11 @@
 
 .search_container {
     gap: 3em;
+    background-color: #eeeeee82;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 13px;
+    box-shadow: 1px 2px 5px grey;
 }
 
 .d_block {
@@ -125,13 +130,13 @@
 
 
 .seach_bar {
-    margin-bottom: 1em;
+    
 }
 
     .seach_bar input, .filter_bar select {
         padding: 0.4em 1em;
         border: 1px solid #ccc;
-        border-radius: 1em;
+        
     }
 
 .btn_search {
@@ -180,7 +185,7 @@
 
 
     .gridview-table th {
-        background-color: #72c1f6;
+        background-color: #e0e0e0;
         color: #4d4c4c;
     }
 
@@ -327,6 +332,13 @@ table tr:first-child th:last-child {
     display: grid;
     grid-template-columns: auto auto;
     gap: 1em;
+}
+
+.table_doctor {
+    padding: 10px;
+    border-radius: 10px;
+    background: #ffffff85;
+    box-shadow: 1px 2px 5px grey;
 }
 /*===========PC==================*/
 @media only screen and (max-width: 1500px) {

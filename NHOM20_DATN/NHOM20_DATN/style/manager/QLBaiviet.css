@@ -28,6 +28,7 @@
     margin: 2em 0;
     background: #f2f2f2a6;
     border-radius: 15px;
+    box-shadow: 5px 5px 20px grey;
 }
 
     #container .slide_bar .content_item img {

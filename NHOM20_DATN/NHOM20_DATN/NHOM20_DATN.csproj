@@ -308,6 +308,7 @@
     <Content Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx" />
     <Content Include="Patient\Quen_Mat_Khau.aspx" />
     <Content Include="style\doctor\doctor_appointment.css" />
+    <Content Include="style\doctor\Doctor_Online.css" />
     <Content Include="style\doctor\doctor_side_style.css" />
     <Content Include="style\doctor\medical_records.css" />
     <Content Include="style\login_content_style.css" />

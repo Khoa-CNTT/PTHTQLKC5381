@@ -119,7 +119,7 @@ namespace NHOM20_DATN
             var listDates = new List<dynamic>();
 
             // Ví dụ: hiển thị hôm nay và 3 ngày tiếp theo (4 ngày tổng cộng)
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < 7; i++)
             {
                 DateTime d = today.AddDays(i);
                 listDates.Add(new
@@ -419,7 +419,7 @@ namespace NHOM20_DATN
 
 
             // Kiểm tra xem bệnh nhân đã đăng ký trong ngày chưa
-            string checkDuplicateSql = "SELECT COUNT(*) FROM LichKhamBenhNhan WHERE IDBenhNhan = @IDBenhNhan AND CAST(NgayKham AS DATE) = CAST(@NgayKham AS DATE)";
+            string checkDuplicateSql = "SELECT COUNT(*) FROM LichKhamBenhNhan WHERE IDBenhNhan = @IDBenhNhan AND CAST(NgayKham AS DATE) = CAST(@NgayKham AS DATE) AND TrangThai <> 'DaHuy'";
             SqlParameter[] checkDuplicateParams = {
         new SqlParameter("@IDBenhNhan", idBenhNhan),
         new SqlParameter("@NgayKham", idngaykham)
@@ -466,12 +466,14 @@ namespace NHOM20_DATN
             //string newIdLKBN = "LKBN" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
             string newId = "PK" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
             //string newIdLKBS = "LKBS" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
-
+            string newIdlsk = "LS" + Guid.NewGuid().ToString().Substring(0, 6).ToUpper();
 
             string insertSql = "INSERT INTO PhieuKham (IDPhieu, IDBenhNhan, IDBacSi, IDPhongKham, IDChuyenKhoa, HoTen, NgaySinh, GioiTinh, SoDienThoai, Email, DiaChi, NgayKham, ThoiGianKham, TrieuChung,  IDBuoi) " +
                        "VALUES (@IDPhieu, @IDBenhNhan, @IDBacSi, @IDPhongKham, @IDChuyenKhoa, @HoTen, @NgaySinh, @GioiTinh, @SoDienThoai, @Email, @DiaChi, @NgayKham, @ThoiGianKham, @TrieuChung, @IDBuoi)";
-            string inserthsba = "INSERT INTO HoSoBenhAn (IDBS,IDBN) " +
-                     "VALUES (@IDBacSi,@IDBenhNhan)";
+            string inserthsba = "INSERT INTO HoSoBenhAn (IDBS,IDBN,IDLSK) " +
+                     "VALUES (@IDBacSi,@IDBenhNhan,@IDLSK)";
+            string insertlsk = "INSERT INTO LichSuKham (IDLichSu,IDBenhNhan,IDPhieu) " +
+                     "VALUES (@IDLichSu,@IDBenhNhan,@IDPhieu)";
 
             string insertlkbs = "INSERT INTO LichKhamBacSi (IDBenhNhan, IDBacsi,IDPhieu,NgayKham,ThoiGianKham,SoPhongKham,IDBuoi) " +
                      "VALUES (@IDBenhNhan, @IDBacSi,@IDPhieu, @NgayKham, @ThoiGianKham, @SoPhongKham,@IDBuoi)";
@@ -507,10 +509,18 @@ namespace NHOM20_DATN
                 //new SqlParameter("@ID", newIdLKBN),
                  new SqlParameter("@IDBacSi", idBacSi),
                 new SqlParameter("@IDBenhNhan", idBenhNhan),
-               
+                new SqlParameter("@IDLSK", newIdlsk)
             };
 
+            SqlParameter[] parametersLSK =
+        {
+                //new SqlParameter("@ID", newIdLKBN),
+                new SqlParameter("@IDLichSu", newIdlsk),
+                
+                new SqlParameter("@IDBenhNhan", idBenhNhan),
+                 new SqlParameter("@IDPhieu", newId)
 
+            };
 
             SqlParameter[] parametersForPhieuKham = {
         new SqlParameter("@IDPhieu", newId),
@@ -538,10 +548,13 @@ namespace NHOM20_DATN
             LopKetNoi lkbn = new LopKetNoi();
             int resultLkbn = lkbn.CapNhat(insertlkbn, parametersLKBN);
 
+            LopKetNoi LSK = new LopKetNoi();
+            int resultLSK = LSK.CapNhat(insertlsk, parametersLSK);
+
             LopKetNoi HSBA = new LopKetNoi();
             int resultHSBA = HSBA.CapNhat(inserthsba, parametersHSBA);
 
-            
+           
 
 
 

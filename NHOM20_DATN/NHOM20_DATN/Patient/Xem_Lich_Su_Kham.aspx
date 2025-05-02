@@ -22,7 +22,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f7fa;
-            position:relative;
+           
         }
         
         .health-header {
@@ -145,7 +145,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1050;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
@@ -261,11 +261,9 @@
                 padding: 20px;
             }
         }
-        .MAT{
-            position:absolute;
-            margin-left:1275px;
-            margin-top:-190px;
-        }
+       #detailModal{
+           z-index:9999;
+       }
     </style>
 </asp:Content>
 
@@ -301,9 +299,7 @@
     </Columns>
 </asp:GridView>
     </div>
-    <div class="MAT">
-        <i class='bx bx-show'></i>
-    </div>
+  
     <!-- Modal -->
     <div id="detailModal" class="modal">
         <div class="modal-content">

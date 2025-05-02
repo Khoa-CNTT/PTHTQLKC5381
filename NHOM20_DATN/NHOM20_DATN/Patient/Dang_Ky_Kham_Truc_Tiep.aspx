@@ -462,7 +462,7 @@
                 <!--<button type="submit" id="btnPayment" class="btn btn-primary">Thanh toán với VNPay</button>-->
                 <div class="form-group col-6" style="display: flex; align-items: center;">
                     <!-- Link câu hỏi -->
-                    <a class="question" data-answer="Hãy chọn phần dịch vụ --> Hủy Khám">Bạn muốn biết phiếu khám?</a>
+                   <a class="question" onclick="showAnswer('Hãy chọn vào đây &rarr; <a href=\'Huy_Kham.aspx\'>Hủy Khám</a>')">Bạn muốn biết phiếu khám?</a>
                 </div>
             </div>
         </div>
@@ -488,16 +488,13 @@
 
     <script>
         // Xử lý hiển thị modal khi click vào câu hỏi
-        var questions = document.querySelectorAll('.question');
-        questions.forEach(function (question) {
-            question.addEventListener('click', function () {
-                var answer = this.getAttribute('data-answer');
-                document.getElementById('modal-text').textContent = answer;
-                document.getElementById('question-modal').style.display = 'block';
-            });
-        });
+        function showAnswer(answerHtml) {
+            document.getElementById("modal-text").innerHTML = answerHtml;
+            document.getElementById("question-modal").style.display = "block";
+        }
+
         function closeModal() {
-            document.getElementById('question-modal').style.display = 'none';
+            document.getElementById("question-modal").style.display = "none";
         }
         window.onclick = function (event) {
             var modal = document.getElementById('question-modal');

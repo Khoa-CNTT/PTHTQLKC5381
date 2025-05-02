@@ -208,6 +208,7 @@
     <Content Include="pages\DoctorOnline\Quan_Ly_Thong_Tin_Bac_Si_Online.aspx" />
     <Content Include="pages\DoctorOnline\Xem_Thong_Tin_Tu_Van.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
+    <Content Include="pages\Doctor\Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx" />
@@ -430,6 +431,13 @@
     </Compile>
     <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.designer.cs">
       <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Doctor\Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx.cs">
+      <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Doctor\Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx.designer.cs">
+      <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Doctor\Xem_Lich_Kham.aspx.cs">
       <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>

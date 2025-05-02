@@ -13,5 +13,12 @@ namespace NHOM20_DATN.MasterPage
         {
 
         }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/Dang_Nhap.aspx");
+        }
     }
 }

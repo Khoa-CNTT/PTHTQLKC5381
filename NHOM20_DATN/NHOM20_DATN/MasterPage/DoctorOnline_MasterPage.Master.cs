@@ -23,7 +23,7 @@ namespace NHOM20_DATN.MasterPage
                     Response.Redirect("~/Error_forbidden.html");
                 }
                 string name = (string)Session["TenDangNhap"];
-                doctor_Name.InnerText = name;
+                doctor_Name.InnerText = name.ToUpper();
             }
         }
         protected void Logout_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Org.BouncyCastle.Crypto;
 
 namespace NHOM20_DATN
 {
@@ -42,26 +43,62 @@ namespace NHOM20_DATN
         {
             string docId = (string)Session["UserID"];
 
-            // Cập nhật trạng thái thành 'DaHuy' thay vì xóa
-            string sql = @"UPDATE LichKhamBenhNhan 
-                  SET TrangThai = 'DaHuy', Ghichu = @reason 
-                  WHERE IDPhieu = @idPk";
+            // Gửi mail trước khi xóa dữ liệu
+            DoctorService.mailCancelAppointment(idPk, reason);
 
-            SqlParameter[] pr = new SqlParameter[] {
-        new SqlParameter("@idPk", idPk),
-        new SqlParameter("@reason", reason) // Lưu lý do hủy vào Ghichu
-    };
+            // Lấy IDLichSu từ LichSuKham
+            string sql_idlsk = "SELECT IDLichSu FROM LichSuKham WHERE IDPhieu = @idPk";
+            SqlParameter[] parameters = { new SqlParameter("@idPk", idPk) };
 
-            int result =kn.CapNhat(sql, pr);
+            LopKetNoi kn = new LopKetNoi();
+            DataTable dt = kn.docdulieu(sql_idlsk, parameters);
 
-            if (result > 0)
+            // Nếu tồn tại IDLichSu thì mới thực hiện xóa HoSoBenhAn
+            if (dt.Rows.Count > 0)
             {
-                DoctorService.mailCancelAppointment(idPk, reason);
+                string idLSK = dt.Rows[0]["IDLichSu"].ToString();
+
+                // Thực hiện xóa theo đúng thứ tự
+                string sql = @"
+            DELETE FROM HoSoBenhAn
+            WHERE IDLSK = @idLSK;
+
+            DELETE FROM LichSuKham
+            WHERE IDPhieu = @idPk;
+
+            DELETE FROM LichKhamBacSi
+            WHERE IDPhieu = @idPk;
+
+            UPDATE LichKhamBenhNhan 
+            SET TrangThai = 'DaHuy', Ghichu = @reason 
+            WHERE IDPhieu = @idPk;
+
+            DELETE FROM PhieuKham 
+            WHERE IDPhieu = @idPk;
+        ";
+
+                SqlParameter[] pr = new SqlParameter[] {
+            new SqlParameter("@idPk", idPk),
+            new SqlParameter("@reason", reason),
+            new SqlParameter("@idLSK", idLSK)
+        };
+
+                int result = kn.CapNhat(sql, pr);
+
+                if (result > 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                        "showAlert('Đã hủy lịch và gửi mail thông báo.', 'success');", true);
+                    Response.Redirect("Xem_Lich_Kham.aspx");
+                }
+            }
+            else
+            {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
-                    "showAlert('Đã hủy lịch và gửi mail thông báo.', 'success');", true);
-                Response.Redirect("Xem_Lich_Kham.aspx");
+                    "showAlert('Không tìm thấy lịch sử khám để xóa hồ sơ bệnh án.', 'error');", true);
             }
         }
+
         //load list view
         public void view_List()
         {

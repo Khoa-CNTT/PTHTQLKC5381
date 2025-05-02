@@ -26,7 +26,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
             string id = Session["UserID"].ToString();
             string sql = @"
                 SELECT bs.HoTen, ck.TenChuyenKhoa AS ChuyenKhoa, bs.DiaChiPhongKham, bs.TrinhDo,
-                       bs.SoDienThoai, bs.Email
+                       bs.SoDienThoai, bs.Email, bs.VaiTro, bs.HinhAnh
                 FROM BacSi bs
                 JOIN ChuyenKhoa ck ON bs.ChuyenKhoaID = ck.IDChuyenKhoa
                 WHERE bs.IDBacSi = @ID";
@@ -37,13 +37,13 @@ namespace NHOM20_DATN.pages.DoctorOnline
             dvThongTin.DataBind();
         }
 
-        protected void dvThongTin_ItemUpdating(object sender, System.Web.UI.WebControls.DetailsViewUpdateEventArgs e)
+        protected void dvThongTin_ItemUpdating(object sender, DetailsViewUpdateEventArgs e)
         {
             string id = Session["UserID"].ToString();
-            string diaChi = e.NewValues["DiaChiPhongKham"].ToString();
-            string trinhDo = e.NewValues["TrinhDo"].ToString();
-            string soDT = e.NewValues["SoDienThoai"].ToString();
-            string email = e.NewValues["Email"].ToString();
+            string diaChi = e.NewValues["DiaChiPhongKham"]?.ToString() ?? "";
+            string trinhDo = e.NewValues["TrinhDo"]?.ToString() ?? "";
+            string soDT = e.NewValues["SoDienThoai"]?.ToString() ?? "";
+            string email = e.NewValues["Email"]?.ToString() ?? "";
 
             string sql = @"UPDATE BacSi SET DiaChiPhongKham = @DiaChi, TrinhDo = @TrinhDo, 
                            SoDienThoai = @SDT, Email = @Email WHERE IDBacSi = @ID";
@@ -56,8 +56,17 @@ namespace NHOM20_DATN.pages.DoctorOnline
             };
 
             kn.CapNhat(sql, pr);
-            dvThongTin.ChangeMode(System.Web.UI.WebControls.DetailsViewMode.Edit);
+            dvThongTin.ChangeMode(DetailsViewMode.ReadOnly);
             LoadThongTin();
+
+            string script = "Swal.fire({ icon: 'success', title: 'Cập nhật thành công', text: 'Thông tin của bạn đã được lưu!' });";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "thongbao", script, true);
+        }
+
+        protected void dvThongTin_ModeChanging(object sender, DetailsViewModeEventArgs e)
+        {
+            dvThongTin.ChangeMode(e.NewMode);
+            LoadThongTin(); 
         }
     }
 }

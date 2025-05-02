@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Tu_Van_Suc_Khoe_Truc_Tuyen.aspx.cs" Inherits="NHOM20_DATN.Patient.Tu_Van_Suc_Khoe_Truc_Tuyen" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-        <style>
+    <style>
         .quangcao {
             background-image: linear-gradient(to right, #70b9dc, #c2e9fb);
         }
@@ -152,74 +153,82 @@
                 font-weight: bold;
             }
 
-        .bacsi_online .khungbacsi {
-            border-radius: 50px;
-            left: 2%;
+        .khungbacsi {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f0f4f8);
         }
 
-        .khungbacsi .card {
-            margin-top: 5px;
-            background-color: #e9e9e9;
-            border: none;
-        }
+            .khungbacsi:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+            }
 
         .hinhbacsi {
-            border-right: 1px solid #dadada;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
         }
 
         .bacsi {
-            width: 200px;
-            height: 230px;
-            margin-left: 30px;
-            border-radius: 5px;
-            margin-top: 40px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .table td {
+            padding: 6px 0;
+            font-size: 15px;
+            color: #333;
         }
 
         .btn_tuvan {
-            background-color: #e91313;
+            background: linear-gradient(to right, #0d47a1, #1976d2);
             color: white;
-            border-radius: 50px;
             border: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            width: 180px;
-            height: 40px;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
             .btn_tuvan:hover {
-                background-color: #f8c40a;
+                background: linear-gradient(to right, #1565c0, #1e88e5);
+                transform: scale(1.05);
             }
 
-        .bacsi_online .row {
+        .col.mb-4 {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .bacsi_online .col-12 {
-            flex: 0 0 100%;
-            max-width: 100%;
+        .khungbacsi {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            margin: 20px 80px;
+            vertical-align: top;
+            white-space: normal;
         }
 
-        @media (min-width: 576px) {
-            .bacsi_online .col-sm-6 {
-                flex: 0 0 50%;
-                max-width: 50%;
-            }
+        .scroll-wrapper {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 1rem;
+        }
+        .video_danhgia {
+            margin-bottom : 30px;
         }
 
-        @media (min-width: 768px) {
-            .bacsi_online .col-md-4 {
-                flex: 0 0 33.33%;
-                max-width: 33.33%;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .bacsi_online .col-lg-3 {
-                flex: 0 0 25%;
-                max-width: 25%;
-            }
-        }
     </style>
 
     <div class="content">
@@ -297,59 +306,62 @@
                 </div>
             </div>
 
-            <div class="container">
-                <div class="row">
-                    <asp:DataList ID="dl_bacsi" RepeatDirection="Horizontal" RepeatColumns="2" runat="server">
+            <div class="container py-4">
+                <div class="scroll-wrapper">
+                    <asp:DataList ID="dl_bacsi" RepeatDirection="Horizontal" runat="server">
                         <ItemTemplate>
-                            <div class="col mb-4">
-                                <div class="card h-100 khungbacsi">
-                                    <div class="row">
-                                        <div class="col hinhbacsi">
-                                            <asp:Image ID="Image1" runat="server" CssClass="card-img-top bacsi" ImageUrl='<%# Eval("HinhAnh") %>' />
-                                        </div>
-                                        <div class="col">
-                                            <div class="card-body">
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <td><b>ID bác sĩ :</b>
-                                                            <asp:Label ID="lbl_idbacsi" runat="server" Text='<%# Eval("IDBacSi")%>'></asp:Label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Tên bác sĩ :</b>
-                                                            <asp:Label ID="lbl_hoten" runat="server" Text='<%# Eval("HoTen") %>'></asp:Label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Trình độ :</b>
-                                                            <asp:Label ID="lbl_trinhdo" runat="server" Text='<%# Eval("TrinhDo") %>'></asp:Label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Email :</b>
-                                                            <asp:Label ID="lbl_email" runat="server" Text='<%# Eval("Email") %>'></asp:Label></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Chuyên khoa :</b>
-                                                            <asp:Label ID="lbl_chuyenkhoa" runat="server" Text='<%# Eval("TenChuyenKhoa") %>'></asp:Label></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Vai trò :</b>
-                                                            <asp:Label ID="lbl_vaitro" runat="server" Text='<%# Eval("VaiTro") %>'></asp:Label></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <asp:Button ID="btn_tuvan" CssClass="btn btn_tuvan" runat="server" Text="Tư vấn ngay" OnClick="btn_tuvan_Click" /></td>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                            <div class="card khungbacsi d-inline-block mx-2" style="width: 400px;">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-4 hinhbacsi">
+                                        <asp:Image ID="Image1" runat="server" CssClass="bacsi img-fluid" ImageUrl='<%# Eval("HinhAnh") %>' />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body p-2">
+                                            <table class="table table-borderless mb-2">
+                                                <tr>
+                                                    <td><strong>ID bác sĩ:</strong>
+                                                        <asp:Label ID="lbl_idbacsi" runat="server" Text='<%# Eval("IDBacSi")%>' /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Tên bác sĩ:</strong>
+                                                        <asp:Label ID="lbl_hoten" runat="server" Text='<%# Eval("HoTen") %>' /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Trình độ:</strong>
+                                                        <asp:Label ID="lbl_trinhdo" runat="server" Text='<%# Eval("TrinhDo") %>' /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Email:</strong>
+                                                        <asp:Label ID="lbl_email" runat="server" Text='<%# Eval("Email") %>' /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Chuyên khoa:</strong>
+                                                        <asp:Label ID="lbl_chuyenkhoa" runat="server" Text='<%# Eval("TenChuyenKhoa") %>' /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Vai trò:</strong>
+                                                        <asp:Label ID="lbl_vaitro" runat="server" Text='<%# Eval("VaiTro") %>' /></td>
+                                                </tr>
+                                            </table>
+                                            <asp:Button ID="btn_tuvan" CssClass="btn btn-success btn-sm w-100" runat="server" Text="Tư vấn ngay" OnClick="btn_tuvan_Click" />
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </ItemTemplate>
                     </asp:DataList>
+                </div>
+            </div>
+
+            <div class="ratio ratio-16x9 video_danhgia position-relative">
+                <video id="video_danhgia" autoplay muted loop>
+                    <source src="../img/Lợi ích khám trực tuyến.mp4" type="video/mp4">
+                </video>
+
+                <!-- Nút điều khiển -->
+                <div class="position-absolute top-0 end-0 p-2">
+                    <button type="button" id="btnToggleMute" class="btn btn-sm btn-primary me-2">🔇 Bật âm</button>
+                    <button type="button" id="btnTogglePlay" class="btn btn-sm btn-secondary">⏸ Tạm dừng</button>
                 </div>
             </div>
         </div>
@@ -374,5 +386,26 @@
             showCardsOnScroll(); // Kiểm tra khi tải trang
         });
     </script>
+    <script>
+        const video = document.getElementById('video_danhgia');
+        const btnMute = document.getElementById('btnToggleMute');
+        const btnPlay = document.getElementById('btnTogglePlay');
 
+        // Bật / tắt âm thanh
+        btnMute.addEventListener('click', () => {
+            video.muted = !video.muted;
+            btnMute.textContent = video.muted ? '🔇 Bật âm' : '🔊 Tắt âm';
+        });
+
+        // Tạm dừng / phát video
+        btnPlay.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                btnPlay.textContent = '⏸ Tạm dừng';
+            } else {
+                video.pause();
+                btnPlay.textContent = '▶️ Tiếp tục';
+            }
+        });
+    </script>
 </asp:Content>

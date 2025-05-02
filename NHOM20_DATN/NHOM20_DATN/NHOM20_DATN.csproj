@@ -181,6 +181,7 @@
     <Content Include="bin\System.ValueTuple.xml" />
     <Content Include="Cau_Hoi_Thuong_Gap.aspx" />
     <Content Include="ChatbotHandler.aspx" />
+    <Content Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx" />
     <Content Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx" />
     <Content Include="Dang_Ky.aspx" />
     <Content Include="Dang_Nhap.aspx" />
@@ -192,6 +193,7 @@
     <Content Include="img\anhquenmatkhau.png" />
     <Content Include="img\anhtraidatlai.jpg" />
     <Content Include="img\anhxoalogo.png" />
+    <Content Include="img\bacsidomanhha.jpg" />
     <Content Include="img\bacsikientrung.png" />
     <Content Include="img\bacsiminhtrung.jpg" />
     <Content Include="img\bacsixuanhai.jpg" />
@@ -199,7 +201,9 @@
     <Content Include="img\bacsi_vuhoailinh.jpg" />
     <Content Include="img\BaiViet\1378decb333cf762ae2d.jpg" />
     <Content Include="img\BaiViet\new_detail_1.png" />
+    <Content Include="img\icon_lich.png" />
     <Content Include="img\khoa.png" />
+    <Content Include="img\Lợi ích khám trực tuyến.mp4" />
     <Content Include="js\appointment_manager.js" />
     <Content Include="js\library\boostrap.bundle.min.js" />
     <Content Include="js\library\ChartJs.js" />
@@ -209,6 +213,7 @@
     <Content Include="pages\DoctorOnline\Quan_Ly_Thong_Tin_Bac_Si_Online.aspx" />
     <Content Include="pages\DoctorOnline\Xem_Thong_Tin_Tu_Van.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
+    <Content Include="pages\Doctor\Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx" />
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx" />
@@ -309,6 +314,7 @@
     <Content Include="Patient\Quan_Ly_Thong_Tin_Ca_Nhan.aspx" />
     <Content Include="Patient\Quen_Mat_Khau.aspx" />
     <Content Include="style\doctor\doctor_appointment.css" />
+    <Content Include="style\doctor\Doctor_Online.css" />
     <Content Include="style\doctor\doctor_side_style.css" />
     <Content Include="style\doctor\medical_records.css" />
     <Content Include="style\login_content_style.css" />
@@ -346,6 +352,13 @@
     </Compile>
     <Compile Include="ChatbotHandler.aspx.designer.cs">
       <DependentUpon>ChatbotHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx.cs">
+      <DependentUpon>Ho_Tro_Dat_Lich_Kham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultant\Ho_Tro_Dat_Lich_Kham.aspx.designer.cs">
+      <DependentUpon>Ho_Tro_Dat_Lich_Kham.aspx</DependentUpon>
     </Compile>
     <Compile Include="Consultant\Tu_Van_Suc_Khoe_Ban_Dau.aspx.cs">
       <DependentUpon>Tu_Van_Suc_Khoe_Ban_Dau.aspx</DependentUpon>
@@ -423,6 +436,13 @@
     </Compile>
     <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.designer.cs">
       <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Doctor\Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx.cs">
+      <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Doctor\Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx.designer.cs">
+      <DependentUpon>Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Doctor\Xem_Lich_Kham.aspx.cs">
       <DependentUpon>Xem_Lich_Kham.aspx</DependentUpon>

@@ -16,13 +16,12 @@ namespace NHOM20_DATN.res.service
                 " where hs.IDBN = bn.IDBenhNhan and bs.IDBacSi = hs.IDBS and hs.IDLSK = lsk.IDLichSu and pk.IDPhieu = lsk.IDPhieu" +
                 " and hs.IDBS = @idbs";
             SqlParameter[] param = new SqlParameter[] {
-            new SqlParameter("@idbs",idbs)
-            };
+      new SqlParameter("@idbs",idbs)
+      };
             DataTable dt = new DataTable();
             dt = db.docdulieu(query, param);
             return dt;
         }
-
         public DataTable getByPatientName(string name, string idbs)
         {
             name = "%" + name + "%";

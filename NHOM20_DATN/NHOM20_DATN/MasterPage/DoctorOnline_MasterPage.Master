@@ -47,7 +47,11 @@
                                 <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Xem thông tin tư vấn</div>
                             </a>
                         </li>
-                            <%--Thêm ở đây menu--%> 
+                        <li>
+                            <a href="/pages/DoctorOnline/Quan_ly_Thong_Bac_Si_Online.aspx">
+                                <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Quản lý thông tin cá nhân</div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -77,9 +81,9 @@
                             if (result.isConfirmed) {
                                 // Gọi postback để kích hoạt sự kiện Logout_Click
                                 __doPostBack('<%= btnDangXuat.UniqueID %>', '');
-                    }
-                });
-            });
+                            }
+                        });
+                    });
                 }
             };
         </script>

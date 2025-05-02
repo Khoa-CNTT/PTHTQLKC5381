@@ -71,21 +71,21 @@
                     </li>
                     <li>
                         <a href="/pages/Manager/Quan_Ly_Thanh_Toan.aspx">
-                            <div class="contain-qlbvsk">
+                            <div class="contain-qltt">
                                 <i class="fa-solid fa-newspaper"></i>Quản lý thanh toán
                             </div>
                         </a>
                     </li>
                       <li>
       <a href="/pages/Manager/Xuat_Phieu_Kham.aspx">
-          <div class="contain-qlbvsk">
+          <div class="contain-xpk">
               <i class="fa-solid fa-newspaper"></i>Xuất Phiếu Khám
           </div>
       </a>
   </li>
 
                     <li>
-                        <a href="#">
+                        <a href="/pages/Manager/Thong_Ke_SL_Benh_Nhan.aspx">
                             <div class="contain-tkbn">
                                 <i class="fa-solid fa-users-rectangle"></i>Thống Kê Số Lượng Bệnh Nhân
                             </div>

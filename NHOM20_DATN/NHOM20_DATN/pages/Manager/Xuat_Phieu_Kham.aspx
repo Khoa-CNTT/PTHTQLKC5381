@@ -20,6 +20,9 @@
         color: #333;
         line-height: 1.6;
     }
+        .contain-xpk{
+             background-color: #d9d9d96e;
+        }
     
     /* Container chính */
     .phieu-kham-container {

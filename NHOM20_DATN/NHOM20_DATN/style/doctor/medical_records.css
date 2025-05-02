@@ -373,8 +373,8 @@ input[type=number]::-webkit-outer-spin-button {
 /*              CODE HERE           */
 
 #content{
-    width: unset;
-    margin: unset;
+/*    width: unset;
+    margin: unset;*/
 }
 
 

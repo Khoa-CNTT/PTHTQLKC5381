@@ -201,6 +201,8 @@
     <Content Include="img\BaiViet\new_detail_1.png" />
     <Content Include="img\khoa.png" />
     <Content Include="js\appointment_manager.js" />
+    <Content Include="js\library\boostrap.bundle.min.js" />
+    <Content Include="js\library\ChartJs.js" />
     <Content Include="js\medical_record.js" />
     <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />

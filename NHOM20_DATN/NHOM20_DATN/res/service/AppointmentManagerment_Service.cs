@@ -25,7 +25,7 @@ namespace NHOM20_DATN.res.service
         " join BenhNhan bn on pk.IDBenhNhan  = bn.IDBenhNhan " +
         " JOIN LichKhamBacSi lkbs ON pk.IDPhieu = lkbs.IDPhieu   " +
         " join BacSi bs on pk.IDBacSi = bs.IDBacSi " +
-        " order by  lkbn.NgayKham, lkbn.ThoiGianKham";
+        " order by  lkbn.NgayKham desc ";
             SqlParameter[] pr = new SqlParameter[] { };
             DataTable dt = kn.docdulieu(query_Appointment, pr);
             return dt;
@@ -68,18 +68,18 @@ namespace NHOM20_DATN.res.service
             //sql
             //if sql get 2 people on the same time, it will display the time and save to occupied time list
             string sql_occupiedTime = " SELECT lbn.ThoiGianKham " +
-        "FROM LichKhamBenhNhan lbn " +
-        "Join PhieuKham pk on lbn.IDPhieu = pk.IDPhieu " +
-        "WHERE lbn.NgayKham = @day " +
-        "AND IDBacSi = @docID " +
-        "AND lbn.ThoiGianKham  in " +
-        "(select case when COUNT(lbn.ThoiGianKham) >=2 then lbn.ThoiGianKham " +
-        "else '' end " +
-        "FROM LichKhamBenhNhan lbn " +
-        "Join PhieuKham pk on lbn.IDPhieu = pk.IDPhieu " +
-        "WHERE lbn.NgayKham = @day " +
-        "AND IDBacSi = @docID " +
-        "group by lbn.ThoiGianKham)";
+        " FROM LichKhamBenhNhan lbn " +
+        " Join PhieuKham pk on lbn.IDPhieu = pk.IDPhieu " +
+        " WHERE lbn.NgayKham = @day " +
+        " AND IDBacSi = @docID " +
+        " AND lbn.ThoiGianKham  in " +
+        " (select case when COUNT(lbn.ThoiGianKham) >=2 then lbn.ThoiGianKham " +
+        " else '' end " +
+        " FROM LichKhamBenhNhan lbn " +
+        " Join PhieuKham pk on lbn.IDPhieu = pk.IDPhieu " +
+        " WHERE lbn.NgayKham = @day " +
+        " AND IDBacSi = @docID " +
+        " group by lbn.ThoiGianKham)";
 
             SqlParameter[] pr = new SqlParameter[]
             {
@@ -203,13 +203,6 @@ namespace NHOM20_DATN.res.service
             if (resultPK != 0 && resultLBS != 0 && resultLBN != 0) return 1;
             return 0;
         }
-
-
-
-
-
-
-
 
 
 

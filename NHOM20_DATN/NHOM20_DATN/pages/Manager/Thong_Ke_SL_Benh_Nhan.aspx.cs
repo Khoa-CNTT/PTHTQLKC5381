@@ -4,6 +4,7 @@ using Org.BouncyCastle.Asn1.Pkcs;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.DynamicData;
@@ -19,7 +20,7 @@ namespace NHOM20_DATN.pages.Manager
         protected string labelsJson;
         protected string huyDataJson;
         protected string dkDataJson;
-        ThongKeBenhNhanService thongKeBenhNhanService= new ThongKeBenhNhanService();
+        ThongKeBenhNhanService thongKeBenhNhanService = new ThongKeBenhNhanService();
         PatientManagerment patientsService = new PatientManagerment();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,16 +31,36 @@ namespace NHOM20_DATN.pages.Manager
 
 
         }
-        // =====================View==================
+        // =================== Grid View ==================
         public void loadView(DataTable dt_list)
         {
-            //list all patient order current year
             GridView_All.DataSource = dt_list;
             GridView_All.DataBind();
-            //chart always display current year/
+
+        }
+
+        //===============Pagination===========
+        protected void GridView_All_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView_All.PageIndex = e.NewPageIndex;
+            string mode = ViewState["ThongKeMode"]?.ToString();
+            checkMode(mode);
+
         }
 
         //==========================     GridView   ==========================
+        //========================== GridView All =====================
+        public void loadAll()
+        {
+            DataTable dt_list = new DataTable();
+            // Datatable list all patient order current year
+            dt_list = thongKeBenhNhanService.getAll();
+            // Datatable chart always display current year/
+            DataTable dt_chart = new DataTable();
+            dt_chart = thongKeBenhNhanService.countAll();
+            loadView(dt_list);
+            loadChartYear(dt_chart);
+        }
         //========================== GridView current year =====================
         public void loadCurrentYear()
         {
@@ -74,7 +95,7 @@ namespace NHOM20_DATN.pages.Manager
             DateTime startOfWeek = today.AddDays(delta);
             // Ngày cuối tuần (Chủ nhật)
             DateTime endOfWeek = startOfWeek.AddDays(6);
-            
+
             DataTable dt_list = new DataTable();
             //list all patient order this month
             dt_list = thongKeBenhNhanService.getFromTo(startOfWeek, endOfWeek);
@@ -96,12 +117,62 @@ namespace NHOM20_DATN.pages.Manager
             // count all patient this month
             DataTable dt_chart = new DataTable();
             dt_chart = thongKeBenhNhanService.countFromTo(today, today);
+            if (dt_list.Rows.Count <= 0)
+            {
+                string message = "Hôm nay chưa có ai đăng ký！ ";
+                string script = "showAlert('" + message + "','info');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                loadView(null);
+                lbl_totalPatient.Text = "" + countAllPatient();
+                lbl_allPk.Text = "" + (countDaHuy(null) + countDaDangKy(null));
+                lbl_DaHuy.Text = "" + countDaHuy(null);
+                lbl_DaDangKy.Text = "" + countDaDangKy(null);
+                return;
+            }
+
+
             // load view with this month
-            string todayString =DateTime.Today.ToString("yyyy-MM-dd");
+            string todayString = DateTime.Today.ToString("yyyy-MM-dd");
             loadView(dt_list);
             loadChartInDay(dt_chart, todayString);
         }
 
+        public void loadFromToDate()
+        {
+
+            DateTime fromDate, toDate;
+            // check formart
+            if (!(DateTime.TryParse(txtFromDate.Text, out fromDate) && DateTime.TryParse(txtToDate.Text, out toDate)))
+            {
+                string message = "Kiểm tra lại ngày đã chọn";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }
+            TimeSpan khoangCach = toDate - fromDate;
+            int cachngay = int.Parse(khoangCach.TotalDays.ToString());
+            // check if input > 90 days
+            if (cachngay > 90)
+            {
+                string message = "Vui lòng chọn nhỏ hơn 90 ngày";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }else if(cachngay <= 0){
+                string message = "Vui lòng chọn từ quá khứ đến tương lai!";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }
+
+            DataTable dt_list = new DataTable();
+            dt_list = thongKeBenhNhanService.getFromTo(fromDate, toDate);
+            DataTable dt_chart = new DataTable();
+            dt_chart = thongKeBenhNhanService.countFromTo(fromDate, toDate);
+            loadView(dt_list);
+            loadChartFromToDate(dt_chart, fromDate, toDate);
+            return;
+        }
 
 
 
@@ -122,11 +193,11 @@ namespace NHOM20_DATN.pages.Manager
             }
             lbl_totalPatient.Text = "" + countAllPatient();
             // total Pk
-            lbl_allPk.Text = ""+ (countDaHuy(dt) + countDaDangKy(dt));
+            lbl_allPk.Text = "" + (countDaHuy(dt) + countDaDangKy(dt));
             // DaHuy Pk
-            lbl_DaHuy.Text = ""+ countDaHuy(dt);
+            lbl_DaHuy.Text = "" + countDaHuy(dt);
             // DaDangKy pk
-            lbl_DaDangKy.Text = ""+ countDaDangKy(dt);
+            lbl_DaDangKy.Text = "" + countDaDangKy(dt);
 
             JavaScriptSerializer js = new JavaScriptSerializer();
             labelsJson = js.Serialize(labels);
@@ -204,8 +275,6 @@ namespace NHOM20_DATN.pages.Manager
         }
 
 
-
-
         //========================== Chart count by Day ==========================
         public void loadChartInDay(DataTable dt, string day)
         {
@@ -222,6 +291,37 @@ namespace NHOM20_DATN.pages.Manager
                 huyData.Add(huyRows.Length > 0 ? Convert.ToInt32(huyRows[0]["SoLuotKham"]) : 0);
             }
             lbl_totalPatient.Text = "" + countAllPatient();
+            // total Pk
+            lbl_allPk.Text = "" + (countDaHuy(dt) + countDaDangKy(dt));
+            // DaHuy Pk
+            lbl_DaHuy.Text = "" + countDaHuy(dt);
+            // DaDangKy pk
+            lbl_DaDangKy.Text = "" + countDaDangKy(dt);
+
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            labelsJson = js.Serialize(labels);
+            huyDataJson = js.Serialize(huyData);
+            dkDataJson = js.Serialize(dkData);
+        }
+
+
+        //========================== Chart count by Day ==========================
+        public void loadChartFromToDate(DataTable dt, DateTime fromDate, DateTime toDate)
+        {
+            List<string> labels = new List<string>();
+            List<int> huyData = new List<int>();
+            List<int> dkData = new List<int>();
+            // let run from date to date by add 1 day
+            for (DateTime date = fromDate; date <= toDate; date = date.AddDays(1))
+            {
+                string dayString = date.ToString("yyyy-MM-dd");
+                labels.Add(date.ToString("dd/MM"));
+                DataRow[] dkRows = dt.Select($"Ngay = '{dayString}' AND TrangThai = 'DaDangKy'");
+                DataRow[] huyRows = dt.Select($"Ngay = '{dayString}' AND TrangThai = 'DaHuy'");
+                dkData.Add(dkRows.Length > 0 ? Convert.ToInt32(dkRows[0]["SoLuotKham"]) : 0);
+                huyData.Add(huyRows.Length > 0 ? Convert.ToInt32(huyRows[0]["SoLuotKham"]) : 0);
+            }
             lbl_totalPatient.Text = "" + countAllPatient();
             // total Pk
             lbl_allPk.Text = "" + (countDaHuy(dt) + countDaDangKy(dt));
@@ -238,8 +338,44 @@ namespace NHOM20_DATN.pages.Manager
         }
 
 
+        //========================== Chart count by Year ==========================
+        public void loadChartYear(DataTable dt)
+        {
+            List<string> labels = new List<string>();
+            List<int> huyData = new List<int>();
+            List<int> dkData = new List<int>();
+            // let run from date to date by add 1 day
+            var years = dt.AsEnumerable()
+              .Select(row => row.Field<int>("Nam"))
+              .Distinct()
+              .OrderBy(n => n)
+              .ToList();
+            foreach (var year in years)
+            {
+                labels.Add(year.ToString());
 
+                var dkRow = dt.AsEnumerable()
+                    .FirstOrDefault(r => r.Field<int>("Nam") == year && r.Field<string>("TrangThai") == "DaDangKy");
 
+                var huyRow = dt.AsEnumerable()
+                    .FirstOrDefault(r => r.Field<int>("Nam") == year && r.Field<string>("TrangThai") == "DaHuy");
+
+                huyData.Add(huyRow != null ? Convert.ToInt32(huyRow["SoLuotKham"]) : 0);
+                dkData.Add(dkRow != null ? Convert.ToInt32(dkRow["SoLuotKham"]) : 0);
+            }
+            // total PAtient
+            lbl_totalPatient.Text = "" + countAllPatient();
+            // total Pk
+            lbl_allPk.Text = "" + (countDaHuy(dt) + countDaDangKy(dt));
+            // DaHuy Pk
+            lbl_DaHuy.Text = "" + countDaHuy(dt);
+            // DaDangKy pk
+            lbl_DaDangKy.Text = "" + countDaDangKy(dt);
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            labelsJson = js.Serialize(labels);
+            huyDataJson = js.Serialize(huyData);
+            dkDataJson = js.Serialize(dkData);
+        }
 
 
 
@@ -273,6 +409,41 @@ namespace NHOM20_DATN.pages.Manager
 
         }
 
+
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            loadFromToDate();
+            ViewState["ThongKeMode"] = "FromToDate";
+        }
+
+        protected void btnAll_Click(object sender, EventArgs e)
+        {
+            loadAll();
+            ViewState["ThongKeMode"] = "All";
+        }
+        protected void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            string mode = ViewState["ThongKeMode"]?.ToString();
+            Response.Clear();
+            Response.Buffer = true;
+            
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            GridView_All.AllowPaging = false;
+            string nameAction = checkMode(mode);
+            Response.AddHeader("content-disposition", "attachment;filename=ThongKeBenhNhan" + nameAction + ".xls");
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+                GridView_All.RenderControl(hw); // Đổ GridView vào output HTML
+
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+            }
+        }
         //====================== Functions ======================
         public int countAllPatient()
         {
@@ -287,6 +458,7 @@ namespace NHOM20_DATN.pages.Manager
         {
             int countDaHuy = 0;
             // Count Trang Thai Da Huy
+            if(dt==null) return countDaHuy;
             foreach (DataRow row in dt.Rows)
             {
                 //Get rows which is DaHuy
@@ -294,14 +466,16 @@ namespace NHOM20_DATN.pages.Manager
                 int luotKham = int.Parse(row["SoLuotKham"].ToString());
                 if (trangthai == "DaHuy")
                 {
-                    countDaHuy+= luotKham;
+                    countDaHuy += luotKham;
                 }
             }
             return countDaHuy;
         }
         public int countDaDangKy(DataTable dt)
         {
+
             int countDaDangKy = 0;
+            if (dt == null) return countDaDangKy;
             // Count Trang Thai Da Huy
             foreach (DataRow row in dt.Rows)
             {
@@ -310,41 +484,59 @@ namespace NHOM20_DATN.pages.Manager
                 int luotKham = int.Parse(row["SoLuotKham"].ToString());
                 if (trangthai == "DaDangKy")
                 {
-                    countDaDangKy+= luotKham;
+                    countDaDangKy += luotKham;
                 }
             }
             return countDaDangKy;
         }
 
-        protected void GridView_All_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        public string checkMode(string mode)
         {
-            GridView_All.PageIndex = e.NewPageIndex;
-            string mode = ViewState["ThongKeMode"]?.ToString();
             if (mode == "ThisYear")
             {
                 loadCurrentYear();
+                return "NamNay";
             }
             else if (mode == "ThisMonth")
             {
                 loadThisMonth();
+                return "ThangNay";
             }
-            else if(mode == "ThisWeek")
+            else if (mode == "ThisWeek")
             {
                 loadThisWeek();
+                return "TuanNay";
             }
             else if (mode == "Today")
             {
                 loadToday();
+                return "HomNay";
             }
-            else
+            else if (mode == "FromToDate")
             {
-                // Mặc định nếu chưa chọn
-                loadCurrentYear();
+                loadFromToDate();
+                return "KhoangThoiGian";
             }
-         
+            else if (mode == "All")
+            {
+                loadAll();
+                return "TatCa";
+            }
+            
+                // set default view if there are no action
+                loadCurrentYear();
+                return "NamNay";
+            
+
+        }
+        
+
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            // Bắt buộc phải override nếu export GridView
         }
 
-     
 
     }
 }

@@ -209,7 +209,7 @@
             display: none;
         }
     }
-        body {
+        #content {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f7fa;
         }

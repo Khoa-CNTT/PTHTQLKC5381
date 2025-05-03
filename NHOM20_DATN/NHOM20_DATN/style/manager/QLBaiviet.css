@@ -1,10 +1,11 @@
 ﻿#container_content h1 {
     text-align: center;
     color: #1691E2;
+    font-size: 32px;
 }
 
 #container #container_content {
-    margin: 4em 4em;
+    margin: 1em 1em;
 }
 
 #container .slide_bar {
@@ -27,8 +28,8 @@
     position: relative;
     margin: 2em 0;
     background: #f2f2f2a6;
-    border-radius: 15px;
-    box-shadow: 5px 5px 20px grey;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
     #container .slide_bar .content_item img {
@@ -36,13 +37,14 @@
         max-width: 20em;
         height: 15em;
         transition: transform .2s;
+        border-radius: 5px;
     }
 
 
         #container .slide_bar .content_item img:hover {
-            -ms-transform: scale(1.05); /* IE 9 */
-            -webkit-transform: scale(1.05); /* Safari 3-8 */
-            transform: scale(1.05);
+            -ms-transform: scale(1.025); /* IE 9 */
+            -webkit-transform: scale(1.025); /* Safari 3-8 */
+            transform: scale(1.025);
         }
 
 
@@ -51,6 +53,7 @@
 
 #container .slide_bar .title_news .detail_news:hover {
     background-color: #ccc;
+
 }
 
 
@@ -87,6 +90,7 @@ a {
         width: fit-content;
         padding: 0.5em 1em;
         border-radius: 1em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         /*        position: absolute;*/
         bottom: 0;
     }
@@ -95,7 +99,12 @@ a {
 
 .contain_function {
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f2f2f2a6;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 #contain_add {
@@ -105,14 +114,15 @@ a {
 #container #contain_add .btn_add_news {
     width: 150px;
     color: white;
-    background-color: #00c42a;
+    background-color: #409cff;
     padding: 10px 15px;
-    border-radius: 20px;
+    border-radius: 5px;
     text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
     #container #contain_add .btn_add_news:hover {
-        background-color: #009f22;
+        background-color: #007bff;
     }
 
 
@@ -128,6 +138,7 @@ a {
     width: fit-content;
     padding: 0.5em 1em;
     border-radius: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
     .edit_btn:hover {
@@ -243,8 +254,9 @@ a {
     gap: 10px;
 }
 
-.search_bar{
+.search_bar {
     display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search_bar .input_search {
@@ -255,15 +267,17 @@ a {
 
 .btn_search {
     padding: 0.6em 2em;
-    background: #95e4c8;
+    background: white;
     text-decoration: none;
-    color: azure;
+    border: 1px solid #28a745;
+    color: #28a745;
     font-weight: 600;
-/*    border-radius: 1em;*/
+    /*    border-radius: 1em;*/
 }
 
     .btn_search:hover {
-        background-color: #7bd3b4;
+        background-color: #28a745;
+        color: white;
     }
 /*Notification*/
 #container-addNews {

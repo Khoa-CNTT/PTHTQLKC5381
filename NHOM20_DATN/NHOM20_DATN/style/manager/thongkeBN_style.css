@@ -1,15 +1,66 @@
-﻿body {
+﻿
+
+.title-function{
+    text-align: center;
+}
+/*===================== Buttons CSS ====================*/
+#contain-action {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f3f3f387;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+#contain-btn {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    
+}
 
+    #contain-btn input {
+        border: 1px solid #6c757d;
+        background: white;
+        transition: 0.3s;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+        #contain-btn input:hover {
+            color: white;
+            background-color: #a0a9b1;
+            border-color: #a0a9b1;
+        }
+.contain-btn-today input {
+ 
+}
+.contain-btn-thisweek input{
+
+}
+.contain-btn-today input{
+
+}
+.contain-btn-today input{
+
+}
+
+.count-total-patient span p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 10px;
+    background-color: #dde6f7;
+    border-radius: 5px;
+}
 /*===================== List CSS ====================*/
-#contain-all-tk{
-    padding: 5px 10px;
+#contain-all-tk {
+    padding: 20px 10px;
 }
 
 #container-list {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
 
 
 
@@ -47,3 +98,4 @@
     font-size: 22px;
     font-weight: bold;
 }
+

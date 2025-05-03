@@ -37,7 +37,7 @@ namespace NHOM20_DATN.res.service
             return dt;
         }
 
-        //=         UPDATE
+        // ========        UPDATE
         public int update(string idbs, string idbn, string idhs, string chandoan, string donthuoc, string ngaycn, string ghichu)
         {
             string query = "update HoSoBenhAn " +

@@ -18,6 +18,7 @@
     margin-right: auto;
     margin-left: auto;
     border: 1px solid #cdc6c6;
+    box-shadow: 5px 5px 20px grey;
 }
 
 .cl_red {

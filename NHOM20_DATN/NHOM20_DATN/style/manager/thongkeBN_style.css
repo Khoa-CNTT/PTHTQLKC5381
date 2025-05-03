@@ -1,6 +1,49 @@
 ﻿body {
 }
+
+
+/*===================== List CSS ====================*/
+#contain-all-tk{
+    padding: 5px 10px;
+}
+
+#container-list {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/*===================== Chart CSS ====================*/
 #myChart {
-    height: 400px!important;
-  
+    height: 400px !important;
+}
+
+.contain-tkbn {
+    background-color: #d9d9d96e;
+}
+
+#count-total-contain {
+    padding: 10px 15px;
+    background: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#container-chart {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+
+#chart-item {
+    padding: 7px;
+    background: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.count-total-patient h3 {
+    font-size: 22px;
+    font-weight: bold;
 }

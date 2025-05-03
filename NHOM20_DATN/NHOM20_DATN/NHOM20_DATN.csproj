@@ -205,6 +205,8 @@
     <Content Include="img\khoa.png" />
     <Content Include="img\Lợi ích khám trực tuyến.mp4" />
     <Content Include="js\appointment_manager.js" />
+    <Content Include="js\library\boostrap.bundle.min.js" />
+    <Content Include="js\library\ChartJs.js" />
     <Content Include="js\medical_record.js" />
     <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />

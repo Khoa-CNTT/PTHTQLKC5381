@@ -37,7 +37,7 @@ namespace NHOM20_DATN.res.service
                        "Join PhieuKham pk on lbn.IDPhieu = pk.IDPhieu " +
                        "WHERE lbn.NgayKham = @day " +
                        "AND IDBacSi = @docID " +
-                       "group by lbn.ThoiGianKham)";
+                       "group by lbn.ThoiGianKham) ";
 
             SqlParameter[] pr = new SqlParameter[]
             {
@@ -218,9 +218,9 @@ namespace NHOM20_DATN.res.service
             dayOld = day_old.ToString("dd/MM/yyyy");
 
             string subject = "Bệnh viện banana: Đổi Giờ Khám Ngày " + dayOld;
-            string description = "Bác sĩ đã Đổi giờ khám của bạn!\n" +
-            "Giờ khám của bạn lúc: " + timeOld + " , ngày " + dayOld +
-            "\nĐược đổi qua lúc: " + time + ", ngày " + day;
+            string description = "Bác sĩ đã Đổi giờ khám của bạn! " +
+            " Giờ khám của bạn lúc: " + timeOld + " , ngày " + dayOld +
+            " Được đổi qua lúc: " + time + ", ngày " + day;
             //mailSender mailSender = new mailSender();
             //mailSender.sendMail_CancelAppointment(email, subject, description);
 

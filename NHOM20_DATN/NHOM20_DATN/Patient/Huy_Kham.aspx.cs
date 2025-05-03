@@ -33,9 +33,11 @@ namespace NHOM20_DATN
         }
         private void LoaddPhieuKham(string idBenhNhan)
         {
-            string sql2 = @"SELECT TOP 1 * FROM PhieuKham 
-           WHERE IDBenhNhan = @IDBenhNhan
-           ORDER BY NgayKham ASC, ThoiGianKham ASC";
+            string sql2 = @"SELECT TOP 1 p.* FROM PhieuKham p
+                   INNER JOIN LichKhamBenhNhan l ON p.IDPhieu = l.IDPhieu
+                   WHERE p.IDBenhNhan = @IDBenhNhan
+                   AND l.TrangThai = 'DaDangKy'
+                   ORDER BY p.NgayKham ASC, p.ThoiGianKham ASC";
             SqlParameter[] parameters2 = { new SqlParameter("@IDBenhNhan", idBenhNhan) };
 
             LopKetNoi knn = new LopKetNoi();
@@ -235,9 +237,11 @@ namespace NHOM20_DATN
         private void TaiDanhSachPhieuKham(string idBenhNhan)
         {
             string sql = @"SELECT p.IDPhieu, p.NgayKham
-              FROM PhieuKham p
-              WHERE p.IDBenhNhan = @IDBenhNhan
-              ORDER BY p.NgayKham ASC";
+                  FROM PhieuKham p
+                  INNER JOIN LichKhamBenhNhan l ON p.IDPhieu = l.IDPhieu
+                  WHERE p.IDBenhNhan = @IDBenhNhan 
+                  AND l.TrangThai = 'DaDangKy'
+                  ORDER BY p.NgayKham ASC";
 
             SqlParameter[] parameters = { new SqlParameter("@IDBenhNhan", idBenhNhan) };
             LopKetNoi knn = new LopKetNoi();

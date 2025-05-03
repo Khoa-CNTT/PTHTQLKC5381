@@ -379,7 +379,6 @@
             margin-left: 450px;
             position: absolute;
             padding:10px;
-            font-family: serif;
         }
 
             .page-title::after {
@@ -541,6 +540,33 @@
             .date-box.active .day {
                 color: rgba(255,255,255,0.8);
             }
+       
+        @media (max-width: 768px) {
+            .page-bg{
+                margin-top:5px;
+                margin-left:-50px;
+            }
+            .main-container{
+                margin-top:20px;
+                width:450px !important;
+                
+            }
+            .btn-submitt {
+                margin-top: -20px !important;
+                margin-left: 170px;
+            }
+            .page-title{
+                margin-left:160px;
+                font-size:18px;
+                margin-top:20px;
+            }
+            h3{
+                font-size:16px;
+            }
+            .col-4{
+                width:200px !important;
+            }
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

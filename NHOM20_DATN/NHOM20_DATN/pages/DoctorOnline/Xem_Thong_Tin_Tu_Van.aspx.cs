@@ -39,7 +39,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                FROM LichTuVan lt
                INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
                WHERE lt.IDBacSi = @IDBacSi
-               ORDER BY lt.Ngay DESC";
+               ORDER BY lt.Ngay DESC, lt.Gio DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
@@ -51,7 +51,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                lt.TrieuChung, lt.LinkJitsi AS Link
                FROM LichTuVan lt
                INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-               ORDER BY lt.Ngay DESC";
+               ORDER BY lt.Ngay DESC, lt.Gio DESC";
             }
 
             DataTable dt = ketNoi.docdulieu(sql, parameters);
@@ -116,7 +116,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                  INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
                  WHERE CONVERT(date, lt.Ngay) = CONVERT(date, @Ngay)
                  AND lt.IDBacSi = @IDBacSi
-                 ORDER BY lt.Gio";
+                 ORDER BY lt.Gio DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@Ngay", ngay),
@@ -130,7 +130,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                  FROM LichTuVan lt
                  INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
                  WHERE CONVERT(date, lt.Ngay) = CONVERT(date, @Ngay)
-                 ORDER BY lt.Gio";
+                 ORDER BY lt.Gio DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@Ngay", ngay)
@@ -152,7 +152,8 @@ namespace NHOM20_DATN.pages.DoctorOnline
                       lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
                       FROM LichTuVan lt
                       INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                      WHERE lt.IDBacSi = @IDBacSi";
+                      WHERE lt.IDBacSi = @IDBacSi
+                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
 
                 pr = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
@@ -163,7 +164,9 @@ namespace NHOM20_DATN.pages.DoctorOnline
                 query_list = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
                       lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
                       FROM LichTuVan lt
-                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan";
+                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
+                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
+
                 pr = new SqlParameter[] { };
             }
 

@@ -53,47 +53,28 @@ namespace NHOM20_DATN.res.service.ThongKe
             dt = kn.docdulieu(sql, pr);
             return dt;
         }
+        //============ get All ==========
+        public DataTable getAll()
+        {
 
+            DataTable dt = new DataTable();
+            string sql = "select * from LichKhamBenhNhan  ";
+            SqlParameter[] pr = new SqlParameter[] {
+            };
+            dt = kn.docdulieu(sql, pr);
+            return dt;
+        }
 
 
         //============ get by user month ==========
-        public DataTable countMostWithMonth(DateTime month){
 
-            DataTable dt = new DataTable();
-            string sql = "select top 10 pk.HoTen , count(*) as LanKham from PhieuKham pk, BacSi bs, BenhNhan bn " +
-                " where pk.IDBenhNhan = bn.IDBenhNhan and pk.IDBacSi = bs.IDBacSi " +
-                " and   month(pk.NgayKham) = month(@month)" +
-                "  group by MONTH(pk.NgayKham),pk.HoTen " +
-                " ORDER BY  MONTH(pk.NgayKham)";
-            SqlParameter[] pr = new SqlParameter[] {
-                new SqlParameter("@month",month)
-            };  
-            dt = kn.docdulieu(sql,pr); 
-            return dt;
-        }
         //============ get by day ==========
-        public DataTable countWithDay(DateTime day)
-        {
-            DataTable dt = new DataTable();
-            string sql = "select * from PhieuKham pk, BacSi bs, BenhNhan bn " +
-                " where pk.IDBenhNhan = bn.IDBenhNhan and pk.IDBacSi = bs.IDBacSi" +
-                " and  day(pk.NgayKham) = day(@day)  " +
-                " group by day(pk.NgayKham),pk.HoTen" +
-                " ORDER BY day(pk.NgayKham)";
-            SqlParameter[] pr = new SqlParameter[] {
-                new SqlParameter("@day",day)
-            };
-            dt = kn.docdulieu(sql, pr);
-
-
-            return dt;
-        }
 
         //============ get from to  ==========
         public DataTable getFromTo(DateTime fromDay, DateTime toDay)
         {
             DataTable dt = new DataTable();
-            string sql = "SELECT IDBenhNhan,IDPhieu, TrangThai, NgayKham, ThoiGianKham  FROM LichKhamBenhNhan " +
+            string sql = "SELECT *  FROM LichKhamBenhNhan " +
                 " WHERE NgayKham BETWEEN @fromDay AND @toDay";
             SqlParameter[] pr = new SqlParameter[] {
                 new SqlParameter("@fromDay",fromDay),
@@ -144,12 +125,19 @@ namespace NHOM20_DATN.res.service.ThongKe
 
             dt = kn.docdulieu(sql, pr);
             return dt;
-
-
-
         }
 
-
+        //============== Count All  ============
+        public DataTable countAll()
+        {
+            DataTable dt = new DataTable();
+            string sql = "SELECT Year(NgayKham) AS Nam,TrangThai, COUNT(*) AS SoLuotKham FROM LichKhamBenhNhan " +
+                   " GROUP BY Year(NgayKham),TrangThai " +
+                   " ORDER BY Nam";
+            SqlParameter[] pr = new SqlParameter[] { };
+            dt = kn.docdulieu(sql, pr);
+            return dt;
+        }
 
 
 

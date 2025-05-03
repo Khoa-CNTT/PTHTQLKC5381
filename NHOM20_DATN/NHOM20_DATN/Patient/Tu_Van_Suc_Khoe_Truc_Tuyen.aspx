@@ -6,11 +6,11 @@
 
     <style>
         .quangcao {
-            background-image: linear-gradient(to right, #70b9dc, #c2e9fb);
+            background-color: white;
         }
 
         .bangtuvan {
-            background-color: #ffffff;
+            background-color: #F3F3F3;
             border-radius: 25px;
             margin: 50px 30px;
             padding-left: 30px;

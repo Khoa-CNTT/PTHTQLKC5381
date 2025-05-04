@@ -7,7 +7,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
+        .text-center{
+            font-weight : bold;
 
+        }
         .contain-qltt{
              background-color: #d9d9d96e;
         }
@@ -25,6 +28,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             font-size: 20px;
             font-weight: bold;
+            color : red;
         }
 
         .table-responsive {
@@ -82,60 +86,8 @@
                 <asp:Button ID="btnXuatExcel" runat="server" Text="Xuất Excel" CssClass="btn btn-outline-success" OnClick="btnXuatExcel_Click" />
             </div>
 
-        <div class="card-doanhthu">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            // Tạo một biểu đồ khi trang tải
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [], // Mảng ngày
-                    datasets: [{
-                        label: 'Doanh Thu',
-                        data: [], // Mảng doanh thu
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            function updateChart(data, labels) {
-                myChart.data.labels = labels;
-                myChart.data.datasets[0].data = data;
-                myChart.update();
-            }
-
-            // Hàm để gọi API từ code-behind ASP.NET và cập nhật biểu đồ
-            function fetchChartData() {
-                // Đảm bảo gọi đến backend (code-behind) và lấy dữ liệu chart (sử dụng AJAX)
-                $.ajax({
-                    type: 'POST',
-                    url: 'Quan_Ly_Thanh_Toan.aspx/GetChartData', // Gọi đến hàm CodeBehind
-                    data: {},
-                    success: function(response) {
-                        var data = response.d.data;
-                        var labels = response.d.labels;
-                        updateChart(data, labels); // Cập nhật dữ liệu cho biểu đồ
-                    }
-                });
-            }
-
-            // Gọi hàm lấy dữ liệu khi trang tải
-            fetchChartData();
-        </script>
 
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

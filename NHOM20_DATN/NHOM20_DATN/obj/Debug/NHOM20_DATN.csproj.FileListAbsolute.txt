@@ -339,7 +339,6 @@ D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.csp
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_D.29673BB9.Up2Date
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.pdb
-E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Net.Http.dll
 D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\NHOM20_DATN.dll.config
 D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\NHOM20_DATN.dll
 D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\NHOM20_DATN.pdb
@@ -402,3 +401,7 @@ D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Securit
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Encoding.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Primitives.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN4\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\NHOM20_FINAL\NHOM20_DATN\NHOM20_DATN\bin\roslyn\System.Security.Cryptography.X509Certificates.dll

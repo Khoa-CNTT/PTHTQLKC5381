@@ -26,8 +26,8 @@ namespace NHOM20_DATN.Patient
         private string partnerCode = "MOMO";
         private string accessKey = "F8BBA842ECF85";
         private string secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        private string redirectUrl = "https://3e20-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
-        private string ipnUrl = "https://3e20-14-165-151-227.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string redirectUrl = "https://b745-2001-ee0-4b4c-3c30-ace1-fb58-9cfc-9970.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string ipnUrl = "https://b745-2001-ee0-4b4c-3c30-ace1-fb58-9cfc-9970.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,6 +46,32 @@ namespace NHOM20_DATN.Patient
                 if (Session["IDBenhNhan"] != null)
                 {
                     LayThongTinBenhNhan(Session["IDBenhNhan"].ToString());
+                }
+
+                DateTime now = DateTime.Now;
+                TimeSpan currentTime = now.TimeOfDay;
+
+                // Danh sách giờ khám có sẵn
+                string[] availableTimes = new string[]
+                {
+            "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
+            "10:00", "10:30", "11:00",
+            "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"
+                };
+
+                ddlGio.Items.Clear();
+                ddlGio.Items.Add(new ListItem("Chọn giờ", ""));
+
+                foreach (string timeStr in availableTimes)
+                {
+                    if (TimeSpan.TryParse(timeStr, out TimeSpan itemTime))
+                    {
+                        // Nếu giờ đó bằng hoặc sau giờ hiện tại thì mới hiển thị
+                        if (itemTime > currentTime)
+                        {
+                            ddlGio.Items.Add(new ListItem(timeStr, timeStr));
+                        }
+                    }
                 }
             }
         }
@@ -105,7 +131,7 @@ namespace NHOM20_DATN.Patient
                                  orderInfo, orderType, transId, int.Parse(resultCode), message,
                                  payType, responseTime, extraData, signature);
 
-                    string script = "Swal.fire({ icon: 'success', title: 'Thanh toán thành công', text: 'Thông tin thanh toán đã được ghi nhận!' });";
+                    string script = "Swal.fire({ icon: 'success', title: 'Thanh toán thành công', text: 'Thông tin thanh toán đã được ghi nhận! Bạn vui lòng kiểm tra thông tin tư vấn qua mail.' });";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "thongbao", script, true);
                 }
                 catch (Exception ex)
@@ -372,6 +398,9 @@ namespace NHOM20_DATN.Patient
                 if (KiemTraTrungLich(idBacSi, ngay, gio))
                     throw new Exception("Bác sĩ đã có lịch tư vấn vào thời điểm này.");
 
+                if (KiemTraTrungLichBenhNhan(idBenhNhan, ngay, gio))
+                    throw new Exception("Bạn đã đăng ký khám với bác sĩ khác vào khung giờ này.");
+
                 string trieuChung = txtTrieuChung.Text.Trim();
 
                 // 👉 Truyền thông tin tư vấn vào extraData thay vì session
@@ -424,8 +453,8 @@ namespace NHOM20_DATN.Patient
                 {
                     GửiEmailThamSoBenhNhan(idTuVan, idBenhNhan, linkJitsi, ngay, gio);
 
-                    // Hiển thị bảng thông báo
-                    popupThongBao.Visible = true;
+                    //// Hiển thị bảng thông báo
+                    //popupThongBao.Visible = true;
                 }
                 else
                 {
@@ -450,6 +479,24 @@ namespace NHOM20_DATN.Patient
             };
             DataTable dt = db.docdulieu(sql, parameters);
             return Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
+
+        private bool KiemTraTrungLichBenhNhan(string idBenhNhan, DateTime ngay, TimeSpan gio)
+        {
+            string sql = @"
+        SELECT COUNT(*) FROM LichKhamBenhNhan
+        WHERE IDBenhNhan = @IDBenhNhan AND NgayKham = @Ngay AND GioKham = @Gio
+    ";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@IDBenhNhan", idBenhNhan),
+        new SqlParameter("@Ngay", ngay.Date),
+        new SqlParameter("@Gio", gio)
+            };
+
+            object ketqua = db.LayGiaTri(sql, parameters);
+            return Convert.ToInt32(ketqua) > 0;
         }
 
         private void GửiEmailThamSoBenhNhan(string idTuVan, string idBenhNhan, string linkJitsi, DateTime ngay, TimeSpan gio)

@@ -47,14 +47,27 @@ namespace NHOM20_DATN.Consultant
             {
                 string sql = "UPDATE TinNhanChatBot SET TraLoi = @TraLoi, TrangThai = 1 WHERE ID = @ID";
                 SqlParameter[] prms = {
-                    new SqlParameter("@TraLoi", traLoi),
-                    new SqlParameter("@ID", id)
-                };
+            new SqlParameter("@TraLoi", traLoi),
+            new SqlParameter("@ID", id)
+        };
 
                 try
                 {
                     kn.CapNhat(sql, prms);
-                    // Sau khi cập nhật, thông báo thành công cho người dùng
+
+                    // Lấy IDBenhNhan từ tin nhắn vừa cập nhật
+                    string sqlGetID = "SELECT IDBenhNhan FROM TinNhanChatBot WHERE ID = @ID";
+                    SqlParameter[] p = { new SqlParameter("@ID", id) };
+                    var dt = kn.docdulieu(sqlGetID, p);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        string idBenhNhan = dt.Rows[0]["IDBenhNhan"].ToString();
+
+                        // Hiển thị lịch sử theo bệnh nhân vừa trả lời
+                        LoadLichSuTheoBenhNhan(idBenhNhan);
+                    }
+
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "success", "alert('Phản hồi đã được gửi thành công!');", true);
                     txtTraLoi.Text = "";
                     LoadDanhSachCauHoi();
@@ -62,35 +75,33 @@ namespace NHOM20_DATN.Consultant
                 }
                 catch (Exception ex)
                 {
-                    // Nếu có lỗi, thông báo cho người dùng
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');", true);
                 }
             }
             else
             {
-                // Nếu không có phản hồi, thông báo cho người dùng
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "warning", "alert('Vui lòng nhập phản hồi trước khi gửi!');", true);
             }
         }
+
 
         protected void Timer1_Tick(object sender, EventArgs e)
         {
             LoadDanhSachCauHoi(); // Tự động cập nhật danh sách câu hỏi
         }
 
-    //    private void LoadLichSu(string idBenhNhan)
-    //    {
-    //        string sql = @"SELECT CauHoi, ThoiGian, TraLoi
-    //               FROM TinNhanChatBot
-    //               WHERE IDBenhNhan = @IDBenhNhan
-    //               ORDER BY ThoiGian DESC";
+        private void LoadLichSuTheoBenhNhan(string idBenhNhan)
+        {
+            string sql = @"SELECT CauHoi, TraLoi, ThoiGian 
+                   FROM TinNhanChatBot
+                   WHERE IDBenhNhan = @IDBenhNhan
+                   ORDER BY ThoiGian DESC";
+            SqlParameter[] prms = {
+        new SqlParameter("@IDBenhNhan", idBenhNhan)
+    };
 
-    //        SqlParameter[] prms = {
-    //    new SqlParameter("@IDBenhNhan", idBenhNhan)
-    //};
-
-    //        rptLichSu.DataSource = kn.docdulieu(sql, prms);
-    //        rptLichSu.DataBind();
-    //    }
+            rptLichSu.DataSource = kn.docdulieu(sql, prms);
+            rptLichSu.DataBind();
+        }
     }
 }

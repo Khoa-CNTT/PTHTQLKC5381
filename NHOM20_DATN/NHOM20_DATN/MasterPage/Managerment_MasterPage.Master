@@ -76,13 +76,20 @@
                             </div>
                         </a>
                     </li>
-                      <li>
-      <a href="/pages/Manager/Xuat_Phieu_Kham.aspx">
-          <div class="contain-xpk">
-             <i class="fa-solid fa-file-arrow-down"></i>Xuất Phiếu Khám
-          </div>
-      </a>
-  </li>
+                    <li>
+                        <a href="/pages/Manager/Thong_Ke_Doanh_Thu.aspx">
+                            <div class="contain-tkdt">
+                                <i class="fa-solid fa-chart-column"></i>Thống kê doanh thu
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/Manager/Xuat_Phieu_Kham.aspx">
+                            <div class="contain-xpk">
+                                <i class="fa-solid fa-file-arrow-down"></i>Xuất Phiếu Khám
+                            </div>
+                        </a>
+                    </li>
 
                     <li>
                         <a href="/pages/Manager/Thong_Ke_SL_Benh_Nhan.aspx">

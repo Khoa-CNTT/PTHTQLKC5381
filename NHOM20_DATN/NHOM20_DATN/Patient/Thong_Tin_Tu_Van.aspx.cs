@@ -51,8 +51,6 @@ namespace NHOM20_DATN.Patient
         }
 
 
-
-
         private void XuLyKetQuaMoMo()
         {
             if (Request.QueryString["resultCode"] == null) return;
@@ -248,7 +246,6 @@ namespace NHOM20_DATN.Patient
                 throw new ArgumentException("Dữ liệu đầu vào không hợp lệ");
             }
 
-            // Câu lệnh SQL để lưu dữ liệu
             string sql = @"
         INSERT INTO ThanhToan 
         (PartnerCode, OrderId, RequestId, Amount, OrderInfo, OrderType, 
@@ -279,7 +276,7 @@ namespace NHOM20_DATN.Patient
             new SqlParameter("@IDBenhNhan", idBenhNhan)
         };
 
-                db.CapNhat(sql, parameters); // Hàm cập nhật đã có sẵn
+                db.CapNhat(sql, parameters);
             }
             catch (Exception ex)
             {

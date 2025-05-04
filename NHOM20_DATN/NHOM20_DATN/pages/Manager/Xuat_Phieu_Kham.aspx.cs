@@ -15,12 +15,29 @@ namespace NHOM20_DATN
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                LoadDanhSachBenhNhan();
+            }
         }
+
+        private void LoadDanhSachBenhNhan()
+        {
+            LopKetNoi lop = new LopKetNoi();
+            string sql = @"SELECT IDPhieu, HoTen, NgayKham, GioiTinh 
+                   FROM PhieuKham 
+                   ORDER BY NgayKham DESC"; 
+
+            
+            gvBenhNhan.DataSource = lop.docdulieu(sql, new SqlParameter[0]);
+            gvBenhNhan.DataBind();
+        }
+
+
         protected void btnTim_Click(object sender, EventArgs e)
         {
             string ten = txtTenBenhNhan.Text.Trim();
-            string ngaySinh = txtNgaySinh.Text.Trim();
+            string ngaySinh = txtNgayKham.Text.Trim();
             LopKetNoi lop = new LopKetNoi();
             string sql = "SELECT IDPhieu, HoTen, NgayKham, GioiTinh FROM PhieuKham WHERE HoTen LIKE @ten";
             if (!string.IsNullOrEmpty(ngaySinh))
@@ -75,15 +92,15 @@ namespace NHOM20_DATN
 
                     lblTrieuChung.Text = dt.Rows[0]["TrieuChung"].ToString();
                     lblBacSi.Text = dt.Rows[0]["TenBacSi"].ToString();
-                    lblPhongKham.Text = dt.Rows[0]["TenPhongKham"].ToString();
+                    
                     lblNgay.Text = DateTime.Now.ToString("dd");
                     lblThang.Text = DateTime.Now.ToString("MM");
                     lblNam.Text = DateTime.Now.ToString("yyyy");
-                    lblChuKy.Text = dt.Rows[0]["TenBacSi"].ToString();
+                   
 
                     // Cuộn trang xuống phần phiếu khám
-                    string script = "window.scrollTo({ top: document.getElementById('" + pnlPhieuKham.ClientID + "').offsetTop, behavior: 'smooth' });";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "ScrollToPhieu", script, true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal",
+         "document.getElementById('pnlPhieuKham').style.visibility='visible'; showModal();", true);
                 }
             }
         }

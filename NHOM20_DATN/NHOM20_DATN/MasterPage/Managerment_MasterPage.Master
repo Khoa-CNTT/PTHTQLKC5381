@@ -72,14 +72,14 @@
                     <li>
                         <a href="/pages/Manager/Quan_Ly_Thanh_Toan.aspx">
                             <div class="contain-qltt">
-                                <i class="fa-solid fa-newspaper"></i>Quản lý thanh toán
+                                <i class="fa-solid fa-chart-line"></i>Quản lý thanh toán
                             </div>
                         </a>
                     </li>
                       <li>
       <a href="/pages/Manager/Xuat_Phieu_Kham.aspx">
           <div class="contain-xpk">
-              <i class="fa-solid fa-newspaper"></i>Xuất Phiếu Khám
+             <i class="fa-solid fa-file-arrow-down"></i>Xuất Phiếu Khám
           </div>
       </a>
   </li>

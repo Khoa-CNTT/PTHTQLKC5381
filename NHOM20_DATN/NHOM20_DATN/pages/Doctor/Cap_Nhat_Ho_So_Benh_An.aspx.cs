@@ -28,6 +28,13 @@ namespace NHOM20_DATN.pages.Doctor
             string idbs = (string)Session["UserID"];
             DataTable dtHS = new DataTable();
             dtHS = medicalRecordService.getAll(idbs);
+            if(dtHS.Rows.Count <= 0)
+            {
+                string message = "Không có bệnh nhân nào";
+                string script = "ShowAlert('" + message + "','success');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }
             gridMedicalRecord.DataSource = dtHS;
             gridMedicalRecord.DataBind();
         }

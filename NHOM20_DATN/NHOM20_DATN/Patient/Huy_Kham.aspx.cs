@@ -33,9 +33,11 @@ namespace NHOM20_DATN
         }
         private void LoaddPhieuKham(string idBenhNhan)
         {
-            string sql2 = @"SELECT TOP 1 * FROM PhieuKham 
-           WHERE IDBenhNhan = @IDBenhNhan
-           ORDER BY NgayKham ASC, ThoiGianKham ASC";
+            string sql2 = @"SELECT TOP 1 p.* FROM PhieuKham p
+                   INNER JOIN LichKhamBenhNhan l ON p.IDPhieu = l.IDPhieu
+                   WHERE p.IDBenhNhan = @IDBenhNhan
+                   AND l.TrangThai = 'DaDangKy'
+                   ORDER BY p.NgayKham ASC, p.ThoiGianKham ASC";
             SqlParameter[] parameters2 = { new SqlParameter("@IDBenhNhan", idBenhNhan) };
 
             LopKetNoi knn = new LopKetNoi();
@@ -183,12 +185,21 @@ namespace NHOM20_DATN
 
         private bool XoaDangKy(string idPhieu)
         {
+            string sqlCheck = "SELECT IDLichSu FROM LichSuKham WHERE IDPhieu = @IDPhieu";
+            SqlParameter[] checkParams = { new SqlParameter("@IDPhieu", idPhieu) };
+
+            LopKetNoi knn = new LopKetNoi();
+            DataTable dt = knn.docdulieu(sqlCheck, checkParams);
+
             string sql = @"
+            DELETE FROM HoSoBenhAn WHERE IDLSK IN (SELECT IDLichSu FROM LichSuKham WHERE IDPhieu = @IDPhieu);
+            DELETE FROM LichSuKham WHERE IDPhieu = @IDPhieu;
             DELETE FROM LichKhamBacSi WHERE IDPhieu = @IDPhieu; 
-            DELETE FROM PhieuKham WHERE IDPhieu = @IDPhieu; 
+             
             UPDATE LichKhamBenhNhan 
             SET TrangThai = 'DaHuy' 
-            WHERE IDPhieu = @IDPhieu AND TrangThai != 'DaHuy';";
+            WHERE IDPhieu = @IDPhieu AND TrangThai != 'DaHuy';
+            DELETE FROM PhieuKham WHERE IDPhieu = @IDPhieu;";
             SqlParameter[] parameters = {
              new SqlParameter("@IDPhieu", idPhieu) };
 
@@ -226,9 +237,11 @@ namespace NHOM20_DATN
         private void TaiDanhSachPhieuKham(string idBenhNhan)
         {
             string sql = @"SELECT p.IDPhieu, p.NgayKham
-              FROM PhieuKham p
-              WHERE p.IDBenhNhan = @IDBenhNhan
-              ORDER BY p.NgayKham ASC";
+                  FROM PhieuKham p
+                  INNER JOIN LichKhamBenhNhan l ON p.IDPhieu = l.IDPhieu
+                  WHERE p.IDBenhNhan = @IDBenhNhan 
+                  AND l.TrangThai = 'DaDangKy'
+                  ORDER BY p.NgayKham ASC";
 
             SqlParameter[] parameters = { new SqlParameter("@IDBenhNhan", idBenhNhan) };
             LopKetNoi knn = new LopKetNoi();

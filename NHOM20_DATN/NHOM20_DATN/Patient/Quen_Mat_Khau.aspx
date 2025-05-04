@@ -169,24 +169,24 @@
             }
 
             .hienthi {
-                margin-left: 10px !important;
-                margin-top: 0px;
+                margin-left: 290px !important;
+                margin-top: -40px;
                 position: absolute;
             }
 
             .hienthi1 {
-                margin-top: -10px !important;
-                margin-left: -230px !important;
+                margin-top: -35px !important;
+                margin-left: -380px !important;
                 width: 400px;
                 font-size: 13px;
             }
 
             .khung {
                 height: 190px;
-                width: 600px;
+                width: 400px;
                 font-size: 16px;
-                margin-left: 60px;
-                margin-top: 10px;
+                margin-left: 180px;
+                margin-top: -450px;
             }
 
             .than2 {
@@ -194,19 +194,31 @@
             }
 
             .khung1 {
-                height: 170px;
-                width: 600px;
+                height: 180px;
+                width: 400px;
                 font-size: 16px;
-                margin-top: 130px;
+                margin-top: 60px;
+                margin-left: -70px;
             }
 
             .xacnhan1 .mau {
-                margin-top: -20px;
-                margin-left: 10px;
+                margin-top: 7px;
+                margin-left: -125px;
             }
 
             .dau4 {
                 display: none;
+            }
+
+            .anhnenqmk img {
+                width: 910px !important;
+                height: 500px !important;
+                margin-left: -40px;
+            }
+
+            .anhnenqmk {
+                position: relative;
+                z-index: -20;
             }
         }
 
@@ -219,10 +231,10 @@
 
             .khung {
                 height: 190px;
-                width: 600px;
+                width: 400px;
                 font-size: 13px;
-                margin-top: 10px;
-                margin-left: -5px;
+                margin-top: -450px;
+                margin-left: 110px;
             }
 
             .than2 {
@@ -231,15 +243,15 @@
 
             .khung1 {
                 height: 170px;
-                width: 600px;
+                width: 400px;
                 font-size: 13px;
-                margin-top: 130px;
+                margin-top: 50px;
                 margin-left: -70px;
             }
 
             .xacnhan1 .mau {
                 margin-top: -20px;
-                margin-left: 10px;
+                margin-left: -125px;
             }
 
             .dau4 {
@@ -247,15 +259,26 @@
             }
 
             .hienthi {
-                margin-left: 10px !important;
-                margin-top: -5px;
+                margin-left: 285px !important;
+                margin-top: -35px;
                 position: absolute;
             }
 
             .hienthi1 {
-                margin-top: -5px !important;
-                margin-left: -250px !important;
+                margin-top: -35px !important;
+                margin-left: -370px !important;
                 width: 400px;
+            }
+
+            .anhnenqmk img {
+                width: 685px !important;
+                height: 500px !important;
+                margin-left: -40px;
+            }
+
+            .anhnenqmk {
+                position: relative;
+                z-index: -20;
             }
         }
 
@@ -272,10 +295,10 @@
 
             .khung {
                 height: 160px;
-                width: 440px;
+                width: 380px;
                 font-size: 10px;
-                margin-top: 20px;
-                margin-left: -40px;
+                margin-top: -420px;
+                margin-left: -10px;
             }
 
             .than2 {
@@ -283,14 +306,15 @@
             }
 
             .khung1 {
-                height: 140px;
-                width: 440px;
+                height: 170px;
+                width: 380px;
                 font-size: 10px;
-                margin-top: 100px;
+                top: -50px !important;
+                margin-left: -70px;
             }
 
             .xacnhan1 .mau {
-                margin-left: -50px;
+                margin-left: -125px;
                 font-size: 10px;
             }
 
@@ -314,15 +338,35 @@
             }
 
             .hienthi {
-                margin-left: 10px !important;
-                margin-top: -5px;
+                margin-left: 300px !important;
+                margin-top: -35px;
                 position: absolute;
             }
 
             .hienthi1 {
-                margin-top: -20px !important;
-                margin-left: -320px !important;
+                margin-top: -26px !important;
+                margin-left: -350px !important;
                 width: 400px;
+            }
+
+            .anhnenqmk img {
+                width: 450px !important;
+                height: 500px !important;
+                margin-left: -40px;
+            }
+
+            .anhnenqmk {
+                position: relative;
+                z-index: -20;
+            }
+
+            .quen {
+                font-size: 18px;
+                top: 40px;
+            }
+
+            .xacnhan {
+                margin-top: -10px !important;
             }
         }
 

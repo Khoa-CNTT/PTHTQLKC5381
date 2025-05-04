@@ -614,6 +614,7 @@
     </Compile>
     <Compile Include="res\service\AppointmentManagerment_Service.cs" />
     <Compile Include="res\service\DoctorService.cs" />
+    <Compile Include="res\service\library\AutoGenerateID.cs" />
     <Compile Include="res\service\MedicalRecordService.cs" />
     <Compile Include="res\service\PatientManagerment.cs" />
     <Compile Include="res\service\PaymentService.cs" />

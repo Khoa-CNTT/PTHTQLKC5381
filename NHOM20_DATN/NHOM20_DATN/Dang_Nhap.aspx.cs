@@ -61,7 +61,7 @@ namespace NHOM20_DATN
             string enteredCaptcha = txtCaptcha.Text.ToUpper(); // Lấy mã CAPTCHA người dùng nhập và chuyển thành chữ hoa
             string storedCaptcha = Session["Captcha"] as string;
 
-            if (string.IsNullOrEmpty(storedCaptcha) || enteredCaptcha != storedCaptcha.ToUpper())
+            if (string.IsNullOrEmpty(storedCaptcha) || !string.Equals(enteredCaptcha, storedCaptcha, StringComparison.OrdinalIgnoreCase))
             {
                 // Nếu nhập sai CAPTCHA, chỉ hiển thị lỗi, không tạo CAPTCHA mới ngay
                 lblCaptchaError.Text = "Mã xác nhận không đúng! Vui lòng thử lại.";

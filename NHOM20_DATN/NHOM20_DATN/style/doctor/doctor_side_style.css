@@ -324,6 +324,7 @@ body {
 
     .btn_menu {
         display: block;
+        z-index:2;
     }
 
     .btn_close {

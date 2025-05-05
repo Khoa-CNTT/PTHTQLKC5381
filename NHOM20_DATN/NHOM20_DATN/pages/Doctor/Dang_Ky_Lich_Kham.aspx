@@ -90,7 +90,14 @@
             display: inline-block;
             margin-left:50px;
         }
-
+        h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90vw; /* Giới hạn chiều rộng tối đa */
+    margin-left: 0; /* Bỏ căn lề trái */
+    padding: 0 15px; /* Thêm padding hai bên */
+}
        
 
         label {
@@ -247,7 +254,7 @@
             color: var(--primary-color);
         }
 
-        /* Modern dropdown styling */
+       
         .control[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(0.5);
             cursor: pointer;
@@ -267,7 +274,7 @@
             padding-right: 40px;
         }
 
-        /* Floating animation */
+        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -278,25 +285,60 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .layout-wrapper {
-                flex-direction: column;
-            }
-            
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-wrapper, .info-wrapper {
-                width: 100%;
-            }
-            
-            .medical-info {
-                width: auto;
-                margin-left: 0;
-            }
-        }
+      
+    
+@media (max-width: 767px) {
+    /* Reset layout chính */
+    #content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 15px !important;
+    }
+
+    .container {
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        gap: 15px !important;
+        z-index:0;
+       
+    }
+
+    .info-wrapper{
+        display:none;
+    }
+    .control {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+   
+    .medical-info .hinhbs1, 
+    .medical-info .hinhbs2 {
+        display: none !important;
+    }
+
+    .medical-info {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 15px !important;
+    }
+
+    #DDLgiokham {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        grid-template-columns: 1fr 1fr !important;
+        width: 90% !important;
+    }
+
+    .medical-info {
+        width: 90% !important;
+    }
+}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -506,6 +506,7 @@
         </div>
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
 
+
         <!-- ChatBot ở góc phải -->
         <div class="chatbot-box" id="chatbotBox" style="position: fixed; bottom: 20px; right: 20px; width: 350px; z-index: 999;">
             <div class="card shadow-lg border-0">
@@ -516,10 +517,8 @@
                     </a>
                 </div>
 
-                <!-- ✅ Bọc UpdatePanel -->
-                <asp:UpdatePanel ID="upChatBot" runat="server">
+                <asp:UpdatePanel ID="upChatBot" runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
-
                         <div class="card-body p-3" id="chatbot-body" style="max-height: 400px; overflow-y: auto; background: #f9f9f9;">
                             <hr />
                             <p class="text-muted mb-2"><em>Lịch sử tư vấn:</em></p>
@@ -530,11 +529,9 @@
                                         <div class="fw-bold text-primary mb-1">
                                             <i class="fas fa-user me-2 text-info"></i>Bạn hỏi:
                                         </div>
-
                                         <div class="text-dark mb-2 ps-3 cau-hoi" style="cursor: pointer;" onclick="toggleTraLoi(this)">
                                             <%# Eval("CauHoi") %>
                                         </div>
-
                                         <div class="tra-loi" style="display: none;">
                                             <div class="fw-bold text-success mb-1">
                                                 <i class="fas fa-user-md me-2 text-success"></i>Tư vấn viên:
@@ -553,106 +550,87 @@
                             </div>
                         </div>
 
+                        <!-- Tự động cập nhật -->
+                        <asp:Timer ID="Timer1" runat="server" Interval="80000" OnTick="Timer1_Tick" />
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="btnGuiCauHoi" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
         </div>
 
-        <!-- Nút mở lại chatbot (ban đầu ẩn) -->
-        <div id="openChatBtn" style="position: fixed; bottom: 24px; right: 24px; z-index: 998; display: block;">
-            <button class="btn btn-primary rounded-circle shadow-lg chat-bubble-btn"
-                style="width: 64px; height: 64px;" onclick="toggleChatBot()">
+        <!-- Nút mở lại chatbot -->
+        <div id="openChatBtn" style="position: fixed; bottom: 24px; right: 24px; z-index: 998; display: none;">
+            <button class="btn btn-primary rounded-circle shadow-lg chat-bubble-btn" style="width: 64px; height: 64px;" onclick="toggleChatBot()">
                 <i class="fas fa-comments fa-2x"></i>
             </button>
         </div>
 
+        <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    <script>
-        document.getElementById("thongbao").addEventListener("click", function (event) {
-            event.preventDefault();
-            var notificationModal = new bootstrap.Modal(document.getElementById("notificationModal"));
-            notificationModal.show();
-        });
-    </script>
-    <script type="text/javascript">
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        <script type="text/javascript">
+            // Mở/đóng hộp thoại ChatBot
+            function toggleChatBot() {
+                var box = document.getElementById("chatbotBox");
+                var btn = document.getElementById("openChatBtn");
 
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3oEddz63s3cF5OeLJ1vSOPUt/C+VRbN6z1yUlD9sMGZmIZzIQ2m0x0K5rRJH9I1" crossorigin="anonymous"></script>
-    <script>
-        function toggleTraLoi(cauHoiDiv) {
-            var traLoiDiv = cauHoiDiv.parentElement.querySelector('.tra-loi');
-            if (traLoiDiv.style.display === "none") {
-                traLoiDiv.style.display = "block";
-            } else {
-                traLoiDiv.style.display = "none";
+                if (box.style.display === "none") {
+                    box.style.display = "block";
+                    btn.style.display = "none";
+                    localStorage.setItem("chatbotStatus", "open");
+                } else {
+                    box.style.display = "none";
+                    btn.style.display = "block";
+                    localStorage.setItem("chatbotStatus", "closed");
+                }
             }
-        }
-    </script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".cau-hoi").on("click", function () {
-                const $answer = $(this).next(".cau-tra-loi");
-                $(".cau-tra-loi").not($answer).slideUp(); // Ẩn các câu khác
-                $answer.slideToggle(); // Hiện/ẩn câu trả lời tương ứng
-            });
-        });
-    </script>
-    <script>
-        function toggleTraLoi(el) {
-            var traLoiDiv = el.parentElement.querySelector('.tra-loi');
-            if (traLoiDiv) {
-                traLoiDiv.style.display = (traLoiDiv.style.display === 'none') ? 'block' : 'none';
+            // Hiện/ẩn câu trả lời
+            function toggleTraLoi(el) {
+                const ans = el.parentElement.querySelector(".tra-loi");
+                if (ans) {
+                    ans.style.display = (ans.style.display === "none") ? "block" : "none";
+                }
             }
-        }
 
-        function toggleChatBot() {
-            var box = document.getElementById("chatbotBox");
-            box.style.display = (box.style.display === 'none') ? 'block' : 'none';
-        }
-
-        // ✅ Auto scroll to bottom sau mỗi lần cập nhật
-        Sys.Application.add_load(function () {
-            var body = document.getElementById("chatbot-body");
-            if (body) {
-                body.scrollTop = body.scrollHeight;
-            }
-        });
-        window.onload = function () {
-            const btn = document.getElementById('<%= btnDangXuat.ClientID %>');
-    if (btn) {
-        btn.addEventListener('click', function (e) {
-            e.preventDefault(); // Ngăn hành động postback mặc định
-
-            Swal.fire({
-                title: 'Xác nhận đăng xuất',
-                text: "Bạn có muốn đăng xuất không?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Đăng xuất',
-                cancelButtonText: 'Hủy'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Gọi postback để kích hoạt sự kiện Logout_Click
-                    __doPostBack('<%= btnDangXuat.UniqueID %>', '');
+            // ✅ Auto scroll to bottom sau mỗi lần cập nhật
+            Sys.Application.add_load(function () {
+                var body = document.getElementById("chatbot-body");
+                if (body) {
+                    body.scrollTop = body.scrollHeight;
                 }
             });
-        });
-            }
-        };
-    </script>
+
+            // Xử lý nút đăng xuất xác nhận với SweetAlert2
+            window.onload = function () {
+                const btn = document.getElementById(btnDangXuatClientId); // Dùng biến btnDangXuatClientId
+                if (btn) {
+                    btn.addEventListener('click', function (e) {
+                        e.preventDefault(); // Ngăn hành động postback mặc định
+
+                        Swal.fire({
+                            title: 'Xác nhận đăng xuất',
+                            text: "Bạn có muốn đăng xuất không?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Đăng xuất',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Gọi postback để kích hoạt sự kiện Logout_Click
+                                __doPostBack(btnDangXuatUniqueId, ''); // Dùng biến btnDangXuatUniqueId
+                            }
+                        });
+                    });
+                }
+            };
+        </script>
+    </form>
 </body>
 </html>

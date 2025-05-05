@@ -217,6 +217,7 @@
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx" />
+    <Content Include="pages\Manager\Thong_Ke_Doanh_Thu.aspx" />
     <Content Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx" />
     <Content Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx" />
     <Content Include="img\anhnen_huykham.jpeg" />
@@ -464,6 +465,13 @@
     </Compile>
     <Compile Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx.designer.cs">
       <DependentUpon>Quan_Ly_Thanh_Toan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Thong_Ke_Doanh_Thu.aspx.cs">
+      <DependentUpon>Thong_Ke_Doanh_Thu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Thong_Ke_Doanh_Thu.aspx.designer.cs">
+      <DependentUpon>Thong_Ke_Doanh_Thu.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx.cs">
       <DependentUpon>Thong_Ke_SL_Benh_Nhan.aspx</DependentUpon>

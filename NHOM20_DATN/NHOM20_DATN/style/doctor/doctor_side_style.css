@@ -250,7 +250,7 @@ body {
         padding-left: unset;
     }
 
-        #dropdown-menu ul li a{
+        #dropdown-menu ul li a {
             text-decoration: none;
             color: white;
         }
@@ -280,25 +280,25 @@ body {
     display: none;
 }
 
-    .contain-ttpk,
-    .contain-ttcn,
-    .contain-ttbn,
-    .contain-cnhs,
-    .contain-xlk,
-    .contain-dklk,
-    .contain-tttv {
-        padding: 15px 15px;
-    }
+.contain-ttpk,
+.contain-ttcn,
+.contain-ttbn,
+.contain-cnhs,
+.contain-xlk,
+.contain-dklk,
+.contain-tttv {
+    padding: 15px 15px;
+}
 
-    .contain-ttpk:hover,
-    .contain-ttcn:hover,
-    .contain-ttbn:hover,
-    .contain-cnhs:hover,
-    .contain-xlk:hover,
-    .contain-dklk:hover,
-    .contain-tttv:hover {
-        background-color: #d9d9d96e;
-    }
+        .contain-ttpk:hover,
+        .contain-ttcn:hover,
+        .contain-ttbn:hover
+        .contain-cnhs:hover,
+        .contain-xlk:hover,
+        .contain-dklk:hover,
+        .contain-tttv:hover {
+            background-color: #d9d9d96e;
+        }
 
 #right-dropdown {
     background: none;

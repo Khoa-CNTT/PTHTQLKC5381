@@ -44,12 +44,12 @@
                     <ul>
                         <li>
                             <a href="/pages/DoctorOnline/Xem_Thong_Tin_Tu_Van.aspx">
-                                <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Xem thông tin tư vấn</div>
+                                <div class="contain-ttbn"><i class="fa-solid fa-calendar" style="color: #ffffff;"></i>Xem thông tin tư vấn</div>
                             </a>
                         </li>
                         <li>
                             <a href="/pages/DoctorOnline/Quan_ly_Thong_Bac_Si_Online.aspx">
-                                <div class="contain-ttbn"><i class="fa-regular fa-user"></i>Quản lý thông tin cá nhân</div>
+                                <div class="contain-ttbnn"><i class="fa-regular fa-user"></i>Quản lý thông tin cá nhân</div>
                             </a>
                         </li>
                     </ul>

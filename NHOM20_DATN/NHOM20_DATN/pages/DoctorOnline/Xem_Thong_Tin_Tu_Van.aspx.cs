@@ -39,7 +39,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                FROM LichTuVan lt
                INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
                WHERE lt.IDBacSi = @IDBacSi
-               ORDER BY lt.Ngay DESC";
+               ORDER BY lt.Ngay DESC, lt.Gio DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
@@ -51,7 +51,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                lt.TrieuChung, lt.LinkJitsi AS Link
                FROM LichTuVan lt
                INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-               ORDER BY lt.Ngay DESC";
+               ORDER BY lt.Ngay DESC, lt.Gio DESC";
             }
 
             DataTable dt = ketNoi.docdulieu(sql, parameters);
@@ -64,7 +64,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
             }
             else
             {
-                Response.Write("Không có dữ liệu");
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "swal('Lỗi','Không tìm thấy dữ liệu!','error');", true);
             }
         }
         private void LoadNgayKham(DataTable dt)
@@ -116,7 +116,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                  INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
                  WHERE CONVERT(date, lt.Ngay) = CONVERT(date, @Ngay)
                  AND lt.IDBacSi = @IDBacSi
-                 ORDER BY lt.Gio";
+                 ORDER BY lt.Gio DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@Ngay", ngay),
@@ -130,7 +130,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                  FROM LichTuVan lt
                  INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
                  WHERE CONVERT(date, lt.Ngay) = CONVERT(date, @Ngay)
-                 ORDER BY lt.Gio";
+                 ORDER BY lt.Gio DESC";
 
                 parameters = new SqlParameter[] {
             new SqlParameter("@Ngay", ngay)
@@ -152,7 +152,8 @@ namespace NHOM20_DATN.pages.DoctorOnline
                       lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
                       FROM LichTuVan lt
                       INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                      WHERE lt.IDBacSi = @IDBacSi";
+                      WHERE lt.IDBacSi = @IDBacSi
+                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
 
                 pr = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
@@ -163,7 +164,9 @@ namespace NHOM20_DATN.pages.DoctorOnline
                 query_list = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
                       lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
                       FROM LichTuVan lt
-                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan";
+                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
+                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
+
                 pr = new SqlParameter[] { };
             }
 
@@ -270,6 +273,46 @@ namespace NHOM20_DATN.pages.DoctorOnline
                 // Hiển thị modal
                 ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
                     "document.getElementById('detailModal').style.display='block';", true);
+            }
+        }
+        protected void GridView1_PreRender(object sender, EventArgs e)
+        {
+            if (GridView1.Rows.Count == 0 && GridView1.DataSource == null)
+            {
+                // Tạo DataTable với cấu trúc tương tự GridView
+                DataTable dt = new DataTable();
+                dt.Columns.Add("IDBenhNhan");
+                dt.Columns.Add("HoTenBenhNhan");
+                dt.Columns.Add("Ngay");
+                dt.Columns.Add("Gio");
+                dt.Columns.Add("TrieuChung");
+                dt.Columns.Add("Link");
+
+                // Thêm 5 dòng placeholder
+                for (int i = 0; i < 7; i++)
+                {
+                    dt.Rows.Add(" ", " ", " ", " ", " ", " ");
+                }
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                // Thêm class placeholder cho các cell
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    row.CssClass = "placeholder-row";
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        cell.CssClass = "placeholder-cell";
+                    }
+
+                    // Ẩn nút Xem chi tiết ở cột cuối cùng
+                    if (row.Cells.Count > 0)
+                    {
+                        row.Cells[row.Cells.Count - 1].Text = ""; // Xóa nội dung ô
+                        row.Cells[row.Cells.Count - 1].CssClass = "placeholder-cell hidden-button";
+                    }
+                }
             }
         }
     }

@@ -66,7 +66,7 @@ namespace NHOM20_DATN
             }
             else
             {
-                Response.Write(" ");
+                ClientScript.RegisterStartupScript(this.GetType(), "Error", "swal('Lỗi','Không tìm thấy dữ liệu!','error');", true);
             }
         }
         private void LoadNgayKham(DataTable dt)
@@ -324,6 +324,46 @@ namespace NHOM20_DATN
                 // Hiển thị modal
                 ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
                     "document.getElementById('detailModal').style.display='block';", true);
+            }
+        }
+        protected void GridView1_PreRenderr(object sender, EventArgs e)
+        {
+            if (GridView1.Rows.Count == 0 && GridView1.DataSource == null)
+            {
+                // Tạo DataTable với cấu trúc tương tự GridView thực tế
+                DataTable dt = new DataTable();
+                dt.Columns.Add("IDBenhNhan");
+                dt.Columns.Add("HoTen");
+                dt.Columns.Add("NgayKham");
+                dt.Columns.Add("ThoiGianKham");
+                dt.Columns.Add("TrieuChung");
+                dt.Columns.Add("TrangThai");
+
+                // Thêm 7 dòng placeholder (tương ứng với PageSize)
+                for (int i = 0; i < 7; i++)
+                {
+                    dt.Rows.Add("", "", "", "", "", "");
+                }
+
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+
+                // Thêm class placeholder cho các cell và ẩn nút Xem chi tiết
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    row.CssClass = "placeholder-row";
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        cell.CssClass = "placeholder-cell";
+                    }
+
+                    // Ẩn nút Xem chi tiết ở cột cuối cùng
+                    if (row.Cells.Count > 0)
+                    {
+                        row.Cells[row.Cells.Count - 1].Text = ""; // Xóa nội dung ô
+                        row.Cells[row.Cells.Count - 1].CssClass = "placeholder-cell hidden-button";
+                    }
+                }
             }
         }
     }

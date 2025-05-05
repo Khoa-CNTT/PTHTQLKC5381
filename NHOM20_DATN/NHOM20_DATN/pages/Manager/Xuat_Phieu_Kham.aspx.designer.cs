@@ -24,13 +24,13 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.TextBox txtTenBenhNhan;
 
         /// <summary>
-        /// txtNgaySinh control.
+        /// txtNgayKham control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNgaySinh;
+        protected global::System.Web.UI.WebControls.TextBox txtNgayKham;
 
         /// <summary>
         /// btnTim control.
@@ -150,15 +150,6 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.Label lblBacSi;
 
         /// <summary>
-        /// lblPhongKham control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPhongKham;
-
-        /// <summary>
         /// lblNgay control.
         /// </summary>
         /// <remarks>
@@ -184,14 +175,5 @@ namespace NHOM20_DATN
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNam;
-
-        /// <summary>
-        /// lblChuKy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblChuKy;
     }
 }

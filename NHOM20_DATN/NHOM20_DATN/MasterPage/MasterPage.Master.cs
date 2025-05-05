@@ -73,6 +73,11 @@ namespace NHOM20_DATN.MasterPage
             }
         }
 
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            LoadLichSuHoiDap();
+        }
+
         protected void btnGuiCauHoi_Click(object sender, EventArgs e)
         {
             string idNguoiDung = Session["UserID"]?.ToString();

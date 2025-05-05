@@ -73,6 +73,22 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
+
+                <hr />
+                <h3 class="fw-bold text-dark mt-5"><i class="fas fa-history text-secondary me-2"></i>Lịch sử tư vấn</h3>
+                <asp:Repeater ID="rptLichSu" runat="server">
+                    <ItemTemplate>
+                        <div class="card custom-card mb-3">
+                            <div class="card-header d-flex justify-content-between">
+                                <span><strong>Câu hỏi:</strong> <%# Eval("CauHoi") %></span>
+                                <small class="fst-italic"><i class="far fa-clock me-1"></i><%# Eval("ThoiGian", "{0:dd/MM/yyyy HH:mm}") %></small>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Trả lời:</strong> <%# string.IsNullOrEmpty(Eval("TraLoi").ToString()) ? "Chưa có phản hồi" : Eval("TraLoi") %></p>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </ContentTemplate>
         <Triggers>
@@ -81,5 +97,5 @@
     </asp:UpdatePanel>
 
     <!-- Timer để reload -->
-    <asp:Timer ID="Timer1" runat="server" Interval="5000" OnTick="Timer1_Tick" />
+    <asp:Timer ID="Timer1" runat="server" Interval="80000" OnTick="Timer1_Tick" />
 </asp:Content>

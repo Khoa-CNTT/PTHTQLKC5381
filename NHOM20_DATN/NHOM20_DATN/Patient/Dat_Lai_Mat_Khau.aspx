@@ -151,11 +151,11 @@
                 height: 300px;
                 width: 450px;
                 font-size: 13px;
-                margin-top: 80px;
+                margin-top: 60px;
                 margin-left: 220px;
             }
 
-            .nendatlai {
+            .nendatlai img {
                 width: 940px;
                 margin-left: -50px;
             }
@@ -172,6 +172,11 @@
             .than2 img {
                 display: none;
             }
+
+            .nentrongsuot {
+                width: 490px;
+                margin-left: 80px;
+            }
         }
 
         /* Quy tắc cho màn hình nhỏ */
@@ -180,11 +185,11 @@
                 height: 300px;
                 width: 450px;
                 font-size: 13px;
-                margin-top: 100px;
-                margin-left: 130px;
+                margin-top: 70px;
+                margin-left: 90px;
             }
 
-            .nendatlai {
+            .nendatlai img {
                 width: 700px;
                 margin-left: -50px;
             }
@@ -215,7 +220,7 @@
                 height: 300px;
                 width: 450px;
                 font-size: 12px;
-                margin-top: 80px;
+                margin-top: 50px;
                 margin-left: 0px;
             }
 
@@ -241,6 +246,11 @@
             .quen {
                 margin-left: -80px;
                 font-size: 20px;
+            }
+
+            .nentrongsuot {
+                width: 390px;
+                margin-left: -90px;
             }
         }
     </style>

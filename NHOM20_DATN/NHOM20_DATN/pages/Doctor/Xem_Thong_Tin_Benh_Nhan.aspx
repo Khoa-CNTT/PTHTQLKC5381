@@ -13,7 +13,7 @@
             padding: 0;
         }
 
-        .contain-ttbn{
+        .contain-ttbn {
             background-color: #d9d9d96e;
         }
 
@@ -94,8 +94,8 @@
             .doctor_tb th {
                 background-color: #007bff;
                 color: white;
-                font-size:13px;
-                margin-left:10px;
+                font-size: 13px;
+                margin-left: 10px;
             }
 
             .doctor_tb tr:hover {
@@ -104,11 +104,20 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .table-title {
+                margin-left: -350px;
+                font-size: 18px !important;
+                margin-top: -20px !important;
+            }
 
             .seach_bar {
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+                .seach_bar input[type="text"] {
+                    width: 165px !important;
+                }
 
                 .seach_bar input[type="text"], .btn_search, select {
                     width: 100%;
@@ -119,22 +128,28 @@
                 width: 200px !important;
             }
 
+            select {
+                margin-left: -5px !important;
+                width: 80px;
+            }
+
             .Phankhung {
                 padding: 15px;
-                width: 450px;
-                margin-left: 540px !important;
+                width: 480px;
+                margin-left: -370px !important;
                 box-sizing: border-box;
                 overflow: hidden;
+                margin-top: -10px;
             }
 
             .dropdown1, .dropdown2 {
-                width: 100px;
+                width: 90px;
                 font-size: 10px;
                 height: 50px;
             }
 
             .dropdown2 {
-                margin-left: -15px;
+                margin-left: -20px;
             }
 
             .tk1 {
@@ -150,9 +165,14 @@
 
             .btn_search {
                 width: 40px;
-                height: 40px;
-                margin-top: -52px;
+                height: 45px;
+                margin-top: -55px;
                 margin-left: 130px;
+            }
+
+            .fa-magnifying-glass {
+                margin-left: -2px;
+                margin-top: 2px;
             }
 
             .doctor_tb {
@@ -210,8 +230,8 @@
 
             .Phankhung {
                 padding: 15px;
-                width: 700px;
-                margin-left: 10px;
+                width: 720px;
+                margin-left: -330px;
                 box-sizing: border-box;
                 overflow: hidden;
             }
@@ -243,7 +263,7 @@
             }
 
             .doctor_tb {
-                width: 800px;
+                width: 840px;
                 display: block;
                 display: table;
             }
@@ -261,8 +281,8 @@
                 }
 
             .boc {
-                width: 670px;
-                margin-left: -10px;
+                width: 690px;
+                margin-left: 0px;
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
                 display: block;
@@ -295,9 +315,13 @@
             .Phankhung {
                 padding: 15px;
                 width: 600px;
-                margin-left: 20px;
+                margin-left: -10px;
                 box-sizing: border-box;
                 overflow: hidden;
+            }
+
+            .seach_bar input[type="text"] {
+                width: 165px !important;
             }
 
             .dropdown1, .dropdown2 {
@@ -327,7 +351,7 @@
             }
 
             .doctor_tb {
-                width: 800px;
+                width: 900px;
                 display: block;
                 display: table;
             }
@@ -338,7 +362,7 @@
                 }
 
                 .doctor_tb td {
-                    width: 1200px;
+                    width: 1000px;
                     min-width: 100%;
                     white-space: nowrap;
                     font-size: 12px !important;
@@ -426,7 +450,8 @@
             .btn-refresh i {
                 font-size: 14px;
             }
-                    .btn-detail {
+
+        .btn-detail {
             background-color: #4CAF50;
             color: white;
             padding: 6px 12px;
@@ -436,9 +461,9 @@
             font-size: 12px;
         }
 
-        .btn-detail:hover {
-            background-color: #45a049;
-        }
+            .btn-detail:hover {
+                background-color: #45a049;
+            }
 
         .modal {
             display: none;
@@ -460,28 +485,60 @@
             border-radius: 5px;
             position: relative;
             top: 40px;
-            left:30px;
+            left: 30px;
         }
 
         .modal-title {
             text-align: center;
             font-family: 'Times New Roman', Times, serif;
             margin-top: -10px;
-            color:#8A2BE2;
+            color: #8A2BE2;
         }
 
         .close {
             color: #aaa;
             float: left;
-            margin-left:830px;
+            margin-left: 830px;
             font-size: 32px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .close:hover {
-            color: red;
-        }
+            .close:hover {
+                color: red;
+            }
+                        .empty-data {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #666;
+    background-color: #f9f9f9;
+    border: 1px dashed #ccc;
+}
+
+/* Thêm style cho placeholder rows */
+.placeholder-row {
+    background-color: #f9f9f9 !important;
+}
+
+.placeholder-cell {
+    color: transparent;
+    background-color: #f5f5f5 !important;
+    position: relative;
+    overflow: hidden;
+    height:50px;
+}
+
+.placeholder-cell::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   
+    
+}
     </style>
 
 </asp:Content>
@@ -501,7 +558,7 @@
                     <asp:ListItem Text="Tất cả trạng thái" Value="" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Đã đăng ký" Value="DaDangKy"></asp:ListItem>
                     <asp:ListItem Text="Đã huỷ" Value="DaHuy"></asp:ListItem>
-                    <asp:ListItem Text="Đang chờ" Value="DangCho"></asp:ListItem>
+                    <asp:ListItem Text="Đã khám" Value="DaKham"></asp:ListItem>
                 </asp:DropDownList>
                 <asp:DropDownList ID="ddlNgayKham" runat="server" AutoPostBack="true"
                     OnSelectedIndexChanged="ddlNgayKham_SelectedIndexChanged">
@@ -513,70 +570,71 @@
 
             </div>
             <div class="boc">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-                OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true" PageSize="7"
-                CssClass="doctor_tb" PagerStyle-CssClass="pagination">
-                <Columns>
-                    <asp:BoundField DataField="IDBenhNhan" HeaderText="Mã Bệnh Nhân" ReadOnly="true" />
-                    <asp:TemplateField HeaderText="Tên bệnh nhân">
-                        <ItemTemplate>
-                            <asp:Label ID="lblHoTen" runat="server" Text='<%# Eval("HoTen") %>'></asp:Label>
-                        </ItemTemplate>
-                        <EditItemTemplate>
-                            <asp:TextBox ID="txtHoTen" runat="server" Text='<%# Bind("HoTen") %>'></asp:TextBox>
-                        </EditItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="NgayKham" HeaderText="Ngày Khám" DataFormatString="{0:dd/MM/yyyy}" />
-                    <asp:BoundField DataField="ThoiGianKham" HeaderText="Thời Gian Khám" />
-                    <asp:BoundField DataField="TrieuChung" HeaderText="Triệu Chứng" />
-                    <asp:BoundField DataField="TrangThai" HeaderText="Trạng Thái" />
-                    <asp:TemplateField HeaderText="Thao tác">
-                        <ItemTemplate>
-                            <asp:Button ID="btnDetail" runat="server" Text="Xem chi tiết" 
-                                CommandArgument='<%# Eval("IDBenhNhan") %>' 
-                                OnClick="btnDetail_Click" CssClass="btn-detail" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
+                <asp:GridView ID="GridView1" runat="server" OnPreRender="GridView1_PreRenderr" AutoGenerateColumns="False"
+                    OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true" PageSize="7"
+                    EmptyDataText="Không có dữ liệu nào được tìm thấy."
+                    EmptyDataRowStyle-CssClass="empty-data" CssClass="doctor_tb" PagerStyle-CssClass="pagination">
+                    <Columns>
+                        <asp:BoundField DataField="IDBenhNhan" HeaderText="Mã Bệnh Nhân" ReadOnly="true" />
+                        <asp:TemplateField HeaderText="Tên bệnh nhân">
+                            <ItemTemplate>
+                                <asp:Label ID="lblHoTen" runat="server" Text='<%# Eval("HoTen") %>'></asp:Label>
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="txtHoTen" runat="server" Text='<%# Bind("HoTen") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="NgayKham" HeaderText="Ngày Khám" DataFormatString="{0:dd/MM/yyyy}" />
+                        <asp:BoundField DataField="ThoiGianKham" HeaderText="Thời Gian Khám" />
+                        <asp:BoundField DataField="TrieuChung" HeaderText="Triệu Chứng" />
+                        <asp:BoundField DataField="TrangThai" HeaderText="Trạng Thái" />
+                        <asp:TemplateField HeaderText="Thao tác">
+                            <ItemTemplate>
+                                <asp:Button ID="btnDetail" runat="server" Text="Xem chi tiết"
+                                    CommandArgument='<%# Eval("IDBenhNhan") %>'
+                                    OnClick="btnDetail_Click" CssClass="btn-detail" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
 
 
 
-       <div id="detailModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 class="modal-title">Thông tin chi tiết bệnh nhân</h2>
-        <div id="patientDetails" runat="server"></div>
+        <div id="detailModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 class="modal-title">Thông tin chi tiết bệnh nhân</h2>
+                <div id="patientDetails" runat="server"></div>
+            </div>
+        </div>
     </div>
-</div>
-          </div>
-<script>
+    <script>
 
-    // Lấy modal
+        // Lấy modal
         var modal = document.getElementById("detailModal");
 
         // Lấy nút đóng modal
         var span = document.getElementsByClassName("close")[0];
 
         // Khi click vào nút đóng, đóng modal
-        span.onclick = function() {
-            modal.style.display = "none";
-    }
-
-        // Khi click bất kỳ đâu ngoài modal, đóng modal
-        window.onclick = function(event) {
-        if (event.target == modal) {
+        span.onclick = function () {
             modal.style.display = "none";
         }
-    }
+
+        // Khi click bất kỳ đâu ngoài modal, đóng modal
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
         // Hàm hiển thị modal (có thể gọi từ code-behind)
         function showModal() {
             modal.style.display = "block";
-    }
-</script>
+        }
+    </script>
 
-  
+
 </asp:Content>

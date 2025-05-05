@@ -19,23 +19,28 @@
         background-color: #f8f9fa;
         color: #333;
         line-height: 1.6;
+       
     }
         .contain-xpk{
              background-color: #d9d9d96e;
         }
     
     /* Container chính */
-    .phieu-kham-container {
-        position:relative;
+  .phieu-kham-container {
         background: white;
-        max-width: 800px;
-        margin: 30px auto;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        width: 650px;
+        margin: 10px auto;
+        font-size: 13px;
+        line-height: 1;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         position: relative;
         overflow: hidden;
+        display: block !important;
+        visibility: hidden;
     }
+
     
     /* Hiệu ứng góc */
     .phieu-kham-container::before {
@@ -44,7 +49,7 @@
         top: 0;
         right: 0;
         width: 120px;
-        height: 120px;
+        height: 100px;
         background: linear-gradient(45deg, #4361ee, #4895ef);
         clip-path: polygon(0 0, 100% 0, 100% 100%);
         z-index: 1;
@@ -123,60 +128,101 @@
     
     /* Footer */
     .phieu-kham-footer {
-        margin-top: 40px;
+        margin-top: 10px;
         text-align: right;
-        padding-top: 20px;
-        border-top: 1px dashed #dee2e6;
+        padding-top: 1px;
+        margin-bottom:20px;
     }
     
     .phieu-kham-footer p {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
-    
-    .phieu-kham-footer p:last-child {
-        margin-top: 50px;
-        font-weight: 600;
-        color: #4361ee;
+
+  @media (max-width: 768px) {
+    .phieu-kham-container {
+        width: 95% !important;
+        margin: 10px auto !important;
+        padding: 15px !important;
+        font-size: 12px !important;
     }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-        .phieu-kham-container {
-            padding: 20px;
-            margin: 15px;
-        }
-        
-        .phieu-kham-header h2 {
-            font-size: 24px;
-        }
-        
-        .info-table th, 
-        .info-table td {
-            padding: 10px;
-            display: block;
-            width: 100%;
-        }
-        
-        .info-table th {
-            border-bottom: none;
-            padding-bottom: 5px;
-        }
-        
-        .info-table td {
-            padding-top: 5px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .btn-in {
-            position: relative;
-            top: auto;
-            right: auto;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
+
+    /* Ẩn hiệu ứng góc trên mobile */
+    .phieu-kham-container::before {
+        display: none !important;
     }
-    
+
+    /* Điều chỉnh header */
+    .benh-vien-header h1 {
+        font-size: 16px !important;
+        margin: 5px 0 !important;
+    }
+
+    .benh-vien-header p {
+        font-size: 11px !important;
+        margin: 2px 0 !important;
+    }
+
+    /* Căn chỉnh nút in */
+    .btn-in {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        margin: 10px auto !important;
+        display: block;
+        width: 120px;
+        padding: 8px 15px;
+    }
+
+    /* Chuyển bảng thành dạng block */
+    .info-table th,
+    .info-table td {
+        display: block;
+        width: 100% !important;
+        padding: 8px !important;
+        text-align: left !important;
+    }
+
+    .info-table th {
+        background-color: #f8f9fa !important;
+        border-bottom: none !important;
+        padding-bottom: 2px !important;
+    }
+
+    .info-table tr {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Footer responsive */
+    .phieu-kham-footer {
+        flex-direction: column;
+        text-align: left !important;
+        margin-top: 20px !important;
+    }
+
+    .benhnhan {
+        position: static !important;
+        margin: 10px 0 !important;
+        text-align: center;
+    }
+
+    .bottomphai {
+        margin-right: 0 !important;
+        text-align: center !important;
+    }
+}
+
+/* Tablet: 769px - 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .phieu-kham-container {
+        width: 80% !important;
+        font-size: 13px !important;
+    }
+
+    .phieu-kham-header h2 {
+        font-size: 22px !important;
+    }
+}
     /* Animation */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
@@ -392,20 +438,21 @@
         .benh-vien-header {
     text-align: center;
     margin-bottom: 20px;
+    
 }
 
 .benh-vien-header h1 {
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-    color:#4361ee;
-}
+        font-size: 18px;
+        margin-bottom: 3px;
+        color: #4361ee;
+        text-align: center;
+    }
 
-.benh-vien-header p {
-    font-size: 13px;
-    margin: 2px 0;
-}
+ .benh-vien-header p {
+        font-size: 13px;
+        margin: 2px 0;
+        text-align: center;
+    }
 
 .separator-line {
     border-top: 1px solid #000;
@@ -416,27 +463,150 @@
     text-align: center;
     text-transform: uppercase;
     margin-top: 10px;
+    
 }
-        @media print {
-           body * {
+@media print {
+  
+  body * {
     visibility: hidden !important;
   }
-  /* 2. Chỉ hiện panel phiếu khám và con của nó */
+
+  
   #pnlPhieuKham,
   #pnlPhieuKham * {
     visibility: visible !important;
+    box-shadow: none !important;
   }
-  /* 3. Ép panel chiếm trọn khổ in */
+
+  
   #pnlPhieuKham {
     position: absolute !important;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 650px;          
+    max-width: 100% !important; 
+    padding: 15px 0 !important;
+    background: white !important;
   }
-        }
+
+ 
+  .no-print {
+    display: none !important;
+  }
+
+   .phieu-kham-container::before {
+        display: block !important; /* Hiển thị khi in */
+        background: linear-gradient(45deg, #4361ee, #4895ef) !important;
+        width: 120px !important;
+        height: 100px !important;
+        clip-path: polygon(0 0, 100% 0, 100% 100%) !important;
+        z-index: 9999 !important;
+    }
+
+    /* Đảm bảo không bị che bởi nội dung */
+    .phieu-kham-header,
+    .benh-vien-header {
+        position: relative;
+        z-index: 99999 !important;
+    }
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
+        
         .bottomphai{
             margin-right:20px;
         }
+
+        .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}
+   .phieu-kham-footer {
+        margin-top: 1px;
+        padding-top: 1px;
+       
+    }
+
+/* Hiệu ứng modal */
+.phieu-kham-container.modal-mode {
+    visibility: visible; /* Hiển thị khi ở chế độ modal */
+    position: fixed;
+    top: 50%;
+    left: 50%;  
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    max-height:100%;
+    
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Nút đóng modal */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--danger);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 2;
+}.phieu-kham-container:not(.modal-mode) {
+    display: none !important;
+}
+   .control {
+     
+      padding: 13px 16px;
+      margin-top: 6px;
+      border: 2px solid #e9ecef;
+      border-radius: var(--border-radius);
+      font-size: 14px;
+      background-color: white;
+      transition: var(--transition);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border-radius:8px;
+      margin-bottom:7px;    
+  }
+
+  .control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+      outline: none;
+      transform: translateY(-2px);
+  }
+
+  .control:hover {
+      border-color: var(--primary-light);
+  }
+  .mmm{
+      margin-bottom:100px;
+  }
     </style>
 
 </asp:Content>
@@ -450,7 +620,7 @@
     <div class="search-container">
         <div class="search-box">
             <asp:TextBox ID="txtTenBenhNhan" runat="server" Placeholder="Nhập tên bệnh nhân cần tìm..." CssClass="form-control" />
-             <asp:TextBox ID="txtNgaySinh" runat="server" Placeholder="Nhập ..." CssClass="form-control" />
+              <asp:TextBox ID="txtNgayKham" CssClass="control" runat="server" TextMode="Date"></asp:TextBox>
             <asp:Button ID="btnTim" runat="server" Text="Tìm kiếm" CssClass="search-button" OnClick="btnTim_Click" />
         </div>
     </div>
@@ -482,7 +652,10 @@
             </div>
         </EmptyDataTemplate>
     </asp:GridView>
+    <div class="modal-overlay" id="modalOverlay"></div>
      <asp:Panel ID="pnlPhieuKham" runat="server"  ClientIDMode="Static" Visible="false" CssClass="phieu-kham-container">
+         <div class="close-modal no-print" onclick="closeModal()">×</div>
+
          <div class="benh-vien-header">
         <h1>BỆNH VIỆN BANANA</h1>
         <p>Địa chỉ: 220 Phan Thanh - Thành phố Đà Nẵng</p>
@@ -535,25 +708,40 @@
                     <th>Bác sĩ khám:</th>
                     <td><asp:Label ID="lblBacSi" runat="server"></asp:Label></td>
                 </tr>
-                <tr>
-                    <th>Phòng khám:</th>
-                    <td><asp:Label ID="lblPhongKham" runat="server"></asp:Label></td>
-                </tr>
+              
             </table>
         </div>
         
         <div class="phieu-kham-footer">
             <p class="benhnhan">Bệnh nhân</p>
             <div class="bottomphai">
-                  <p>Hà Nội, ngày <asp:Label ID="lblNgay" runat="server"></asp:Label> tháng <asp:Label ID="lblThang" runat="server"></asp:Label> năm <asp:Label ID="lblNam" runat="server"></asp:Label></p>
+                  <p>Đà Nẵng, ngày <asp:Label ID="lblNgay" runat="server"></asp:Label> tháng <asp:Label ID="lblThang" runat="server"></asp:Label> năm <asp:Label ID="lblNam" runat="server"></asp:Label></p>
   <p><strong>Bác sĩ khám bệnh</strong></p>
-  <p><asp:Label ID="lblChuKy" runat="server"></asp:Label></p>
+  
             </div>
           
         </div>
     </asp:Panel>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script>
+       function showModal() {
+           var overlay = document.getElementById('modalOverlay');
+           var modal = document.getElementById('pnlPhieuKham');
+
+           overlay.style.display = 'block';
+           modal.classList.add('modal-mode');
+           modal.style.visibility = 'visible'; // Thêm dòng này
+           document.body.style.overflow = 'hidden';
+       }
+
+       function closeModal() {
+           document.getElementById('modalOverlay').style.display = 'none';
+           document.getElementById('pnlPhieuKham').classList.remove('modal-mode');
+           document.body.style.overflow = ''; // Cho phép scroll lại
+       }
+
+       // Đóng modal khi click ra ngoài
+       document.getElementById('modalOverlay').addEventListener('click', closeModal);
 
    </script>
 </asp:Content>

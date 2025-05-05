@@ -222,8 +222,15 @@
             document.getElementById("loadingOverlay").style.display = "none"; // Ẩn overlay khi hoàn thành
         }
 
+        var popupThongBaoClientId = '<%= popupThongBao.ClientID %>';
+
         function dongThongBao() {
-            document.getElementById('<%= popupThongBao.ClientID %>').style.display = 'none';
+            var popup = document.getElementById(popupThongBaoClientId);
+            if (popup) {
+                popup.style.display = 'none';
+            } else {
+                console.warn("Không tìm thấy phần tử popupThongBao");
+            }
         }
     </script>
 

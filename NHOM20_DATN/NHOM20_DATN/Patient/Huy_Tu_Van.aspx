@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Huy_Tu_Van.aspx.cs" Inherits="NHOM20_DATN.Patient.Huy_Tu_Van" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/MasterPage.Master" AutoEventWireup="true" Async="true" CodeBehind="Huy_Tu_Van.aspx.cs" Inherits="NHOM20_DATN.Patient.Huy_Tu_Van" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -150,9 +150,11 @@
                     <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
                     <asp:Label ID="lblErrorMessage" runat="server" CssClass="text-danger"></asp:Label>
                     <hr />
-                    <p class="sub-text">Nhập mã tư vấn bạn muốn hủy.
+                    <p class="sub-text">
+                        Nhập mã tư vấn bạn muốn hủy.
                         <br />
-                        Chúng tôi rất tiếc khi phải hủy lịch hẹn của bạn.</p>
+                        Chúng tôi rất tiếc khi phải hủy lịch hẹn của bạn.
+                    </p>
                     <br />
                     <div class="form-group">
                         <label for="lblIDTuVan">Nhập mã ID tư vấn:</label><br />
@@ -161,7 +163,7 @@
                     </div>
 
                     <div class="form-group text-center">
-                        <asp:Button ID="btnHuy" runat="server" Text="Hủy Tư Vấn" CssClass="btn btn-danger" OnClick="btnHuy_Click" />
+                        <asp:Button ID="btnHuy" runat="server" Text="Hủy Tư Vấn" CssClass="btn btn-danger"  OnClick="btnHuy_Click"  />
                     </div>
                     <div class="note">
                         <strong>Lưu ý:</strong> Việc hủy tư vấn cần được thực hiện trước 24h kể từ thời điểm tư vấn. Nếu bạn đã quá hạn, vui lòng liên hệ tổng đài hỗ trợ.
@@ -177,16 +179,20 @@
             </div>
         </div>
         <div id="successMessage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background-color: #d4edda; color: #155724; padding: 20px 40px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 9999; font-size: 18px; text-align: center;">
-            Hủy tư vấn thành công.
+        </div>
+        <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9998;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: white; font-size: 20px;">
+                Đang xử lý...
+           
+            </div>
         </div>
     </div>
     <script>
         function showOverlay() {
-            document.getElementById("loadingOverlay").style.display = "block"; // Hiển thị overlay
+            document.getElementById("loadingOverlay").style.display = "block";
         }
-
         function hideOverlay() {
-            document.getElementById("loadingOverlay").style.display = "none"; // Ẩn overlay khi hoàn thành
+            document.getElementById("loadingOverlay").style.display = "none";
         }
     </script>
 </asp:Content>

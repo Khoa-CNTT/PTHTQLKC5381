@@ -298,6 +298,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
+
 
         <div class="container">
             <div class="ZX">
@@ -504,7 +506,6 @@
                 </div>
             </div>
         </div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
 
 
         <!-- ChatBot ở góc phải -->

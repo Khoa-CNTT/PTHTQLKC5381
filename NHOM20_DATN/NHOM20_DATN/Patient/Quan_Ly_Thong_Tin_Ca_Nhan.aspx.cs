@@ -125,11 +125,11 @@ namespace NHOM20_DATN.Patient
 
             if (result > 0) // Nếu cập nhật thành công
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Đăng ký thành công.', 'success');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Cập nhật thành công.', 'success');", true);
             }
             else // Nếu có lỗi
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Đăng ký thất bại.', 'success');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Cập nhật thất bại.', 'success');", true);
             }
 
             HienThiThongTinCaNhan(); // Cập nhật lại thông tin sau khi lưu
@@ -138,7 +138,7 @@ namespace NHOM20_DATN.Patient
         protected void btnHuyCapNhat_Click(object sender, EventArgs e)
         {
             HienThiThongTinCaNhan();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hủy đăng ký thành công.', 'success');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hủy Cập nhật thành công.', 'success');", true);
         }
     
     }

@@ -507,6 +507,39 @@
             .close:hover {
                 color: red;
             }
+
+
+            .empty-data {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #666;
+    background-color: #f9f9f9;
+    border: 1px dashed #ccc;
+}
+
+/* Thêm style cho placeholder rows */
+.placeholder-row {
+    background-color: #f9f9f9 !important;
+}
+
+.placeholder-cell {
+    color: transparent;
+    background-color: #f5f5f5 !important;
+    position: relative;
+    overflow: hidden;
+    height:50px;
+}
+
+.placeholder-cell::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -531,9 +564,10 @@
 
             </div>
             <div class="boc">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-                    OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true" PageSize="7"
-                    CssClass="doctor_tb" PagerStyle-CssClass="pagination">
+                <asp:GridView ID="GridView1" OnPreRender="GridView1_PreRender" runat="server" AutoGenerateColumns="False"
+                    OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true"  PageSize="7"
+                    CssClass="doctor_tb" EmptyDataText="Không có dữ liệu tư vấn nào được tìm thấy."
+                    EmptyDataRowStyle-CssClass="empty-data" PagerStyle-CssClass="pagination">
                     <Columns>
                         <asp:BoundField DataField="IDBenhNhan" HeaderText="Mã Bệnh Nhân" ReadOnly="true" />
                         <asp:TemplateField HeaderText="Tên bệnh nhân">

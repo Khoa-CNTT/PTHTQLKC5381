@@ -64,6 +64,8 @@
         <div id="form_add_News">
             <h2>Cập Nhật Bài Viết</h2>
             <div id="btn_close_add" class="btn-close-add" onclick="callCloseForm()"><i class="fa-solid fa-xmark"></i></div>
+            <div id="btn-add-description" onclick="">Thêm nội dung</div>
+            <div id="btn-add-image"  onclick="">Thêm ảnh</div>
             <asp:HiddenField ID="id_content" Value="" runat="server" />
             <asp:HiddenField ID="create_date" runat="server" />
             <asp:HiddenField ID="imageUrl" runat="server" />

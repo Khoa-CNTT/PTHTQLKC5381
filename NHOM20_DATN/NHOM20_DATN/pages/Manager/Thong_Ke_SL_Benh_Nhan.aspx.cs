@@ -355,7 +355,7 @@ namespace NHOM20_DATN.pages.Manager
                 labels.Add(year.ToString());
 
                 var dkRow = dt.AsEnumerable()
-                    .FirstOrDefault(r => r.Field<int>("Nam") == year && r.Field<string>("TrangThai") == "DaDangKy");
+                    .FirstOrDefault(r => r.Field<int>("Nam") == year && r.Field<string>("TrangThai") == "DaDangKy"|| ("TrangThai") == "DaKham");
 
                 var huyRow = dt.AsEnumerable()
                     .FirstOrDefault(r => r.Field<int>("Nam") == year && r.Field<string>("TrangThai") == "DaHuy");
@@ -482,7 +482,7 @@ namespace NHOM20_DATN.pages.Manager
                 //Get rows which is DaHuy
                 string trangthai = row["TrangThai"].ToString();
                 int luotKham = int.Parse(row["SoLuotKham"].ToString());
-                if (trangthai == "DaDangKy")
+                if (trangthai == "DaDangKy"|| trangthai == "DaKham")
                 {
                     countDaDangKy += luotKham;
                 }

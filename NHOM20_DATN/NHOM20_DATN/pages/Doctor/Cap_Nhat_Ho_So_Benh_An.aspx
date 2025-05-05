@@ -41,7 +41,7 @@
                     <asp:TemplateField Visible="true">
                         <itemtemplate>
                             <asp:LinkButton ID="btnEditRow"
-                                CommandArgument='<%#Eval("IDHS") +","+Eval("IDBN") +","+Eval("HoTen")+","+Eval("ChanDoan")+","+Eval("DonThuoc")+","+Eval("GhiChu") %>'
+                                CommandArgument='<%#Eval("IDHS") +","+Eval("IDBN") +","+Eval("HoTen")+","+Eval("ChanDoan")+","+Eval("DonThuoc")+","+Eval("GhiChu")+","+Eval("IDPhieu") %>'
                                 CommandName="editSelect" runat="server">
                                 <i class="fa-solid fa-pen-to-square" style="color: dodgerblue;"></i>
                             </asp:LinkButton>
@@ -60,6 +60,12 @@
                             <asp:Label ID="lbl_IdHS" runat="server" Text='<%#Eval("IDHS") %>'></asp:Label>
                         </itemtemplate>
                     </asp:TemplateField>
+                     <%-- ==============     ID Phieu Kham  =============== --%>
+ <asp:TemplateField Visible="false">
+     <itemtemplate>
+         <asp:Label ID="lbl_IdPK" runat="server" Text='<%#Eval("IDPhieu") %>'></asp:Label>
+     </itemtemplate>
+ </asp:TemplateField>
                     <%-- ==============     Họ tên    =============== --%>
                     <asp:TemplateField HeaderText="Họ tên">
                         <itemtemplate>
@@ -139,6 +145,7 @@
                 <h2>Cập Nhật Hồ Sơ</h2>
                 <asp:TextBox ID="txtHS_edit" Visible="false" runat="server"></asp:TextBox>
                 <asp:TextBox ID="txtBN_edit" Visible="false" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtPK_edit" Visible="false" runat="server"></asp:TextBox>
                 <%-- inp hoten --%>
                 <div class="hoten-inp">
                     <span><b>Họ Tên</b></span>

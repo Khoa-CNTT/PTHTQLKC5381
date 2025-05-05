@@ -72,8 +72,10 @@ namespace NHOM20_DATN.pages.Doctor
                 string chandoan = commandArgs[3];
                 string donthuoc = commandArgs[4];
                 string ghichu = commandArgs[5];
+                string idPK = commandArgs[6];
                 txtBN_edit.Text = idBN;
                 txtHS_edit.Text = idHS;
+                txtPK_edit.Text = idPK;
                 txtHoTen_edit.Text = hoten;
                 txtChanDoan_edit.Text = chandoan;
                 txtDonThuoc_edit.Text = donthuoc;
@@ -91,13 +93,14 @@ namespace NHOM20_DATN.pages.Doctor
             string idBs = (string)Session["UserID"];
             string idBn = txtBN_edit.Text;
             string idHs = txtHS_edit.Text;
+            string idPK = txtPK_edit.Text;
             string hoten = txtHoTen_edit.Text;
             string chandoan = txtChanDoan_edit.Text;
             string donthuoc = txtDonThuoc_edit.Text;
             string ghichu = txtGhiChu_edit.Text;
             DateTime dayDatetime = DateTime.Now;
             string ngaycapnhat = dayDatetime.ToString("MM/dd/yyyy");
-            int result = medicalRecordService.update(idBs, idBn, idHs, chandoan, donthuoc, ngaycapnhat, ghichu);
+            int result = medicalRecordService.update(idBs, idBn, idHs,idPK, chandoan, donthuoc, ngaycapnhat, ghichu);
             if (result != 0)
             {
                 string message = "Cập Nhật Thành Công";
@@ -120,7 +123,8 @@ namespace NHOM20_DATN.pages.Doctor
         //          Close update form
         protected void btn_Close_Update_Click(object sender, EventArgs e)
         {
-            txtHS_edit.Text = "";
+            txtBN_edit.Text = "";
+            txtPK_edit.Text = "";
             txtHS_edit.Text = "";
             txtHoTen_edit.Text = "";
             txtChanDoan_edit.Text = "";

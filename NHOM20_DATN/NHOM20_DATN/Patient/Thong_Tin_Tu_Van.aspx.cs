@@ -26,8 +26,8 @@ namespace NHOM20_DATN.Patient
         private string partnerCode = "MOMO";
         private string accessKey = "F8BBA842ECF85";
         private string secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        private string redirectUrl = "https://b745-2001-ee0-4b4c-3c30-ace1-fb58-9cfc-9970.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
-        private string ipnUrl = "https://b745-2001-ee0-4b4c-3c30-ace1-fb58-9cfc-9970.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string redirectUrl = "https://b282-2001-ee0-4b43-4fe0-e4e1-992b-478c-7092.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string ipnUrl = "https://b282-2001-ee0-4b43-4fe0-e4e1-992b-478c-7092.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,52 +36,70 @@ namespace NHOM20_DATN.Patient
                 SetDateRange();
                 HienThiThongTinBacSi();
 
-                // Xử lý kết quả thanh toán MoMo nếu có kết quả từ redirect
                 if (Request.QueryString["resultCode"] != null && Request.QueryString["extraData"] != null)
                 {
-                    XuLyKetQuaMoMo(); // Hàm này sẽ lấy thông tin từ extraData
+                    XuLyKetQuaMoMo();
                 }
 
-                // Hiển thị thông tin bệnh nhân nếu có
                 if (Session["IDBenhNhan"] != null)
                 {
                     LayThongTinBenhNhan(Session["IDBenhNhan"].ToString());
                 }
+            }
+        }
 
-                DateTime now = DateTime.Now;
-                TimeSpan currentTime = now.TimeOfDay;
+        protected void txtNgay_TextChanged(object sender, EventArgs e)
+        {
+            CapNhatKhungGio(); // Gọi lại hàm cập nhật khung giờ
+        }
 
-                // Danh sách giờ khám có sẵn
-                string[] availableTimes = new string[]
-                {
-            "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
-            "10:00", "10:30", "11:00",
-            "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"
-                };
+        private void CapNhatKhungGio()
+        {
+            DateTime now = DateTime.Now;
+            TimeSpan currentTime = now.TimeOfDay;
 
-                ddlGio.Items.Clear();
-                ddlGio.Items.Add(new ListItem("Chọn giờ", ""));
+            string[] availableTimes = new string[]
+            {
+        "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
+        "10:00", "10:30", "11:00",
+        "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"
+            };
 
+            ddlGio.Items.Clear();
+            ddlGio.Items.Add(new ListItem("Chọn giờ", ""));
+
+            DateTime selectedDate;
+            if (DateTime.TryParse(txtNgay.Text, out selectedDate))
+            {
                 foreach (string timeStr in availableTimes)
                 {
                     if (TimeSpan.TryParse(timeStr, out TimeSpan itemTime))
                     {
-                        // Nếu giờ đó bằng hoặc sau giờ hiện tại thì mới hiển thị
-                        if (itemTime > currentTime)
+                        if (selectedDate.Date == now.Date)
+                        {
+                            if (itemTime > currentTime)
+                            {
+                                ddlGio.Items.Add(new ListItem(timeStr, timeStr));
+                            }
+                        }
+                        else
                         {
                             ddlGio.Items.Add(new ListItem(timeStr, timeStr));
                         }
                     }
                 }
             }
+            else
+            {
+                ddlGio.Items.Clear();
+                ddlGio.Items.Add(new ListItem("Vui lòng chọn ngày hợp lệ", ""));
+            }
         }
-
 
         private void XuLyKetQuaMoMo()
         {
             if (Request.QueryString["resultCode"] == null) return;
 
-            // Lấy dữ liệu từ QueryString
             string resultCode = Request.QueryString["resultCode"];
             string amount = Request.QueryString["amount"];
             string orderId = Request.QueryString["orderId"];
@@ -102,7 +120,6 @@ namespace NHOM20_DATN.Patient
                 return;
             }
 
-            // Giải mã extraData thành Dictionary
             string extraData = HttpUtility.UrlDecode(extraDataEncoded);
             var dict = extraData.Split('&')
                         .Select(p => p.Split('='))
@@ -110,7 +127,6 @@ namespace NHOM20_DATN.Patient
                         .GroupBy(p => p[0])
                         .ToDictionary(g => g.Key, g => HttpUtility.UrlDecode(g.Select(x => x[1]).FirstOrDefault()));
 
-            // Lấy ID bệnh nhân từ extraData
             string idBenhNhan = dict.ContainsKey("IDBenhNhan") ? dict["IDBenhNhan"] : null;
 
             if (string.IsNullOrEmpty(idBenhNhan))
@@ -123,13 +139,52 @@ namespace NHOM20_DATN.Patient
             long responseTime = 0;
             long.TryParse(responseTimeStr, out responseTime);
 
-            if (resultCode == "0") // Thanh toán thành công
+            if (resultCode == "0")
             {
                 try
                 {
                     LuuThanhToan(idBenhNhan, soTien, partnerCode, orderId, requestId,
                                  orderInfo, orderType, transId, int.Parse(resultCode), message,
                                  payType, responseTime, extraData, signature);
+
+                    string idTuVan = TaoMaTuVan();
+                    string linkJitsi = "https://meet.jit.si/" + Guid.NewGuid().ToString().Substring(0, 8);
+                    DateTime ngay = DateTime.Parse(dict["Ngay"]);
+                    string gioString = dict.ContainsKey("Gio") ? dict["Gio"] : null;
+
+                    if (string.IsNullOrEmpty(gioString))
+                    {
+                        Response.Write("<script>alert('Không tìm thấy giờ trong extraData');</script>");
+                        return;
+                    }
+
+                    if (gioString.Count(c => c == ':') == 1)
+                    {
+                        gioString += ":00";
+                    }
+
+                    if (!TimeSpan.TryParse(gioString, out TimeSpan gio))
+                    {
+                        Response.Write("<script>alert('Định dạng giờ không hợp lệ: " + gioString + "');</script>");
+                        return;
+                    }
+
+                    string idBacSi = dict["IDBacSi"];
+                    string trieuChung = dict["TrieuChung"];
+
+                    if (string.IsNullOrEmpty(idBenhNhan) || string.IsNullOrEmpty(idBacSi))
+                    {
+                        Response.Write("<script>alert('ID bệnh nhân hoặc bác sĩ bị rỗng');</script>");
+                        return;
+                    }
+
+                    // Đăng ký tư vấn
+                    DangKyTuVan(idTuVan, idBenhNhan, idBacSi, ngay, gio, trieuChung, linkJitsi);
+
+                    // Cập nhật ThanhToan với IDTuVan
+                    CapNhatIDTuVan(orderId, idTuVan);
+
+                    GửiEmailThamSoBenhNhan(idTuVan, idBenhNhan, linkJitsi, ngay, gio);
 
                     string script = "Swal.fire({ icon: 'success', title: 'Thanh toán thành công', text: 'Thông tin thanh toán đã được ghi nhận! Bạn vui lòng kiểm tra thông tin tư vấn qua mail.' });";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "thongbao", script, true);
@@ -139,51 +194,9 @@ namespace NHOM20_DATN.Patient
                     Response.Write("<script>alert('Lỗi lưu thanh toán: " + ex.Message.Replace("'", "") + "');</script>");
                 }
 
-                // Đăng ký tư vấn
-                string idTuVan = TaoMaTuVan();
-                string linkJitsi = "https://meet.jit.si/" + Guid.NewGuid().ToString().Substring(0, 8);
-                DateTime ngay = DateTime.Parse(dict["Ngay"]);
-                string gioString = dict.ContainsKey("Gio") ? dict["Gio"] : null;
-
-                if (string.IsNullOrEmpty(gioString))
-                {
-                    Response.Write("<script>alert('Không tìm thấy giờ trong extraData');</script>");
-                    return;
-                }
-
-                if (gioString.Count(c => c == ':') == 1)
-                {
-                    gioString += ":00"; // Đảm bảo định dạng HH:mm:ss
-                }
-
-                if (!TimeSpan.TryParse(gioString, out TimeSpan gio))
-                {
-                    Response.Write("<script>alert('Định dạng giờ không hợp lệ: " + gioString + "');</script>");
-                    return;
-                }
-
-                string idBacSi = dict["IDBacSi"];
-                string trieuChung = dict["TrieuChung"];
-
-                if (string.IsNullOrEmpty(idBenhNhan) || string.IsNullOrEmpty(idBacSi))
-                {
-                    Response.Write("<script>alert('ID bệnh nhân hoặc bác sĩ bị rỗng');</script>");
-                    return;
-                }
-
-                try
-                {
-                    DangKyTuVan(idTuVan, idBenhNhan, idBacSi, ngay, gio, trieuChung, linkJitsi);
-                    GửiEmailThamSoBenhNhan(idTuVan, idBenhNhan, linkJitsi, ngay, gio);
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("<script>alert('Lỗi khi đăng ký tư vấn: " + ex.Message.Replace("'", "") + "');</script>");
-                }
-
-                ThongBaoVaChuyenTrang("Đăng ký tư vấn thành công! Thông tin tư vấn sẽ gửi đến mail của bạn. ", redirectUrl);
+                ThongBaoVaChuyenTrang("Đăng ký tư vấn thành công! Thông tin tư vấn sẽ gửi đến mail của bạn.", redirectUrl);
             }
-            else // Thanh toán thất bại
+            else
             {
                 try
                 {
@@ -202,8 +215,15 @@ namespace NHOM20_DATN.Patient
             }
         }
 
-
-
+        private void CapNhatIDTuVan(string orderId, string idTuVan)
+        {
+            string sql = "UPDATE ThanhToan SET IDTuVan = @IDTuVan WHERE OrderId = @OrderId";
+            SqlParameter[] parameters = {
+        new SqlParameter("@IDTuVan", idTuVan),
+        new SqlParameter("@OrderId", orderId)
+    };
+            db.CapNhat(sql, parameters);
+        }
 
         private async Task TaoYeuCauThanhToanMoMo(string extraDataParams)
         {
@@ -213,15 +233,11 @@ namespace NHOM20_DATN.Patient
             string orderInfo = "Thanh toán tư vấn trực tuyến";
 
             string idBenhNhan = Session["IDBenhNhan"]?.ToString() ?? "Unknown";
-
-            // Đảm bảo extraData được encode đúng
             string extraData = HttpUtility.UrlEncode($"IDBenhNhan={idBenhNhan}&OrderId={orderId}&{extraDataParams}");
 
-            // Tạo string hash raw để bảo mật
             string rawHash = $"accessKey={accessKey}&amount={amount}&extraData={extraData}&ipnUrl={ipnUrl}&orderId={orderId}&orderInfo={orderInfo}&partnerCode={partnerCode}&redirectUrl={redirectUrl}&requestId={requestId}&requestType=payWithATM";
             string signature = HmacSHA256(secretKey, rawHash);
 
-            // Cấu trúc yêu cầu thanh toán
             var paymentRequest = new
             {
                 partnerCode,
@@ -238,7 +254,6 @@ namespace NHOM20_DATN.Patient
                 lang = "vi"
             };
 
-            // Gửi request đến MoMo
             using (var client = new HttpClient())
             {
                 var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(paymentRequest), Encoding.UTF8, "application/json");
@@ -250,7 +265,7 @@ namespace NHOM20_DATN.Patient
 
                 if (!string.IsNullOrEmpty(payUrl))
                 {
-                    Response.Redirect(payUrl);  // Điều hướng người dùng đến trang thanh toán của MoMo
+                    Response.Redirect(payUrl, false);
                 }
                 else
                 {
@@ -259,48 +274,45 @@ namespace NHOM20_DATN.Patient
             }
         }
 
-
-
         private void LuuThanhToan(
             string idBenhNhan, decimal amount, string partnerCode, string orderId, string requestId,
             string orderInfo, string orderType, string transId, int resultCode, string message,
             string payType, long responseTime, string extraData, string signature)
         {
-            // Kiểm tra đầu vào để đảm bảo không bị null hoặc sai dữ liệu
             if (string.IsNullOrEmpty(idBenhNhan) || amount <= 0)
             {
                 throw new ArgumentException("Dữ liệu đầu vào không hợp lệ");
             }
 
             string sql = @"
-        INSERT INTO ThanhToan 
-        (PartnerCode, OrderId, RequestId, Amount, OrderInfo, OrderType, 
-         TransId, ResultCode, Message, PayType, ResponseTime, ExtraData, 
-         Signature, IDBenhNhan, NgayThanhToan)
-        VALUES 
-        (@PartnerCode, @OrderId, @RequestId, @Amount, @OrderInfo, @OrderType, 
-         @TransId, @ResultCode, @Message, @PayType, @ResponseTime, @ExtraData, 
-         @Signature, @IDBenhNhan, GETDATE())";
+                INSERT INTO ThanhToan 
+                (PartnerCode, OrderId, RequestId, Amount, OrderInfo, OrderType, 
+                 TransId, ResultCode, Message, PayType, ResponseTime, ExtraData, 
+                 Signature, IDBenhNhan, NgayThanhToan)
+                VALUES 
+                (@PartnerCode, @OrderId, @RequestId, @Amount, @OrderInfo, @OrderType, 
+                 @TransId, @ResultCode, @Message, @PayType, @ResponseTime, @ExtraData, 
+                 @Signature, @IDBenhNhan, GETDATE())";
 
             try
             {
                 SqlParameter[] parameters =
                 {
-            new SqlParameter("@PartnerCode", partnerCode),
-            new SqlParameter("@OrderId", orderId),
-            new SqlParameter("@RequestId", requestId),
-            new SqlParameter("@Amount", amount),
-            new SqlParameter("@OrderInfo", orderInfo),
-            new SqlParameter("@OrderType", orderType),
-            new SqlParameter("@TransId", transId),
-            new SqlParameter("@ResultCode", resultCode),
-            new SqlParameter("@Message", message),
-            new SqlParameter("@PayType", payType),
-            new SqlParameter("@ResponseTime", responseTime),
-            new SqlParameter("@ExtraData", extraData),
-            new SqlParameter("@Signature", signature),
-            new SqlParameter("@IDBenhNhan", idBenhNhan)
-        };
+                    new SqlParameter("@PartnerCode", partnerCode),
+                    new SqlParameter("@OrderId", orderId),
+                    new SqlParameter("@RequestId", requestId),
+                    new SqlParameter("@Amount", amount),
+                    new SqlParameter("@OrderInfo", orderInfo),
+                    new SqlParameter("@OrderType", orderType),
+                    new SqlParameter("@TransId", transId),
+                    new SqlParameter("@ResultCode", resultCode),
+                    new SqlParameter("@Message", message),
+                    new SqlParameter("@PayType", payType),
+                    new SqlParameter("@ResponseTime", responseTime),
+                    new SqlParameter("@ExtraData", extraData),
+                    new SqlParameter("@Signature", signature),
+                    new SqlParameter("@IDBenhNhan", idBenhNhan)
+                };
 
                 db.CapNhat(sql, parameters);
             }
@@ -310,8 +322,6 @@ namespace NHOM20_DATN.Patient
                 throw;
             }
         }
-
-
 
         private string HmacSHA256(string key, string message)
         {
@@ -324,23 +334,22 @@ namespace NHOM20_DATN.Patient
             }
         }
 
-
         private void ThongBaoVaChuyenTrang(string message, string url)
         {
             string script = $@"
-    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-    <script>
-        Swal.fire({{
-            icon: 'success',
-            title: '{message}',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            didClose: () => {{
-                window.location.href = '{url}';
-            }}
-        }});
-    </script>";
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                    Swal.fire({{
+                        icon: 'success',
+ WELL                        title: '{message}',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        didClose: () => {{
+                            window.location.href = '{url}';
+                        }}
+                    }});
+                </script>";
 
             Response.Write(script);
         }
@@ -399,24 +408,22 @@ namespace NHOM20_DATN.Patient
                     throw new Exception("Bác sĩ đã có lịch tư vấn vào thời điểm này.");
 
                 if (KiemTraTrungLichBenhNhan(idBenhNhan, ngay, gio))
-                    throw new Exception("Bạn đã đăng ký khám với bác sĩ khác vào khung giờ này.");
+                    throw new Exception("Bạn đã đăng ký tư vấn vào khung giờ này.");
 
                 string trieuChung = txtTrieuChung.Text.Trim();
 
-                // 👉 Truyền thông tin tư vấn vào extraData thay vì session
                 var extraDataDict = new Dictionary<string, string>()
-        {
-            { "IDBenhNhan", idBenhNhan },
-            { "IDBacSi", idBacSi },
-            { "Ngay", ngay.ToString("yyyy-MM-dd") },
-            { "Gio", gio.ToString(@"hh\:mm") },
-            { "TrieuChung", trieuChung }
-        };
+                {
+                    { "IDBenhNhan", idBenhNhan },
+                    { "IDBacSi", idBacSi },
+                    { "Ngay", ngay.ToString("yyyy-MM-dd") },
+                    { "Gio", gio.ToString(@"hh\:mm") },
+                    { "TrieuChung", trieuChung }
+                };
 
                 string extraData = string.Join("&", extraDataDict.Select(kvp =>
                     $"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value)}"));
 
-                // 👉 Gọi hàm MoMo, truyền extraData vào
                 await TaoYeuCauThanhToanMoMo(extraData);
             }
             catch (Exception ex)
@@ -425,36 +432,28 @@ namespace NHOM20_DATN.Patient
             }
         }
 
-
-
         private void DangKyTuVan(string idTuVan, string idBenhNhan, string idBacSi, DateTime ngay, TimeSpan gio, string trieuChung, string linkJitsi)
         {
             try
             {
-                // Câu lệnh SQL để chèn cuộc tư vấn vào bảng LichTuVan
                 string sql = "INSERT INTO LichTuVan (IDTuVan, IDBenhNhan, IDBacSi, Ngay, Gio, TrieuChung, LinkJitsi) " +
                              "VALUES (@IDTuVan, @IDBenhNhan, @IDBacSi, @Ngay, @Gio, @TrieuChung, @LinkJitsi)";
 
-                // Cấu hình các tham số cho câu lệnh SQL
                 SqlParameter[] parameters = {
-            new SqlParameter("@IDTuVan", idTuVan),
-            new SqlParameter("@IDBenhNhan", idBenhNhan),
-            new SqlParameter("@IDBacSi", idBacSi),
-            new SqlParameter("@Ngay", ngay),
-            new SqlParameter("@Gio", gio),
-            new SqlParameter("@TrieuChung", trieuChung),
-            new SqlParameter("@LinkJitsi", linkJitsi)
-        };
+                    new SqlParameter("@IDTuVan", idTuVan),
+                    new SqlParameter("@IDBenhNhan", idBenhNhan),
+                    new SqlParameter("@IDBacSi", idBacSi),
+                    new SqlParameter("@Ngay", ngay),
+                    new SqlParameter("@Gio", gio),
+                    new SqlParameter("@TrieuChung", trieuChung),
+                    new SqlParameter("@LinkJitsi", linkJitsi)
+                };
 
                 int result = db.CapNhat(sql, parameters);
 
-                // Kiểm tra kết quả và gửi email nếu thành công
                 if (result > 0)
                 {
                     GửiEmailThamSoBenhNhan(idTuVan, idBenhNhan, linkJitsi, ngay, gio);
-
-                    //// Hiển thị bảng thông báo
-                    //popupThongBao.Visible = true;
                 }
                 else
                 {
@@ -463,11 +462,9 @@ namespace NHOM20_DATN.Patient
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi nếu có
                 Response.Write($"<script>alert('Lỗi khi đăng ký tư vấn: {ex.Message}');</script>");
             }
         }
-
 
         private bool KiemTraTrungLich(string idBacSi, DateTime ngay, TimeSpan gio)
         {
@@ -484,15 +481,15 @@ namespace NHOM20_DATN.Patient
         private bool KiemTraTrungLichBenhNhan(string idBenhNhan, DateTime ngay, TimeSpan gio)
         {
             string sql = @"
-        SELECT COUNT(*) FROM LichKhamBenhNhan
-        WHERE IDBenhNhan = @IDBenhNhan AND NgayKham = @Ngay AND GioKham = @Gio
-    ";
+                SELECT COUNT(*) FROM LichTuVan
+                WHERE IDBenhNhan = @IDBenhNhan AND Ngay = @Ngay AND Gio = @Gio
+            ";
 
             SqlParameter[] parameters = new SqlParameter[]
             {
-        new SqlParameter("@IDBenhNhan", idBenhNhan),
-        new SqlParameter("@Ngay", ngay.Date),
-        new SqlParameter("@Gio", gio)
+                new SqlParameter("@IDBenhNhan", idBenhNhan),
+                new SqlParameter("@Ngay", ngay.Date),
+                new SqlParameter("@Gio", gio)
             };
 
             object ketqua = db.LayGiaTri(sql, parameters);
@@ -503,7 +500,6 @@ namespace NHOM20_DATN.Patient
         {
             try
             {
-                // Kiểm tra đầu vào
                 if (string.IsNullOrEmpty(idTuVan) || string.IsNullOrEmpty(linkJitsi))
                     throw new ArgumentException("ID Tư vấn hoặc Link Jitsi không hợp lệ.");
                 if (ngay == default(DateTime) || ngay == DateTime.MinValue)
@@ -511,21 +507,17 @@ namespace NHOM20_DATN.Patient
                 if (gio == TimeSpan.Zero || gio < TimeSpan.Zero)
                     throw new ArgumentException("Giờ không hợp lệ.");
 
-                // Lấy email của bệnh nhân
                 string emailBenhNhan = LayEmailBenhNhan(idBenhNhan);
                 if (string.IsNullOrEmpty(emailBenhNhan))
                     throw new Exception("Không tìm thấy email của bệnh nhân.");
 
-                // Tiêu đề Email
                 string subject = "BANANA HOSPITAL XIN CHÀO QUÝ KHÁCH";
 
-                // Định dạng giá trị
                 string ngayFormatted = ngay.ToString("dd-MM-yyyy");
                 string gioFormatted = gio.ToString(@"hh\:mm");
                 string idTuVanEncoded = System.Web.HttpUtility.HtmlEncode(idTuVan);
                 string linkJitsiEncoded = System.Web.HttpUtility.HtmlEncode(linkJitsi);
 
-                // Nội dung Email (HTML format)
                 string body = $@"
 <div style='background-color: #f7f7f7; padding: 20px; font-family: Arial, sans-serif;'>
     <div style='max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
@@ -564,17 +556,14 @@ namespace NHOM20_DATN.Patient
     </div>
 </div>";
 
-                // Tạo email
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress("Bệnh viện Banana Hospital", "bananahospitaldanang@gmail.com"));
                 message.To.Add(new MailboxAddress("", emailBenhNhan));
                 message.Subject = subject;
 
-                // Tạo phần thân email
                 var bodyBuilder = new BodyBuilder { HtmlBody = body };
                 message.Body = bodyBuilder.ToMessageBody();
 
-                // Gửi email
                 using (var client = new MailKit.Net.Smtp.SmtpClient())
                 {
                     client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);

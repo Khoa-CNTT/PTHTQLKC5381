@@ -9,6 +9,10 @@
             background-color: #f8f9fa;
         }
 
+        .container {
+            margin-top: 0px;
+        }
+
         .card {
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }

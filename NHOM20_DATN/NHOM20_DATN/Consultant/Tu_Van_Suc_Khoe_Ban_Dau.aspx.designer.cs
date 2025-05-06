@@ -42,6 +42,33 @@ namespace NHOM20_DATN.Consultant
         protected global::System.Web.UI.WebControls.Repeater rptCauHoi;
 
         /// <summary>
+        /// txtTuNgay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTuNgay;
+
+        /// <summary>
+        /// txtDenNgay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDenNgay;
+
+        /// <summary>
+        /// btnLocNgay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLocNgay;
+
+        /// <summary>
         /// rptLichSu control.
         /// </summary>
         /// <remarks>

@@ -597,6 +597,7 @@ namespace NHOM20_DATN
           <li>🩺 <strong>Tên bác sĩ:</strong> " + tenBacSi + @"</li>
           <li>🕒 <strong>Thời gian khám:</strong> " + idgiokham + @"</li>
           <li>📅 <strong>Ngày khám:</strong> " + idngaykham + @"</li>
+          <li>📅 <strong>Phòng Khám:</strong> " + idPhongKham + @"</li>
       </ul>
 
       <p>Quý khách vui lòng đến trước giờ khám khoảng <strong>10 phút</strong> để đảm bảo quy trình khám bệnh được diễn ra thuận lợi và tránh những sự cố không mong muốn.</p>

@@ -301,65 +301,62 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="page-bg">
+     
+   <div class="page-bg">
         <div class="breadcrumb">
             <a href="#">Trang chủ</a>
-            >      <span>Đăng ký khám</span>
+            > <span>Đăng ký khám</span>
         </div>
-        <!-- Container chính -->
         <div class="main-container">
-
-
-            <!-- Nội dung chi tiết đặt hẹn -->
             <h3>Nội dung chi tiết đặt hẹn</h3>
-            <div class="thanhngang">
-            </div>
-            <div class="row">
-                <!-- Bệnh viện/phòng khám -->
-               
-                <!-- Chuyên khoa -->
-                <div class="form-group col-6">
-                    <label for="ddlChuyenKhoa">Chuyên khoa</label>
-                    <asp:DropDownList ID="ddlChuyenKhoa" runat="server" AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlChuyenKhoa_SelectedIndexChanged"
-                        CssClass="form-control">
-                    </asp:DropDownList>
-                </div>
-                     <!-- Bệnh viện/phòng khám -->
-                 <div class="form-group col-6">
-     <label for="ddlPhongKham">Bệnh viện/phòng khám</label>
-     <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true" CssClass="form-control">
-     </asp:DropDownList>
- </div>
-            </div>
-            <div class="row">
-                <!-- Bác sĩ -->
-                <div class="form-group col-6">
-                    <label for="ddlBacSi">Bác sĩ</label>
-                    <asp:DropDownList ID="ddlBacSi" runat="server" AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlBacSi_SelectedIndexChanged"
-                        CssClass="form-control">
-                    </asp:DropDownList>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="ddlBacSi"
-                        Display="Dynamic" ErrorMessage="Vui lòng chọn bác sĩ" Operator="NotEqual"
-                        ValueToCompare="Chọn bác sĩ" CssClass="red_text">
-                    </asp:CompareValidator>
-                </div>
-                <!-- Có thể thêm cột trống hoặc tùy ý -->
-                <div class="form-group col-6" style="display: flex; align-items: flex-end;">
-                </div>
-            </div>
+            <div class="thanhngang"></div>
+            
+           
+            <asp:UpdatePanel ID="UpdatePanelMain" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="row">
+                        <!-- Chuyên khoa -->
+                        <div class="form-group col-6">
+                            <label for="ddlChuyenKhoa">Chuyên khoa</label>
+                            <asp:DropDownList ID="ddlChuyenKhoa" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlChuyenKhoa_SelectedIndexChanged"
+                                CssClass="form-control">
+                            </asp:DropDownList>
+                        </div>
+                        <!-- Phòng khám -->
+                        <div class="form-group col-6">
+                            <label for="ddlPhongKham">Bệnh viện/phòng khám</label>
+                            <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true" 
+                                CssClass="form-control">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Bác sĩ -->
+                        <div class="form-group col-6">
+                            <label for="ddlBacSi">Bác sĩ</label>
+                            <asp:DropDownList ID="ddlBacSi" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlBacSi_SelectedIndexChanged"
+                                CssClass="form-control">
+                            </asp:DropDownList>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" 
+                                ControlToValidate="ddlBacSi" Display="Dynamic" 
+                                ErrorMessage="Vui lòng chọn bác sĩ" Operator="NotEqual"
+                                ValueToCompare="Chọn bác sĩ" CssClass="red_text">
+                            </asp:CompareValidator>
+                        </div>
+                    </div>
 
-            <!-- Thời gian khám -->
-            <h3>Thời gian khám</h3>
-            <div class="thanhngang">
-            </div>
-            <asp:TextBox ID="txtNgayKham" runat="server" TextMode="Date"
-                AutoPostBack="true" OnTextChanged="txtNgayKham_TextChanged"
-                Style="position: absolute; left: -1000px; width: 0; height: 0;" />
-            <div class="row">
-                <asp:Repeater ID="rptNgayKham" runat="server">
-                    <HeaderTemplate>
+                    <!-- Thời gian khám -->
+                    <h3>Thời gian khám</h3>
+                    <div class="thanhngang"></div>
+                    <asp:TextBox ID="txtNgayKham" runat="server" TextMode="Date"
+                        AutoPostBack="true" OnTextChanged="txtNgayKham_TextChanged"
+                        Style="display: none;" />
+                    <div class="row">
+                        <asp:Repeater ID="rptNgayKham" runat="server">
+                            <HeaderTemplate>
                         <div class="date-selection">
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -372,22 +369,30 @@
                     <FooterTemplate>
                         </div>
                     </FooterTemplate>
-                </asp:Repeater>
-                <div class="form-group col-4">
-                    <label for="ddlbuoikham">Buổi khám</label>
-                    <asp:DropDownList ID="ddlbuoikham" runat="server" AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged"
-                        CssClass="form-control">
-                    </asp:DropDownList>
-                </div>
-                <div class="form-group col-4">
-                    <label for="DDLgiokham">Giờ khám</label>
-                    <asp:DropDownList ID="DDLgiokham" runat="server" AutoPostBack="true"
-                        CssClass="form-control">
-                        <asp:ListItem Value="" Text="Giờ Khám"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-            </div>
+                        </asp:Repeater>
+                        <div class="form-group col-4">
+                            <label for="ddlbuoikham">Buổi khám</label>
+                            <asp:DropDownList ID="ddlbuoikham" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged"
+                                CssClass="form-control">
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="DDLgiokham">Giờ khám</label>
+                            <asp:DropDownList ID="DDLgiokham" runat="server" AutoPostBack="true"
+                                CssClass="form-control">
+                                <asp:ListItem Value="" Text="Giờ Khám"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="ddlChuyenKhoa" EventName="SelectedIndexChanged" />
+                    <asp:AsyncPostBackTrigger ControlID="ddlBacSi" EventName="SelectedIndexChanged" />
+                    <asp:AsyncPostBackTrigger ControlID="txtNgayKham" EventName="TextChanged" />
+                    <asp:AsyncPostBackTrigger ControlID="ddlbuoikham" EventName="SelectedIndexChanged" />
+                </Triggers>
+            </asp:UpdatePanel>
 
             <!-- Thông tin khách hàng -->
             <h3>Thông tin khách hàng</h3>

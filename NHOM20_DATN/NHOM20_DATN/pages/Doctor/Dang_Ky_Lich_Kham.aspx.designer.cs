@@ -60,13 +60,13 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
-        /// DDLgiokham control.
+        /// cblGiokham control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLgiokham;
+        protected global::System.Web.UI.WebControls.CheckBoxList cblGiokham;
 
         /// <summary>
         /// Txttrinhdo control.

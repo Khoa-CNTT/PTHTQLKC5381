@@ -48,47 +48,66 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="container mt-5">
-                <h3 class="mb-4 fw-bold text-dark">
-                    <i class="fas fa-comments text-primary me-2"></i>Danh sách câu hỏi cần phản hồi
-                </h3>
+                <div class="row">
+                    <!-- CỘT TRÁI: DANH SÁCH CÂU HỎI -->
+                    <div class="col-lg-6 mb-5">
+                        <h4 class="fw-bold text-primary mb-4">
+                            <img src="../img/chat.png" style="width: 32px;" />
+                            Câu hỏi cần phản hồi
+                        </h4>
 
-                <asp:Repeater ID="rptCauHoi" runat="server">
-                    <ItemTemplate>
-                        <div class="card custom-card mb-4">
-                            <div class="card-header fw-semibold d-flex justify-content-between align-items-center">
-                                <span>🧑 Bệnh nhân <%# Eval("HoTen") %></span>
-                                <small class="text-light fst-italic">
-                                    <i class="far fa-clock me-1"></i><%# Eval("ThoiGian", "{0:dd/MM/yyyy HH:mm}") %>
-                                </small>
-                            </div>
-                            <div class="card-body">
-                                <p><strong>Câu hỏi:</strong> <%# Eval("CauHoi") %></p>
-                                <asp:TextBox ID="txtTraLoi" runat="server" TextMode="MultiLine"
-                                    CssClass="form-control custom-textarea mb-3" Rows="3"
-                                    placeholder="Nhập phản hồi tại đây..."></asp:TextBox>
-                                <asp:Button ID="btnTraLoi" runat="server" Text="Gửi phản hồi"
-                                    CssClass="btn btn-success btn-sm custom-btn"
-                                    CommandArgument='<%# Eval("ID") %>' OnClick="btnTraLoi_Click" />
+                        <asp:Repeater ID="rptCauHoi" runat="server">
+                            <ItemTemplate>
+                                <div class="card custom-card mb-4">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <span>🧑 <%# Eval("HoTen") %></span>
+                                        <small><i class="far fa-clock me-1"></i><%# Eval("ThoiGian", "{0:dd/MM/yyyy HH:mm}") %></small>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Câu hỏi:</strong> <%# Eval("CauHoi") %></p>
+                                        <asp:TextBox ID="txtTraLoi" runat="server" TextMode="MultiLine"
+                                            CssClass="form-control custom-textarea mb-3" Rows="3"
+                                            placeholder="Nhập phản hồi tại đây..."></asp:TextBox>
+                                        <asp:Button ID="btnTraLoi" runat="server" Text="Gửi phản hồi"
+                                            CssClass="btn btn-success btn-sm custom-btn"
+                                            CommandArgument='<%# Eval("ID") %>' OnClick="btnTraLoi_Click" />
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+
+                    <!-- CỘT PHẢI: LỊCH SỬ TƯ VẤN -->
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold text-primary mb-4">
+                            <img src="../img/clock.png" style="width: 32px;" />
+                            Lịch sử tư vấn
+                        </h4>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Lọc theo ngày:</label>
+                            <div class="d-flex gap-2">
+                                <asp:TextBox ID="txtTuNgay" runat="server" CssClass="form-control" placeholder="Từ ngày (dd/MM/yyyy)" TextMode="Date"></asp:TextBox>
+                                <asp:TextBox ID="txtDenNgay" runat="server" CssClass="form-control" placeholder="Đến ngày (dd/MM/yyyy)" TextMode="Date"></asp:TextBox>
+                                <asp:Button ID="btnLocNgay" runat="server" CssClass="btn btn-primary" Text="Lọc" OnClick="btnLocNgay_Click" />
                             </div>
                         </div>
-                    </ItemTemplate>
-                </asp:Repeater>
 
-                <hr />
-                <h3 class="fw-bold text-dark mt-5"><i class="fas fa-history text-secondary me-2"></i>Lịch sử tư vấn</h3>
-                <asp:Repeater ID="rptLichSu" runat="server">
-                    <ItemTemplate>
-                        <div class="card custom-card mb-3">
-                            <div class="card-header d-flex justify-content-between">
-                                <span><strong>Câu hỏi:</strong> <%# Eval("CauHoi") %></span>
-                                <small class="fst-italic"><i class="far fa-clock me-1"></i><%# Eval("ThoiGian", "{0:dd/MM/yyyy HH:mm}") %></small>
-                            </div>
-                            <div class="card-body">
-                                <p><strong>Trả lời:</strong> <%# string.IsNullOrEmpty(Eval("TraLoi").ToString()) ? "Chưa có phản hồi" : Eval("TraLoi") %></p>
-                            </div>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
+                        <asp:Repeater ID="rptLichSu" runat="server">
+                            <ItemTemplate>
+                                <div class="card custom-card mb-3">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <span><strong>Câu hỏi:</strong> <%# Eval("CauHoi") %></span>
+                                        <small><i class="far fa-clock me-1"></i><%# Eval("ThoiGian", "{0:dd/MM/yyyy HH:mm}") %></small>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Trả lời:</strong> <%# string.IsNullOrEmpty(Eval("TraLoi").ToString()) ? "Chưa có phản hồi" : Eval("TraLoi") %></p>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
             </div>
         </ContentTemplate>
         <Triggers>

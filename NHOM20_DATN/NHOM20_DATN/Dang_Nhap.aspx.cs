@@ -130,11 +130,11 @@ namespace NHOM20_DATN
                 }
                 else if (userId.StartsWith("BO"))
                 {
-                    // Quản lý
+                    // Bác sĩ On
                     Session["UserID"] = userId;
                     Session["Role"] = "BacSiOn";
                     Session["TenDangNhap"] = username;
-                    Response.Redirect("pages/DoctorOnline/Quan_Ly_Thong_Tin_Bac_Si_Online.aspx");
+                    Response.Redirect("pages/DoctorOnline/Xem_Thong_Tin_Tu_Van.aspx");
                 }
             }
             else

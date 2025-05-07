@@ -37,7 +37,7 @@
                         </div>
                         <div class="btn-group dropright">
                             <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="Logout_Click">
-                    <i class="fa-solid fa-arrow-right-from-bracket" style="font-size:20px;"></i> 
+                    <i class="fa-solid fa-arrow-right-from-bracket" style="font-ssize:20px;"></i> 
                             </asp:LinkButton>
                         </div>
                     </div>
@@ -48,8 +48,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/pages/DoctorOnline/Quan_ly_Thong_Bac_Si_Online.aspx">
+                            <a href="/pages/DoctorOnline/Quan_Ly_Thong_Tin_Bac_Si_Online.aspx">
                                 <div class="contain-ttbnn"><i class="fa-regular fa-user"></i>Quản lý thông tin cá nhân</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/DoctorOnline/Huy_Tu_Van_Bac_Si.aspx">
+                                <div class="contain-ttbnn">	<img style="width:26px; height:26px; margin-left:-6px; margin-top:-2px;" src="/img/clear.png"/> Hủy tư vấn</div>
                             </a>
                         </li>
                     </ul>

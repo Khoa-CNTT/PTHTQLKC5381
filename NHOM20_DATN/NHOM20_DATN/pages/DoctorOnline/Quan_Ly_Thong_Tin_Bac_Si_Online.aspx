@@ -5,7 +5,9 @@
         body {
             background: linear-gradient(to right, #e0f7fa, #ffffff);
         }
-
+        .contain-ttbnn {
+    background-color: #d9d9d96e;
+}
         .info-container {
             background-color: #ffffff;
             border-radius: 16px;

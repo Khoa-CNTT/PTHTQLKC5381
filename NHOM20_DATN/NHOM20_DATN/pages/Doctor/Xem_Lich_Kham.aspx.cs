@@ -90,6 +90,7 @@ namespace NHOM20_DATN
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
                         "showAlert('Đã hủy lịch và gửi mail thông báo.', 'success');", true);
                     Response.Redirect("Xem_Lich_Kham.aspx");
+                    view_List();
                 }
             }
             else
@@ -210,12 +211,43 @@ namespace NHOM20_DATN
 
 
             }//============Xóa=============
-           
+
             else if (e.CommandName == "XemTT")
             {
-                Response.Redirect("Xem_Lich_Kham.aspx");
-            }
+                string idPk = e.CommandArgument.ToString();
+                // 1) Query patient info by appointment ID
+                string sql = @"
+      SELECT bn.HoTen, bn.NgaySinh, bn.GioiTinh, bn.SoDienThoai, bn.DiaChi
+      FROM PhieuKham pk
+      JOIN BenhNhan bn ON pk.IDBenhNhan = bn.IDBenhNhan
+      WHERE pk.IDPhieu = @idPk";
+                SqlParameter[] ps = { new SqlParameter("@idPk", idPk) };
+                DataTable dt = kn.docdulieu(sql, ps);
 
+                if (dt.Rows.Count == 1)
+                {
+                    DataRow r = dt.Rows[0];
+                    lblModal_HoTen.Text = r["HoTen"].ToString();
+                    lblModal_NgaySinh.Text = DateTime.Parse(r["NgaySinh"].ToString())
+                                                .ToString("dd/MM/yyyy");
+                    lblModal_GioiTinh.Text = r["GioiTinh"].ToString();
+                    lblModal_SDT.Text = r["SoDienThoai"].ToString();
+                    lblModal_DiaChi.Text = r["DiaChi"].ToString();
+
+                    // 2) Show the Bootstrap modal
+                    string script = "var myModal = new bootstrap.Modal(document.getElementById('"
+                                    + pnlPatientModal.ClientID
+                                    + "')); myModal.show();";
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "ShowPatientModal", script, true);
+                }
+                else
+                {
+                    // Optional: show a warning if not found
+                    ScriptManager.RegisterStartupScript(this, GetType(),
+                        "noPatient", "alert('Không tìm thấy thông tin bệnh nhân.');", true);
+                }
+            }
 
 
 
@@ -243,8 +275,9 @@ namespace NHOM20_DATN
                     string js = "showAlert('Thành công. Đã gửi mail báo đổi giờ!', 'success');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", js, true);
                     Response.Redirect("Xem_Lich_Kham.aspx");
-                   
 
+                    view_List();
+                    pn_AT.Visible = false;
                 }
                 else
                 {
@@ -283,48 +316,45 @@ namespace NHOM20_DATN
             gridAppointment.DataBind();
         }
         //========Reload
-        //protected void reload_Btn_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("Xem_Lich_Kham.aspx");
-        //}
+
 
         //=========Search click
         protected void btn_search_Click(object sender, EventArgs e)
         {
-
-            string idU = (string)Session["UserID"];
-            //string idU = "TK001";
-     
+            string idU = (string)Session["UserID"]; // ID của bác sĩ đang đăng nhập
             string nameKey = "%" + txt_searching.Text + "%";
-            string sql_search = "select *  " +
-                "from PhieuKham pk " +
-                 " JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu " +
-                "join BenhNhan bn on pk.IDBenhNhan  = bn.IDBenhNhan " +
-                "where (pk.HoTen COLLATE SQL_Latin1_General_CP1_CI_AI like @name " +
-                "or pk.IDPhieu COLLATE SQL_Latin1_General_CP1_CI_AI like @name " +
-                "or CAST(pk.ThoiGianKham AS VARCHAR) LIKE @name " +
-                "or CONVERT(VARCHAR, pk.NgayKham, 103) LIKE  @name ) " +
-                "order by  lkb.NgayKham, lkb.ThoiGianKham";
+
+            string sql_search = @"SELECT *  
+                        FROM PhieuKham pk 
+                        JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu 
+                        JOIN BenhNhan bn ON pk.IDBenhNhan = bn.IDBenhNhan 
+                        WHERE (pk.HoTen COLLATE SQL_Latin1_General_CP1_CI_AI LIKE @name 
+                               OR pk.IDPhieu COLLATE SQL_Latin1_General_CP1_CI_AI LIKE @name 
+                               OR CAST(pk.ThoiGianKham AS VARCHAR) LIKE @name 
+                               OR CONVERT(VARCHAR, pk.NgayKham, 103) LIKE @name)
+                               AND lkb.TrangThai IN ('DaDangKy', 'DangCho')
+                               AND pk.IDBacSi = @idBacSi -- CHỈ lấy bệnh nhân của bác sĩ này
+                        ORDER BY lkb.NgayKham, lkb.ThoiGianKham";
+
             SqlParameter[] pr = new SqlParameter[]
             {
-                 new SqlParameter("@idBS",idU),
-                new SqlParameter("@name",nameKey)
-
+        new SqlParameter("@idBacSi", idU), // Thêm tham số ID bác sĩ
+        new SqlParameter("@name", nameKey)
             };
 
-
             DataTable dt = kn.docdulieu(sql_search, pr);
-            if (dt.Rows.Count > 0 && dt != null)
+
+            if (dt != null && dt.Rows.Count > 0)
             {
                 gridAppointment.DataSource = dt;
                 gridAppointment.DataBind();
-
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Không tìm thấy dữ liệu.', 'warning');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                    "showAlert('Không tìm thấy dữ liệu.', 'warning');", true);
             }
-
         }
+
     }
 }

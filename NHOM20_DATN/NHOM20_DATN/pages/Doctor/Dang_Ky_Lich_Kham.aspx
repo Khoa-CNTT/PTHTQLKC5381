@@ -23,13 +23,16 @@
             line-height: 1.6;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 24px;
-            width:660px;
-        }
+       .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 900px;   
+    margin-left: auto;
+    margin-right: auto;
+}
 
         .group {
             margin-bottom: 24px;
@@ -58,7 +61,22 @@
             transform: translateY(0);
             transition: var(--transition);
         }
+        .form-wrapper {
+    flex: 2;
+    padding: 32px;
+    max-width: none;
+}
 
+
+.form-wrapper {
+    max-width: 1000px;
+}
+
+
+.group > .group {
+    margin: 0;
+    padding: 0;
+}
         .form-wrapper:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
@@ -152,6 +170,7 @@
             box-shadow: 0 4px 14px rgba(67, 97, 238, 0.4);
             position: relative;
             overflow: hidden;
+            margin-top:200px;
         }
 
         .btn-primary:hover {
@@ -341,29 +360,127 @@
 }
 .group { position: relative; }
 .hours-wrapper {
-  max-height: 180px;            
-  overflow-y: auto;            
-  padding: 25px;
-  border: 2px solid #e9ecef;   
+    max-height: 180px;            
+    overflow-x:auto;          
+    padding: 40px;
+    border: 2px solid #e9ecef;   
+    border-radius: var(--border-radius);
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    position: static;    
+    width: 100%;
+    margin-top: 6px;    
+}
+.hours-wrapper {
+  position: absolute !important;   
+  top: 37px; 
+  left: 0 !important;
+  width: 100% !important;           
+  margin: 0 !important;             
+  padding: 26px !important;        
+  background: white !important;
+  border: 2px solid #e9ecef !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+  max-height: 200px !important;
+  
+  z-index: 9999 !important;        
+}
+.hours-group {
+  position: relative;    
+  overflow: visible;      
+  grid-column: 1 / -1;    
+  margin-bottom: 24px;
+}
+.hours-group .hours-wrapper {
+  position: absolute;
+  top: 100%;             
+  left: 0;
+  width: 100%;
+  max-height: 180px;
+  
+  padding: 12px;
+  background: white;
+  border: 2px solid #e9ecef;
   border-radius: var(--border-radius);
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  transition: var(--transition);
-   position: absolute;
-  z-index: 10;
-  background: white;
-  width: calc(100% - 4px);
-  margin-top:5px;
-
-}
-.hours-wrapper:hover {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 9999;         
 }
 
+
+
+.hours-wrapper .checkbox-list span {
+  width: calc(20% - 10px);
+  display: flex;
+  align-items: center;
+}
+.hours-wrapper .checkbox-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 12px;
+}
+
+.hours-wrapper .checkbox-list input[type="checkbox"] {
+  display: none;
+}
+
+.hours-wrapper .checkbox-list label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  background: #f0f2f5;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 14px;
+  transition: var(--transition);
+  user-select: none;
+  
+}
+
+.hours-wrapper .checkbox-list label:hover {
+  background: var(--primary-light);
+  color: white;
+}
+
+
+.hours-wrapper .checkbox-list input[type="checkbox"]:checked + label {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
+}
+.group1{
+    position:absolute;
+    margin-top:240px;
+    width:250px;
+}
+.group2{
+    position:absolute;
+    margin-top:350px;
+    width:250px;
+}
+.group3{
+    position:absolute;
+    margin-top:350px;
+    margin-left:280px;
+    width:250px;
+}
+.container,
+.group {
+  overflow: visible !important;
+}
+.required1{
+
+    margin-top:35px;
+}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-         <h2>Trang chủ > Đăng ký lịch khám</h2>
+         <h2> Đăng ký lịch khám</h2>
 
 <div class="layout-wrapper">
     <div class="info-wrapper">
@@ -381,13 +498,13 @@
 
     <div class="form-wrapper">
         <div class="container">
-            <div class="group">
+            <div class="group4">
                 <label  Text="txtHoTen">Họ và tên <span class="required">*</span></label>
                 <asp:TextBox ID="txtHoTen" CssClass="control" runat="server" Placeholder="Nhập họ và tên"></asp:TextBox>
             </div>
-             <div class="group">
+             <div class="group5">
      <label Text="ddlNgayKham">Chọn ngày khám <span class="required">*</span></label>
-     <asp:TextBox ID="txtNgayKham" CssClass="control" runat="server" TextMode="Date"></asp:TextBox>
+     <asp:TextBox ID="txtNgayKham" CssClass="control" runat="server" TextMode="Date" ></asp:TextBox>
  </div>
            
             <div class="group">
@@ -396,44 +513,54 @@
             </div>
 
            
-                  <div class="group">
- <label >Buổi Khám <span class="required">*</span></label>
- <asp:DropDownList ID="ddlbuoikham" CssClass="control" runat="server"  AutoPostBack="true" OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged">
-     <asp:ListItem Text="Chọn buổi khám" Value="Chọn buổi khám"></asp:ListItem>
-     <asp:ListItem Text="Sáng" Value="Sáng"></asp:ListItem>
-     <asp:ListItem Text="Chiều" Value="Chiều"></asp:ListItem>
-     <asp:ListItem Text="Cả Ngày" Value="Cả Ngày"></asp:ListItem>
- </asp:DropDownList>
-</div>
-           <div class="group">
-     <label  Text="txtEmail">Email <span class="required">*</span></label>
-     <asp:TextBox ID="txtEmail" CssClass="control" runat="server" Placeholder="Nhập email"></asp:TextBox>
- </div>
+                 <asp:ScriptManager ID="scrManager" runat="server" />
 
-        <div class="group">
-  <label>Chọn giờ khám <span class="required">*</span></label>
-  <div class="hours-wrapper">
-    <asp:CheckBoxList 
-        ID="cblGiokham" 
-        runat="server" 
-        RepeatDirection="Horizontal" 
-        RepeatLayout="Flow" 
-        CssClass="checkbox-list">
-    </asp:CheckBoxList>
-  </div>
-</div>
-                     <div class="group">
-   
+<asp:UpdatePanel ID="upSchedule" runat="server" UpdateMode="Conditional">
+  <ContentTemplate>
     <div class="group">
-    <label  Text="txtSoDienThoai">Trình độ <span class="required">*</span></label>
-    <asp:TextBox ID="Txttrinhdo" CssClass="control" runat="server" Placeholder=""></asp:TextBox>
+      <label>Buổi Khám <span class="required">*</span></label>
+      <asp:DropDownList 
+          ID="ddlbuoikham" CssClass="control" runat="server"
+          AutoPostBack="true"
+          OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged">
+        <asp:ListItem Text="Chọn buổi khám" Value=""></asp:ListItem>
+        <asp:ListItem Text="Sáng" Value="Sáng"></asp:ListItem>
+        <asp:ListItem Text="Chiều" Value="Chiều"></asp:ListItem>
+        <asp:ListItem Text="Cả Ngày" Value="Cả Ngày"></asp:ListItem>
+      </asp:DropDownList>
+    </div>
+    <div class="group">
+      <label class="required1">Chọn giờ khám <span class="required">*</span></label>
+      <div class="hours-wrapper">
+        <asp:CheckBoxList 
+            ID="cblGiokham" 
+            runat="server" 
+            RepeatDirection="Horizontal" 
+            RepeatLayout="Flow" 
+            CssClass="checkbox-list">
+        </asp:CheckBoxList>
+      </div>
+    </div>
+  </ContentTemplate>
+  <Triggers>
+    <asp:AsyncPostBackTrigger 
+        ControlID="ddlbuoikham" 
+        EventName="SelectedIndexChanged" />
+  </Triggers>
+</asp:UpdatePanel>
+                    <div class="group1">
+    <label Text="txtEmail">Email <span class="required">*</span></label>
+    <asp:TextBox ID="txtEmail" CssClass="control" runat="server" Placeholder="Nhập email"></asp:TextBox>
 </div>
 
+<div class="group3">
+    <label Text="Txttrinhdo">Trình độ <span class="required">*</span></label>
+    <asp:TextBox ID="Txttrinhdo" CssClass="control" runat="server" Placeholder=""></asp:TextBox>
 </div>
 
            
 
-            <div class="group">
+            <div class="group2">
                 <label  Text="txtDiaChi">Địa chỉ <span class="required">*</span></label>
                 <asp:TextBox ID="txtDiaChi" CssClass="control" runat="server" Placeholder="Nhập địa chỉ"></asp:TextBox>
             </div>

@@ -563,7 +563,7 @@
                     CssClass="doctor_tb" EmptyDataText="Không có dữ liệu tư vấn nào được tìm thấy."
                     EmptyDataRowStyle-CssClass="empty-data" PagerStyle-CssClass="pagination">
                     <Columns>
-                        <asp:BoundField DataField="IDBenhNhan" HeaderText="Mã Bệnh Nhân" ReadOnly="true" />
+                        <asp:BoundField DataField="IDTuVan" HeaderText="Mã Tư Vấn" ReadOnly="true" />
                         <asp:TemplateField HeaderText="Tên bệnh nhân">
                             <ItemTemplate>
                                 <asp:Label ID="lblHoTen" runat="server" Text='<%# Eval("HoTenBenhNhan") %>'></asp:Label>

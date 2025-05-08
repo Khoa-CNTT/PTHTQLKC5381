@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Doctor_MasterPage.Master" AutoEventWireup="true" CodeBehind="Xem_Lich_Kham.aspx.cs" Inherits="NHOM20_DATN.Xem_Lich_Kham" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <link href="../../style/doctor/doctor_appointment.css" rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       
@@ -27,8 +30,7 @@
 
         </div>
     </div>
-   
-
+        
 
     <%-- List --%>
     <div class="table_doctor">
@@ -108,7 +110,7 @@
                 <asp:TemplateField HeaderText="Xem thông tin ">
                     <ItemTemplate>
                         <asp:LinkButton ID="btn_ViewDetail" CommandArgument='<%#Eval("IDPhieu") %>' CommandName="XemTT" runat="server">
-                          <a href="Xem_Thong_Tin_Benh_Nhan.aspx?maBN=<%#Eval("IDBenhNhan") %>"> <i class="fa-solid fa-id-card"></i></a>  
+                         <i class="fa-solid fa-id-card"></i>
                         </asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -160,7 +162,40 @@
             </div>
         </asp:Panel>
     </div>
+    <asp:Panel runat="server" ID="pnlPatientModal" CssClass="modal fade" aria-hidden="true" ClientIDMode="Static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông tin bệnh nhân</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <dl class="row">
+          <dt class="col-sm-4">Họ tên:</dt>
+          <dd class="col-sm-8"><asp:Label runat="server" ID="lblModal_HoTen" /></dd>
 
+          <dt class="col-sm-4">Ngày sinh:</dt>
+          <dd class="col-sm-8"><asp:Label runat="server" ID="lblModal_NgaySinh" /></dd>
+
+          <dt class="col-sm-4">Giới tính:</dt>
+          <dd class="col-sm-8"><asp:Label runat="server" ID="lblModal_GioiTinh" /></dd>
+
+          <dt class="col-sm-4">Số điện thoại:</dt>
+          <dd class="col-sm-8"><asp:Label runat="server" ID="lblModal_SDT" /></dd>
+
+          <dt class="col-sm-4">Địa chỉ:</dt>
+          <dd class="col-sm-8"><asp:Label runat="server" ID="lblModal_DiaChi" /></dd>
+
+          <!-- thêm các trường chi tiết khác nếu cần -->
+        </dl>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</asp:Panel>
+</div>
 </div>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>

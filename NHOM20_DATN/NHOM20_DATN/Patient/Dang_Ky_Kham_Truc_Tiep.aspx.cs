@@ -39,7 +39,7 @@ namespace NHOM20_DATN
         }
         private void LoadUserData(string userID)
         {
-            string sql = "SELECT HoTen, Email, NgaySinh,GioiTinh, SoDienThoai, CanCuocCongDan, DiaChi FROM BenhNhan WHERE IDBenhNhan = @UserID";
+            string sql = "SELECT HoTen, Email, NgaySinh, GioiTinh, SoDienThoai, CanCuocCongDan, DiaChi FROM BenhNhan WHERE IDBenhNhan = @UserID";
             SqlParameter[] parameters = {
         new SqlParameter("@UserID", userID)
     };
@@ -50,24 +50,19 @@ namespace NHOM20_DATN
             if (userData.Rows.Count > 0)
             {
                 DataRow row = userData.Rows[0];
-
-                // Kiểm tra thông tin cá nhân có đầy đủ hay không
                 bool isMissingInfo = false;
 
+                // Kiểm tra từng trường
                 txtHoTen.Text = row["HoTen"].ToString();
-                if (string.IsNullOrEmpty(txtHoTen.Text))
-                {
-                    isMissingInfo = true;
-                }
+                if (string.IsNullOrEmpty(txtHoTen.Text)) isMissingInfo = true;
                 txtHoTen.ReadOnly = true;
+
                 txtEmail.Text = row["Email"].ToString();
-                if (string.IsNullOrEmpty(txtEmail.Text))
-                {
-                    isMissingInfo = true;
-                }
-                txtEmail.ReadOnly = true; // không cho bệnh nhân chỉnh sửa khi load dữ liệu lên
+                if (string.IsNullOrEmpty(txtEmail.Text)) isMissingInfo = true;
+                txtEmail.ReadOnly = true;
+
                 gtRadioList.SelectedValue = row["GioiTinh"].ToString();
-                
+
                 if (row["NgaySinh"] != DBNull.Value)
                 {
                     txtNgaySinh.Text = Convert.ToDateTime(row["NgaySinh"]).ToString("yyyy-MM-dd");
@@ -78,33 +73,34 @@ namespace NHOM20_DATN
                     isMissingInfo = true;
                 }
                 txtNgaySinh.ReadOnly = true;
+
+                // Kiểm tra các trường khác...
                 txtSoDienThoai.Text = row["SoDienThoai"].ToString();
-                if (string.IsNullOrEmpty(txtSoDienThoai.Text))
-                {
-                    isMissingInfo = true;
-                }
+                if (string.IsNullOrEmpty(txtSoDienThoai.Text)) isMissingInfo = true;
                 txtSoDienThoai.ReadOnly = true;
+
                 txtDiaChi.Text = row["DiaChi"].ToString();
-                if (string.IsNullOrEmpty(txtDiaChi.Text))
-                {
-                    isMissingInfo = true;
-                }
+                if (string.IsNullOrEmpty(txtDiaChi.Text)) isMissingInfo = true;
                 txtDiaChi.ReadOnly = true;
+
                 txtCCCD.Text = row["CanCuocCongDan"].ToString();
-                if (string.IsNullOrEmpty(txtCCCD.Text))
-                {
-                    isMissingInfo = true;
-                }
+                if (string.IsNullOrEmpty(txtCCCD.Text)) isMissingInfo = true;
                 txtCCCD.ReadOnly = true;
-                // Nếu thiếu thông tin, hiển thị thông báo cập nhật
+
+                // CHỈ hiển thị thông báo nếu thiếu thông tin
                 if (isMissingInfo)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hãy cập nhật thông tin cá nhân.', 'warning');", true);
+                    string redirectUrl = "/Patient/Quan_Ly_Thong_Tin_Ca_Nhan.aspx";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                        $"showAlertAndRedirect('Vui lòng cập nhật thông tin cá nhân.', 'warning', '{redirectUrl}');", true);
                 }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hãy cập nhật thông tin cá nhân.', 'warning');", true);
+                // Trường hợp không tìm thấy thông tin bệnh nhân
+                string redirectUrl = "/Patient/Quan_Ly_Thong_Tin_Ca_Nhan.aspx";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                    $"showAlertAndRedirect('Không tìm thấy thông tin bệnh nhân. Vui lòng cập nhật.', 'error', '{redirectUrl}');", true);
             }
         }
         private void BindNgayKhamRepeater()
@@ -398,8 +394,37 @@ namespace NHOM20_DATN
             string idngaykham = txtNgayKham.Text;
             string idgiokham = DDLgiokham.SelectedValue;
             string buoiKham = ddlbuoikham.SelectedValue;
-            
 
+            DateTime ngaySinh;
+            if (!DateTime.TryParse(txtNgaySinh.Text, out ngaySinh))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                    "showAlert('Không tìm thấy thông tin bệnh nhân.', 'warning');", true);
+                return;
+            }
+
+            DateTime ngayKham;
+            if (!DateTime.TryParse(txtNgayKham.Text, out ngayKham))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                    "showAlert('Không tìm thấy thông tin bệnh nhân.', 'warning');", true);
+                return;
+            }
+            // kiểm tra bệnh nhân đã có thông tin cá nhân chưa
+
+    //        string checkInfoSql = "SELECT HoTen, Email, SoDienThoai, DiaChi, CanCuocCongDan, NgaySinh FROM BenhNhan WHERE IDBenhNhan = @IDBenhNhan";
+    //        SqlParameter[] checkInfoParams = {
+    //    new SqlParameter("@IDBenhNhan", idBenhNhan)
+    //};
+
+    //        LopKetNoi checkInfoDb = new LopKetNoi();
+    //        DataTable dtInfo = checkInfoDb.docdulieu(checkInfoSql, checkInfoParams);
+
+    //        if (dtInfo == null || dtInfo.Rows.Count == 0)
+    //        {
+    //            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Không tìm thấy thông tin bệnh nhân.', 'error');", true);
+    //            return;
+    //        }
             // kiểm tra xem đã chọn bác sĩ chưa
 
             string checkBacSiSql = "SELECT COUNT(*) FROM BacSi WHERE IDBacSi = @IDBacSi";

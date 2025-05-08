@@ -30,9 +30,7 @@
 
         </div>
     </div>
-        <asp:LinkButton ID="reload_Btn" title="load lại danh sách" CssClass="refresh_btn" OnClick="reload_Btn_Click" runat="server"><i class="fa-solid fa-rotate-right"></i></asp:LinkButton>
-    </div>
-
+        
 
     <%-- List --%>
     <div class="table_doctor">
@@ -197,7 +195,7 @@
     </div>
   </div>
 </asp:Panel>
-
+</div>
 </div>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>

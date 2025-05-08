@@ -42,15 +42,6 @@ namespace NHOM20_DATN
         protected global::System.Web.UI.WebControls.DropDownList filter_specialty;
 
         /// <summary>
-        /// reload_Btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton reload_Btn;
-
-        /// <summary>
         /// gridAppointment control.
         /// </summary>
         /// <remarks>

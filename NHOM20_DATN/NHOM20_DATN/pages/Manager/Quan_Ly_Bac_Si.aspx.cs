@@ -227,9 +227,21 @@ namespace NHOM20_DATN.pages.Manager
 
             };
             int result = kn.CapNhat(update_query, param);
+            if(result == 0)
+            {
+                string message = "Cập nhật thất bại";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }
+
+
             //set -1 to cancel edit
             gridDoctor.EditIndex = -1;
             //Trả về xem bảng
+            string messageS = "Cập nhật thành công";
+            string scriptS = "showAlert('" + messageS + "','success');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptS, true);
             viewList();
         }
 
@@ -242,7 +254,7 @@ namespace NHOM20_DATN.pages.Manager
             string deleteTK = "delete from taikhoan where ID= @IDBacSi";
             string deleteAppointmentDoc = "delete from LichKhambacSi where IDBacSi= @IDBacSi";
             string deleteAppointmentPa = "delete from PhieuKham where IDBacSi= @IDBacSi";
-
+            string checkAppointment = "select * from PhieuKham where IDBacSi= @IDBacSi ";
             SqlParameter[] bsId = new SqlParameter[]
             {
                 new SqlParameter("@IDBacSi",doctorID)
@@ -260,17 +272,36 @@ namespace NHOM20_DATN.pages.Manager
             {
                 new SqlParameter("@IDBacSi",doctorID)
             };
+            SqlParameter[] checkA = new SqlParameter[]
+           {
+                new SqlParameter("@IDBacSi",doctorID)
+           };
+            DataTable dtAppoint = new DataTable();
+            dtAppoint = kn.docdulieu(checkAppointment, checkA);
+            if (dtAppoint.Rows.Count >0)
+            {
+                string messageD = "Không thể xóa vì bác sĩ này đang có phiếu khám";
+                string scriptD = "showAlert('" + messageD + "','error');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptD, true);
+                viewList();
+                return;
+            }
+
 
             int resultLK = kn.CapNhat(deleteAppointmentDoc, apDoc);
+            if (resultLK == 0) return;
             int resultPK = kn.CapNhat(deleteAppointmentPa, apPat);
-
+            if (resultPK == 0) return;
             int resultBS = kn.CapNhat(deleteBS, bsId);
+            if (resultBS == 0) return;
             int resultTK = kn.CapNhat(deleteTK, bstk);
-
+            if (resultTK == 0) return;
             //int resultLK = kn.CapNhat(deleteAppointmentDoc, apDoc);
             //int resultPK = kn.CapNhat(deleteAppointmentPa, apPat);
 
-
+            string messageS = "Xóa thành công";
+            string scriptS = "showAlert('" + messageS + "','warning');";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptS, true);
 
             viewList();
         }

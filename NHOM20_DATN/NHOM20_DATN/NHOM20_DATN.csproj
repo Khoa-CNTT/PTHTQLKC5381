@@ -217,6 +217,7 @@
     <Content Include="pages\Doctor\Xem_Lich_Kham.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Bai_Viet.aspx" />
     <Content Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx" />
+    <Content Include="pages\Manager\Thong_Ke_Benh_Nhan_Tu_Van.aspx" />
     <Content Include="pages\Manager\Thong_Ke_Doanh_Thu.aspx" />
     <Content Include="pages\Manager\Thong_Ke_SL_Benh_Nhan.aspx" />
     <Content Include="Patient\Dang_Ky_Kham_Truc_Tiep.aspx" />
@@ -327,6 +328,7 @@
     <Content Include="style\manager\patientManagerment.css" />
     <Content Include="style\manager\QLBaiviet.css" />
     <Content Include="style\manager\thongkeBN_style.css" />
+    <Content Include="style\manager\thongkeTV_style.css" />
     <Content Include="style\news_content_style.css" />
     <Content Include="style\new_dt.css" />
     <Content Include="style\Regist_form.css" />
@@ -465,6 +467,13 @@
     </Compile>
     <Compile Include="pages\Manager\Quan_Ly_Thanh_Toan.aspx.designer.cs">
       <DependentUpon>Quan_Ly_Thanh_Toan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Manager\Thong_Ke_Benh_Nhan_Tu_Van.aspx.cs">
+      <DependentUpon>Thong_Ke_Benh_Nhan_Tu_Van.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Manager\Thong_Ke_Benh_Nhan_Tu_Van.aspx.designer.cs">
+      <DependentUpon>Thong_Ke_Benh_Nhan_Tu_Van.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Manager\Thong_Ke_Doanh_Thu.aspx.cs">
       <DependentUpon>Thong_Ke_Doanh_Thu.aspx</DependentUpon>
@@ -623,11 +632,13 @@
     <Compile Include="res\service\AppointmentManagerment_Service.cs" />
     <Compile Include="res\service\DoctorService.cs" />
     <Compile Include="res\service\library\AutoGenerateID.cs" />
+    <Compile Include="res\service\LichSuKhamService.cs" />
     <Compile Include="res\service\MedicalRecordService.cs" />
     <Compile Include="res\service\PatientManagerment.cs" />
     <Compile Include="res\service\PaymentService.cs" />
     <Compile Include="res\service\QlbvService.cs" />
     <Compile Include="res\service\ThongKe\ThongKeBenhNhanService.cs" />
+    <Compile Include="res\service\ThongKe\ThongKeBenhNhanTuVanService.cs" />
     <Compile Include="sendMail\sendMai_gmail.cs" />
     <Compile Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx.cs">
       <DependentUpon>Xem_Thong_Tin_Benh_Nhan.aspx</DependentUpon>

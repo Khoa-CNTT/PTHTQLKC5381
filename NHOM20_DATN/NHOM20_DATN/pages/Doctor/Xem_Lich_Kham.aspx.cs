@@ -283,10 +283,10 @@ namespace NHOM20_DATN
             gridAppointment.DataBind();
         }
         //========Reload
-        protected void reload_Btn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Xem_Lich_Kham.aspx");
-        }
+        //protected void reload_Btn_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("Xem_Lich_Kham.aspx");
+        //}
 
         //=========Search click
         protected void btn_search_Click(object sender, EventArgs e)
@@ -294,10 +294,11 @@ namespace NHOM20_DATN
 
             string idU = (string)Session["UserID"];
             //string idU = "TK001";
+     
             string nameKey = "%" + txt_searching.Text + "%";
             string sql_search = "select *  " +
                 "from PhieuKham pk " +
-                 "JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu " +
+                 " JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu " +
                 "join BenhNhan bn on pk.IDBenhNhan  = bn.IDBenhNhan " +
                 "where (pk.HoTen COLLATE SQL_Latin1_General_CP1_CI_AI like @name " +
                 "or pk.IDPhieu COLLATE SQL_Latin1_General_CP1_CI_AI like @name " +
@@ -310,6 +311,8 @@ namespace NHOM20_DATN
                 new SqlParameter("@name",nameKey)
 
             };
+
+
             DataTable dt = kn.docdulieu(sql_search, pr);
             if (dt.Rows.Count > 0 && dt != null)
             {

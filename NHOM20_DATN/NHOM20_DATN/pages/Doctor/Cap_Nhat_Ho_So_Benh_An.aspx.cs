@@ -14,11 +14,20 @@ namespace NHOM20_DATN.pages.Doctor
     {
         MedicalRecordService medicalRecordService = new MedicalRecordService();
         PatientManagerment patientService = new PatientManagerment();
+        LichSuKhamService lskService = new LichSuKhamService();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                string idbs = (string)Session["UserID"];
+                if ((string)Session["Role"] == null || (string)Session["Role"] == "")
+                {
+                    Response.Redirect("~/Dang_Nhap.aspx");
+                    return;
+                }
+
                 loadData();
+
             }
 
         }
@@ -31,7 +40,7 @@ namespace NHOM20_DATN.pages.Doctor
             if(dtHS.Rows.Count <= 0)
             {
                 string message = "Không có bệnh nhân nào";
-                string script = "ShowAlert('" + message + "','success');";
+                string script = "ShowAlert('" + message + "','warning');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
             }
@@ -73,6 +82,7 @@ namespace NHOM20_DATN.pages.Doctor
                 string donthuoc = commandArgs[4];
                 string ghichu = commandArgs[5];
                 string idPK = commandArgs[6];
+                string huongdtr = commandArgs[7];
                 txtBN_edit.Text = idBN;
                 txtHS_edit.Text = idHS;
                 txtPK_edit.Text = idPK;
@@ -80,6 +90,7 @@ namespace NHOM20_DATN.pages.Doctor
                 txtChanDoan_edit.Text = chandoan;
                 txtDonThuoc_edit.Text = donthuoc;
                 txtGhiChu_edit.Text = ghichu;
+                txtHuongDtr_edit.Text = huongdtr;
                 pn_Update.Visible = true;
                 //cancelEdit.Visible = false;
                 string script = "OpenForm();";
@@ -98,9 +109,11 @@ namespace NHOM20_DATN.pages.Doctor
             string chandoan = txtChanDoan_edit.Text;
             string donthuoc = txtDonThuoc_edit.Text;
             string ghichu = txtGhiChu_edit.Text;
+            string huongdtr = txtHuongDtr_edit.Text;
             DateTime dayDatetime = DateTime.Now;
             string ngaycapnhat = dayDatetime.ToString("MM/dd/yyyy");
             int result = medicalRecordService.update(idBs, idBn, idHs,idPK, chandoan, donthuoc, ngaycapnhat, ghichu);
+            int resultLSK = lskService.update(idBn, idPK, chandoan, huongdtr);
             if (result != 0)
             {
                 string message = "Cập Nhật Thành Công";
@@ -111,13 +124,14 @@ namespace NHOM20_DATN.pages.Doctor
                 //cancelEdit.Visible = true;
                 // then load page
                 loadData();
+                return;
             }
             else
             {
                 string message = "Cập nhật thất bại";
                 string script = "ShowAlert('" + message + "','error')";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
-
+                return;
             }
         }
         //          Close update form
@@ -130,6 +144,7 @@ namespace NHOM20_DATN.pages.Doctor
             txtChanDoan_edit.Text = "";
             txtDonThuoc_edit.Text = "";
             txtGhiChu_edit.Text = "";
+            txtHuongDtr_edit.Text = "";
             pn_Update.Visible = false;
             //cancelEdit.Visible = true;
             string script = "CloseForm();";
@@ -182,14 +197,13 @@ namespace NHOM20_DATN.pages.Doctor
             {
                 DataRow row = dt.Rows[0];
                 string details = $@"
-            <div><p><strong>Họ tên:</strong> {row["HoTen"]}</p></div>
-            <div><p><strong>Ngày sinh:</strong> {Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy")}</p></div>
-            <div><p><strong>Giới tính:</strong> {row["GioiTinh"]}</p></div>
-            <div><p><strong>Số điện thoại:</strong> {row["SoDienThoai"]}</p></div>
-            <div><p><strong>Email:</strong> {row["Email"]}</p></div>
-            <div><p><strong>Địa chỉ:</strong> {row["DiaChi"]}</p></div>
-            
-        ";
+    <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]?.ToString() ?? ""}</p>
+    <p><strong>Họ tên:</strong> {row["HoTen"]?.ToString() ?? ""}</p>
+    <p><strong>Ngày sinh:</strong> {(row["NgaySinh"] != DBNull.Value ? Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy") : "")}</p>
+    <p><strong>Giới tính:</strong> {row["GioiTinh"]?.ToString() ?? ""}</p>
+    <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]?.ToString() ?? ""}</p>
+    <p><strong>Email:</strong> {row["Email"]?.ToString() ?? ""}</p>
+    <p><strong>Địa chỉ:</strong> {row["DiaChi"]?.ToString() ?? ""}</p>";
                 patientDetails.InnerHtml = details;
                 // Hiển thị modal
                 ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",

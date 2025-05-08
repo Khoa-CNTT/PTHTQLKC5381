@@ -11,142 +11,115 @@ namespace NHOM20_DATN.pages.Manager
 {
 
 
-    public partial class Quan_Ly_Lich_Kham
+    public partial class Thong_Ke_Benh_Nhan_Tu_Van
     {
 
         /// <summary>
-        /// txt_searching control.
+        /// txtFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_searching;
+        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
 
         /// <summary>
-        /// btn_search control.
+        /// txtToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_search;
+        protected global::System.Web.UI.WebControls.TextBox txtToDate;
 
         /// <summary>
-        /// filter_specialty control.
+        /// btnFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList filter_specialty;
+        protected global::System.Web.UI.WebControls.Button btnFilter;
 
         /// <summary>
-        /// gridAppointmentManager control.
+        /// btnToday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridAppointmentManager;
+        protected global::System.Web.UI.WebControls.Button btnToday;
 
         /// <summary>
-        /// patientDetails control.
+        /// btnThisWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl patientDetails;
+        protected global::System.Web.UI.WebControls.Button btnThisWeek;
 
         /// <summary>
-        /// hiddenIdPk control.
+        /// btnThisMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenIdPk;
+        protected global::System.Web.UI.WebControls.Button btnThisMonth;
 
         /// <summary>
-        /// hiddenDocID control.
+        /// btnThisYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenDocID;
+        protected global::System.Web.UI.WebControls.Button btnThisYear;
 
         /// <summary>
-        /// hiddenOldDay control.
+        /// btnAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenOldDay;
+        protected global::System.Web.UI.WebControls.Button btnAll;
 
         /// <summary>
-        /// hiddenOldTime control.
+        /// GridView_All control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenOldTime;
+        protected global::System.Web.UI.WebControls.GridView GridView_All;
 
         /// <summary>
-        /// pn_AT control.
+        /// lbl_totalPatient control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pn_AT;
+        protected global::System.Web.UI.WebControls.Label lbl_totalPatient;
 
         /// <summary>
-        /// lbl_idPk control.
+        /// lbl_allPk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_idPk;
+        protected global::System.Web.UI.WebControls.Label lbl_allPk;
 
         /// <summary>
-        /// ddl_aT control.
+        /// btnXuatExcel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl_aT;
-
-        /// <summary>
-        /// txtCalender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCalender;
-
-        /// <summary>
-        /// btn_Save control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Save;
-
-        /// <summary>
-        /// btn_Close control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Close;
+        protected global::System.Web.UI.WebControls.Button btnXuatExcel;
     }
 }

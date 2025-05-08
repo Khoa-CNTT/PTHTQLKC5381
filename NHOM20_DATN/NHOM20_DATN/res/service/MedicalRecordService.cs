@@ -12,7 +12,7 @@ namespace NHOM20_DATN.res.service
         LopKetNoi db = new LopKetNoi();
         public DataTable getAll(string idbs)
         {
-            string query = "select hs.IDHS,hs.IDBN, hs.IDLSK,lsk.IDPhieu, bn.HoTen, pk.NgayKham, hs.ChanDoan, hs.DonThuoc, hs.GhiChu, hs.NgayCapNhat from HoSoBenhAn hs, BenhNhan bn, BacSi bs, LichSuKham lsk, PhieuKham pk" +
+            string query = "select hs.IDHS,hs.IDBN, hs.IDLSK,lsk.IDPhieu, bn.HoTen, pk.NgayKham, hs.ChanDoan, hs.DonThuoc, hs.GhiChu, hs.NgayCapNhat, lsk.HuongDieuTri  from HoSoBenhAn hs, BenhNhan bn, BacSi bs, LichSuKham lsk, PhieuKham pk" +
                 " where hs.IDBN = bn.IDBenhNhan and bs.IDBacSi = hs.IDBS and hs.IDLSK = lsk.IDLichSu and pk.IDPhieu = lsk.IDPhieu" +
                 " and hs.IDBS = @idbs";
             SqlParameter[] param = new SqlParameter[] {
@@ -25,7 +25,7 @@ namespace NHOM20_DATN.res.service
         public DataTable getByPatientName(string name, string idbs)
         {
             name = "%" + name + "%";
-            string query = "select hs.IDHS,hs.IDBN, hs.IDLSK, bn.HoTen, pk.NgayKham, hs.ChanDoan, hs.DonThuoc, hs.GhiChu, hs.NgayCapNhat from HoSoBenhAn hs, BenhNhan bn, BacSi bs, LichSuKham lsk, PhieuKham pk" +
+            string query = "select hs.IDHS,hs.IDBN, hs.IDLSK, bn.HoTen, pk.NgayKham, hs.ChanDoan, hs.DonThuoc, hs.GhiChu, hs.NgayCapNhat, lsk.HuongDieuTri from HoSoBenhAn hs, BenhNhan bn, BacSi bs, LichSuKham lsk, PhieuKham pk" +
                 "  where hs.IDBN = bn.IDBenhNhan and bs.IDBacSi = hs.IDBS and hs.IDLSK = lsk.IDLichSu and pk.IDPhieu = lsk.IDPhieu" +
                 "   and (bn.HoTen COLLATE SQL_Latin1_General_CP1_CI_AI like @nameKey )" +
                 "   and hs.IDBS = @idbs";

@@ -3,7 +3,7 @@
      <link href="../../style/doctor/doctor_appointment.css" rel='stylesheet'>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      
 <%--<asp:HiddenField runat="server" ID="lastSortDirection" />
 <asp:HiddenField runat="server" ID="lastSortExpression" />--%>
 <div id="list_here">
@@ -27,9 +27,7 @@
 
         </div>
     </div>
-    <div class="load_list">
-        <asp:LinkButton ID="reload_Btn" title="load lại danh sách" CssClass="refresh_btn" OnClick="reload_Btn_Click" runat="server"><i class="fa-solid fa-rotate-right"></i></asp:LinkButton>
-    </div>
+   
 
 
     <%-- List --%>
@@ -164,6 +162,7 @@
     </div>
 
 </div>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function showCancelDialog(idPk, dayWork) {
         Swal.fire({
@@ -196,6 +195,15 @@
                 });
             }
         });
+
+        function showAlert(notice, warn) {
+            Swal.fire({
+                title: notice,
+                icon: warn,
+                confirmButtonText: 'OK'
+            });
+        }
+
     }
 </script>
 </asp:Content>

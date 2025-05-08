@@ -182,7 +182,6 @@ namespace NHOM20_DATN.pages.DoctorOnline
         {
             string searchText = txt_Searching.Text.Trim();
 
-            // Nếu ô tìm kiếm trống, load lại dữ liệu gốc
             if (string.IsNullOrEmpty(searchText))
             {
                 LoadData();
@@ -196,11 +195,12 @@ namespace NHOM20_DATN.pages.DoctorOnline
             if (Session["Role"].ToString() == "BacSiOn")
             {
                 sql_search = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, 
-                     lt.Ngay, lt.Gio, lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
-                     FROM LichTuVan lt
-                     INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                     WHERE (lt.IDTuVan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm)
-                     AND lt.IDBacSi = @IDBacSi";
+                      lt.Ngay, lt.Gio, lt.TrieuChung, lt.LinkJitsi AS Link
+                      FROM LichTuVan lt
+                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
+                      WHERE (lt.IDTuVan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm)
+                      AND lt.IDBacSi = @IDBacSi
+                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
 
                 pr = new SqlParameter[] {
             new SqlParameter("@SearchTerm", searchTerm),
@@ -210,10 +210,11 @@ namespace NHOM20_DATN.pages.DoctorOnline
             else
             {
                 sql_search = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, 
-                      lt.Ngay, lt.Gio, lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
+                      lt.Ngay, lt.Gio, lt.TrieuChung, lt.LinkJitsi AS Link
                       FROM LichTuVan lt
                       INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                      WHERE lt.IDTuVan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm";
+                      WHERE lt.IDTuVan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm
+                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
 
                 pr = new SqlParameter[] {
             new SqlParameter("@SearchTerm", searchTerm)
@@ -281,6 +282,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
             {
                 // Tạo DataTable với cấu trúc tương tự GridView
                 DataTable dt = new DataTable();
+                dt.Columns.Add("IDTuVan");
                 dt.Columns.Add("IDBenhNhan");
                 dt.Columns.Add("HoTenBenhNhan");
                 dt.Columns.Add("Ngay");

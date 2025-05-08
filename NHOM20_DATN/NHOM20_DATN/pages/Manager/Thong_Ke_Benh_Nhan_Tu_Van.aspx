@@ -2,11 +2,11 @@
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <link href="../../style/manager/thongkeTV_style.css" rel='stylesheet'>
+    <link href="../../style/manager/thongkeTV_style.css" rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div id="contain-all-tk">
+    <div id="contain-all-tk">
         <div class="title-function">
             <h3>Thống kê bệnh nhân tư vấn</h3>
         </div>
@@ -42,8 +42,11 @@
                     <asp:Button ID="btnThisYear" OnClick="btnThisYear_Click" runat="server" Text="Năm Nay" />
                 </div>
                 <div class="contain-btn-all ">
-    <asp:Button ID="btnAll" OnClick="btnAll_Click" runat="server" Text="Tất cả"/>
-</div>
+                    <asp:Button ID="btnAll" OnClick="btnAll_Click" runat="server" Text="Tất cả" />
+                </div>
+                <div class="contain-btn-TV">
+                    <a href="Thong_Ke_SL_Benh_Nhan.aspx">Thống Kê Bệnh Nhân</a>
+                </div>
             </div>
 
         </div>
@@ -93,8 +96,8 @@
 
         <%-- =============== CHART================= --%>
         <div id="container-chart">
-            <div id="chart-item" style="width: 75%; overflow-x: auto;"">
-                <canvas id="myChart" ></canvas>
+            <div id="chart-item" style="width: 75%; overflow-x: auto;">
+                <canvas id="myChart"></canvas>
             </div>
 
             <div id="count-total-contain">
@@ -116,45 +119,45 @@
     </div>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/library/ChartJs.js"></script>
 
-     <script>
-         var labels = <%= labelsJson %>;
-         var data = <%= dkDataJson %>;
+    <script>
+        var labels = <%= labelsJson %>;
+        var data = <%= dkDataJson %>;
 
 
-         var chart = new Chart(document.getElementById('myChart'), {
-             type: 'bar',
-             data: {
-                 labels: labels,
-                 datasets: [
-                     {
-                         label: 'Đã Đăng Ký',
-                         data: data,
-                         backgroundColor: 'rgba(54, 162, 235, 0.7)'
-                     }
-                 ]
-             },
-             options: {
-                 responsive: true,
-                 scales: {
-                     y: {
-                         beginAtZero: true
-                     }
-                 }
-             }
-         });
-     </script>
- <script>
-     function showAlert(notice, warn) {
-         Swal.fire({
-             title: notice,
-             icon: warn,
-             confirmButtonText: 'OK'
-         });
-     }
- </script>
+        var chart = new Chart(document.getElementById('myChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Đã Đăng Ký',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        function showAlert(notice, warn) {
+            Swal.fire({
+                title: notice,
+                icon: warn,
+                confirmButtonText: 'OK'
+            });
+        }
+    </script>
 
 
 

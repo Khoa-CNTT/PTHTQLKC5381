@@ -28,7 +28,7 @@ namespace NHOM20_DATN.pages.Manager
         //========================== Main function =================================
         public void LoadView(DataTable dt_list)
         {
-            if (dt_list == null)
+            if (dt_list == null|| dt_list.Rows.Count<=0)
             {
                 string message = "Chưa có ai đăng ký！ ";
                 string script = "showAlert('" + message + "','info');";

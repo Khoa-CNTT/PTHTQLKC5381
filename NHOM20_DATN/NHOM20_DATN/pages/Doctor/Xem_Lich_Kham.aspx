@@ -23,7 +23,7 @@
                 CssClass="pd_tb_2px ddl_filter" ID="filter_specialty" runat="server"
                 AutoPostBack="true" >
                 <asp:ListItem Text="Trạng Thái" Value=""></asp:ListItem>
-                <asp:ListItem Text="Đang chờ" Value="DangCho"></asp:ListItem>
+                <asp:ListItem Text="Đã Khám" Value="DaKham"></asp:ListItem>
                 <asp:ListItem Text="Đã Đăng Ký" Value="DaDangKy"></asp:ListItem>
                 <asp:ListItem Text="Đã Hủy" Value="DaHuy"></asp:ListItem>
             </asp:DropDownList>
@@ -80,12 +80,12 @@
                         </asp:Label>
                         <asp:Label ID="lbl_ChoKham"
                             CssClass="lblDangcho"
-                            title="Đang chờ"
+                            title="Đã Khám"
                             BackColor="#ff9200"
                             ForeColor="White"
                             runat="server"
-                            Text="Đang chờ"
-                            Visible='<%# Eval("TrangThai").ToString() == "DangCho" %>'>
+                            Text="Đã Khám"
+                            Visible='<%# Eval("TrangThai").ToString() == "DaKham" %>'>
                     </asp:Label>
                         <asp:Label ID="lbl_DaHuy"
                             CssClass="lblDahuy"
@@ -196,7 +196,7 @@
   </div>
 </asp:Panel>
 </div>
-</div>
+
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function showCancelDialog(idPk, dayWork) {

@@ -44,6 +44,9 @@
                 <div class="contain-btn-all ">
     <asp:Button ID="btnAll" OnClick="btnAll_Click" runat="server" Text="Tất cả"/>
 </div>
+                <div class="contain-btn-TV">
+                    <a href="Thong_Ke_Benh_Nhan_Tu_Van.aspx">Thống Kê Tư Vấn</a>
+                </div>
             </div>
 
         </div>

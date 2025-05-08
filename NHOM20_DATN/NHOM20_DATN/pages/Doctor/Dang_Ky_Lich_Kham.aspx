@@ -339,6 +339,27 @@
         width: 90% !important;
     }
 }
+.group { position: relative; }
+.hours-wrapper {
+  max-height: 180px;            
+  overflow-y: auto;            
+  padding: 25px;
+  border: 2px solid #e9ecef;   
+  border-radius: var(--border-radius);
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: var(--transition);
+   position: absolute;
+  z-index: 10;
+  background: white;
+  width: calc(100% - 4px);
+  margin-top:5px;
+
+}
+.hours-wrapper:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -389,13 +410,18 @@
      <asp:TextBox ID="txtEmail" CssClass="control" runat="server" Placeholder="Nhập email"></asp:TextBox>
  </div>
 
-            <div class="group">
-                <label  Text="ddlTinhThanh">Chọn giờ khám <span class="required">*</span></label>
-                                   <asp:DropDownList ID="DDLgiokham" runat="server" CssClass="control">
-                                    <asp:ListItem Value=" " Text="Giờ Khám" >
-                                    </asp:ListItem>
-                                </asp:DropDownList>
-            </div>
+        <div class="group">
+  <label>Chọn giờ khám <span class="required">*</span></label>
+  <div class="hours-wrapper">
+    <asp:CheckBoxList 
+        ID="cblGiokham" 
+        runat="server" 
+        RepeatDirection="Horizontal" 
+        RepeatLayout="Flow" 
+        CssClass="checkbox-list">
+    </asp:CheckBoxList>
+  </div>
+</div>
                      <div class="group">
    
     <div class="group">

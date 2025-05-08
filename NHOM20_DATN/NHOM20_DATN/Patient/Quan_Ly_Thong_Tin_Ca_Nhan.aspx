@@ -57,7 +57,7 @@
     <div class="profile-container card p-4 shadow-lg khungthongtin">
         <div class="profile-header text-center mb-4">
             <h2 class="text">Quản lý thông tin cá nhân</h2>
-            <img src="img/icon_nguoidung.png" style="max-width: 100px;" class="rounded-circle img-thumbnail mb-3" alt="Avatar">
+            <img src="../img/icon_nguoidung.png" style="max-width: 100px;" class="rounded-circle img-thumbnail mb-3" alt="Avatar">
         </div>
         <asp:DataList ID="dlThongTinCaNhan" runat="server" RepeatColumns="1" >
             <ItemTemplate>

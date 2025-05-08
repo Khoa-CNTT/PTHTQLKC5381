@@ -263,7 +263,7 @@
         </div>
         <div class="nentrongsuot"></div>
         <div style="text-align: center; margin-bottom: 20px; font-weight: bold; font-size: 18px">
-            <asp:Label CssClass="quen" ID="Label3" runat="server" Text="Đặt lại mật Khẩu"></asp:Label>
+            <asp:Label CssClass="quen" ID="Label3" runat="server" Text="Đặt lại mật khẩu"></asp:Label>
         </div>
         <div class="than2" id="lammoi">
             <div class="khung1">

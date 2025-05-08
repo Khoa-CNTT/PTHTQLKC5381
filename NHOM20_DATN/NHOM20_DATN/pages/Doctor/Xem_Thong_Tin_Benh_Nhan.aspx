@@ -6,13 +6,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f9;
-            margin: 0;
-            padding: 0;
-        }
-
         .contain-ttbn {
             background-color: #d9d9d96e;
         }

@@ -2,12 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-          
         }
 
         body {
@@ -112,12 +112,13 @@
             margin-top: 10px;
             margin-left: 15px;
             width: 200px;
-            
         }
+
             .btn-submit:hover {
                 background-color: #4247c2;
             }
-            .btn-submitt {
+
+        .btn-submitt {
             display: inline-block;
             background-color: #5f65ff;
             color: #fff;
@@ -128,13 +129,14 @@
             cursor: pointer;
             margin-top: 20px;
             width: 110px !important;
-            font-weight:bold;
-            font-family:'Times New Roman', Times, serif;
-            
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
         }
+
             .btn-submitt:hover {
                 background-color: #4247c2;
             }
+
         .red_text {
             color: red;
             font-size: 14px;
@@ -378,7 +380,7 @@
             margin-bottom: 30px;
             margin-left: 450px;
             position: absolute;
-            padding:10px;
+            padding: 10px;
         }
 
             .page-title::after {
@@ -540,31 +542,35 @@
             .date-box.active .day {
                 color: rgba(255,255,255,0.8);
             }
-       
+
         @media (max-width: 768px) {
-            .page-bg{
-                margin-top:5px;
-                margin-left:-50px;
+            .page-bg {
+                margin-top: 5px;
+                margin-left: -50px;
             }
-            .main-container{
-                margin-top:20px;
-                width:450px !important;
-                
+
+            .main-container {
+                margin-top: 20px;
+                width: 450px !important;
             }
+
             .btn-submitt {
                 margin-top: -20px !important;
                 margin-left: 170px;
             }
-            .page-title{
-                margin-left:160px;
-                font-size:18px;
-                margin-top:20px;
+
+            .page-title {
+                margin-left: 160px;
+                font-size: 18px;
+                margin-top: 20px;
             }
-            h3{
-                font-size:16px;
+
+            h3 {
+                font-size: 16px;
             }
-            .col-4{
-                width:200px !important;
+
+            .col-4 {
+                width: 200px !important;
             }
         }
     </style>
@@ -583,7 +589,7 @@
                     <asp:TextBox ID="txtemail1" runat="server" CssClass="form-control"
                         placeholder="Nhập email bệnh nhân"></asp:TextBox>
                 </div>
-                <div class="form-group col-1" style="display: flex; margin-left: -40px ;align-items: flex-end;">
+                <div class="form-group col-1" style="display: flex; margin-left: -40px; align-items: flex-end;">
                     <asp:Button ID="btnTimKiemBN" runat="server" Text="Tìm kiếm"
                         CssClass="btn-submitt" OnClick="btnTimKiemBN_Click" />
                 </div>
@@ -592,76 +598,90 @@
             <h3>Nội dung chi tiết đăng ký lịch khám</h3>
             <div class="thanhngang">
             </div>
-            <div class="row">
-
-                <div class="form-group col-66">
-                    <label for="ddlChuyenKhoa">Chuyên khoa</label>
-                    <asp:DropDownList ID="ddlChuyenKhoa" runat="server" AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlChuyenKhoa_SelectedIndexChanged"
-                        CssClass="form-control">
-                        <asp:ListItem Value="" Text="Chọn chuyên khoa"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="form-group col-66">
-                    <label for="ddlPhongKham">Phòng khám</label>
-                    <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true" CssClass="form-control">
-                        <asp:ListItem Value="" Text="Chọn phòng khám"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-66">
-                    <label for="ddlBacSi">Bác sĩ</label>
-                    <asp:DropDownList ID="ddlBacSi" runat="server" AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlBacSi_SelectedIndexChanged"
-                        CssClass="form-control">
-                    </asp:DropDownList>
-                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="ddlBacSi"
-                        Display="Dynamic" ErrorMessage="Vui lòng chọn bác sĩ" Operator="NotEqual"
-                        ValueToCompare="Chọn bác sĩ" CssClass="red_text">
-                    </asp:CompareValidator>
-                </div>
-                <div class="form-group col-66" style="display: flex; align-items: flex-end; left: 650px !important;position: absolute !important;  ">
-                </div>
-            </div>
-
-            <h3>Thời gian khám</h3>
-            <div class="thanhngang">
-            </div>
-            <asp:TextBox ID="txtNgayKham" runat="server" TextMode="Date"
-                AutoPostBack="true" Style="display: none" OnTextChanged="txtNgayKham_TextChanged" />
-            <div class="row">
-                <asp:Repeater ID="rptNgayKham" runat="server">
-                    <HeaderTemplate>
-                        <div class="date-selection">
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <div class='date-box <%# Eval("ActiveClass") %>'
-                            onclick='selectDate("<%# Eval("NgayValue") %>", this)'>
-                            <span class="date"><%# Eval("NgayThang") %></span>
-                            <span class="day"><%# Eval("Thu") %></span>
+            <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
+            <asp:UpdatePanel ID="UpdatePanelMain" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div class="row">
+                        <!-- Chuyên khoa -->
+                        <div class="form-group col-66">
+                            <label for="ddlChuyenKhoa">Chuyên khoa</label>
+                            <asp:DropDownList ID="ddlChuyenKhoa" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlChuyenKhoa_SelectedIndexChanged"
+                                CssClass="form-control">
+                            </asp:DropDownList>
                         </div>
-                    </ItemTemplate>
-                    <FooterTemplate>
+                        <!-- Phòng khám -->
+                        <div class="form-group col-66">
+                            <label for="ddlPhongKham">Phòng khám</label>
+                            <asp:DropDownList ID="ddlPhongKham"  runat="server" AutoPostBack="true"
+                                CssClass="form-control">
+                                <asp:ListItem Value="" Text="Chọn phòng khám"></asp:ListItem>
+                            </asp:DropDownList>
                         </div>
-                    </FooterTemplate>
-                </asp:Repeater>
-                <div class="form-group col-4">
-                    <label for="ddlbuoikham">Buổi khám</label>
-                    <asp:DropDownList ID="ddlbuoikham" runat="server" AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged"
-                        CssClass="form-control">
-                        <asp:ListItem Value="" Text="Chọn buổi khám"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-                <div class="form-group col-4">
-                    <label for="DDLgiokham">Giờ khám</label>
-                    <asp:DropDownList ID="DDLgiokham" runat="server" AutoPostBack="true"
-                        CssClass="form-control">
-                        <asp:ListItem Value="" Text="Chọn giờ Khám"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-            </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Bác sĩ -->
+                        <div class="form-group col-66">
+                            <label for="ddlBacSi">Bác sĩ</label>
+                            <asp:DropDownList ID="ddlBacSi" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlBacSi_SelectedIndexChanged"
+                                CssClass="form-control">
+                            </asp:DropDownList>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server"
+                                ControlToValidate="ddlBacSi" Display="Dynamic"
+                                ErrorMessage="Vui lòng chọn bác sĩ" Operator="NotEqual"
+                                ValueToCompare="Chọn bác sĩ" CssClass="red_text">
+                            </asp:CompareValidator>
+                        </div>
+                    </div>
+
+                    <!-- Thời gian khám -->
+                    <h3>Thời gian khám</h3>
+                    <div class="thanhngang"></div>
+                    <asp:TextBox ID="txtNgayKham" runat="server" TextMode="Date"
+                        AutoPostBack="true" OnTextChanged="txtNgayKham_TextChanged"
+                        Style="display: none;" />
+                    <div class="row">
+                        <asp:Repeater ID="rptNgayKham" runat="server">
+                            <HeaderTemplate>
+                                <div class="date-selection">
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <!-- Khi click vào date-box, giá trị (yyyy-MM-dd) sẽ được gán vào txtNgayKham -->
+                                <div class="date-box" onclick="selectDate('<%# Eval("NgayValue") %>', this)">
+                                    <span class="date"><%# Eval("NgayThang") %></span>
+                                    <span class="day"><%# Eval("Thu") %></span>
+                                </div>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </div>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                        <div class="form-group col-44">
+                            <label for="ddlbuoikham">Buổi khám</label>
+                            <asp:DropDownList ID="ddlbuoikham" runat="server" AutoPostBack="true"
+                                OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged"
+                                CssClass="form-control">
+                                <asp:ListItem Value="" Text="Chọn buổi khám"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group col-44">
+                            <label for="DDLgiokham">Giờ khám</label>
+                            <asp:DropDownList ID="DDLgiokham" runat="server" AutoPostBack="true"
+                                CssClass="form-control">
+                                <asp:ListItem Value="" Text="Giờ Khám"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="ddlChuyenKhoa" EventName="SelectedIndexChanged" />
+                    <asp:AsyncPostBackTrigger ControlID="ddlBacSi" EventName="SelectedIndexChanged" />
+                    <asp:AsyncPostBackTrigger ControlID="txtNgayKham" EventName="TextChanged" />
+                    <asp:AsyncPostBackTrigger ControlID="ddlbuoikham" EventName="SelectedIndexChanged" />
+                </Triggers>
+            </asp:UpdatePanel>
 
             <h3>Thông tin khách hàng</h3>
             <div class="thanhngang">
@@ -675,19 +695,19 @@
                 <div class="form-group col-66">
                     <label for="txtEmail">Email</label>
                     <asp:TextBox ID="txtEmail" runat="server" placeholder="Email"
-                        CssClass="form-control"></asp:TextBox>
+                        CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-66">
                     <label for="txtNgaySinh">Ngày tháng năm sinh</label>
                     <asp:TextBox ID="txtNgaySinh" runat="server" TextMode="Date"
-                        CssClass="form-control"></asp:TextBox>
+                        CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
                 <div class="form-group col-66">
                     <label for="txtSoDienThoai">Số điện thoại</label>
                     <asp:TextBox ID="txtSoDienThoai" runat="server" placeholder="Số điện thoại"
-                        CssClass="form-control"></asp:TextBox>
+                        CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
@@ -703,14 +723,14 @@
                 <div class="form-group col-66">
                     <label for="txtCCCD">Căn cước công dân</label>
                     <asp:TextBox ID="txtCCCD" runat="server" placeholder="Căn cước công dân"
-                        CssClass="form-control"></asp:TextBox>
+                        CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-12">
                     <label for="txtDiaChi">Địa chỉ</label>
                     <asp:TextBox ID="txtDiaChi" runat="server" placeholder="Nhập địa chỉ"
-                        CssClass="form-control"></asp:TextBox>
+                        CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
@@ -729,12 +749,6 @@
                 </div>
 
                 <div class="form-group col-66" style="display: flex; align-items: center;">
-                    <%--<div class="TichThanhToan">
-                        <asp:RadioButtonList ID="RadioButtonList1" RepeatDirection="Horizontal" runat="server">
-                            <asp:ListItem Value="ChuaThanhToan">Chưa thanh toán</asp:ListItem>
-                            <asp:ListItem Value="DaThanhToan">Đã thanh toán</asp:ListItem>
-                        </asp:RadioButtonList>
-                    </div>--%>
                 </div>
             </div>
         </div>
@@ -778,19 +792,19 @@
         function selectDate(selectedDate, element) {
             // Cập nhật giá trị cho txtNgayKham
             var txtNgayKhamElem = document.getElementById('<%= txtNgayKham.ClientID %>');
-        txtNgayKhamElem.value = selectedDate;
+            txtNgayKhamElem.value = selectedDate;
 
-        // Xóa active của tất cả các box
-        var boxes = document.querySelectorAll('.date-box');
-        boxes.forEach(function (box) {
-            box.classList.remove('active');
-        });
+            // Xóa active của tất cả các box
+            var boxes = document.querySelectorAll('.date-box');
+            boxes.forEach(function (box) {
+                box.classList.remove('active');
+            });
 
-        // Thêm active cho box được chọn
-        element.classList.add('active');
+            // Thêm active cho box được chọn
+            element.classList.add('active');
 
-        // Kích hoạt sự kiện OnTextChanged
-        __doPostBack('<%= txtNgayKham.UniqueID %>', '');
+            // Kích hoạt sự kiện OnTextChanged
+            __doPostBack('<%= txtNgayKham.UniqueID %>', '');
         }
         function showAlert(message, iconType) {
             Swal.fire({
@@ -817,8 +831,8 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     __doPostBack('<%= btnDangKy.UniqueID %>', '');
-            }
-        });
+                }
+            });
             return false;
         }
     </script>
@@ -837,8 +851,8 @@
                 if (result.isConfirmed) {
                     // Gọi server-side click event khi người dùng xác nhận
                     __doPostBack('<%= btnDangKy.UniqueID %>', '');
-            }
-        });
+                }
+            });
             return false;
         }
     </script>
@@ -850,43 +864,43 @@
 
             // Kiểm tra mã bệnh nhân
             if (document.getElementById('<%= txtemail1.ClientID %>').value.trim() === '') {
-            errorFields.push('Email bệnh nhân');
-            isValid = false;
-        }
+                errorFields.push('Email bệnh nhân');
+                isValid = false;
+            }
 
-        // Kiểm tra chuyên khoa
-        if (document.getElementById('<%= ddlChuyenKhoa.ClientID %>').value === 'Chọn chuyên khoa') {
-            errorFields.push('Chuyên khoa');
-            isValid = false;
-        }
+            // Kiểm tra chuyên khoa
+            if (document.getElementById('<%= ddlChuyenKhoa.ClientID %>').value === 'Chọn chuyên khoa') {
+                errorFields.push('Chuyên khoa');
+                isValid = false;
+            }
 
-        // Kiểm tra bệnh viện/phòng khám
-        if (document.getElementById('<%= ddlPhongKham.ClientID %>').value === '') {
-            errorFields.push('Phòng khám');
-            isValid = false;
-        }
+            // Kiểm tra bệnh viện/phòng khám
+            if (document.getElementById('<%= ddlPhongKham.ClientID %>').value === '') {
+                errorFields.push('Phòng khám');
+                isValid = false;
+            }
 
-        // Kiểm tra bác sĩ
-        if (document.getElementById('<%= ddlBacSi.ClientID %>').value === '0') {
-            errorFields.push('Bác sĩ');
-            isValid = false;
-        }
+            // Kiểm tra bác sĩ
+            if (document.getElementById('<%= ddlBacSi.ClientID %>').value === '0') {
+                errorFields.push('Bác sĩ');
+                isValid = false;
+            }
 
-        // Kiểm tra ngày khám
-        if (document.getElementById('<%= txtNgayKham.ClientID %>').value.trim() === '') {
-            errorFields.push('Ngày khám');
-            isValid = false;
-        }
+            // Kiểm tra ngày khám
+            if (document.getElementById('<%= txtNgayKham.ClientID %>').value.trim() === '') {
+                errorFields.push('Ngày khám');
+                isValid = false;
+            }
 
-        // Kiểm tra buổi khám
-        if (document.getElementById('<%= ddlbuoikham.ClientID %>').value === '') {
-            errorFields.push('Buổi khám');
-            isValid = false;
-        }
+            // Kiểm tra buổi khám
+            if (document.getElementById('<%= ddlbuoikham.ClientID %>').value === '') {
+                errorFields.push('Buổi khám');
+                isValid = false;
+            }
 
 
-        // Kiểm tra triệu chứng
-        if (document.getElementById('<%= txtTrieuChung.ClientID %>').value.trim() === '') {
+            // Kiểm tra triệu chứng
+            if (document.getElementById('<%= txtTrieuChung.ClientID %>').value.trim() === '') {
                 errorFields.push('Triệu chứng');
                 isValid = false;
             }

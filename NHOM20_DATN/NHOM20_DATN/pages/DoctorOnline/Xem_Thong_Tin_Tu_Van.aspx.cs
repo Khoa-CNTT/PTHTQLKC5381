@@ -199,7 +199,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                      lt.Ngay, lt.Gio, lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
                      FROM LichTuVan lt
                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                     WHERE (bn.IDBenhNhan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm)
+                     WHERE (lt.IDTuVan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm)
                      AND lt.IDBacSi = @IDBacSi";
 
                 pr = new SqlParameter[] {
@@ -213,7 +213,7 @@ namespace NHOM20_DATN.pages.DoctorOnline
                       lt.Ngay, lt.Gio, lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
                       FROM LichTuVan lt
                       INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                      WHERE bn.IDBenhNhan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm";
+                      WHERE lt.IDTuVan LIKE @SearchTerm OR bn.HoTen LIKE @SearchTerm";
 
                 pr = new SqlParameter[] {
             new SqlParameter("@SearchTerm", searchTerm)

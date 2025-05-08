@@ -13,12 +13,15 @@ namespace NHOM20_DATN.Consultant
         LopKetNoi kn = new LopKetNoi();
 
         protected void Page_Load(object sender, EventArgs e)
-
         {
-
             if (!IsPostBack)
             {
                 LoadDanhSachCauHoi();
+
+                if (Session["IDBenhNhan_HienTai"] != null)
+                {
+                    LoadLichSuTheoBenhNhan(Session["IDBenhNhan_HienTai"].ToString());
+                }
             }
         }
 
@@ -36,26 +39,25 @@ namespace NHOM20_DATN.Consultant
 
         protected void btnTraLoi_Click(object sender, EventArgs e)
         {
-            var btn = (System.Web.UI.WebControls.Button)sender;
-            var item = (System.Web.UI.WebControls.RepeaterItem)btn.NamingContainer;
-            var txtTraLoi = (System.Web.UI.WebControls.TextBox)item.FindControl("txtTraLoi");
+            var btn = (Button)sender;
+            var item = (RepeaterItem)btn.NamingContainer;
+            var txtTraLoi = (TextBox)item.FindControl("txtTraLoi");
 
             string traLoi = txtTraLoi.Text.Trim();
             int id = Convert.ToInt32(btn.CommandArgument);
 
             if (!string.IsNullOrEmpty(traLoi))
             {
-                string sql = "UPDATE TinNhanChatBot SET TraLoi = @TraLoi, TrangThai = 1 WHERE ID = @ID";
+                string sqlUpdate = "UPDATE TinNhanChatBot SET TraLoi = @TraLoi, TrangThai = 1 WHERE ID = @ID";
                 SqlParameter[] prms = {
-            new SqlParameter("@TraLoi", traLoi),
-            new SqlParameter("@ID", id)
-        };
+                    new SqlParameter("@TraLoi", traLoi),
+                    new SqlParameter("@ID", id)
+                };
 
                 try
                 {
-                    kn.CapNhat(sql, prms);
+                    kn.CapNhat(sqlUpdate, prms);
 
-                    // Lấy IDBenhNhan từ tin nhắn vừa cập nhật
                     string sqlGetID = "SELECT IDBenhNhan FROM TinNhanChatBot WHERE ID = @ID";
                     SqlParameter[] p = { new SqlParameter("@ID", id) };
                     var dt = kn.docdulieu(sqlGetID, p);
@@ -64,7 +66,10 @@ namespace NHOM20_DATN.Consultant
                     {
                         string idBenhNhan = dt.Rows[0]["IDBenhNhan"].ToString();
 
-                        // Hiển thị lịch sử theo bệnh nhân vừa trả lời
+                        // Ghi nhớ bệnh nhân đang trò chuyện
+                        Session["IDBenhNhan_HienTai"] = idBenhNhan;
+
+                        // Hiển thị toàn bộ cuộc trò chuyện của bệnh nhân đó
                         LoadLichSuTheoBenhNhan(idBenhNhan);
                     }
 
@@ -73,7 +78,7 @@ namespace NHOM20_DATN.Consultant
                     LoadDanhSachCauHoi();
                     UpdatePanel1.Update();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "error", "alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');", true);
                 }
@@ -84,23 +89,60 @@ namespace NHOM20_DATN.Consultant
             }
         }
 
-
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-            LoadDanhSachCauHoi(); // Tự động cập nhật danh sách câu hỏi
+            LoadDanhSachCauHoi();
+
+            if (Session["IDBenhNhan_HienTai"] != null)
+            {
+                LoadLichSuTheoBenhNhan(Session["IDBenhNhan_HienTai"].ToString());
+            }
         }
 
-        private void LoadLichSuTheoBenhNhan(string idBenhNhan)
+        protected void btnLocNgay_Click(object sender, EventArgs e)
+        {
+            DateTime? tuNgay = null;
+            DateTime? denNgay = null;
+
+            if (DateTime.TryParse(txtTuNgay.Text, out DateTime parsedTuNgay))
+                tuNgay = parsedTuNgay;
+
+            if (DateTime.TryParse(txtDenNgay.Text, out DateTime parsedDenNgay))
+                denNgay = parsedDenNgay;
+
+            if (Session["IDBenhNhan_HienTai"] != null)
+            {
+                string idBenhNhan = Session["IDBenhNhan_HienTai"].ToString();
+                LoadLichSuTheoBenhNhan(idBenhNhan, tuNgay, denNgay);
+            }
+        }
+
+        private void LoadLichSuTheoBenhNhan(string idBenhNhan, DateTime? tuNgay = null, DateTime? denNgay = null)
         {
             string sql = @"SELECT CauHoi, TraLoi, ThoiGian 
                    FROM TinNhanChatBot
-                   WHERE IDBenhNhan = @IDBenhNhan
-                   ORDER BY ThoiGian DESC";
-            SqlParameter[] prms = {
+                   WHERE IDBenhNhan = @IDBenhNhan";
+
+            List<SqlParameter> prms = new List<SqlParameter>
+    {
         new SqlParameter("@IDBenhNhan", idBenhNhan)
     };
 
-            rptLichSu.DataSource = kn.docdulieu(sql, prms);
+            if (tuNgay.HasValue)
+            {
+                sql += " AND CONVERT(date, ThoiGian) >= @TuNgay";
+                prms.Add(new SqlParameter("@TuNgay", tuNgay.Value.Date));
+            }
+
+            if (denNgay.HasValue)
+            {
+                sql += " AND CONVERT(date, ThoiGian) <= @DenNgay";
+                prms.Add(new SqlParameter("@DenNgay", denNgay.Value.Date));
+            }
+
+            sql += " ORDER BY ThoiGian ASC";
+
+            rptLichSu.DataSource = kn.docdulieu(sql, prms.ToArray());
             rptLichSu.DataBind();
         }
     }

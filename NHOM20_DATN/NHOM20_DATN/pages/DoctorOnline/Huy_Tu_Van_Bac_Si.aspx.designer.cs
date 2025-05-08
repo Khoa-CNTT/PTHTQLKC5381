@@ -7,92 +7,74 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NHOM20_DATN
+namespace NHOM20_DATN.pages.DoctorOnline
 {
 
 
-    public partial class Dang_Ky_Lich_Kham
+    public partial class Huy_Tu_Van_Bac_Si
     {
 
         /// <summary>
-        /// txtHoTen control.
+        /// lblThongBao control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHoTen;
+        protected global::System.Web.UI.WebControls.Label lblThongBao;
 
         /// <summary>
-        /// txtNgayKham control.
+        /// txtIDTuVan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNgayKham;
+        protected global::System.Web.UI.WebControls.TextBox txtIDTuVan;
 
         /// <summary>
-        /// txtSoDienThoai control.
+        /// btnTim control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSoDienThoai;
+        protected global::System.Web.UI.WebControls.Button btnTim;
 
         /// <summary>
-        /// ddlbuoikham control.
+        /// pnlThongTin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlbuoikham;
+        protected global::System.Web.UI.WebControls.Panel pnlThongTin;
 
         /// <summary>
-        /// txtEmail control.
+        /// lblThongTin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.Label lblThongTin;
 
         /// <summary>
-        /// cblGiokham control.
+        /// txtLyDo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cblGiokham;
+        protected global::System.Web.UI.WebControls.TextBox txtLyDo;
 
         /// <summary>
-        /// Txttrinhdo control.
+        /// btnHuy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txttrinhdo;
-
-        /// <summary>
-        /// txtDiaChi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiaChi;
-
-        /// <summary>
-        /// btnDangKy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDangKy;
+        protected global::System.Web.UI.WebControls.Button btnHuy;
     }
 }

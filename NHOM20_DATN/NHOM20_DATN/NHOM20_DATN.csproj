@@ -201,6 +201,9 @@
     <Content Include="img\bacsi_vuhoailinh.jpg" />
     <Content Include="img\BaiViet\1378decb333cf762ae2d.jpg" />
     <Content Include="img\BaiViet\new_detail_1.png" />
+    <Content Include="img\chat.png" />
+    <Content Include="img\clear.png" />
+    <Content Include="img\clock.png" />
     <Content Include="img\icon_lich.png" />
     <Content Include="img\khoa.png" />
     <Content Include="img\Lợi ích khám trực tuyến.mp4" />
@@ -210,6 +213,7 @@
     <Content Include="js\medical_record.js" />
     <Content Include="js\patient_manager.js" />
     <Content Include="Lien_He.aspx" />
+    <Content Include="pages\DoctorOnline\Huy_Tu_Van_Bac_Si.aspx" />
     <Content Include="pages\DoctorOnline\Quan_Ly_Thong_Tin_Bac_Si_Online.aspx" />
     <Content Include="pages\DoctorOnline\Xem_Thong_Tin_Tu_Van.aspx" />
     <Content Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx" />
@@ -418,6 +422,13 @@
     </Compile>
     <Compile Include="MasterPage\MasterPage_TuVanVien.Master.designer.cs">
       <DependentUpon>MasterPage_TuVanVien.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\DoctorOnline\Huy_Tu_Van_Bac_Si.aspx.cs">
+      <DependentUpon>Huy_Tu_Van_Bac_Si.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\DoctorOnline\Huy_Tu_Van_Bac_Si.aspx.designer.cs">
+      <DependentUpon>Huy_Tu_Van_Bac_Si.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\DoctorOnline\Quan_Ly_Thong_Tin_Bac_Si_Online.aspx.cs">
       <DependentUpon>Quan_Ly_Thong_Tin_Bac_Si_Online.aspx</DependentUpon>

@@ -34,7 +34,7 @@ namespace NHOM20_DATN.pages.Manager
         // =================== Grid View ==================
         public void loadView(DataTable dt_list)
         {
-            if(dt_list == null)
+            if(dt_list == null || dt_list.Rows.Count <= 0)
             {
                 string message = "Chưa có ai đăng ký！ ";
                 string script = "showAlert('" + message + "','info');";
@@ -126,19 +126,6 @@ namespace NHOM20_DATN.pages.Manager
             // count all patient this month
             DataTable dt_chart = new DataTable();
             dt_chart = thongKeBenhNhanService.countFromTo(today, today);
-            if (dt_list.Rows.Count <= 0)
-            {
-                string message = "Hôm nay chưa có ai đăng ký！ ";
-                string script = "showAlert('" + message + "','info');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
-                loadView(null);
-                lbl_totalPatient.Text = "" + countAllPatient();
-                lbl_allPk.Text = "" + (countDaHuy(null) + countDaDangKy(null));
-                lbl_DaHuy.Text = "" + countDaHuy(null);
-                lbl_DaDangKy.Text = "" + countDaDangKy(null);
-                return;
-            }
-
 
             // load view with this month
             string todayString = DateTime.Today.ToString("yyyy-MM-dd");
@@ -178,6 +165,8 @@ namespace NHOM20_DATN.pages.Manager
             dt_list = thongKeBenhNhanService.getFromTo(fromDate, toDate);
             DataTable dt_chart = new DataTable();
             dt_chart = thongKeBenhNhanService.countFromTo(fromDate, toDate);
+
+
             loadView(dt_list);
             loadChartFromToDate(dt_chart, fromDate, toDate);
             return;
@@ -232,6 +221,8 @@ namespace NHOM20_DATN.pages.Manager
                 DataRow[] huyRows = dt.Select($"Ngay = {day} AND TrangThai = 'DaHuy'");
                 int dkCount = dkRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
                 int huyCount = huyRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
+                dkData.Add(dkCount);
+                huyData.Add(huyCount);
             }
             lbl_totalPatient.Text = "" + countAllPatient();
             lbl_totalPatient.Text = "" + countAllPatient();
@@ -272,6 +263,8 @@ namespace NHOM20_DATN.pages.Manager
                 DataRow[] huyRows = dt.Select($"Ngay = '{ngay:yyyy-MM-dd}' AND TrangThai = 'DaHuy'");
                 int dkCount = dkRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
                 int huyCount = huyRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
+                huyData.Add(huyCount);
+                dkData.Add(dkCount);
             }
             lbl_totalPatient.Text = "" + countAllPatient();
             // total Pk

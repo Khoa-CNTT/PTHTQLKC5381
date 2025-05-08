@@ -385,19 +385,22 @@ namespace NHOM20_DATN.pages.Manager
 
             DataTable dt = ketNoi.docdulieu(sql, parameters);
 
+
+
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
+
                 string details = $@"
-            <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]}</p>
-            <p><strong>Họ tên:</strong> {row["HoTen"]}</p>
-            <p><strong>Ngày sinh:</strong> {Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy")}</p>
-            <p><strong>Giới tính:</strong> {row["GioiTinh"]}</p>
-            <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]}</p>
-            <p><strong>Email:</strong> {row["Email"]}</p>
-            <p><strong>Địa chỉ:</strong> {row["DiaChi"]}</p>
-            
-        ";
+    <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]?.ToString() ?? ""}</p>
+    <p><strong>Họ tên:</strong> {row["HoTen"]?.ToString() ?? ""}</p>
+    <p><strong>Ngày sinh:</strong> {(row["NgaySinh"] != DBNull.Value ? Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy") : "")}</p>
+    <p><strong>Giới tính:</strong> {row["GioiTinh"]?.ToString() ?? ""}</p>
+    <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]?.ToString() ?? ""}</p>
+    <p><strong>Email:</strong> {row["Email"]?.ToString() ?? ""}</p>
+    <p><strong>Địa chỉ:</strong> {row["DiaChi"]?.ToString() ?? ""}</p>";
+
 
                 patientDetails.InnerHtml = details;
 
@@ -405,6 +408,7 @@ namespace NHOM20_DATN.pages.Manager
                 ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
                     "document.getElementById('detailModal').style.display='block';", true);
             }
+           
         }
     }
 }

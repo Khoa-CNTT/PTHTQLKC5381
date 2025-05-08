@@ -14,14 +14,14 @@
                 <asp:LinkButton ID="btn_Search" CssClass="btn_search" OnClick="btn_Search_Click" runat="server"><i class="fa-solid fa-magnifying-glass"></i></asp:LinkButton>
             </div>
             <%-- Edit --%>
-       <%--     <div class="btn_edit" id="btn_edit">
+            <%--     <div class="btn_edit" id="btn_edit">
                 <asp:LinkButton ID="btnEdit" OnClick="btnEdit_Click" runat="server">
                     <i class="fa-solid fa-pen-to-square"></i>
                     Sửa
                 </asp:LinkButton>
             </div>--%>
             <%-- Cancel Edit --%>
-        <%--    <div class="btn_cancelEdit" id="btn_cancelEdit">
+            <%--    <div class="btn_cancelEdit" id="btn_cancelEdit">
                 <asp:LinkButton ID="cancelEdit" Visible="false" OnClick="cancelEdit_Click" runat="server">
                     Hủy
                 </asp:LinkButton>
@@ -35,72 +35,78 @@
                 OnRowCommand="gridMedicalRecord_RowCommand"
                 CssClass="gridview-table" ForeColor="#333333" GridLines="None"
                 OnPageIndexChanging="gridMedicalRecord_PageIndexChanging" AllowPaging="true" PageSize="5">
-                <columns>
+                <Columns>
                     <%-- ==============     Check list  =============== --%>
                     <%-- ==============    edit  =============== --%>
                     <asp:TemplateField Visible="true">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:LinkButton ID="btnEditRow"
-                                CommandArgument='<%#Eval("IDHS") +","+Eval("IDBN") +","+Eval("HoTen")+","+Eval("ChanDoan")+","+Eval("DonThuoc")+","+Eval("GhiChu") %>'
+                                CommandArgument='<%#Eval("IDHS") +","+Eval("IDBN") +","+Eval("HoTen")+","+Eval("ChanDoan")+","+Eval("DonThuoc")+","+Eval("GhiChu")+","+Eval("IDPhieu") + ","+Eval("HuongDieuTri")  %>'
                                 CommandName="editSelect" runat="server">
                                 <i class="fa-solid fa-pen-to-square" style="color: dodgerblue;"></i>
                             </asp:LinkButton>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
 
                     <%-- ==============     ID BenhNhan  =============== --%>
                     <asp:TemplateField Visible="false">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:Label ID="lbl_IdBN" runat="server" Text='<%#Eval("IDBN") %>'></asp:Label>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
                     <%-- ==============     ID HS  =============== --%>
                     <asp:TemplateField Visible="false">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:Label ID="lbl_IdHS" runat="server" Text='<%#Eval("IDHS") %>'></asp:Label>
-                        </itemtemplate>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <%-- ==============     ID Phieu Kham  =============== --%>
+                    <asp:TemplateField Visible="false">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_IdPK" runat="server" Text='<%#Eval("IDPhieu") %>'></asp:Label>
+                        </ItemTemplate>
                     </asp:TemplateField>
                     <%-- ==============     Họ tên    =============== --%>
                     <asp:TemplateField HeaderText="Họ tên">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:Label ID="lbl_Hoten" title='<%#Eval("HoTen") %>' runat="server" Text='<%#Eval("HoTen") %>'></asp:Label>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
                     <%-- ==============     Ngày khám   =============== --%>
                     <asp:TemplateField HeaderText="Ngày Khám">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:Label ID="lbl_Ngay" title='<%#DateTime.TryParse(Eval("NgayKham")?.ToString(), out DateTime ngayK) ? ngayK.ToString("dd/MM/yyyy") : ""  %>' runat="server" Text='<%#DateTime.TryParse(Eval("NgayKham")?.ToString(), out DateTime ngayKtxt) ? ngayKtxt.ToString("dd/MM/yyyy") : ""  %>'></asp:Label>
                             <br />
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
 
                     <%-- ==============     Chẩn đoán    =============== --%>
                     <asp:TemplateField HeaderText="Chẩn Đoán">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:Label ID="lbl_ChanDoan" title='<%#Eval("ChanDoan") %>' runat="server" Text='<%#Eval("ChanDoan") %>'></asp:Label>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
 
                     <%-- ==============     Đơn thuốc    =============== --%>
                     <asp:TemplateField HeaderText="Đơn Thuốc">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:Label ID="lbl_DonThuoc" title='<%#Eval("DonThuoc") %>' runat="server" Text='<%#Eval("DonThuoc") %>'></asp:Label>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
                     <%-- ==============     Ngày Cập Nhật    =============== --%>
                     <asp:TemplateField HeaderText="Ngày Cập Nhật">
-                        <itemtemplate>
-                            <asp:Label ID="lbl_NgayCapNhat" 
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_NgayCapNhat"
                                 title='<%#DateTime.TryParse(Eval("NgayCapNhat")?.ToString(), out DateTime ngaycn) ? ngaycn.ToString("dd/MM/yyyy") : "" %>'
                                 runat="server"
                                 Text='<%#DateTime.TryParse(Eval("NgayCapNhat")?.ToString(), out DateTime ngaytxt) ? ngaytxt.ToString("dd/MM/yyyy") : "" %>'></asp:Label>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
                     <%-- ==============     Ghi Chú    =============== --%>
                     <asp:TemplateField HeaderText="Ghi Chú">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <asp:Label ID="lbl_GhiChu" title='<%#Eval("GhiChu") %>' runat="server" Text='<%#Eval("GhiChu") %>'></asp:Label>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:TemplateField>
                     <%--============== Xem thông tin bệnh nhân ===============--%>
                     <asp:TemplateField>
@@ -111,8 +117,8 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                </columns>
-                <pagerstyle backcolor="" forecolor="" horizontalalign="Left" cssclass="pagination" />
+                </Columns>
+                <PagerStyle BackColor="" ForeColor="" HorizontalAlign="Left" CssClass="pagination" />
             </asp:GridView>
         </div>
     </div>
@@ -132,45 +138,51 @@
     <asp:HiddenField ID="hiddenGhiChu" runat="server" />
 
     <%-- Panel update --%>
-    <div id ="patientUpdate-container-dad">
-    <div id="patientUpdate_container" class="">
-        <asp:Panel ID="pn_Update" runat="server" Visible="false" CssClass="pnl_Update">
-            <div class="chTime_content">
-                <h2>Cập Nhật Hồ Sơ</h2>
-                <asp:TextBox ID="txtHS_edit" Visible="false" runat="server"></asp:TextBox>
-                <asp:TextBox ID="txtBN_edit" Visible="false" runat="server"></asp:TextBox>
-                <%-- inp hoten --%>
-                <div class="hoten-inp">
-                    <span><b>Họ Tên</b></span>
-                    <asp:TextBox ID="txtHoTen_edit" disabled runat="server"></asp:TextBox>
-                </div>
-                <div class="grid_2">
-                    <%-- inp chandoan --%>
-                    <div class="chandoan-inp">
-                        <span><b>Chẩn Đoán</b></span>
-                        <asp:TextBox ID="txtChanDoan_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+    <div id="patientUpdate-container-dad">
+        <div id="patientUpdate_container" class="">
+            <asp:Panel ID="pn_Update" runat="server" Visible="false" CssClass="pnl_Update">
+                <div class="chTime_content">
+                    <h2>Cập Nhật Hồ Sơ</h2>
+                    <asp:TextBox ID="txtHS_edit" Visible="false" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtBN_edit" Visible="false" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtPK_edit" Visible="false" runat="server"></asp:TextBox>
+                    <%-- inp hoten --%>
+                    <div class="hoten-inp">
+                        <span><b>Họ Tên</b></span>
+                        <asp:TextBox ID="txtHoTen_edit" disabled runat="server"></asp:TextBox>
                     </div>
-                    <%-- inp don thuoc --%>
-                    <div class="donthuoc-inp">
-                        <span><b>Đơn Thuốc</b></span>
-                        <asp:TextBox ID="txtDonThuoc_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                    <div class="grid_2">
+                        <%-- inp chandoan --%>
+                        <div class="chandoan-inp">
+                            <span><b>Chẩn Đoán</b></span>
+                            <asp:TextBox ID="txtChanDoan_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                        </div>
+                        <%-- inp don thuoc --%>
+                        <div class="donthuoc-inp">
+                            <span><b>Đơn Thuốc</b></span>
+                            <asp:TextBox ID="txtDonThuoc_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                        </div>
+                    </div>
+                    <%-- inp huong dtr --%>
+                    <div class="huongdtr-inp">
+                        <span><b>Hướng điều trị</b></span>
+                        <asp:TextBox ID="txtHuongDtr_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                    </div>
+                    <%-- inp ghichu --%>
+                    <div class="ghichu-inp">
+                        <span><b>Ghi Chú</b></span>
+                        <asp:TextBox ID="txtGhiChu_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="contain_btn">
+                        <asp:Button ID="btn_Save_Update" runat="server" OnClick="btn_Save_Update_Click" Text="Lưu" />
+                        <asp:Button ID="btn_Close_Update" runat="server" OnClick="btn_Close_Update_Click" Text="Đóng" />
                     </div>
                 </div>
-                <%-- inp ghichu --%>
-                <div class="ghichu-inp">
-                    <span><b>Ghi Chú</b></span>
-                    <asp:TextBox ID="txtGhiChu_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
-                </div>
-                <div class="contain_btn">
-                    <asp:Button ID="btn_Save_Update" runat="server" OnClick="btn_Save_Update_Click" Text="Lưu" />
-                    <asp:Button ID="btn_Close_Update" runat="server" OnClick="btn_Close_Update_Click" Text="Đóng" />
-                </div>
-            </div>
-        </asp:Panel>
-    </div>
+            </asp:Panel>
         </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   
+
     <script>
         function ShowAlert(notice, warn) {
             Swal.fire({
@@ -188,7 +200,7 @@
             btn_open.classList.remove("d_block");
         }
     </script>
-     <script src="/js/medical_record.js"></script>
+    <script src="/js/medical_record.js"></script>
 
     <script src="/js/doctorCreateAccount.js"></script>
 </asp:Content>

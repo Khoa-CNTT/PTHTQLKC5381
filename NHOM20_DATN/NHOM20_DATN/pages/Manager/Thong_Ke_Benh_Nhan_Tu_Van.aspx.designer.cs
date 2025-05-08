@@ -7,110 +7,119 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NHOM20_DATN
+namespace NHOM20_DATN.pages.Manager
 {
 
 
-    public partial class Dang_Ky_Lich_Kham
+    public partial class Thong_Ke_Benh_Nhan_Tu_Van
     {
 
         /// <summary>
-        /// txtHoTen control.
+        /// txtFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHoTen;
+        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
 
         /// <summary>
-        /// txtNgayKham control.
+        /// txtToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNgayKham;
+        protected global::System.Web.UI.WebControls.TextBox txtToDate;
 
         /// <summary>
-        /// txtSoDienThoai control.
+        /// btnFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSoDienThoai;
+        protected global::System.Web.UI.WebControls.Button btnFilter;
 
         /// <summary>
-        /// scrManager control.
+        /// btnToday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager scrManager;
+        protected global::System.Web.UI.WebControls.Button btnToday;
 
         /// <summary>
-        /// upSchedule control.
+        /// btnThisWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upSchedule;
+        protected global::System.Web.UI.WebControls.Button btnThisWeek;
 
         /// <summary>
-        /// ddlbuoikham control.
+        /// btnThisMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlbuoikham;
+        protected global::System.Web.UI.WebControls.Button btnThisMonth;
 
         /// <summary>
-        /// cblGiokham control.
+        /// btnThisYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cblGiokham;
+        protected global::System.Web.UI.WebControls.Button btnThisYear;
 
         /// <summary>
-        /// txtEmail control.
+        /// btnAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.Button btnAll;
 
         /// <summary>
-        /// Txttrinhdo control.
+        /// GridView_All control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txttrinhdo;
+        protected global::System.Web.UI.WebControls.GridView GridView_All;
 
         /// <summary>
-        /// txtDiaChi control.
+        /// lbl_totalPatient control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiaChi;
+        protected global::System.Web.UI.WebControls.Label lbl_totalPatient;
 
         /// <summary>
-        /// btnDangKy control.
+        /// lbl_allPk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDangKy;
+        protected global::System.Web.UI.WebControls.Label lbl_allPk;
+
+        /// <summary>
+        /// btnXuatExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnXuatExcel;
     }
 }

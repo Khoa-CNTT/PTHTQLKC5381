@@ -240,7 +240,7 @@ body {
 #dropdown-menu {
     background-color: #283345;
     left: 349px;
-    top: 1em;
+    top: 0;
     border: none !important;
     border-radius: unset;
 }
@@ -292,7 +292,7 @@ body {
 
         .contain-ttpk:hover,
         .contain-ttcn:hover,
-        .contain-ttbn:hover
+        .contain-ttbn:hover,
         .contain-cnhs:hover,
         .contain-xlk:hover,
         .contain-dklk:hover,

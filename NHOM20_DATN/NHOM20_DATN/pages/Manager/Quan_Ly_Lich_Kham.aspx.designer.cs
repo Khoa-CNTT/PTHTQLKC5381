@@ -51,6 +51,15 @@ namespace NHOM20_DATN.pages.Manager
         protected global::System.Web.UI.WebControls.GridView gridAppointmentManager;
 
         /// <summary>
+        /// patientDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl patientDetails;
+
+        /// <summary>
         /// hiddenIdPk control.
         /// </summary>
         /// <remarks>

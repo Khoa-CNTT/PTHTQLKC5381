@@ -2,30 +2,26 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 
 namespace NHOM20_DATN.res.service.ThongKe
 {
-
-    public class ThongKeBenhNhanService
+    public class ThongKeBenhNhanTuVanService
     {
-
-
-
-        LopKetNoi kn = new LopKetNoi();
-
-        public ThongKeBenhNhanService()
+        public ThongKeBenhNhanTuVanService()
         {
         }
 
+        LopKetNoi kn = new LopKetNoi();
+
+        //============================ List  ===============================
         //============ get all in today ==========
         public DataTable getAllInDay(DateTime day)
         {
             DataTable dt = new DataTable();
-            string sql = "select * from LichKhamBenhNhan  " +
-                " where DAY(NgayKham)= DAY(@day)";
+            string sql = "select * from LichTuVan  " +
+                " where DAY(Ngay)= DAY(@day)";
 
             SqlParameter[] pr = new SqlParameter[] {
          new SqlParameter("@day",day)
@@ -38,22 +34,23 @@ namespace NHOM20_DATN.res.service.ThongKe
         {
 
             DataTable dt = new DataTable();
-            string sql = "select * from LichKhamBenhNhan  " +
-                " where MONTH(NgayKham)= MONTH(@month)";
-                
+            string sql = "select * from LichTuVan  " +
+                " where MONTH(Ngay)= MONTH(@month)";
+
             SqlParameter[] pr = new SqlParameter[] {
            new SqlParameter("@month",month)
             };
             dt = kn.docdulieu(sql, pr);
             return dt;
         }
+        
         //============ get all in this year ==========
         public DataTable getAllInYear(DateTime year)
         {
 
             DataTable dt = new DataTable();
-            string sql = "select * from LichKhamBenhNhan  " +
-                " where Year(NgayKham)= Year(@year)";
+            string sql = "select * from LichTuVan  " +
+                " where Year(Ngay)= Year(@year)";
 
             SqlParameter[] pr = new SqlParameter[] {
            new SqlParameter("@year",year)
@@ -66,7 +63,7 @@ namespace NHOM20_DATN.res.service.ThongKe
         {
 
             DataTable dt = new DataTable();
-            string sql = "select * from LichKhamBenhNhan  ";
+            string sql = "select * from LichTuVan  ";
             SqlParameter[] pr = new SqlParameter[] {
             };
             dt = kn.docdulieu(sql, pr);
@@ -74,16 +71,13 @@ namespace NHOM20_DATN.res.service.ThongKe
         }
 
 
-        //============ get by user month ==========
-
-        //============ get by day ==========
 
         //============ get from to  ==========
         public DataTable getFromTo(DateTime fromDay, DateTime toDay)
         {
             DataTable dt = new DataTable();
-            string sql = "SELECT *  FROM LichKhamBenhNhan " +
-                " WHERE NgayKham BETWEEN @fromDay AND @toDay";
+            string sql = "SELECT *  FROM LichTuVan " +
+                " WHERE Ngay BETWEEN @fromDay AND @toDay";
             SqlParameter[] pr = new SqlParameter[] {
                 new SqlParameter("@fromDay",fromDay),
                 new SqlParameter("@toDay",toDay)
@@ -93,26 +87,30 @@ namespace NHOM20_DATN.res.service.ThongKe
         }
 
 
-        //============== Count ========================
-        //============== Count current year============
-        public DataTable countPatientCurrentYear() {
+
+        //============================ Count  ===============================
+
+
+        //============== Count current year (12 month) ============
+        public DataTable countPatientCurrentYear()
+        {
             DataTable dt = new DataTable();
-            string sql = "SELECT MONTH(NgayKham) AS Thang,TrangThai, COUNT(*) AS SoLuotKham FROM LichKhamBenhNhan " +
-                "  WHERE YEAR(NgayKham) = YEAR(GETDATE()) " +
-                " GROUP BY MONTH(NgayKham),TrangThai " +
+            string sql = "SELECT MONTH(Ngay) AS Thang, COUNT(*) AS LuotDangKy FROM LichTuVan " +
+                "  WHERE YEAR(Ngay) = YEAR(GETDATE()) " +
+                " GROUP BY MONTH(Ngay) " +
                 " ORDER BY Thang";
-            SqlParameter[] pr = new SqlParameter[]{};
-            dt = kn.docdulieu(sql,pr);
+            SqlParameter[] pr = new SqlParameter[] { };
+            dt = kn.docdulieu(sql, pr);
             return dt;
         }
-        //============== Count Current Month  ============
+        //============== Count Current Month (30days)  ============
         public DataTable countPatientCurrentMonth()
         {
             DataTable dt = new DataTable();
-            string sql = "SELECT Day(NgayKham) AS Ngay,TrangThai, COUNT(*) AS SoLuotKham FROM LichKhamBenhNhan " +
-                "  WHERE Month(NgayKham) = Month(GETDATE()) " +
-                " and Year(NgayKham) = Year(GETDATE())" +
-                " GROUP BY Day(NgayKham),TrangThai " +
+            string sql = "SELECT Day(Ngay) AS Ngay, COUNT(*) AS LuotDangKy FROM LichTuVan " +
+                "  WHERE Month(Ngay) = Month(GETDATE()) " +
+                " and Year(Ngay) = Year(GETDATE())" +
+                " GROUP BY Day(Ngay) " +
                 " ORDER BY Ngay";
             SqlParameter[] pr = new SqlParameter[] { };
             dt = kn.docdulieu(sql, pr);
@@ -122,9 +120,9 @@ namespace NHOM20_DATN.res.service.ThongKe
         public DataTable countFromTo(DateTime fromDay, DateTime toDay)
         {
             DataTable dt = new DataTable();
-            string sql = "SELECT NgayKham as Ngay,TrangThai, COUNT(*) AS SoLuotKham FROM " +
-                " LichKhamBenhNhan WHERE  NgayKham BETWEEN @fromDate AND @toDate " +
-                " GROUP BY  NgayKham, TrangThai " +
+            string sql = "SELECT Ngay, COUNT(*) AS LuotDangKy FROM " +
+                " LichTuVan WHERE  Ngay BETWEEN @fromDate AND @toDate " +
+                " GROUP BY  Ngay " +
                 " ORDER BY Ngay";
             SqlParameter[] pr = new SqlParameter[] {
                 new SqlParameter("@fromDate", fromDay),
@@ -139,18 +137,19 @@ namespace NHOM20_DATN.res.service.ThongKe
         public DataTable countAll()
         {
             DataTable dt = new DataTable();
-            string sql = "SELECT Year(NgayKham) AS Nam,TrangThai, COUNT(*) AS SoLuotKham FROM LichKhamBenhNhan " +
-                   " GROUP BY Year(NgayKham),TrangThai " +
+            string sql = "SELECT Year(Ngay) AS Nam, COUNT(*) AS LuotDangKy FROM LichTuVan " +
+                   " GROUP BY Year(Ngay) " +
                    " ORDER BY Nam";
             SqlParameter[] pr = new SqlParameter[] { };
             dt = kn.docdulieu(sql, pr);
             return dt;
         }
 
-        //==================================================================================================
-        //==================================================================================================
-        //==================================================================================================
-        //==================================================================================================
+
+
+
+
+
 
     }
 }

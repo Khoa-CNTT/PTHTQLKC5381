@@ -298,6 +298,9 @@
                 margin-top: 4px;
                 color: #666;
             }
+            .buoikham1{
+                margin-top:10px;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -371,14 +374,14 @@
                     </FooterTemplate>
                         </asp:Repeater>
                         <div class="form-group col-4">
-                            <label for="ddlbuoikham">Buổi khám</label>
+                            <label for="ddlbuoikham" class="buoikham1">Buổi khám</label>
                             <asp:DropDownList ID="ddlbuoikham" runat="server" AutoPostBack="true"
                                 OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged"
                                 CssClass="form-control">
                             </asp:DropDownList>
                         </div>
                         <div class="form-group col-4">
-                            <label for="DDLgiokham">Giờ khám</label>
+                            <label for="DDLgiokham" class="buoikham1">Giờ khám</label>
                             <asp:DropDownList ID="DDLgiokham" runat="server" AutoPostBack="true"
                                 CssClass="form-control">
                                 <asp:ListItem Value="" Text="Giờ Khám"></asp:ListItem>
@@ -528,6 +531,17 @@
 
                 icon: iconType,
                 confirmButtonText: 'OK'
+            });
+        }
+        function showAlertAndRedirect(message, iconType, redirectUrl) {
+            Swal.fire({
+                title: message,
+                icon: iconType,
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = redirectUrl;
+                }
             });
         }
     </script>

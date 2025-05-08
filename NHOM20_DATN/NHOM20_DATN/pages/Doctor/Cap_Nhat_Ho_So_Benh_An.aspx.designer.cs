@@ -132,6 +132,15 @@ namespace NHOM20_DATN.pages.Doctor
         protected global::System.Web.UI.WebControls.TextBox txtBN_edit;
 
         /// <summary>
+        /// txtPK_edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPK_edit;
+
+        /// <summary>
         /// txtHoTen_edit control.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace NHOM20_DATN.pages.Doctor
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDonThuoc_edit;
+
+        /// <summary>
+        /// txtHuongDtr_edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtHuongDtr_edit;
 
         /// <summary>
         /// txtGhiChu_edit control.

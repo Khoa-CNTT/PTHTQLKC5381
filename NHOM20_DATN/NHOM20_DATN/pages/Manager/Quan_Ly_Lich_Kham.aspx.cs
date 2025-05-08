@@ -104,12 +104,47 @@ namespace NHOM20_DATN.pages.Manager
                 string message = "Đã gửi mail thông báo hủy cho bệnh nhân và bác sĩ";
                 string script = "showAlert('" + message + "','success');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
-                Response.Redirect("Quan_Ly_Lich_Kham.aspx");
+                view_ListA();
+                return;
 
             }
             else if (e.CommandName == "XemTT")
             {
-                Response.Redirect("Quan_Ly_Lich_Kham.aspx");
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string idBenhNhan = commandArgs[0];
+                string sql = "SELECT * FROM BenhNhan WHERE IDBenhNhan = @IDBenhNhan";
+                SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@IDBenhNhan", idBenhNhan)
+    };
+
+                DataTable dt = ketNoi.docdulieu(sql, parameters);
+
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    string details = $@"
+    <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]?.ToString() ?? ""}</p>
+    <p><strong>Họ tên:</strong> {row["HoTen"]?.ToString() ?? ""}</p>
+    <p><strong>Ngày sinh:</strong> {(row["NgaySinh"] != DBNull.Value ? Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy") : "")}</p>
+    <p><strong>Giới tính:</strong> {row["GioiTinh"]?.ToString() ?? ""}</p>
+    <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]?.ToString() ?? ""}</p>
+    <p><strong>Email:</strong> {row["Email"]?.ToString() ?? ""}</p>
+    <p><strong>Địa chỉ:</strong> {row["DiaChi"]?.ToString() ?? ""}</p>";
+
+                    patientDetails.InnerHtml = details;
+
+                    // Hiển thị modal
+                    ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
+                        "document.getElementById('detailModal').style.display='block';", true);
+                    return;
+                }
+
+
+
+
+
+
             }
 
 
@@ -190,7 +225,7 @@ namespace NHOM20_DATN.pages.Manager
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                     //string script = $"alert('{message}'); window.location='Quan_Ly_Lich_Kham.aspx';";
                     //Page.ClientScript.RegisterStartupScript(Page.GetType(), "redirect", script, true);
-
+                    view_ListA();
 
                 }
                 else
@@ -198,6 +233,7 @@ namespace NHOM20_DATN.pages.Manager
                     string message = "Cập nhật thất bại";
                     string script = "showAlert('" + message + "','error');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                    view_ListA();
                 }
 
             }

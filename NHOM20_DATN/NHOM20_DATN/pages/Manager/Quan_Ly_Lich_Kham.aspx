@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Managerment_MasterPage.Master" AutoEventWireup="true" CodeBehind="Quan_Ly_Lich_Kham.aspx.cs" Inherits="NHOM20_DATN.pages.Manager.Quan_Ly_Lich_Kham" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <link href="../../style/manager/ManagerAppointment_style.css" rel='stylesheet'>
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
@@ -125,9 +125,9 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%-- Xem thông tin --%>
-                <asp:TemplateField HeaderText="Xem thông tin ">
+                <asp:TemplateField HeaderText="Thông Tin ">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btn_ViewDetail" CommandArgument='<%#Eval("IDPhieu") %>' CommandName="XemTT" runat="server">
+                        <asp:LinkButton ID="btn_ViewDetail" CommandArgument='<%#Eval("IDBenhNhan")+","+ Eval("IDPhieu") %>' CommandName="XemTT" runat="server">
                              <i class="fa-solid fa-id-card"></i>
                         </asp:LinkButton>
                     </ItemTemplate>
@@ -146,6 +146,14 @@
             </Columns>
             <PagerStyle BackColor="" ForeColor="" HorizontalAlign="Left" CssClass="pagination" />
         </asp:GridView>
+        <%-- View info --%>
+            <div id="detailModal" class="modal">
+         <div class="modal-content">
+             <span class="close">&times;</span>
+             <h2 class="modal-title">Thông tin chi tiết bệnh nhân</h2>
+             <div id="patientDetails" runat="server"></div>
+         </div>
+</div>
     </div>
         <%-- HiddenValue --%>
     <asp:HiddenField ID="hiddenIdPk" runat="server" />
@@ -209,9 +217,30 @@
                 icon: iconValue
             });
         }
+        var modal = document.getElementById("detailModal");
 
+        // Lấy nút đóng modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Khi click vào nút đóng, đóng modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // Khi click bất kỳ đâu ngoài modal, đóng modal
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Hàm hiển thị modal (có thể gọi từ code-behind)
+        function showModal() {
+            modal.style.display = "block";
+        }
 
     </script>
+    
     <script src="/js/appointment_manager.js">
     </script>
 </asp:Content>

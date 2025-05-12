@@ -6,7 +6,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <style>
-
         .contain-ttbn {
             background-color: #d9d9d96e;
         }
@@ -503,37 +502,36 @@
             }
 
 
-            .empty-data {
-    text-align: center;
-    padding: 20px;
-    font-size: 16px;
-    color: #666;
-    background-color: #f9f9f9;
-    border: 1px dashed #ccc;
-}
+        .empty-data {
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+            color: #666;
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+        }
 
-/* Thêm style cho placeholder rows */
-.placeholder-row {
-    background-color: #f9f9f9 !important;
-}
+        /* Thêm style cho placeholder rows */
+        .placeholder-row {
+            background-color: #f9f9f9 !important;
+        }
 
-.placeholder-cell {
-    color: transparent;
-    background-color: #f5f5f5 !important;
-    position: relative;
-    overflow: hidden;
-    height:50px;
-}
+        .placeholder-cell {
+            color: transparent;
+            background-color: #f5f5f5 !important;
+            position: relative;
+            overflow: hidden;
+            height: 50px;
+        }
 
-.placeholder-cell::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
+            .placeholder-cell::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -553,16 +551,17 @@
                     <asp:ListItem Text="Tất cả ngày" Value="" Selected="True"></asp:ListItem>
                 </asp:DropDownList>
                 <asp:LinkButton ID="btnRefresh" runat="server" CssClass="btn-refresh" OnClick="btnRefresh_Click">
-    <i class="fas fa-sync-alt"></i>
+                    <i class="fas fa-sync-alt"></i>
                 </asp:LinkButton>
 
             </div>
             <div class="boc">
                 <asp:GridView ID="GridView1" OnPreRender="GridView1_PreRender" runat="server" AutoGenerateColumns="False"
-                    OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true"  PageSize="7"
+                    OnPageIndexChanging="gridDoctor_PageIndexChanging" AllowPaging="true" PageSize="7"
                     CssClass="doctor_tb" EmptyDataText="Không có dữ liệu tư vấn nào được tìm thấy."
                     EmptyDataRowStyle-CssClass="empty-data" PagerStyle-CssClass="pagination">
                     <Columns>
+                        <asp:BoundField DataField="IDBenhNhan" HeaderText="ID Bệnh Nhân" Visible="false" />
                         <asp:BoundField DataField="IDTuVan" HeaderText="Mã Tư Vấn" ReadOnly="true" />
                         <asp:TemplateField HeaderText="Tên bệnh nhân">
                             <ItemTemplate>
@@ -607,27 +606,27 @@
     <script>
 
         // Lấy modal
-        var modal = document.getElementById("detailModal");
+                var modal = document.getElementById("detailModal");
 
-        // Lấy nút đóng modal
-        var span = document.getElementsByClassName("close")[0];
+                // Lấy nút đóng modal
+                var span = document.getElementsByClassName("close")[0];
 
-        // Khi click vào nút đóng, đóng modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
+                // Khi click vào nút đóng, đóng modal
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
 
-        // Khi click bất kỳ đâu ngoài modal, đóng modal
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+                // Khi click bất kỳ đâu ngoài modal, đóng modal
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
 
-        // Hàm hiển thị modal (có thể gọi từ code-behind)
-        function showModal() {
-            modal.style.display = "block";
-        }
-    </script>
+                // Hàm hiển thị modal (có thể gọi từ code-behind)
+                function showModal() {
+                    modal.style.display = "block";
+                }
+    </script >
 
 </asp:Content>

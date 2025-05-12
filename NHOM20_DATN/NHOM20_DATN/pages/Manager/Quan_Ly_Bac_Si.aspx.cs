@@ -289,18 +289,18 @@ namespace NHOM20_DATN.pages.Manager
 
 
             int resultLK = kn.CapNhat(deleteAppointmentDoc, apDoc);
-            if (resultLK == 0) return;
+            //if (resultLK == 0) return;
             int resultPK = kn.CapNhat(deleteAppointmentPa, apPat);
-            if (resultPK == 0) return;
+            //if (resultPK == 0) return;
             int resultBS = kn.CapNhat(deleteBS, bsId);
-            if (resultBS == 0) return;
+            //if (resultBS == 0) return;
             int resultTK = kn.CapNhat(deleteTK, bstk);
-            if (resultTK == 0) return;
+            //if (resultTK == 0) return;
             //int resultLK = kn.CapNhat(deleteAppointmentDoc, apDoc);
             //int resultPK = kn.CapNhat(deleteAppointmentPa, apPat);
 
             string messageS = "Xóa thành công";
-            string scriptS = "showAlert('" + messageS + "','warning');";
+            string scriptS = "showAlert('" + messageS + "','success');";
             ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptS, true);
 
             viewList();

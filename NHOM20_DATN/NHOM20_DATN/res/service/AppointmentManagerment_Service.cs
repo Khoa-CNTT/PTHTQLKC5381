@@ -239,12 +239,6 @@ namespace NHOM20_DATN.res.service
             DateTime time_db = DateTime.Parse(dt.Rows[0]["ThoiGianKham"].ToString());
             string time = time_db.ToString("HH:mm");
 
-            //=========Patient
-            string subjectPat = "Bệnh viện Banana: Hủy Khám " + time + " Ngày " + day;
-            string descriptionPat = "Quản trị viên của bệnh viện đã HỦY LỊCH KHÁM của bạn!" +
-        "\n Mã phiếu HỦY KHÁM của bạn là: " + idPk
-        + " vào lúc " + time + " ngày " + day + ".";
-
             //========Doctor
             string subjectDoc = "Bệnh viện Banana: Hủy Khám " + name.ToUpper() + " " + time + " Ngày " + day;
             string descriptionDoc = "Quản trị viên của bệnh viện đã HỦY LỊCH KHÁM của bệnh nhân!" + name +
@@ -255,12 +249,85 @@ namespace NHOM20_DATN.res.service
             //sender.sendMail_CancelAppointment(emailPatient, subjectPat, descriptionPat);
             //sender.sendMail_CancelAppointment(emailDoctor, subjectDoc, descriptionDoc);
 
+
+
             sendMai_gmail mailSender = new sendMai_gmail();
-            mailSender.sendMail_gmail(emailPatient, subjectPat, descriptionPat);
-            mailSender.sendMail_gmail(emailDoctor, subjectDoc, descriptionDoc);
+            //=========Patient
+            BenhNhanMailHuy(emailPatient, idPk, day, time);
+            //========Doctor
+            BacSiMailHuy(emailDoctor, idPk, day, time);
 
         }
 
+        public void BenhNhanMailHuy(string email, string idPk, string day, string time)
+        {
+            try
+            {
+                string tieude = "BANANA Hospital – Hủy lịch khám " + idPk;
+                string noidung = @"
+                            <div style='background-color: #f5f5f5; padding: 10px 0; font-family: Arial, sans-serif;'>
+                              <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+                                <div style='background-color: #13bdbd; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                                  Bệnh viện BANANA HOSPITAL
+                                </div>
+                                <div style='padding: 30px; text-align: left;'>
+                                  <h2 style='color: #13bdbd;'>Huỷ lịch khám</h2>
+      
+                                  <p>Xin chào <strong style='color: #13bdbd;'>Quý khách</strong>,</p>
+                                  <p>Chúng tôi xin xác nhận rằng lịch khám của Quý khách đã <strong style='color: #13bdbd;'>Bị Huỷ</strong> bởi quản trị viên. Thông tin phiếu khám của quý khách:</p>
+                                  <ul style='list-style: none; padding-left: 0;'>
+                                      <li>🧾 <strong>Mã phiếu:</strong> " + idPk + @"</li>
+                                      <li>🗓 <strong>Ngày:</strong> " + day + @"</li>
+                                      <li>🕒 <strong>Thời gian:</strong> " + time + @"</li>
+                                  </ul>
+<p>Nguyên nhân hủy là vì một số việc xảy ra không dự kiến trước được. Mong quý khách thông cảm.</p>
+                                  <p>Chúng tôi rất tiếc khi Quý khách huỷ lịch hẹn. Hy vọng sẽ được phục vụ Quý khách trong những lần tới.</p>
+                                  <p>Nếu có thắc mắc vui lòng liên hệ với chúng tôi để được hỗ trợ kịp thời.</p>
+                                  <p style='margin-top: 10px;'>Xin chân thành cảm ơn Quý khách đã tin tưởng <strong style='color: #13bdbd;'>BANANA Hospital</strong></p>
+                                  <p>Trân trọng,</p>
+                                  <p><strong style='color: #13bdbd;'>Bệnh viện BANANA HOSPITAL</strong></p>
+                                </div>
+                              </div>
+                            </div>";
+                sendMai_gmail mailSender = new sendMai_gmail();
+                mailSender.sendMail_gmail(email, tieude, noidung);
+            }
+            catch { }
+        }
+        public void BacSiMailHuy(string email, string idPk, string day, string time)
+        {
+            try
+            {
+                string tieude = "BANANA Hospital – Hủy lịch khám " + idPk + "";
+                string noidung = @"
+                            <div style='background-color: #f5f5f5; padding: 10px 0; font-family: Arial, sans-serif;'>
+                              <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+                                <div style='background-color: #13bdbd; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                                  Bệnh viện BANANA HOSPITAL
+                                </div>
+                                <div style='padding: 30px; text-align: left;'>
+                                  <h2 style='color: #13bdbd;'>Huỷ lịch khám</h2>
+      
+                                  <p>Xin chào <strong style='color: #13bdbd;'>Bác Sĩ</strong>,</p>
+                                  <p>Bệnh viện xin xác nhận rằng lịch khám của Bác Sĩ đã <strong style='color: #13bdbd;'>Bị Huỷ</strong> bởi quản trị viên. Thông tin phiếu khám đã hủy:</p>
+                                  <ul style='list-style: none; padding-left: 0;'>
+                                      <li>🧾 <strong>Mã phiếu:</strong> " + idPk + @"</li>
+                                      <li>🗓 <strong>Ngày:</strong> " + day + @"</li>
+                                      <li>🕒 <strong>Thời gian:</strong> " + time + @"</li>
+                                  </ul>
+<p>Nguyên nhân hủy là vì một số việc xảy ra không dự kiến trước được. Mong bác sĩ thông cảm.</p>
+                                  <p>Nếu có thắc mắc vui lòng liên hệ để được hỗ trợ kịp thời.</p>
+                                  <p style='margin-top: 10px;'>Xin chân thành cảm ơn Bác Sĩ đã hết mình vì <strong style='color: #13bdbd;'>BANANA Hospital</strong></p>
+                                  <p>Trân trọng,</p>
+                                  <p><strong style='color: #13bdbd;'>Bệnh viện BANANA HOSPITAL</strong></p>
+                                </div>
+                              </div>
+                            </div>";
+                sendMai_gmail mailSender = new sendMai_gmail();
+                mailSender.sendMail_gmail(email, tieude, noidung);
+            }
+            catch { }
+        }
 
 
 
@@ -295,14 +362,14 @@ namespace NHOM20_DATN.res.service
             DateTime day_old = DateTime.Parse(dayOld);
             dayOld = day_old.ToString("dd/MM/yyyy");
 
-            string subjectPat = "Bệnh viện banana: Đổi Giờ Khám Ngày " + dayOld;
-            string descriptionPat = "Quản trị viên đã Đổi giờ khám của bạn!" +
-        "\nGiờ khám của bạn lúc: " + timeOld + " , ngày " + dayOld +
-        "\nĐược đổi qua lúc: " + time + ", ngày " + day;
-            string subjectDoc = "Bệnh viện banana: Đổi Giờ Khám " + name + " Ngày " + dayOld;
-            string descriptionDoc = "Quản trị viên đã Đổi giờ khám của bệnh nhân " + name.ToUpper() + " !" +
-        "\nGiờ khám của bệnh nhân lúc: " + timeOld + " , ngày " + dayOld +
-        "\nĐược đổi qua lúc: " + time + ", ngày " + day;
+        //    string subjectPat = "Bệnh viện banana: Đổi Giờ Khám Ngày " + dayOld;
+        //    string descriptionPat = "Quản trị viên đã Đổi giờ khám của bạn!" +
+        //"\nGiờ khám của bạn lúc: " + timeOld + " , ngày " + dayOld +
+        //"\nĐược đổi qua lúc: " + time + ", ngày " + day;
+        //    string subjectDoc = "Bệnh viện banana: Đổi Giờ Khám " + name + " Ngày " + dayOld;
+        //    string descriptionDoc = "Quản trị viên đã Đổi giờ khám của bệnh nhân " + name.ToUpper() + " !" +
+        //"\nGiờ khám của bệnh nhân lúc: " + timeOld + " , ngày " + dayOld +
+        //"\nĐược đổi qua lúc: " + time + ", ngày " + day;
 
             //mailSender mailSender = new mailSender();
             //send to patient
@@ -310,11 +377,94 @@ namespace NHOM20_DATN.res.service
             //send to doctor
             //mailSender.sendMail_CancelAppointment(emailDoctor, subjectDoc, descriptionDoc);
 
-            sendMai_gmail mailSender = new sendMai_gmail();
-            mailSender.sendMail_gmail(emailUser, subjectPat, descriptionPat);
-            mailSender.sendMail_gmail(emailDoctor, subjectDoc, descriptionDoc);
+            //sendMai_gmail mailSender = new sendMai_gmail();
+            //mailSender.sendMail_gmail(emailUser, subjectPat, descriptionPat);
+            //mailSender.sendMail_gmail(emailDoctor, subjectDoc, descriptionDoc);
+            BenhNhanMailDoiGio(emailUser, idPk, timeOld, dayOld, time, day);
+            BacSiMailDoiGio(emailDoctor,idPk, timeOld, dayOld, time, day);
         }
 
+
+
+        public void BenhNhanMailDoiGio(string email, string idPk, string timeOld, string dayOld, string timeNew, string dayNew)
+        {
+            try
+            {
+                string tieude = "BANANA Hospital – Đổi Giờ lịch khám " + idPk + "";
+                string noidung = @"
+                            <div style='background-color: #f5f5f5; padding: 10px 0; font-family: Arial, sans-serif;'>
+                              <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+                                <div style='background-color: #13bdbd; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                                  Bệnh viện BANANA HOSPITAL
+                                </div>
+                                <div style='padding: 30px; text-align: left;'>
+                                  <h2 style='color: #13bdbd;'>Đổi Giờ lịch khám</h2>
+      
+                                  <p>Xin chào <strong style='color: #13bdbd;'>Quý Khách</strong>,</p>
+                                    <p>Chúng tôi xin xác nhận rằng lịch khám của Quý khách đã <strong style='color: #13bdbd;'>Đổi Giờ </strong> bởi quản trị viên. Thông tin phiếu khám của quý khách:</p>
+                                  <ul style='list-style: none; padding-left: 0;'>
+                                      <li>🧾 <strong>Mã phiếu:</strong> " + idPk + @"</li>
+                                      <li>🗓 <strong>Ngày:</strong> " + dayOld + @"</li>
+                                      <li>🕒 <strong>Thời gian:</strong> " + timeOld + @"</li>
+                                  </ul>
+
+<p>Vì một vài sự cố nên lịch khám của bạn sẽ được dời qua:</p>
+<ul style='list-style: none; padding-left: 0;'>
+                                      <li>🗓 <strong>Ngày:</strong> " + dayNew + @"</li>
+                                      <li>🕒 <strong>Thời gian:</strong> " + timeNew + @"</li>
+                                  </ul>
+                                  <p>Nếu Quý Khách có thắc mắc vui lòng liên hệ để được hỗ trợ kịp thời.</p>
+                                  <p style='margin-top: 10px;'>Xin chân thành cảm ơn Bác Sĩ đã hết mình vì <strong style='color: #13bdbd;'>BANANA Hospital</strong></p>
+                                  <p>Trân trọng,</p>
+                                  <p><strong style='color: #13bdbd;'>Bệnh viện BANANA HOSPITAL</strong></p>
+                                </div>
+                              </div>
+                            </div>";
+                sendMai_gmail mailSender = new sendMai_gmail();
+                mailSender.sendMail_gmail(email, tieude, noidung);
+            }
+            catch { }
+        }
+
+        public void BacSiMailDoiGio(string email, string idPk, string timeOld, string dayOld, string timeNew, string dayNew)
+        {
+            try
+            {
+                string tieude = "BANANA Hospital – Đổi Giờ lịch khám " + idPk + "";
+                string noidung = @"
+                            <div style='background-color: #f5f5f5; padding: 10px 0; font-family: Arial, sans-serif;'>
+                              <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+                                <div style='background-color: #13bdbd; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                                  Bệnh viện BANANA HOSPITAL
+                                </div>
+                                <div style='padding: 30px; text-align: left;'>
+                                  <h2 style='color: #13bdbd;'>Đổi Giờ lịch khám</h2>
+      
+                                  <p>Xin chào <strong style='color: #13bdbd;'>Bác Sĩ</strong>,</p>
+                                    <p>Bệnh viện xin xác nhận rằng lịch khám của Bác Sĩ đã <strong style='color: #13bdbd;'>Bị Huỷ</strong> bởi quản trị viên. Thông tin phiếu khám:</p>
+                                  <ul style='list-style: none; padding-left: 0;'>
+                                      <li>🧾 <strong>Mã phiếu:</strong> " + idPk + @"</li>
+                                      <li>🗓 <strong>Ngày:</strong> " + dayOld + @"</li>
+                                      <li>🕒 <strong>Thời gian:</strong> " + timeOld + @"</li>
+                                  </ul>
+
+<p>Vì một vài sự cố nên lịch khám này sẽ được dời qua:</p>
+<ul style='list-style: none; padding-left: 0;'>
+                                      <li>🗓 <strong>Ngày:</strong> " + dayNew + @"</li>
+                                      <li>🕒 <strong>Thời gian:</strong> " + timeNew + @"</li>
+                                  </ul>
+                                  <p>Nếu  có thắc mắc vui lòng liên hệ để được hỗ trợ kịp thời.</p>
+                                  <p style='margin-top: 10px;'>Xin chân thành cảm ơn Quý khách đã tin tưởng <strong style='color: #13bdbd;'>BANANA Hospital</strong></p>
+                                  <p>Trân trọng,</p>
+                                  <p><strong style='color: #13bdbd;'>Bệnh viện BANANA HOSPITAL</strong></p>
+                                </div>
+                              </div>
+                            </div>";
+                sendMai_gmail mailSender = new sendMai_gmail();
+                mailSender.sendMail_gmail(email, tieude, noidung);
+            }
+            catch { }
+        }
 
     }
 }

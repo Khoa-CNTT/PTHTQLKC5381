@@ -19,7 +19,7 @@
                 <div class="detail_content">
                     <figure class="">
                         <div class="detail_img">
-                            <img id="imgContent" runat="server"  alt="">
+                            <img id="imgContent" runat="server"  alt=""/>
                         </div>
                         <div>
                             

@@ -33,15 +33,6 @@ namespace NHOM20_DATN.pages.Manager
         protected global::System.Web.UI.WebControls.LinkButton btn_Search;
 
         /// <summary>
-        /// btn_add_news control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_add_news;
-
-        /// <summary>
         /// ds_baiviet control.
         /// </summary>
         /// <remarks>
@@ -76,51 +67,6 @@ namespace NHOM20_DATN.pages.Manager
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField imageUrl;
-
-        /// <summary>
-        /// tieude_txt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tieude_txt;
-
-        /// <summary>
-        /// noiDung_txt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox noiDung_txt;
-
-        /// <summary>
-        /// fileImg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileImg;
-
-        /// <summary>
-        /// imgHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField imgHidden;
-
-        /// <summary>
-        /// Button_Addnews control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_Addnews;
 
         /// <summary>
         /// Button_Close_Addnews control.

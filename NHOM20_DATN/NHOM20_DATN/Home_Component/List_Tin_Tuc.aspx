@@ -16,10 +16,10 @@
                         <div class="content_item">
                             <div class="title_news">
                                 <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
-                                    <img src='<%# Eval("HinhAnh") %>' alt="Ảnh Minh Họa">
+                                    <img src='<%# Eval("HinhAnh").ToString().Split(',')[0] %>' alt="Ảnh Minh Họa">
                                 </a>
                                 <div class="news_des">
-                                    <a href="/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
+                                    <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
                                         <h3><%# Eval("TieuDe") %></h3>
                                     </a>
                                     <p>

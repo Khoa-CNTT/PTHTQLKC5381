@@ -212,6 +212,8 @@
     <Content Include="js\library\ChartJs.js" />
     <Content Include="js\medical_record.js" />
     <Content Include="js\patient_manager.js" />
+    <Content Include="js\QLbaiviet\QLbv\Qlbv_script.js" />
+    <Content Include="js\QLbaiviet\QLbv\QLBV_update_script.js" />
     <Content Include="Lien_He.aspx" />
     <Content Include="pages\DoctorOnline\Huy_Tu_Van_Bac_Si.aspx" />
     <Content Include="pages\DoctorOnline\Quan_Ly_Thong_Tin_Bac_Si_Online.aspx" />
@@ -340,7 +342,6 @@
     <Content Include="Patient\Tu_Van_Suc_Khoe_Truc_Tuyen.aspx" />
     <Content Include="bin\MailKit.dll.config" />
     <Content Include="bin\roslyn\VNPAY_CS_ASPX.dll.config" />
-    <Content Include="test\TestDangBai.aspx" />
     <Content Include="Web.config" />
     <Content Include="pages\Doctor\Xem_Thong_Tin_Benh_Nhan.aspx" />
     <Content Include="Patient\Xem_Lich_Su_Kham.aspx" />
@@ -641,6 +642,15 @@
     <Compile Include="Patient\Quen_Mat_Khau.aspx.designer.cs">
       <DependentUpon>Quen_Mat_Khau.aspx</DependentUpon>
     </Compile>
+    <Compile Include="res\handle\baiviet\addBaiVietHandler.ashx.cs">
+      <DependentUpon>addBaiVietHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="res\handle\baiviet\LoadUpdateBaiVietHandler.ashx.cs">
+      <DependentUpon>LoadUpdateBaiVietHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="res\handle\baiviet\updateBaiVietHandler.ashx.cs">
+      <DependentUpon>updateBaiVietHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="res\service\AppointmentManagerment_Service.cs" />
     <Compile Include="res\service\DoctorService.cs" />
     <Compile Include="res\service\library\AutoGenerateID.cs" />
@@ -673,13 +683,6 @@
     <Compile Include="pages\Manager\Xuat_Phieu_Kham.aspx.designer.cs">
       <DependentUpon>Xuat_Phieu_Kham.aspx</DependentUpon>
     </Compile>
-    <Compile Include="test\TestDangBai.aspx.cs">
-      <DependentUpon>TestDangBai.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test\TestDangBai.aspx.designer.cs">
-      <DependentUpon>TestDangBai.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage\MasterPage.Master" />
@@ -705,6 +708,9 @@
     <Content Include="MasterPage\MasterPage_TuVanVien.Master" />
     <Content Include="MasterPage\DoctorOnline_MasterPage.Master" />
     <None Include="packages.config" />
+    <Content Include="res\handle\baiviet\addBaiVietHandler.ashx" />
+    <Content Include="res\handle\baiviet\updateBaiVietHandler.ashx" />
+    <Content Include="res\handle\baiviet\LoadUpdateBaiVietHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

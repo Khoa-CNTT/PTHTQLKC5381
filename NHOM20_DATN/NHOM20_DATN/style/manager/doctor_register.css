@@ -1,4 +1,11 @@
-﻿
+﻿#container_content h1 {
+    color: #1691E2;
+    font-size: 32px;
+}
+
+ #container_content {
+    margin: 1em 1em;
+}
 #container_regist {
     margin: 2em;
 }

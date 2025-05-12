@@ -58,70 +58,70 @@ namespace NHOM20_DATN.pages.Manager
         //}
 
 
-        public void Addnews_click(object sender, EventArgs e)
-        {
-            string noiDung = noiDung_txt.Text;
-            string tieuDe = tieude_txt.Text;
-            string idContent = id_content.Value;
-            //create date and name file
-            DateTime date = DateTime.Now;
-            string createDate = date.ToString("MM/dd/yyyy");
-            //File upload
-            string img_String = "";
+        //public void Addnews_click(object sender, EventArgs e)
+        //{
+        //    string noiDung = noiDung_txt.Text;
+        //    string tieuDe = tieude_txt.Text;
+        //    string idContent = id_content.Value;
+        //    //create date and name file
+        //    DateTime date = DateTime.Now;
+        //    string createDate = date.ToString("MM/dd/yyyy");
+        //    //File upload
+        //    string img_String = "";
 
-            if (fileImg.HasFile && fileImg != null)
-            {
-                fileImg.SaveAs(Server.MapPath("/img/BaiViet/" + fileImg.FileName));//thêm ~ trước /img nếu không load được ảnh
-                img_String = "/img/BaiViet/" + fileImg.FileName;//thêm ~ trước /img nếu không load được ảnh
-            }
-            else
-            {
-                img_String = imgHidden.Value + "";
-            }
-            int idContentInt = -1;
-            if (idContent!= null&& idContent!="")
-            {
-                idContentInt = int.Parse(idContent);
-            }
-            //check title and des is empty
-            if (noiDung.Length <= 0 || tieuDe.Length <= 0)
-            {
-                string message = "Tiêu Đề và Nội Dung Bắt Buộc Phải Có!";
-                string script = "showAlert('" + message + "','warning');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
-                LoadData();
-                return;
-            }
-            DataTable dtTieuDe = new DataTable();
-            dtTieuDe = qlbvService.getCLoseResult(tieuDe);
-            bool existsNews = dtTieuDe.AsEnumerable()
-                .Any(row => row["TieuDe"].ToString() == tieuDe);
-            if (existsNews && idContentInt == -1 )
-            {
-                string message = "Đã có tiêu đề này!";
-                string script = "showAlert('" + message + "','warning');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
-                LoadData();
-                return;
-            }
-            //check if exist ID,then just update
-            DataTable dt = new DataTable();
-            dt = qlbvService.getById(idContentInt);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                string scriptUpdate = updateNews(idContent, tieuDe, noiDung, img_String, createDate);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptUpdate, true);
-                LoadData();
-                return;
-            }
-            string scriptAdd = addNews(tieuDe, noiDung, img_String, createDate);
-            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptAdd, true);
-            LoadData();
+        //    if (fileImg.HasFile && fileImg != null)
+        //    {
+        //        fileImg.SaveAs(Server.MapPath("/img/BaiViet/" + fileImg.FileName));//thêm ~ trước /img nếu không load được ảnh
+        //        img_String = "/img/BaiViet/" + fileImg.FileName;//thêm ~ trước /img nếu không load được ảnh
+        //    }
+        //    else
+        //    {
+        //        img_String = imgHidden.Value + "";
+        //    }
+        //    int idContentInt = -1;
+        //    if (idContent!= null&& idContent!="")
+        //    {
+        //        idContentInt = int.Parse(idContent);
+        //    }
+        //    //check title and des is empty
+        //    if (noiDung.Length <= 0 || tieuDe.Length <= 0)
+        //    {
+        //        string message = "Tiêu Đề và Nội Dung Bắt Buộc Phải Có!";
+        //        string script = "showAlert('" + message + "','warning');";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+        //        LoadData();
+        //        return;
+        //    }
+        //    DataTable dtTieuDe = new DataTable();
+        //    dtTieuDe = qlbvService.getCLoseResult(tieuDe);
+        //    bool existsNews = dtTieuDe.AsEnumerable()
+        //        .Any(row => row["TieuDe"].ToString() == tieuDe);
+        //    if (existsNews && idContentInt == -1 )
+        //    {
+        //        string message = "Đã có tiêu đề này!";
+        //        string script = "showAlert('" + message + "','warning');";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+        //        LoadData();
+        //        return;
+        //    }
+        //    //check if exist ID,then just update
+        //    DataTable dt = new DataTable();
+        //    dt = qlbvService.getById(idContentInt);
+        //    if (dt != null && dt.Rows.Count > 0)
+        //    {
+        //        string scriptUpdate = updateNews(idContent, tieuDe, noiDung, img_String, createDate);
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptUpdate, true);
+        //        LoadData();
+        //        return;
+        //    }
+        //    string scriptAdd = addNews(tieuDe, noiDung, img_String, createDate);
+        //    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptAdd, true);
+        //    LoadData();
   
-            return;
+        //    return;
 
 
-        }
+        //}
 
         //close form
         public void Closenews_click(object sender, EventArgs e)
@@ -129,8 +129,8 @@ namespace NHOM20_DATN.pages.Manager
             id_content.Value = "";
             create_date.Value = "";
             imageUrl.Value = "";
-            tieude_txt.Text = "";
-            noiDung_txt.Text = "";
+            //tieude_txt.Text = "";
+            //noiDung_txt.Text = "";
             string script = "close_formAddNews();";
             ScriptManager.RegisterStartupScript(this, GetType(), "display", script, true);
             LoadData() ;
@@ -157,32 +157,32 @@ namespace NHOM20_DATN.pages.Manager
         public void edit_News(object sender, EventArgs e)
         {
             //====== 1 get value  
-            Button btn = (Button)sender;
-            DataListItem item = (DataListItem)btn.NamingContainer;
-            HiddenField hiddenField = (HiddenField)item.FindControl("id_Content");
+            //Button btn = (Button)sender;
+            //DataListItem item = (DataListItem)btn.NamingContainer;
+            //HiddenField hiddenField = (HiddenField)item.FindControl("id_Content");
 
-            //get id
-            string idBaiVietString = hiddenField.Value;
-            //convert to int
-            int idBaiViet = int.Parse(idBaiVietString);
-            DataTable listBaiViet = new DataTable();
-            //search news from database
-            listBaiViet = qlbvService.getById(idBaiViet);
+            ////get id
+            //string idBaiVietString = hiddenField.Value;
+            ////convert to int
+            //int idBaiViet = int.Parse(idBaiVietString);
+            //DataTable listBaiViet = new DataTable();
+            ////search news from database
+            //listBaiViet = qlbvService.getById(idBaiViet);
 
-            //======== 2 set value to form 
-            string tieude = listBaiViet.Rows[0]["TieuDe"].ToString();
-            string noiDung = listBaiViet.Rows[0]["NoiDung"].ToString();
-            string anh = listBaiViet.Rows[0]["HinhAnh"].ToString();
-            DateTime getNgayDang = (DateTime)listBaiViet.Rows[0]["NgayDang"];
-            string ngayDang = getNgayDang.ToString("dd/MM/yyyy");
+            ////======== 2 set value to form 
+            //string tieude = listBaiViet.Rows[0]["TieuDe"].ToString();
+            //string noiDung = listBaiViet.Rows[0]["NoiDung"].ToString();
+            //string anh = listBaiViet.Rows[0]["HinhAnh"].ToString();
+            //DateTime getNgayDang = (DateTime)listBaiViet.Rows[0]["NgayDang"];
+            //string ngayDang = getNgayDang.ToString("dd/MM/yyyy");
 
-            id_content.Value = idBaiVietString;
-            create_date.Value = ngayDang;
-            tieude_txt.Text = tieude;
-            noiDung_txt.Text = noiDung;
-            imageUrl.Value = anh;
-            imgHidden.Value = anh;
-            ClientScript.RegisterStartupScript(this.GetType(), "update", "open_formAddNews();", true);
+            //id_content.Value = idBaiVietString;
+            //create_date.Value = ngayDang;
+            //tieude_txt.Text = tieude;
+            //noiDung_txt.Text = noiDung;
+            //imageUrl.Value = anh;
+            //imgHidden.Value = anh;
+            //ClientScript.RegisterStartupScript(this.GetType(), "update", "open_formAddNews();", true);
 
         }
 
@@ -262,8 +262,14 @@ namespace NHOM20_DATN.pages.Manager
 
 
         }
+        //===============================Function =========================================
+        //public string GetFirstImage(string imageList)
+        //{
+        //    if (string.IsNullOrEmpty(imageList)) return string.Empty;
 
-
+        //    var images = imageList.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        //    return images.Length > 0 ? ResolveUrl(images[0]) : string.Empty;
+        //}
     }
 }
 

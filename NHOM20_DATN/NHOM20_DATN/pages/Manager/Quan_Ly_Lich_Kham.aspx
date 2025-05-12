@@ -4,7 +4,8 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <div id="container_content">
+    <h1>Quản Lý Lịch Khám</h1>
     <div id="list_here">
 
     <div class="d_flex search_container">
@@ -19,7 +20,7 @@
                 CssClass="pd_tb_2px ddl_filter" ID="filter_specialty" runat="server"
                 AutoPostBack="true" >
                 <asp:ListItem Text="Trạng Thái" Value=""></asp:ListItem>
-                <asp:ListItem Text="Đang chờ" Value="DangCho"></asp:ListItem>
+                <asp:ListItem Text="Đã Khám" Value="DaKham"></asp:ListItem>
                 <asp:ListItem Text="Đã Đăng Ký" Value="DaDangKy"></asp:ListItem>
                 <asp:ListItem Text="Đã Hủy" Value="DaHuy"></asp:ListItem>
             </asp:DropDownList>
@@ -97,12 +98,12 @@
                         </asp:Label>
                         <asp:Label ID="lbl_ChoKham"
                             CssClass="lblDangcho"
-                            title="Đang chờ"
-                            BackColor="#ff9200"
+                            title="Đã Khám"
+                            BackColor="#25981B"
                             ForeColor="White"
                             runat="server"
-                            Text="Đang chờ"
-                            Visible='<%# Eval("TrangThai").ToString() == "DangCho" %>'>
+                            Text="Đã Khám"
+                            Visible='<%# Eval("TrangThai").ToString() == "DaKham" %>'>
                     </asp:Label>
                         <asp:Label ID="lbl_DaHuy"
                             CssClass="lblDahuy"
@@ -193,7 +194,7 @@
             </div>
         </asp:Panel>
     </div>
-
+        </div>
      <%--   <div id="notice" class="notice d_none"  >
             <i class="fa-solid fa-xmark" onclick="close_notice()"></i>
             <b>Chú ý:</b>

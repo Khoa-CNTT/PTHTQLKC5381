@@ -5,8 +5,11 @@
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="list_here">
+       <div id="container_content">
+           <h1>Quản Lý Lịch Khám</h1>
 
+    <div id="list_here">
+     
         <div class="d_flex crud_bar">
             <div class="seach_bar">
                 <asp:TextBox ID="txt_searching" placeholder="Tìm Kiếm" runat="server"></asp:TextBox>
@@ -250,6 +253,7 @@
         </div>
     </div>
         </div>
+           </div>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function showAlert(notice, warn) {

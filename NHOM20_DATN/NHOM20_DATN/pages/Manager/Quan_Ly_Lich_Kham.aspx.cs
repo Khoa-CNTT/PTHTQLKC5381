@@ -289,7 +289,7 @@ namespace NHOM20_DATN.pages.Manager
             {
                 txtCalender.Text = DateTime.Parse(hiddenOldDay.Value).ToString("yyyy-MM-dd");
 
-                string message = "Môc";
+                string message = "Không hợp lệ. Chọn lại!";
                 string script = "showAlert('" + message + "','warning');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;

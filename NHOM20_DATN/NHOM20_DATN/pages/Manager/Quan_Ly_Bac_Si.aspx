@@ -6,6 +6,8 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="container_content">
+        <h1>Quản Lý Bác Sĩ</h1>
        <div id="container_regist">
        <%-- Button --%>
        <div id="cont_btn">
@@ -247,6 +249,7 @@
            </div>
        </div>
    </div>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function showAlert(notice, warn) {

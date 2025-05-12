@@ -33,7 +33,7 @@ namespace NHOM20_DATN.res.service
             " SET TieuDe=  @TieuDe " +
             " ,NoiDung = @NoiDung" +
             " , HinhAnh =@HinhAnh" +
-            " , NgayDang = @NgayDang" +
+            " , NgayDang = @NgayDang " +
             " WHERE IDBaiViet = @IDBaiViet ";
             //Truyen tham so
             SqlParameter[] pr_update = {
@@ -84,6 +84,19 @@ namespace NHOM20_DATN.res.service
             string nameKey = "%" + searchTxt + "%";
             string sql_search = "SELECT * FROM BaiVietSucKhoe " +
                 " WHERE (TieuDe  COLLATE SQL_Latin1_General_CP1_CI_AI like @nameKey)";
+            SqlParameter[] pr_key = new SqlParameter[]
+            {
+                new SqlParameter("@nameKey", nameKey)
+            };
+            DataTable dt = new DataTable();
+            dt = db.docdulieu(sql_search, pr_key);
+            return dt;
+        }
+        public DataTable getExactResult(string searchTxt)
+        {
+            string nameKey = "%" + searchTxt + "%";
+            string sql_search = "SELECT * FROM BaiVietSucKhoe " +
+                " WHERE TieuDe= @namekey";
             SqlParameter[] pr_key = new SqlParameter[]
             {
                 new SqlParameter("@nameKey", nameKey)

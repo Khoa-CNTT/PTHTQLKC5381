@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="container">
     <div id="container_content">
-        <h1>BÀI VIẾT SỨC KHỎE</h1>
+        <h1>QUẢN LÝ BÀI VIẾT</h1>
         <%-- Contain search and create news --%>
         <div class="contain_function d_flex">
             <div class="search_bar">
@@ -13,7 +13,9 @@
                 <asp:LinkButton ID="btn_Search" CssClass="btn_search" OnClick="btn_Search_Click" runat="server"><i class="fa-solid fa-magnifying-glass"></i> </asp:LinkButton>
             </div>
             <div id="contain_add">
-                <asp:LinkButton id="btn_add_news" runat="server" OnClientClick="clear_open_formAddNews(); return false;" class="btn_add_news"><i class="fa-solid fa-plus"></i>Thêm bài viết</asp:LinkButton> <%--<a href="#"><i class="fa-solid fa-plus"></i>Thêm bài viết</a>--%>
+                <%--<asp:LinkButton ID="btn_add_news" runat="server" OnClientClick="clear_open_formAddNews(); return false;" class="btn_add_news"><i class="fa-solid fa-plus"></i>Thêm bài viết</asp:LinkButton>--%>
+                <%--<a href="#"><i class="fa-solid fa-plus"></i>Thêm bài viết</a>--%>
+                <button id="btn_add_news" class="btn_add_news" onclick="open_formAddNews(); return false;"><i class="fa-solid fa-plus"></i>Thêm bài viết </button>
             </div>
         </div>
         <%-- Contain search and create news --%>
@@ -28,7 +30,7 @@
                             <%-- Image --%>
                             <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
                                 <!--Link news-->
-                                <img src='<%# Eval("HinhAnh") %>' alt="">
+                                <img src='<%#  Eval("HinhAnh").ToString().Split(',')[0] %>' alt="">
                             </a>
 
                             <div class="news_des">
@@ -45,7 +47,8 @@
                                     <!--detail-->
                                     <div class="detail_news"><a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">Xem thêm</a></div>
                                     <!--edit -->
-                                    <asp:Button class="edit_btn" CssClass="edit_btn" ID="edit_btn" OnClick="edit_News" runat="server" Text="Sửa" />
+                                    <%--<asp:Button class="edit_btn" CssClass="edit_btn" ID="edit_btn" OnClick="edit_News" runat="server" Text="Sửa" />--%>
+                                    <button id="edit_btn" class="edit_btn" onclick="loadDataFromServer(<%# Eval("IDBaiViet") %>);open_formAddNews(); return false;">Sửa</button>
                                     <!--delete-->
                                     <asp:Button ID="delete_btn" CssClass="delete_btn" OnClientClick='<%# "showCancelDialog(\"" + Eval("IDBaiViet") + "\"); return false;" %>'  runat="server" Text="Xóa" />
                                 </div>
@@ -64,25 +67,38 @@
         <div id="form_add_News">
             <h2>Cập Nhật Bài Viết</h2>
             <div id="btn_close_add" class="btn-close-add" onclick="callCloseForm()"><i class="fa-solid fa-xmark"></i></div>
-            <div id="btn-add-description" onclick="">Thêm nội dung</div>
-            <div id="btn-add-image"  onclick="">Thêm ảnh</div>
+     
             <asp:HiddenField ID="id_content" Value="" runat="server" />
             <asp:HiddenField ID="create_date" runat="server" />
             <asp:HiddenField ID="imageUrl" runat="server" />
             <div class="form-group">
-                <b for="tieude_txt">Tiêu Đề</b>
-                <asp:TextBox ID="tieude_txt" class="form-control" runat="server" placeholder=""></asp:TextBox>
+                <b for="TieudeTxt">Tiêu Đề</b>
+                <%--<asp:TextBox ID="tieude_txt" class="form-control" runat="server" placeholder=""></asp:TextBox>--%>
+                <%-- Here --%>
+                  <div><input id="TieudeTxt" class="form-control" type="text" placeholder="Nhập tiêu đề ... " /></div>
+                <%-- Here --%>
             </div>
-            <div class="form-group">
+           <%-- <div class="form-group">
                 <b for="noiDung_txt">Nội Dung</b>
                 <asp:TextBox ID="noiDung_txt" runat="server" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
             </div>
             <div class="upfile-group">
                 <asp:FileUpload ID="fileImg" class="file-img" runat="server" />
                 <asp:HiddenField ID="imgHidden" runat="server" />
+            </div>--%>
+            <%-- here --%>
+            <div id="dynamicInputs"></div>
+            <%-- Here --%>
+            <div class="contain-action-update">
+                <p style="margin: 0;"> <b>Thao tác </b></p>
+                    <button type="button" class="btn-addnews" title="Thêm nội dung" onclick="addTextInput()"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-align-left"></i></button>
+    <button id ="addFileBtn" class="btn-addimg" type="button" title="Thêm ảnh" onclick="addFileInput()"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-image"></i></button>
             </div>
+
+            <%--  --%>
             <div class="btn_submit_news">
-                <asp:Button ID="Button_Addnews" class="btn-addnews" runat="server" Text="Cập Nhật" OnClick="Addnews_click" />
+                <%--<asp:Button ID="Button_Addnews" class="btn-addnews" runat="server" Text="Cập Nhật" OnClick="Addnews_click" />--%>
+                <button id="ContentPlaceHolder1_Button_Addnews" type="button" class="btn-addnews" onclick="checkAddOrUpdate(); ">Cập Nhật</button>
                 <asp:Button ID="Button_Close_Addnews" class="btn-closenews" runat="server" Text="Đóng" OnClick="Closenews_click" />
             </div>
         </div>
@@ -90,6 +106,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/QLbaiviet/QLbv/Qlbv_script.js"></script>
+    <script src="/js/QLbaiviet/QLbv/QLBV_update_script.js"></script>
 <script>
     //close form add new 
     const btn_close = document.querySelector("#btn_close_add");
@@ -116,11 +134,11 @@
         formNew.classList.add("d_block")
     }
 
-    function clear_open_formAddNews() {
-        document.getElementById('<%= tieude_txt.ClientID %>').value = "";
-        document.getElementById('<%= noiDung_txt.ClientID %>').value = "";
+  <%--  function clear_open_formAddNews() {
+        //document.getElementById('<%= tieude_txt.ClientID %>').value = "";
+      //  document.getElementById('<%= noiDung_txt.ClientID %>').value = "";
         open_formAddNews();
-    }
+    }--%>
 
     function showAlert(notice, warn) {
         Swal.fire({

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -33,21 +35,43 @@ namespace NHOM20_DATN.Home_Component
             DateTime getNgayDang = (DateTime)tableBaiViet.Rows[0]["NgayDang"];
             string ngayDang = getNgayDang.ToString("dd/MM/yyyy");
 
-            string[] lines = noiDung.Split(new[] { "\n" }, StringSplitOptions.None);
+            string[] imagePaths = anh.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
+            StringBuilder htmlBuilder = new StringBuilder();
 
-            string result = "";
-            foreach (string line in lines)
+            // Regex lấy cả đoạn text hoặc ảnh
+            string pattern = @"\(\[Start(\d+)\]\)(.*?)\(\[End\1\]\)|\(\[image(\d+)\]\)(.*?)\(\[image\3\]\)";
+            var matches = Regex.Matches(noiDung, pattern, RegexOptions.Singleline);
+            foreach (Match match in matches)
             {
-                result += $"<p>{line.Trim()}</p>"; // Thêm thẻ <p> và loại bỏ khoảng trắng
+                if (match.Groups[2].Success) // check content
+                {
+                    string content = match.Groups[2].Value.Trim();
+                    htmlBuilder.Append($"<p>{Server.HtmlEncode(content).Replace("\n", "<br />")}</p>");
+                }
+                else if (match.Groups[4].Success) // img
+                {
+                    string imageFile = match.Groups[4].Value.Trim();
+                    string matchedPath = imagePaths.FirstOrDefault(p => p.EndsWith(imageFile));
+                    if (!string.IsNullOrEmpty(matchedPath))
+                    {
+                        htmlBuilder.Append($"<div class='detail_img'> <img src='{matchedPath}' id='imgContent' alt=''></div>");
+                    }
+                }
             }
 
-            //Display content with tag <p>
-            date_txt.InnerText = ngayDang;
-            title_txt.InnerText = tieude;
-            noiDung_literal.Text = result;
-            imgContent.Attributes["src"] = anh;
 
+
+            
+            title_txt.InnerText = tieude;
+            date_txt.InnerText = ngayDang;
+            noiDung_literal.Text = htmlBuilder.ToString();
+
+            // head image of content
+            if (imagePaths.Length > 0)
+            {
+                imgContent.Attributes["src"] = imagePaths[0];
+            }
 
         }
     }

@@ -59,6 +59,16 @@ namespace NHOM20_DATN.pages.Manager
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
             }
+            string checkMailQuery = "SELECT COUNT(*) FROM TaiKhoan WHERE Email = @Email";
+            SqlParameter[] prMail = { new SqlParameter("@Email", email) };
+            DataTable dtMail = kn.docdulieu(checkMailQuery, prMail);
+            if (dtMail != null && Convert.ToInt32(dtMail.Rows[0][0]) > 0)
+            {
+                string message = "Email đã tồn tại";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }
             // Tạo ID mới cho bs
             string newId = "" ;
             if (vaiTro == "Online")
@@ -112,9 +122,6 @@ namespace NHOM20_DATN.pages.Manager
                 string message = "Không thêm được do thiếu thông tin";
                 string script = "showAlert('" + message + "','warning');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
-
-
-
             }
 
         }
@@ -134,6 +141,12 @@ namespace NHOM20_DATN.pages.Manager
             {
                 gridDoctor.DataSource = ds;
                 gridDoctor.DataBind();
+            }
+            else
+            {
+                string message = "Chưa Có Bác Sĩ";
+                string script = "showAlert('" + message + "','info');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
             }
         }
 

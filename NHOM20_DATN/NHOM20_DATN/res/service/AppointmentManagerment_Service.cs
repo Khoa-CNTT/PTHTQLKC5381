@@ -13,6 +13,7 @@ namespace NHOM20_DATN.res.service
 
 
         LopKetNoi kn = new LopKetNoi();
+        LichSuKhamService lichSuKhamService = new LichSuKhamService();
         public AppointmentManagerment_Service() { }
 
 
@@ -132,6 +133,9 @@ namespace NHOM20_DATN.res.service
             string query_deleteLKBS = "delete from LichKhamBacSi where IDBacSi= @IDBacSi and IDPhieu = @IDPhieu";
             string query_deleteLKBN = "delete from LichKhamBenhNhan where IDPhieu = @IDPhieu";
             string query_deleteLSK = "delete from LichSuKham where IDPhieu = @IDPhieu";
+            string query_deleteHSBA = "delete from HoSoBenhAn where IDLSK = @IDLSK";
+            DataTable dtLSK = lichSuKhamService.getByIDPK(idPhieu);
+            string idlsk = dtLSK.Rows[0]["IDLichSu"].ToString();
             SqlParameter[] pr = new SqlParameter[] {
         new SqlParameter("@IDBacSi", idBs),
             new SqlParameter("@IDPhieu", idPhieu)
@@ -146,6 +150,14 @@ namespace NHOM20_DATN.res.service
             SqlParameter[] prBN = new SqlParameter[] {
         new SqlParameter("@IDPhieu", idPhieu)
     };
+            SqlParameter[] prLSK = new SqlParameter[] {
+        new SqlParameter("@IDPhieu", idPhieu)
+    };
+            SqlParameter[] prHSBA = new SqlParameter[] {
+        new SqlParameter("@IDLSK", idlsk)
+    };
+            int resultHSBA = kn.CapNhat(query_deleteHSBA, prHSBA);
+            int resultLSK = kn.CapNhat(query_deleteLSK, prLSK);
             int resultLKBS = kn.CapNhat(query_deleteLKBS, prBS);
             int resultLKBN = kn.CapNhat(query_deleteLKBN, prBN);
             int resultPk = kn.CapNhat(query_deletePK, pr);

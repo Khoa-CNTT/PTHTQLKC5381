@@ -4,8 +4,12 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="loading" style="display: none;">
+  <div class="spinner"></div>
+</div>
     <div id="container_content">
     <h1>Quản Lý Lịch Khám</h1>
+        
     <div id="list_here">
 
     <div class="d_flex search_container">
@@ -239,7 +243,48 @@
         function showModal() {
             modal.style.display = "block";
         }
+        function showLoading() {
+            var loading = document.getElementById("loading");
+            if (loading) loading.style.display = "flex";
+        }
 
+        function hideLoading() {
+            var loading = document.getElementById("loading");
+            if (loading) loading.style.display = "none";
+        }
+
+        // Khi load trang xong thì ẩn loading
+        window.addEventListener("load", hideLoading);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // LinkButton dạng __doPostBack
+            document.querySelectorAll("a").forEach(function (a) {
+                a.addEventListener("click", function (e) {
+                    // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
+                    if (a.href && a.href.includes("__doPostBack")) {
+                        showLoading();
+                    }
+                });
+            });
+
+            // Bắt submit form
+            document.querySelectorAll("form").forEach(function (form) {
+                form.addEventListener("submit", function () {
+                    showLoading();
+                });
+            });
+        });
+
+        // Nếu dùng UpdatePanel
+        if (window.Sys && Sys.WebForms && Sys.WebForms.PageRequestManager) {
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_beginRequest(function () {
+                showLoading();
+            });
+            prm.add_endRequest(function () {
+                hideLoading();
+            });
+        }
     </script>
     
     <script src="/js/appointment_manager.js">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -30,6 +31,22 @@ namespace NHOM20_DATN.res.service
             int result = kn.CapNhat(query_update, prUpdate);
             if (result == 0 ) return 0;
             return result;
+        }
+
+        public DataTable getByIDPK(string idPk)
+        {
+
+            string query_select = "Select * from LichSuKham where IDPhieu = @IDPhieu";
+
+            SqlParameter[] pr = new SqlParameter[] {
+           
+                new SqlParameter("@IDPhieu", idPk),
+              
+            };
+
+            DataTable dt = new DataTable();
+            dt = kn.docdulieu(query_select, pr);
+            return dt;
         }
 
 

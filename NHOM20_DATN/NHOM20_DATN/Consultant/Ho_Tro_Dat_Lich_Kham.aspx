@@ -573,6 +573,65 @@
                 width: 200px !important;
             }
         }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .btn-submit.loading {
+            position: relative;
+            color: transparent;
+        }
+
+            .btn-submit.loading:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 20px;
+                height: 20px;
+                border: 3px solid rgba(255,255,255,0.3);
+                border-radius: 50%;
+                border-top-color: #fff;
+                animation: spin 1s ease-in-out infinite;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -613,7 +672,7 @@
                         <!-- Phòng khám -->
                         <div class="form-group col-66">
                             <label for="ddlPhongKham">Phòng khám</label>
-                            <asp:DropDownList ID="ddlPhongKham"  runat="server" AutoPostBack="true"
+                            <asp:DropDownList ID="ddlPhongKham" runat="server" AutoPostBack="true"
                                 CssClass="form-control">
                                 <asp:ListItem Value="" Text="Chọn phòng khám"></asp:ListItem>
                             </asp:DropDownList>
@@ -770,7 +829,12 @@
             <button class="close" onclick="closeModal()">Đóng</button>
         </div>
     </div>
-
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Đang xử lý...</p>
+        </div>
+    </div>
     <script>
         var questions = document.querySelectorAll('.question');
         questions.forEach(function (question) {
@@ -849,11 +913,26 @@
                 cancelButtonText: 'Hủy bỏ'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Gọi server-side click event khi người dùng xác nhận
+                    // Hiển thị loading overlay
+                    document.getElementById('loadingOverlay').style.display = 'flex';
+
+                    // Thêm class loading cho nút
+                    document.querySelector('.btn-submit').classList.add('loading');
+
+                    // Gọi server-side click event
                     __doPostBack('<%= btnDangKy.UniqueID %>', '');
                 }
             });
             return false;
+        }
+
+        // Hàm này sẽ được gọi khi page load xong để ẩn loading
+        function pageLoad() {
+            const overlay = document.getElementById('loadingOverlay');
+            if (overlay) overlay.style.display = 'none';
+
+            const btn = document.querySelector('.btn-submit.loading');
+            if (btn) btn.classList.remove('loading');
         }
     </script>
     <script>

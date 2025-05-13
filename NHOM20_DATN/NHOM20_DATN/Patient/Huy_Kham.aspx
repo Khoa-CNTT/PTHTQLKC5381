@@ -1078,7 +1078,7 @@
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 0px auto;
+            margin: 0 auto 20px auto;
             position: relative;
         }
 

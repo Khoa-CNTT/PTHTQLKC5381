@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <style>
+                .contain-ttbnnn {
+            background-color: #d9d9d96e;
+}
         .card-header h5 i, .card-header h4 i {
             margin-right: 8px;
         }

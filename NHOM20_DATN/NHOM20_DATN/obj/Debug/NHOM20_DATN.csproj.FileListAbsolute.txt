@@ -637,3 +637,15 @@ D:\TongHop\KLTN\CLONE_GIT_LAN6\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.csp
 D:\TongHop\KLTN\CLONE_GIT_LAN6\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_D.29673BB9.Up2Date
 D:\TongHop\KLTN\CLONE_GIT_LAN6\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.dll
 D:\TongHop\KLTN\CLONE_GIT_LAN6\NHOM20_DATN\NHOM20_DATN\obj\Debug\NHOM20_DATN.pdb
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\RestSharp.dll
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.IO.Pipelines.dll
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.Text.Encodings.Web.dll
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.Text.Json.dll
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\RestSharp.xml
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.IO.Pipelines.xml
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.Text.Encodings.Web.xml
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.Text.Json.xml
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Cohere.dll
+D:\Dtu_TotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Cohere.xml

@@ -105,6 +105,24 @@ namespace NHOM20_DATN.pages.Doctor
         protected global::System.Web.UI.WebControls.HiddenField hiddenGhiChu;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// pn_Update control.
         /// </summary>
         /// <remarks>
@@ -157,6 +175,15 @@ namespace NHOM20_DATN.pages.Doctor
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtChanDoan_edit;
+
+        /// <summary>
+        /// btnGoiY control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGoiY;
 
         /// <summary>
         /// txtDonThuoc_edit control.

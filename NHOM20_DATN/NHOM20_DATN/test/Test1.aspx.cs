@@ -52,7 +52,7 @@ namespace NHOM20_DATN.test
 
         private async Task<string> GoiYDonThuocTuCohere(string chanDoan)
         {
-            string apiKey = "eZvRjLjDmhCeclXwQWlcG0w0W6px5f3KDXl9UfFQ"; // Thay thế với API Key của bạn
+            string apiKey = "eZvRjLjDmhCeclXwQWlcG0w0W6px5f3KDXl9UfFQ"; // Cohere API Key
             string modelUrl = "https://api.cohere.ai/generate";
 
             var request = new HttpRequestMessage(HttpMethod.Post, modelUrl);
@@ -60,10 +60,10 @@ namespace NHOM20_DATN.test
 
             var body = new
             {
-                prompt = $"Chẩn đoán bệnh: {chanDoan}. Hãy chỉ gợi ý tên các loại thuốc mà cho người bệnh sử dụng, không cần giải thích thêm, ngắn gọn.",
-                max_tokens = 100,  // Giới hạn số token
+                prompt = $"diagnosis: {chanDoan}. Please only suggest the names of the drugs that the patient can use, no further explanation needed, list them with ',' do not write anything other than the drug name. If the diagnosis is invalid, return 'Invalid diagnosis'.",
+                max_tokens = 100,
                 temperature = 0.7,
-                stop = new[] { "\n" } // Đảm bảo chỉ trả về tên thuốc
+                stop = new[] { "\n" }
             };
 
             string jsonBody = JsonConvert.SerializeObject(body);
@@ -76,9 +76,16 @@ namespace NHOM20_DATN.test
 
             var result = await response.Content.ReadAsStringAsync();
             var json = JObject.Parse(result);
-            string resultText = json["text"]?.ToString()?.Trim() ?? "Không có đề xuất.";
+            string resultText = json["text"]?.ToString()?.Trim() ?? "";
 
-            // Lọc ra chỉ tên thuốc
+            // Nếu kết quả không chứa tên thuốc hợp lệ, trả về thông báo
+            if (string.IsNullOrWhiteSpace(resultText) ||
+                resultText.ToLower().Contains("invalid") ||
+                !resultText.Any(char.IsLetter)) // kết quả không có ký tự chữ cái nào
+            {
+                return "Không có đề xuất hợp lệ.";
+            }
+
             return resultText;
         }
 

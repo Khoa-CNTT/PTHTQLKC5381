@@ -4,6 +4,11 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NHOM20_DATN.res.service
 {
@@ -63,10 +68,48 @@ namespace NHOM20_DATN.res.service
             };
             int result = db.CapNhat(query, pr);
             int resultTrangThai = db.CapNhat(updateTrangThai, prUpdateTrangThai);
-            if(!(result != 0) || !(resultTrangThai != 0) ) return 0 ;
+            if(!(result != 0)  ) return 0 ;
             return result;
         }
 
+        private static readonly HttpClient httpClient = new HttpClient();
+        public async Task<string> GoiYDonThuocTuCohere(string chanDoan)
+        {
+            string apiKey = "eZvRjLjDmhCeclXwQWlcG0w0W6px5f3KDXl9UfFQ"; 
+            string modelUrl = "https://api.cohere.ai/generate";
 
+            var request = new HttpRequestMessage(HttpMethod.Post, modelUrl);
+            request.Headers.Add("Authorization", $"Bearer {apiKey}");
+
+            var body = new
+            {
+                prompt = $"Given the diagnosis, return only the names of appropriate medications, separated by commas. Do not include any explanation or extra text. If the diagnosis is invalid or not a real symptom, return exactly: Invalid diagnosis. Diagnosis: {chanDoan}'.",
+                max_tokens = 100,
+                temperature = 0.7,
+                stop = new[] { "\n" }
+            };
+
+            string jsonBody = JsonConvert.SerializeObject(body);
+            request.Content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"Lỗi từ Cohere API: {response.StatusCode}");
+
+            var result = await response.Content.ReadAsStringAsync();
+            var json = JObject.Parse(result);
+            string resultText = json["text"]?.ToString()?.Trim() ?? "";
+
+            
+            if (string.IsNullOrWhiteSpace(resultText) ||
+                resultText.ToLower().Contains("invalid") ||
+                !resultText.Any(char.IsLetter)) // kết quả không có ký tự chữ cái nào
+            {
+                return "Không có đề xuất hợp lệ.";
+            }
+
+            return resultText;
+        }
     }
 }

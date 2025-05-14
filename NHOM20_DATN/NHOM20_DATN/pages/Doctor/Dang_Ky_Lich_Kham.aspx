@@ -17,10 +17,13 @@
         }
 
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+       
             background-color: #f0f2f5;
             color: var(--text-color);
             line-height: 1.6;
+        }
+        #content{
+                 font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
        .container {
@@ -33,6 +36,10 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+       .contain-dklk{
+            background-color: #d9d9d96e;
+       }
 
         .group {
             margin-bottom: 24px;

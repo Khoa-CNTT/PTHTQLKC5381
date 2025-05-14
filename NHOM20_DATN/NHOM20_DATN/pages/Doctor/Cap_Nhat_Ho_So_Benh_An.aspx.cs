@@ -1,9 +1,11 @@
 ﻿using NHOM20_DATN.res.service;
+using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,6 +17,7 @@ namespace NHOM20_DATN.pages.Doctor
         MedicalRecordService medicalRecordService = new MedicalRecordService();
         PatientManagerment patientService = new PatientManagerment();
         LichSuKhamService lskService = new LichSuKhamService();
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -74,7 +77,7 @@ namespace NHOM20_DATN.pages.Doctor
             if (e.CommandName == "editSelect")
             {
 
-                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { '#' });
                 string idHS = commandArgs[0];
                 string idBN = commandArgs[1];
                 string hoten = commandArgs[2];
@@ -88,7 +91,7 @@ namespace NHOM20_DATN.pages.Doctor
                 txtPK_edit.Text = idPK;
                 txtHoTen_edit.Text = hoten;
                 txtChanDoan_edit.Text = chandoan;
-                txtDonThuoc_edit.Text = donthuoc;
+                txtDonThuoc_edit.Text = donthuoc.ToString();
                 txtGhiChu_edit.Text = ghichu;
                 txtHuongDtr_edit.Text = huongdtr;
                 pn_Update.Visible = true;
@@ -121,6 +124,9 @@ namespace NHOM20_DATN.pages.Doctor
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 // Close form after finish update
                 pn_Update.Visible = false;
+                string scriptClose = "CloseForm();";
+                ScriptManager.RegisterStartupScript(this, GetType(), "display", scriptClose, true);
+
                 //cancelEdit.Visible = true;
                 // then load page
                 loadData();
@@ -211,6 +217,45 @@ namespace NHOM20_DATN.pages.Doctor
             }
         }
 
+
+
+        //===========
+        protected async void btnGoiY_Click(object sender, EventArgs e)
+        {
+
+
+            string chanDoan = txtChanDoan_edit.Text.Trim();
+            if (string.IsNullOrEmpty(chanDoan))
+            {
+                string message = "Hãy nhập chẩn đoán";
+                string script = "ShowAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                txtDonThuoc_edit.Text = "";
+                return;
+            }
+
+            try
+            {
+                string donThuoc = await medicalRecordService.GoiYDonThuocTuCohere(chanDoan);
+                
+                if (donThuoc == "Không có đề xuất hợp lệ.")
+                {
+                    string script = "ShowAlert('Chẩn đoán không hợp lệ hoặc không có thuốc phù hợp','warning')";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                    txtDonThuoc_edit.Text = "";
+                }
+                else
+                {
+                    txtDonThuoc_edit.Text = donThuoc;
+                }
+          
+
+            }
+            catch (Exception ex)
+            {
+                txtDonThuoc_edit.Text = "";
+            }
+        }
 
 
 

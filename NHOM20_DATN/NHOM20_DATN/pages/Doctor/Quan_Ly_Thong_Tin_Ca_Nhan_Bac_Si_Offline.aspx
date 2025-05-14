@@ -6,15 +6,18 @@
 
         body {
             background: linear-gradient(145deg, #e3f2fd, #ffffff);
-            font-family: 'Inter', sans-serif;
+            
             color: #333;
             margin: 0;
         }
 
         .content{
+            font-family: 'Inter', sans-serif;
             margin-left:100px;
-        }
-
+        }    
+             .contain-tttv{
+                 background-color: #d9d9d96e;
+             }
         .info-container {
             background-color: #ffffff;
             border-radius: 20px;

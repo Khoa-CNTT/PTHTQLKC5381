@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Doctor_MasterPage.Master" AutoEventWireup="true" CodeBehind="Cap_Nhat_Ho_So_Benh_An.aspx.cs" Inherits="NHOM20_DATN.pages.Doctor.Cap_Nhat_Ho_So_Benh_An" %>
+﻿<%@ Page Title="" Language="C#"  Async="true" MasterPageFile="~/MasterPage/Doctor_MasterPage.Master" AutoEventWireup="true" CodeBehind="Cap_Nhat_Ho_So_Benh_An.aspx.cs" Inherits="NHOM20_DATN.pages.Doctor.Cap_Nhat_Ho_So_Benh_An" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../style/doctor/medical_records.css" rel='stylesheet'>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+        <div id="loading" style="display: none;">
+  <div class="spinner"></div>
+</div>
     <div id="list_here">
 
         <div class="d_flex container_control">
@@ -41,7 +43,7 @@
                     <asp:TemplateField Visible="true">
                         <ItemTemplate>
                             <asp:LinkButton ID="btnEditRow"
-                                CommandArgument='<%#Eval("IDHS") +","+Eval("IDBN") +","+Eval("HoTen")+","+Eval("ChanDoan")+","+Eval("DonThuoc")+","+Eval("GhiChu")+","+Eval("IDPhieu") + ","+Eval("HuongDieuTri")  %>'
+                                CommandArgument='<%#Eval("IDHS") +"#"+Eval("IDBN") +"#"+Eval("HoTen")+"#"+Eval("ChanDoan")+"#"+Eval("DonThuoc")+"#"+Eval("GhiChu")+"#"+Eval("IDPhieu") + "#"+Eval("HuongDieuTri")  %>'
                                 CommandName="editSelect" runat="server">
                                 <i class="fa-solid fa-pen-to-square" style="color: dodgerblue;"></i>
                             </asp:LinkButton>
@@ -138,8 +140,12 @@
     <asp:HiddenField ID="hiddenGhiChu" runat="server" />
 
     <%-- Panel update --%>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
     <div id="patientUpdate-container-dad">
         <div id="patientUpdate_container" class="">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+          
             <asp:Panel ID="pn_Update" runat="server" Visible="false" CssClass="pnl_Update">
                 <div class="chTime_content">
                     <h2>Cập Nhật Hồ Sơ</h2>
@@ -156,11 +162,12 @@
                         <div class="chandoan-inp">
                             <span><b>Chẩn Đoán</b></span>
                             <asp:TextBox ID="txtChanDoan_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                            <asp:Button ID="btnGoiY" runat="server" Text="Gợi ý thuốc" OnClick="btnGoiY_Click" />
                         </div>
                         <%-- inp don thuoc --%>
                         <div class="donthuoc-inp">
                             <span><b>Đơn Thuốc</b></span>
-                            <asp:TextBox ID="txtDonThuoc_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDonThuoc_edit" TextMode="MultiLine" Rows="10" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <%-- inp huong dtr --%>
@@ -178,9 +185,11 @@
                         <asp:Button ID="btn_Close_Update" runat="server" OnClick="btn_Close_Update_Click" Text="Đóng" />
                     </div>
                 </div>
-            </asp:Panel>
-        </div>
+     </asp:Panel>
+          </ContentTemplate>
+</asp:UpdatePanel>     
     </div>
+      </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
@@ -199,6 +208,52 @@
             const btn_open = document.querySelector("#patientUpdate_container");
             btn_open.classList.remove("d_block");
         }
+        function showLoading() {
+            var loading = document.getElementById("loading");
+            if (loading) loading.style.display = "flex";
+        }
+
+        function hideLoading() {
+            var loading = document.getElementById("loading");
+            if (loading) loading.style.display = "none";
+        }
+        
+        //const btn_goiy = document.querySelector("#ContentPlaceHolder1_btnGoiY");
+        //btn_goiy.addEventListener("click",function(){
+        ////    document.getElementById("<%= txtDonThuoc_edit.ClientID %>").value = "Đang phân tích...";
+        //})
+        window.addEventListener("load", hideLoading);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // LinkButton dạng __doPostBack
+            document.querySelectorAll("a").forEach(function (a) {
+                a.addEventListener("click", function (e) {
+                    // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
+                    if (a.href && a.href.includes("__doPostBack")) {
+                        showLoading();
+                    }
+                });
+            });
+
+            // Bắt submit form
+            document.querySelectorAll("form").forEach(function (form) {
+                form.addEventListener("submit", function () {
+                    showLoading();
+                });
+            });
+        });
+
+        // Nếu dùng UpdatePanel
+        if (window.Sys && Sys.WebForms && Sys.WebForms.PageRequestManager) {
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_beginRequest(function () {
+                showLoading();
+            });
+            prm.add_endRequest(function () {
+                hideLoading();
+            });
+        }
+       
     </script>
     <script src="/js/medical_record.js"></script>
 

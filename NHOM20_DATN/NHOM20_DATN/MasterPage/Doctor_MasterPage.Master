@@ -21,7 +21,7 @@
         <div class="dropdown-menu" id="dropdown-menu">
             <ul>
                 <li>
-                    <a href="#">Quản lý thông tin cá nhân</a>   <%-- Quan ly thong tin ca nhan --%>
+                    <a href="/pages/Doctor/Quan_Ly_Thong_Tin_Ca_Nhan_Bac_Si_Offline.aspx">Quản lý thông tin cá nhân</a>   <%-- Quan ly thong tin ca nhan --%>
                 </li>
                 <li>
                     <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="Logout_Click">

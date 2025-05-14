@@ -84,6 +84,12 @@ namespace NHOM20_DATN.Patient
                         return;
                     }
 
+                    string sqlDeleteThanhToan = "DELETE FROM ThanhToan WHERE IDTuVan = @IDTuVan";
+                    SqlParameter[] parametersDeleteThanhToan = { new SqlParameter("@IDTuVan", idTuVan) };
+                    db.CapNhat(sqlDeleteThanhToan, parametersDeleteThanhToan);
+
+
+
                     string sqlDelete = "DELETE FROM LichTuVan WHERE IDTuVan = @IDTuVan";
                     SqlParameter[] parametersDelete = {
                 new SqlParameter("@IDTuVan", idTuVan)

@@ -668,7 +668,8 @@ namespace NHOM20_DATN.Consultant
                               <ul style='list-style: none; padding-left: 0;'>
                                   <li>🧾 <strong>Tên bác sĩ:</strong> " + tenBacSi + @"</li>
                                   <li>👤 <strong>Giờ khám:</strong> " + idgiokham + @"</li>
-                                  <li>🕒 <strong>Ngày Khám:</strong> " + idngaykham + @"</li>
+                                  <li>🕒 <strong>Ngày Khám:</strong> " + Convert.ToDateTime(idngaykham).ToString("dd/MM/yyyy") + @"</li>
+                                   <li>🏢 <strong>Phòng khám:</strong> " + idPhongKham + @"</li>
                               </ul>
 
                               <p>Vui lòng đến đúng thời gian đã hẹn trước 10 phút. Nếu có bất kỳ thay đổi nào, xin vui lòng liên hệ với chúng tôi để được hỗ trợ.</p>

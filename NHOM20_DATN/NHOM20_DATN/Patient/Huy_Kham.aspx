@@ -1080,15 +1080,25 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 20px auto;
             position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform-origin: center;
+        }
+
+        .loading-text {
+            margin-top: 120px !important;
+            display: block;
         }
 
         @keyframes spin {
             0% {
-                transform: rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
             }
 
             100% {
-                transform: rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
             }
         }
 
@@ -1221,17 +1231,18 @@
 
         </div>
         <div class="nen5"></div>
-        <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center;">
-            <div style="color: white; font-size: 20px;">
-                <div class="spinner"></div>
-                <p>Đang xử lý...</p>
-            </div>
-        </div>
+
         <div class="nguoidangky">
             <p class="text-end">Người đăng ký</p>
             <br>
             <br>
             <p class="text-end">(Ký và ghi rõ họ tên)</p>
+        </div>
+    </div>
+    <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+        <div style="color: white; font-size: 20px;">
+            <div class="spinner"></div>
+            <p class="loading-text">Đang xử lý...</p>
         </div>
     </div>
     <script type="text/javascript">

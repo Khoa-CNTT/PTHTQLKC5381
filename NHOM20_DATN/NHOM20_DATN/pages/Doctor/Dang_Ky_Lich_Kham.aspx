@@ -487,105 +487,115 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-         <h2> Đăng ký lịch khám</h2>
-
-<div class="layout-wrapper">
-    <div class="info-wrapper">
-        <div class="medical-info">
-            <h4>Thông tin cơ sở y tế</h4>
-            <div class="trong">
-                 <p><strong>Bệnh viện BANANA</strong></p>
-                 <p>Cơ sở 220 Phan Thanh - Thành phố Đà Nẵng</p>
-                <img class="hinhbs1" src="../../img/anhbs.jpg"/>
-                <img class="hinhbs2" src="../../img/anhbs2.jpg"/>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" />
+    
+    <h2>Đăng ký lịch khám</h2>
+    <div class="layout-wrapper">
+        <div class="info-wrapper">
+            <!-- Phần thông tin cơ sở y tế -->
+            <div class="medical-info">
+                <h4>Thông tin cơ sở y tế</h4>
+                <div class="trong">
+                    <p><strong>Bệnh viện BANANA</strong></p>
+                    <p>Cơ sở 220 Phan Thanh - Thành phố Đà Nẵng</p>
+                    <img class="hinhbs1" src="../../img/anhbs.jpg" />
+                    <img class="hinhbs2" src="../../img/anhbs2.jpg" />
+                </div>
             </div>
-           
         </div>
-    </div>
 
-    <div class="form-wrapper">
-        <div class="container">
-            <div class="group4">
-                <label  Text="txtHoTen">Họ và tên <span class="required">*</span></label>
-                <asp:TextBox ID="txtHoTen" CssClass="control" runat="server" Placeholder="Nhập họ và tên"></asp:TextBox>
-            </div>
-             <div class="group5">
-     <label Text="ddlNgayKham">Chọn ngày khám <span class="required">*</span></label>
-     <asp:TextBox ID="txtNgayKham" CssClass="control" runat="server" TextMode="Date" ></asp:TextBox>
- </div>
-           
+        <div class="form-wrapper">
+            <asp:UpdatePanel ID="upMain" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                <ContentTemplate>
+                    <div class="container">
+                        <!-- Các thông tin cố định -->
+                        <div class="group4">
+                            <label>Họ và tên <span class="required">*</span></label>
+                            <asp:TextBox ID="txtHoTen" CssClass="control" runat="server" ReadOnly="true" />
+                        </div>
+
+                        <!-- Control ngày khám -->
+                        <div class="group5">
+                            <label>Chọn ngày khám <span class="required">*</span></label>
+                            <asp:TextBox ID="txtNgayKham" CssClass="control" runat="server" 
+                                       TextMode="Date" AutoPostBack="true" 
+                                       OnTextChanged="txtNgayKham_TextChanged" />
+                        </div>
+
+                        <div class="group">
+                            <label>Số điện thoại <span class="required">*</span></label>
+                            <asp:TextBox ID="txtSoDienThoai" CssClass="control" runat="server" ReadOnly="true" />
+                        </div>
+
+                        <!-- Phần buổi và giờ khám trong UpdatePanel con -->
+                        <asp:UpdatePanel ID="upSchedule" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div class="group">
+                                    <label>Buổi Khám <span class="required">*</span></label>
+                                    <asp:DropDownList ID="ddlbuoikham" runat="server" CssClass="control"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged">
+                                        <asp:ListItem Text="Chọn buổi khám" Value="" />
+                                        <asp:ListItem Text="Sáng" Value="Sáng" />
+                                        <asp:ListItem Text="Chiều" Value="Chiều" />
+                                        <asp:ListItem Text="Cả Ngày" Value="Cả Ngày" />
+                                    </asp:DropDownList>
+                                </div>
+
+                                <div class="group">
+                                    <label class="required1">Chọn giờ khám <span class="required">*</span></label>
+                                    <div class="hours-wrapper">
+                                        <asp:CheckBoxList ID="cblGiokham" runat="server" 
+                                            AutoPostBack="true" OnSelectedIndexChanged="cblGiokham_SelectedIndexChanged"
+                                            RepeatDirection="Horizontal" RepeatLayout="Flow" 
+                                            CssClass="checkbox-list">
+                                        </asp:CheckBoxList>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="ddlbuoikham" EventName="SelectedIndexChanged" />
+                                <asp:AsyncPostBackTrigger ControlID="txtNgayKham" EventName="TextChanged" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+
+                        <!-- Các thông tin khác -->
+                        <div class="group1">
+                            <label>Email <span class="required">*</span></label>
+                            <asp:TextBox ID="txtEmail" CssClass="control" runat="server" ReadOnly="true" />
+                        </div>
+
+                        <div class="group3">
+                            <label>Trình độ <span class="required">*</span></label>
+                            <asp:TextBox ID="Txttrinhdo" CssClass="control" runat="server" ReadOnly="true" />
+                        </div>
+
+                        <div class="group2">
+                            <label>Địa chỉ <span class="required">*</span></label>
+                            <asp:TextBox ID="txtDiaChi" CssClass="control" runat="server" ReadOnly="true" />
+                        </div>
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnDangKy" />
+                </Triggers>
+            </asp:UpdatePanel>
+
+            <!-- Nút đăng ký -->
             <div class="group">
-                <label  Text="txtSoDienThoai">Số điện thoại <span class="required">*</span></label>
-                <asp:TextBox ID="txtSoDienThoai" CssClass="control" runat="server" Placeholder="Nhập số điện thoại"></asp:TextBox>
-            </div>
-
-           
-                 <asp:ScriptManager ID="scrManager" runat="server" />
-
-<asp:UpdatePanel ID="upSchedule" runat="server" UpdateMode="Conditional">
-  <ContentTemplate>
-    <div class="group">
-      <label>Buổi Khám <span class="required">*</span></label>
-      <asp:DropDownList 
-          ID="ddlbuoikham" CssClass="control" runat="server"
-          AutoPostBack="true"
-          OnSelectedIndexChanged="ddlbuoikham_SelectedIndexChanged">
-        <asp:ListItem Text="Chọn buổi khám" Value=""></asp:ListItem>
-        <asp:ListItem Text="Sáng" Value="Sáng"></asp:ListItem>
-        <asp:ListItem Text="Chiều" Value="Chiều"></asp:ListItem>
-        <asp:ListItem Text="Cả Ngày" Value="Cả Ngày"></asp:ListItem>
-      </asp:DropDownList>
-    </div>
-    <div class="group">
-      <label class="required1">Chọn giờ khám <span class="required">*</span></label>
-      <div class="hours-wrapper">
-        <asp:CheckBoxList 
-            ID="cblGiokham" 
-            runat="server" 
-            RepeatDirection="Horizontal" 
-            RepeatLayout="Flow" 
-            CssClass="checkbox-list">
-        </asp:CheckBoxList>
-      </div>
-    </div>
-  </ContentTemplate>
-  <Triggers>
-    <asp:AsyncPostBackTrigger 
-        ControlID="ddlbuoikham" 
-        EventName="SelectedIndexChanged" />
-  </Triggers>
-</asp:UpdatePanel>
-                    <div class="group1">
-    <label Text="txtEmail">Email <span class="required">*</span></label>
-    <asp:TextBox ID="txtEmail" CssClass="control" runat="server" Placeholder="Nhập email"></asp:TextBox>
-</div>
-
-<div class="group3">
-    <label Text="Txttrinhdo">Trình độ <span class="required">*</span></label>
-    <asp:TextBox ID="Txttrinhdo" CssClass="control" runat="server" Placeholder=""></asp:TextBox>
-</div>
-
-           
-
-            <div class="group2">
-                <label  Text="txtDiaChi">Địa chỉ <span class="required">*</span></label>
-                <asp:TextBox ID="txtDiaChi" CssClass="control" runat="server" Placeholder="Nhập địa chỉ"></asp:TextBox>
+                <asp:Button ID="btnDangKy" runat="server" CssClass="btn btn-primary" 
+                    Text="Đăng ký" OnClick="btnDangKy_Click" />
             </div>
         </div>
-
-        <div class="group">
-            <asp:Button ID="btnDangKy" CssClass="btn btn-primary" runat="server" Text="Đăng ký" OnClick="btnDangKy_Click" />
-        </div>
     </div>
-</div>
+
     <script>
         function showAlert(message, iconType) {
             Swal.fire({
                 title: message,
                 icon: iconType,
-                confirmButtonText: 'OK'
+                confirmButtonText: 'OK',
+                allowOutsideClick: false
             });
         }
-       
     </script>
 </asp:Content>

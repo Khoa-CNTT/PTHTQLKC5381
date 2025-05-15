@@ -196,9 +196,64 @@
   </div>
 </asp:Panel>
 </div>
+<div
+  id="loadingOverlay"
+  style="
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 9999;
+  "
+>
+  <div
+    class="loading-content"
+    style="
+      background: #fff;
+      padding: 1.5em 2em;
+      border-radius: 0.5em;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      text-align: center;
+    "
+  >
+    <div
+      class="spinner"
+      style="
+        width: 3rem;
+        height: 3rem;
+        margin: 0 auto 0.5em;
+        border: 0.5rem solid #f3f3f3;
+        border-top-color: #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      "
+    ></div>
+    <div
+      class="loading-text"
+      style="
+        font-weight: 600;
+        color: #333;
+      "
+    >
+      Đang xử lý...
+    </div>
+  </div>
+</div>
 
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    function showAlert(notice, warn) {
+        Swal.fire({
+            title: notice,
+            icon: warn,
+            confirmButtonText: 'OK',
+            allowOutsideClick: false
+        });
+    }
     function showCancelDialog(idPk, dayWork) {
         Swal.fire({
             title: 'Lý do hủy lịch',
@@ -208,37 +263,42 @@
             confirmButtonText: 'Tiếp tục',
             cancelButtonText: 'Hủy bỏ',
             inputValidator: (value) => {
-                if (!value) {
-                    return 'Vui lòng nhập lý do hủy!';
-                }
+                if (!value) return 'Vui lòng nhập lý do hủy!';
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                // Ask for confirmation after getting reason
                 Swal.fire({
                     title: 'Xác nhận hủy lịch',
-                    text: 'Bạn có chắc chắn muốn hủy lịch này?',
+                    text: "Bạn có chắc chắn muốn hủy lịch này?",
                     icon: 'warning',
                     showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
                     confirmButtonText: 'Đồng ý',
                     cancelButtonText: 'Hủy bỏ'
                 }).then((confirmation) => {
                     if (confirmation.isConfirmed) {
-                        // Call server-side method with both ID and reason
-                        __doPostBack('CancelAppointment', idPk + '|' + dayWork + '|' + result.value);
+                        // Hiển thị loading
+                        document.getElementById('loadingOverlay').style.display = 'flex';
+
+                        // Gửi request
+                        __doPostBack('CancelAppointment', `${idPk}|${dayWork}|${result.value}`);
                     }
                 });
             }
         });
-
-        function showAlert(notice, warn) {
-            Swal.fire({
-                title: notice,
-                icon: warn,
-                confirmButtonText: 'OK'
-            });
-        }
-
     }
+      
+    // Tự động ẩn loading khi trang load xong
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('#loadingOverlay').style.display = 'none';
+    });
+
+    // Xử lý khi có postback
+    var prm = Sys.WebForms.PageRequestManager.getInstance();
+    prm.add_endRequest(function () {
+        document.querySelector('#loadingOverlay').style.display = 'none';
+    });
+    
 </script>
 </asp:Content>

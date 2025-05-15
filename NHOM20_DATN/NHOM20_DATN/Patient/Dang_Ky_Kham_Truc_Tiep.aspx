@@ -465,7 +465,7 @@
                 <div class="form-group col-6">
                     <!-- Nút đăng ký -->
                     <asp:Button ID="btnDangKy" Text="Đăng ký" runat="server"
-                        OnClick="btnDangKy_Click" CssClass="btn-submit" />
+                        OnClick="btnDangKy_Click" CssClass="btn-submit"   OnClientClick="showLoader();" />
                 </div>
                 <!--<button type="submit" id="btnPayment" class="btn btn-primary">Thanh toán với VNPay</button>-->
                 <div class="form-group col-6" style="display: flex; align-items: center;">
@@ -493,7 +493,25 @@
             <button class="close" onclick="closeModal()">Đóng</button>
         </div>
     </div>
-
+    <div id="loaderOverlay" style="
+        display:none;
+        position:fixed;
+        top:0; left:0; width:100%; height:100%;
+        background:rgba(255,255,255,0.8);
+        z-index:9999;
+        text-align:center;
+  ">
+    <div style="
+         position:absolute;
+         top:50%; left:50%;
+         transform:translate(-50%,-50%);
+    ">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div>Đang xử lý...</div>
+    </div>
+  </div>
     <script>
         // Xử lý hiển thị modal khi click vào câu hỏi
         function showAnswer(answerHtml) {
@@ -543,6 +561,9 @@
                     window.location.href = redirectUrl;
                 }
             });
+        }
+        function showLoader() {
+            document.getElementById('loaderOverlay').style.display = 'block';
         }
     </script>
 </asp:Content>

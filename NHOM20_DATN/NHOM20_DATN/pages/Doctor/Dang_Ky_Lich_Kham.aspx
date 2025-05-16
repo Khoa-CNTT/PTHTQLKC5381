@@ -44,7 +44,7 @@
         .group {
             margin-bottom: 24px;
             position: relative;
-            animation: fadeInUp 0.6s ease-out;
+           
         }
 
         @keyframes fadeInUp {
@@ -392,7 +392,8 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
   max-height: 200px !important;
   
-  z-index: 9999 !important;        
+  z-index: 9999 !important;    
+  
 }
 .hours-group {
   position: relative;    
@@ -597,5 +598,6 @@
                 allowOutsideClick: false
             });
         }
+        
     </script>
 </asp:Content>

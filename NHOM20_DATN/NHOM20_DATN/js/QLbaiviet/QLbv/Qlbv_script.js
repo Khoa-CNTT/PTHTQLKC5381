@@ -98,7 +98,7 @@ function addBV() {
     // Đưa vào formData đúng thứ tự
     if (tieude.value.trim() === '') {
         isValid = false;
-        errorMessage += "Vui lòng nhập tiêu đề ";
+        errorMessage += "Vui lòng nhập tiêu đề \n";
     
         
     }
@@ -118,7 +118,7 @@ function addBV() {
             formData.append("(filename" + i, "([image" + i + "])" + file.name + "([image" + i + "])");
         } else if (input.dataset.type === "file" && input.files.length === 0) {
             isValid = false;
-            errorMessage += "Vui lòng chọn một file cho input " + (i + 1) + "\n";
+            errorMessage += "Vui lòng chọn một ảnh cho File Upload " + (i + 1) + "\n";
         }
     });
 

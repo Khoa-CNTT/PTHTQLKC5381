@@ -725,7 +725,6 @@ D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Api.Gax.Rest.dll
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Auth.dll
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Core.dll
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.dll
-D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Translate.v2.dll
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.ClientModel.dll
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.CodeDom.dll
@@ -742,8 +741,6 @@ D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Auth.pdb
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Auth.xml
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Core.pdb
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Core.xml
-D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Translate.v2.pdb
-D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Google.Apis.Translate.v2.xml
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.ClientModel.xml
 D:\Dtu_DoAnTotNghiep\NHOM20_DATN\NHOM20_DATN\bin\System.CodeDom.xml

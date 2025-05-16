@@ -501,7 +501,6 @@
     </Compile>
     <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.cs">
       <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\Doctor\Dang_Ky_Lich_Kham.aspx.designer.cs">
       <DependentUpon>Dang_Ky_Lich_Kham.aspx</DependentUpon>

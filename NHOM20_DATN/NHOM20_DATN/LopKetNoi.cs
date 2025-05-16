@@ -13,7 +13,7 @@ namespace NHOM20_DATN
         SqlConnection con;
         private void ketnoi()
         {
-            string sqlCon = @"Data Source=DESKTOP-PPT3FPB;Initial Catalog=Database_CHOT_0805;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True";
+            string sqlCon = @"Data Source=laptop-12s0uk54;Initial Catalog=Database_CHOT_0805;Integrated Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True";
             con = new SqlConnection(sqlCon);
             con.Open();
         }

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Org.BouncyCastle.Crypto;
+using System.Drawing;
+using System.Web.Services.Description;
 
 namespace NHOM20_DATN
 {
@@ -87,16 +89,26 @@ namespace NHOM20_DATN
 
                 if (result > 0)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
-                        "showAlert('Đã hủy lịch và gửi mail thông báo.', 'success');", true);
-                    Response.Redirect("Xem_Lich_Kham.aspx");
-                    view_List();
+                    string script = @"Swal.fire({ 
+            title: 'Thành công!', 
+            text: 'Đã hủy lịch và gửi mail thông báo.', 
+            icon: 'success', 
+            confirmButtonText: 'OK' 
+        }).then(() => { window.location.href = 'Xem_Lich_Kham.aspx'; });";
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "cancelSuccess", script, true);
                 }
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
-                    "showAlert('Không tìm thấy lịch sử khám để xóa hồ sơ bệnh án.', 'error');", true);
+                else
+                {
+                    string script = @"Swal.fire({ 
+            title: 'Lỗi!', 
+            text: 'Thao tác thất bại.', 
+            icon: 'error', 
+            confirmButtonText: 'OK' 
+        });";
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "cancelError", script, true);
+                }
             }
         }
 
@@ -125,7 +137,16 @@ namespace NHOM20_DATN
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Chưa có lịch khám nào.', 'warning');", true);
+                string script = @"
+            Swal.fire({
+                title: 'Thông báo',
+                text: 'Chưa có lịch khám nào!',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });";
+
+                ScriptManager.RegisterStartupScript(this, GetType(),
+                    "noAppointmentWarning", script, true);
             }
         }
 
@@ -163,7 +184,12 @@ namespace NHOM20_DATN
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Không có thông tin.', 'warning');", true);
+                string script = $@"Swal.fire({{ 
+    title: 'Không tìm thấy ', 
+    icon: 'warning', 
+    confirmButtonText: 'OK' 
+}});";
+                ScriptManager.RegisterStartupScript(this, GetType(), "uniqueKey", script, true);
             }
 
         }
@@ -175,12 +201,12 @@ namespace NHOM20_DATN
         {
             if (e.CommandName == "DoiGio")
             {
-                //get id and day on selected item gridview
+               
                 string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
                 string dayWork = commandArgs[0];
                 string idPk = commandArgs[1];
                 string timeWork = commandArgs[2];
-                //set value for hidden timework, daywork, idPk
+                
                 hiddenIdPk.Value = idPk;
                 hiddenOldDay.Value = dayWork;
                 hiddenOldTime.Value = timeWork;
@@ -192,7 +218,7 @@ namespace NHOM20_DATN
                 ddl_aT.Items.Clear();
 
                 List<string> availableTime = DoctorService.availableHour(dayWork, docID);
-                //check leng of string 
+                
                 if (!(availableTime.Count > 0))
                 {
                     ListItem item = new ListItem("Lịch làm của bạn đã Full", "");
@@ -215,7 +241,7 @@ namespace NHOM20_DATN
             else if (e.CommandName == "XemTT")
             {
                 string idPk = e.CommandArgument.ToString();
-                // 1) Query patient info by appointment ID
+               
                 string sql = @"
       SELECT bn.HoTen, bn.NgaySinh, bn.GioiTinh, bn.SoDienThoai, bn.DiaChi
       FROM PhieuKham pk
@@ -234,7 +260,7 @@ namespace NHOM20_DATN
                     lblModal_SDT.Text = r["SoDienThoai"].ToString();
                     lblModal_DiaChi.Text = r["DiaChi"].ToString();
 
-                    // 2) Show the Bootstrap modal
+                   
                     string script = "var myModal = new bootstrap.Modal(document.getElementById('"
                                     + pnlPatientModal.ClientID
                                     + "')); myModal.show();";
@@ -243,7 +269,7 @@ namespace NHOM20_DATN
                 }
                 else
                 {
-                    // Optional: show a warning if not found
+                  
                     ScriptManager.RegisterStartupScript(this, GetType(),
                         "noPatient", "alert('Không tìm thấy thông tin bệnh nhân.');", true);
                 }
@@ -351,8 +377,12 @@ namespace NHOM20_DATN
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
-                    "showAlert('Không tìm thấy dữ liệu.', 'warning');", true);
+                string script = $@"Swal.fire({{ 
+    title: 'Không tìm thấy ', 
+    icon: 'warning', 
+    confirmButtonText: 'OK' 
+}});";
+                ScriptManager.RegisterStartupScript(this, GetType(), "uniqueKey", script, true);
             }
         }
 

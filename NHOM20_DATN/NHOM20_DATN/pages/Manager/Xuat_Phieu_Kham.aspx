@@ -466,50 +466,114 @@
     
 }
 @media print {
-  
+  /* --- 1. Ẩn mọi thứ không cần in --- */
+  .no-print,
+  .search-container,
+  .modern-gridview,
+  .page-header,
+  .btn-in,
+  .modal-overlay {
+    display: none !important;
+  }
+
+  /* --- 2. Chỉ hiển thị phiếu khám --- */
   body * {
     visibility: hidden !important;
   }
-
-  
   #pnlPhieuKham,
   #pnlPhieuKham * {
     visibility: visible !important;
-    box-shadow: none !important;
   }
 
-  
+  /* --- 3. Đưa panel vào giữa trang --- */
   #pnlPhieuKham {
     position: absolute !important;
     top: 0 !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    width: 650px;          
-    max-width: 100% !important; 
+    width: 650px !important;
+    max-width: 100% !important;
     padding: 15px 0 !important;
     background: white !important;
+    box-shadow: none !important;
   }
 
- 
-  .no-print {
-    display: none !important;
+  /* --- 4. Bảo toàn gradient góc phải khi in màu --- */
+  #pnlPhieuKham::before {
+    display: block !important;
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 100px;
+    background: linear-gradient(45deg, #4361ee, #4895ef);
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    z-index: 9999 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-   .phieu-kham-container::before {
-        display: block !important; /* Hiển thị khi in */
-        background: linear-gradient(45deg, #4361ee, #4895ef) !important;
-        width: 120px !important;
-        height: 100px !important;
-        clip-path: polygon(0 0, 100% 0, 100% 100%) !important;
-        z-index: 9999 !important;
-    }
+  /* --- 5. Ép bảng thông tin in đúng dạng table --- */
+  .info-table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+  }
+  .info-table tr {
+    display: table-row !important;
+  }
+  .info-table th,
+  .info-table td {
+    display: table-cell !important;
+    width: auto !important;
+    padding: 15px !important;
+    border-bottom: 1px solid #e9ecef !important;
+    color: #212529 !important;
+  }
+  .info-table th {
+    background-color: #f8f9fa !important;
+    border-bottom: 2px solid #e9ecef !important;
+    font-weight: 600 !important;
+    width: 30% !important;
+  }
+  /* Reset bất kỳ display trước đó */
+  #pnlPhieuKham .phieu-kham-footer {
+    display: block !important;
+    clear: both !important;
+    overflow: visible !important;
+    width: 100% !important;
+    margin-top: 30px !important;
+    padding: 0 15px !important;
+    box-sizing: border-box;
+  }
 
-    /* Đảm bảo không bị che bởi nội dung */
-    .phieu-kham-header,
-    .benh-vien-header {
-        position: relative;
-        z-index: 99999 !important;
-    }
+  /* Bệnh nhân bên trái */
+  #pnlPhieuKham .benhnhan {
+    float: left !important;
+    width: 50% !important;
+    text-align: left !important;
+    margin: 0 !important;
+    position: static !important;
+    clear: none !important;
+  }
+
+  /* Bác sĩ bên phải */
+  #pnlPhieuKham .bottomphai {
+    float: right !important;
+    width: 50% !important;
+    text-align: right !important;
+    margin: 0 !important;
+    position: static !important;
+    clear: none !important;
+  }
+
+  /* Clearfix: đảm bảo footer bung hết chiều cao */
+  #pnlPhieuKham .phieu-kham-footer::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  /* --- 6. Khổ giấy và lề --- */
   @page {
     size: A4 portrait;
     margin: 10mm;

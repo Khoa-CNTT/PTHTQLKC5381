@@ -393,7 +393,7 @@
   max-height: 200px !important;
   
   z-index: 9999 !important;    
-  
+
 }
 .hours-group {
   position: relative;    
@@ -427,7 +427,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
-  padding: 12px;
+  padding: 12px; 
 }
 
 .hours-wrapper .checkbox-list input[type="checkbox"] {

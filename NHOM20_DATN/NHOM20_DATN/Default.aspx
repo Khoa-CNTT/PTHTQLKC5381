@@ -57,8 +57,8 @@
             }
 
             .noidungchinh.visible {
-                opacity: 1; /* Hiển thị phần tử */
-                transform: translateY(0); /* Trả về vị trí ban đầu */
+                opacity: 1; 
+                transform: translateY(0); 
             }
 
             .noidungchinh img {

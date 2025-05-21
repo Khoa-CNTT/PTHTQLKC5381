@@ -15,7 +15,6 @@ namespace NHOM20_DATN.Patient
     {
         LopKetNoi db = new LopKetNoi();
 
-        // MoMo configurations (Nên chuyển vào Web.config trong production)
         private string refundEndpoint = "https://test-payment.momo.vn/v2/gateway/api/refund";
         private string partnerCode = "MOMO";
         private string accessKey = "F8BBA842ECF85";
@@ -33,7 +32,6 @@ namespace NHOM20_DATN.Patient
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('Đã đăng nhập. IDBenhNhan: {Session["IDBenhNhan"]}');", true);
                     btnHuy.Enabled = true;
                 }
             }
@@ -44,8 +42,6 @@ namespace NHOM20_DATN.Patient
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowOverlay", "showOverlay();", true);
             string idTuVan = txtIDTuVan.Text.Trim();
             string idBenhNhan = Session["IDBenhNhan"]?.ToString() ?? string.Empty;
-
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('IDTuVan: {idTuVan}, IDBenhNhan: {idBenhNhan}');", true);
 
             if (string.IsNullOrEmpty(idTuVan) || string.IsNullOrEmpty(idBenhNhan))
             {
@@ -68,8 +64,6 @@ namespace NHOM20_DATN.Patient
                     TimeSpan gioTuVan = TimeSpan.Parse(dt.Rows[0]["Gio"].ToString());
                     DateTime thoiGianTuVan = ngayTuVan.Add(gioTuVan);
                     TimeSpan thoiGianConLai = thoiGianTuVan - DateTime.Now;
-
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('ThoiGianConLai: {thoiGianConLai.TotalHours} hours');", true);
 
                     if (thoiGianConLai.TotalHours < 10)
                     {

@@ -15,7 +15,7 @@
             <div id="contain_add">
                 <%--<asp:LinkButton ID="btn_add_news" runat="server" OnClientClick="clear_open_formAddNews(); return false;" class="btn_add_news"><i class="fa-solid fa-plus"></i>Thêm bài viết</asp:LinkButton>--%>
                 <%--<a href="#"><i class="fa-solid fa-plus"></i>Thêm bài viết</a>--%>
-                <button id="btn_add_news" class="btn_add_news" onclick="open_formAddNews(); return false;"><i class="fa-solid fa-plus"></i>Thêm bài viết </button>
+                <button id="btn_add_news" class="btn_add_news" onclick="open_formAddNews(); return false;"><i class="fa-solid fa-plus"></i> Thêm bài viết </button>
             </div>
         </div>
         <%-- Contain search and create news --%>
@@ -87,12 +87,14 @@
                 <asp:HiddenField ID="imgHidden" runat="server" />
             </div>--%>
             <%-- here --%>
-            <div id="dynamicInputs"></div>
+           
+            <div id="dynamicInputs">
+            </div>
             <%-- Here --%>
             <div class="contain-action-update">
                 <p style="margin: 0;"> <b>Thao tác </b></p>
-                    <button type="button" class="btn-addnews" title="Thêm nội dung" onclick="addTextInput()"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-align-left"></i></button>
-    <button id ="addFileBtn" class="btn-addimg" type="button" title="Thêm ảnh" onclick="addFileInput()"><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-image"></i></button>
+                    <button type="button" class="btn-addnews1" title="Thêm nội dung" onclick="addTextInput()"><i class="fa-solid fa-file-pen"></i></button>
+    <button id ="addFileBtn" class="btn-addimg" type="button" title="Thêm ảnh" onclick="addFileInput()"><i class="fa-solid fa-file-image"></i></button>
             </div>
 
             <%--  --%>

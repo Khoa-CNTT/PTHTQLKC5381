@@ -38,7 +38,7 @@ namespace NHOM20_DATN.res.handle.baiviet
             for (int i = 0; i < inputCount; i++)
             {
                 HttpPostedFile file = files["file" + i];
-                
+
                 if (file != null && file.ContentLength > 0)
                 {
                     string fileName = Path.GetFileName(file.FileName);

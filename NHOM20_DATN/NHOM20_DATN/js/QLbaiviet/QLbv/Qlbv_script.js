@@ -48,7 +48,7 @@ function addFileInput() {
     const input = document.createElement("input");
     input.type = "file";
     input.name = "dynamicInput";
-    
+    input.id = "fileInput";
     input.setAttribute("data-type", "file");
     input.setAttribute("data-index", index);
 
@@ -114,6 +114,14 @@ function addBV() {
             }
         } else if (input.dataset.type === "file" && input.files.length > 0) {
             const file = input.files[0];
+            const sizeInBytes = file.size;
+            const sizeInKB = (sizeInBytes / 1024).toFixed(2);
+            const sizeInMB = (sizeInBytes / (1024 * 1024)).toFixed(2);
+            if (sizeInBytes > 5 * 1024 * 1024) {
+                isValid = false;
+                errorMessage += "Vui lòng chọn file nhỏ hơn 5MB.\n";
+            }
+
             formData.append("file" + i, file);
             formData.append("(filename" + i, "([image" + i + "])" + file.name + "([image" + i + "])");
         } else if (input.dataset.type === "file" && input.files.length === 0) {
@@ -182,3 +190,13 @@ function showAlert(notice, warn) {
         confirmButtonText: 'OK'
     });
 }
+
+document.getElementById("fileInput").addEventListener("change", function () {
+    const file = this.files[0];
+    const maxSize = 5 * 1024 * 1024; 
+
+    if (file && file.size > maxSize) {
+        showAlert("Vui lòng chọn file nhỏ hơn 5MB.","warning")
+        this.value = "";
+    } 
+});

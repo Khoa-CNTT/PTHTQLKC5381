@@ -10,7 +10,9 @@
     width: 100%;
     top: 30%;
 }
-
+.d_block {
+    display: block !important;
+}
 #ContentPlaceHolder1_pn_AT {
     position: fixed;
     border: 1px solid #e4dfd9;

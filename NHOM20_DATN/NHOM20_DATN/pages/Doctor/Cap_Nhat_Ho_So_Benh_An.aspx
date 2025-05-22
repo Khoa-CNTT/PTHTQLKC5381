@@ -7,6 +7,9 @@
         <div id="loading" style="display: none;">
   <div class="spinner"></div>
 </div>
+    <div class="title-hsba">
+        <h1>Cập Nhật Hồ Sơ Bệnh Án</h1>
+    </div>
     <div id="list_here">
 
         <div class="d_flex container_control">

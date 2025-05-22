@@ -10,7 +10,9 @@
     width: 100%;
     top: 30%;
 }
-
+.d_block {
+    display: block !important;
+}
 #ContentPlaceHolder1_pn_AT {
     position: fixed;
     border: 1px solid #e4dfd9;
@@ -20,8 +22,100 @@
     flex-direction: column;
     justify-content: center;
     background-color: #e2e2e2;
+    margin-left: 100px;
+}
+.pnl_AT {
+    background: linear-gradient( 135deg, rgba(163, 216, 239, 0.95) 0%, /* Màu xanh nhạt tạo cảm giác yên tĩnh */
+    rgba(122, 188, 219, 0.9) 100% /* Màu xanh ngọc nhẹ nhàng */
+    );
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 420px;
+    margin: 20px auto;
+    box-shadow: 0 8px 24px rgba(25, 118, 210, 0.1);
 }
 
+/* Nhóm thông tin */
+.info-group {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 8px;
+}
+
+/* Label thông tin */
+.info-label {
+    color: #1565c0;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-weight: 500;
+}
+
+/* Nội dung thông tin */
+.info-content {
+    font-size: 1.1rem;
+    color: #1a237e;
+    margin: 0.5rem 0;
+}
+
+/* Dropdown chọn giờ - Full interactive area */
+.time-picker-container {
+    position: relative;
+    margin: 1.5rem 0;
+}
+
+#ContentPlaceHolder1_ddl_aT {
+    width: 283px;
+    padding: 1rem;
+    border: 2px solid #90caf9;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: #ffffff;
+    color: #1a237e;
+    cursor: pointer;
+    appearance: none;
+    padding-right: 3rem; /* Space for arrow */
+}
+
+/* Custom arrow */
+.custom-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #1976d2;
+}
+
+/* Nút chức năng */
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+#ContentPlaceHolder1_btn_Save,
+#ContentPlaceHolder1_btn_Close {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+#ContentPlaceHolder1_btn_Save {
+    background: #1976d2;
+    color: white;
+    border: none;
+}
+
+#ContentPlaceHolder1_btn_Close {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 2px solid #90caf9;
+}
 
 
 .chTime_content {

@@ -10,6 +10,10 @@
     justify-content: space-between;
 }
 
+#content{
+    width: unset;
+}
+
 .d_block {
     display: block !important;
 }

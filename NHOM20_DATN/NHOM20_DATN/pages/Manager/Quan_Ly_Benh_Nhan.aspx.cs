@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -316,7 +317,17 @@ namespace NHOM20_DATN.pages.Manager
                 txtIDBenhNhan_edit.Text = id;
                 txtName_edit.Text = name;
                 //txtNgaySinh_edit.Text = DateTime.Parse(ngaySinh).ToString("yyyy-MM-dd");
-                txtNgaySinh_edit.Text = DateTime.Parse(ngaySinh).ToString("yyyy-MM-dd");
+                try
+                {
+                    DateTime date = DateTime.Parse(ngaySinh, CultureInfo.InvariantCulture);
+                    txtNgaySinh_edit.Text = date.ToString("yyyy-MM-dd");
+                }
+                catch
+                {
+                    txtNgaySinh_edit.Text = ""; // hoặc báo lỗi
+                }
+
+
                 txtSDT_edit.Text = SDT;
                 txtEmail_edit.Text = email;
                 radioGT_edit.SelectedValue = gt;
@@ -336,7 +347,20 @@ namespace NHOM20_DATN.pages.Manager
         {
             string id = txtIDBenhNhan_edit.Text;
             string name = txtName_edit.Text;
-            string ngaysinh = DateTime.Parse(txtNgaySinh_edit.Text).ToString("MM/dd/yyyy");
+            string ngaysinh;
+
+            try
+            {
+                DateTime date = DateTime.Parse(txtNgaySinh_edit.Text, CultureInfo.InvariantCulture);
+                ngaysinh = date.ToString();
+            }
+            catch
+            {
+                ngaysinh = ""; // hoặc báo lỗi
+            }
+
+
+
             string sdt = txtSDT_edit.Text;
             string email = txtEmail_edit.Text;
             string gt = radioGT_edit.SelectedValue.ToString();

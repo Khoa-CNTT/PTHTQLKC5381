@@ -229,16 +229,16 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             // LinkButton dạng __doPostBack
-            document.querySelectorAll("a").forEach(function (a) {
-                a.addEventListener("click", function (e) {
-                    // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
-                    if (a.href && a.href.includes("__doPostBack")) {
-                        showLoading();
-                    }
-                });
-            });
+            //document.querySelectorAll("a").forEach(function (a) {
+            //    a.addEventListener("click", function (e) {
+            //        // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
+            //        if (a.href && a.href.includes("__doPostBack")) {
+            //            showLoading();
+            //        }
+            //    });
+            //});
 
-            // Bắt submit form
+            // submit form
             document.querySelectorAll("form").forEach(function (form) {
                 form.addEventListener("submit", function () {
                     showLoading();
@@ -246,7 +246,7 @@
             });
         });
 
-        // Nếu dùng UpdatePanel
+        //  UpdatePanel
         if (window.Sys && Sys.WebForms && Sys.WebForms.PageRequestManager) {
             var prm = Sys.WebForms.PageRequestManager.getInstance();
             prm.add_beginRequest(function () {
@@ -260,5 +260,4 @@
     </script>
     <script src="/js/medical_record.js"></script>
 
-    <script src="/js/doctorCreateAccount.js"></script>
 </asp:Content>

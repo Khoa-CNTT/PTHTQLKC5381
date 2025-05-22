@@ -122,6 +122,7 @@ namespace NHOM20_DATN.pages.Doctor
                 string message = "Cập Nhật Thành Công";
                 string script = "ShowAlert('" + message + "','success');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                
                 // Close form after finish update
                 pn_Update.Visible = false;
                 string scriptClose = "CloseForm();";

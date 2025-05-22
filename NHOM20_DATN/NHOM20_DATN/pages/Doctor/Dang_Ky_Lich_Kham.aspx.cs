@@ -29,6 +29,7 @@ namespace NHOM20_DATN
                 ViewState["SelectedHours"] = new List<string>();
 
                 txtNgayKham.Attributes["min"] = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+                txtNgayKham.Attributes["max"] = DateTime.Now.AddMonths(2).ToString("yyyy-MM-dd");
                 if (Session["UserID"] == null)
                 {
                     Response.Redirect("/Dang_Nhap.aspx");

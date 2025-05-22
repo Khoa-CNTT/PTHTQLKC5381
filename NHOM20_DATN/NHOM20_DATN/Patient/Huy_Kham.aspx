@@ -738,12 +738,26 @@
 
         @media print {
             .anhnenhuykham .anhhuykham, .btn-xoa, .btn-in,
-            .danh-sach-phieu-container, .ZX, .ZY, .tieude5, .ghichu, .web, .nen5 {
+            .danh-sach-phieu-container, .ZX, .ZY, .tieude5, .ghichu, .web, .nen5, .bienvien5 {
+                display: none !important;
+            }
+
+            div[style*="z-index: 10000"] {
+                display: none !important;
+            }
+
+            #preny-open, #preny-chat-container {
                 display: none !important;
             }
 
             #openChatBtn, #chatbotBox {
                 display: none !important;
+            }
+
+            @page {
+                size: auto !important;
+                margin: 0;
+                text-align: center !important;
             }
 
             body, .tong5, .trai5, .phai5, .tieudephieu5 {
@@ -892,6 +906,251 @@
 
             .phai5 {
                 float: right !important;
+            }
+
+            .tieudephieu5, .id5, .phong5, .thoigiankham5,
+            .trai5, .phai5 {
+                text-align: left !important;
+                margin-left: 0 !important;
+                float: none !important;
+                width: 100% !important;
+            }
+
+            .nentrong, .than5 {
+                page-break-inside: avoid;
+            }
+
+            .khung1, .khung2, .khung3,
+            .khung4, .khung5, .khung6,
+            .khung7 {
+                display: inline !important;
+                border: none !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin: 0 0 0 5px !important;
+                width: 250px !important;
+                font-weight: bold !important;
+            }
+
+            .chinh5 {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+            }
+
+
+            .logo5 img {
+                display: block !important;
+                margin: 0 auto 10px auto !important;
+                width: 80px !important;
+                height: auto !important;
+            }
+
+            .bienvien5 {
+                text-align: center;
+                margin: 10px 0 !important;
+                font-size: 15px !important;
+            }
+
+            .nentrong, .than5 {
+                page-break-inside: avoid;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        @media print and (orientation: landscape) {
+            .anhnenhuykham .anhhuykham, .btn-xoa, .btn-in,
+            .danh-sach-phieu-container, .ZX, .ZY, .tieude5, .ghichu, .web, .nen5, .bienvien5 {
+                display: none !important;
+            }
+
+            div[style*="z-index: 10000"] {
+                display: none !important;
+            }
+
+            #preny-open, #preny-chat-container {
+                display: none !important;
+            }
+
+            #openChatBtn, #chatbotBox {
+                display: none !important;
+            }
+
+            @page {
+                size: auto !important;
+                margin: 0;
+                text-align: center !important;
+            }
+
+            body, .tong5, .trai5, .phai5, .tieudephieu5 {
+                white-space: nowrap !important;
+            }
+
+            .DC {
+                display: block !important;
+                margin-left: 450px !important;
+            }
+
+            .than5 {
+                min-height: calc(100vh - 200px) !important;
+            }
+
+            body, .tong5 {
+                background-color: white !important;
+                color: black !important;
+                margin: 0 !important;
+                padding: 10px !important;
+                width: 100% !important;
+                height: auto !important;
+                line-height: 1.5 !important;
+                margin-left: 60px !important;
+            }
+
+            @page {
+                size: portrait;
+                margin: 1cm;
+            }
+
+            .phongkham5 {
+                margin-left: 0px !important;
+                font-size: 13px !important;
+            }
+
+            .logo5 {
+                position: fixed;
+                top: 13px;
+                margin-left: 210px !important;
+                width: 80px;
+                height: auto;
+            }
+
+                .logo5 img {
+                    width: 100%;
+                    height: auto;
+                }
+
+            .web {
+                display: none !important;
+            }
+
+            .tong5 {
+                display: block !important;
+                left: -200px !important;
+                width: 550px !important;
+                margin-top: 0 !important;
+                font-size: 15px !important;
+            }
+
+            .nguoidangky {
+                display: block !important;
+                left: 800px !important;
+                margin-top: -150px !important;
+                position: fixed !important;
+            }
+
+            .thoigiankham5 {
+                display: inline-block !important;
+                left: 190px !important;
+                top: -20px !important;
+                font-size: 13px !important;
+            }
+
+            .br {
+                display: none !important;
+            }
+
+            .id5 {
+                font-weight: normal !important;
+                position: relative !important;
+                left: 0 !important;
+                display: inline-block !important;
+                top: -30px !important;
+                font-size: 15px !important;
+                padding: 0 !important;
+                left: 290px !important;
+            }
+
+            .tieudephieu5 {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                white-space: nowrap;
+                text-align: left;
+                padding-bottom: 10px;
+                margin-top: -50px !important;
+            }
+
+                .tieudephieu5 .id5 {
+                    display: inline !important;
+                    white-space: nowrap !important;
+                }
+
+                .tieudephieu5 > * {
+                    margin-bottom: 5px;
+                    display: block;
+                }
+
+            .phieukham5 {
+                display: block;
+                left: 180px !important;
+                font-size: 32px !important;
+                margin: 30px 0 20px 0 !important;
+                color: #000 !important;
+                font-weight: bold;
+                margin-bottom: 10px;
+                top: -15px;
+                padding: 20px 0px;
+            }
+
+            .tieudephieu5 {
+                text-align: left;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .id5, .phong5, .thoigiankham5 {
+                display: inline-block !important;
+                margin-top: -55px !important;
+                font-size: 15px !important;
+            }
+
+            .phongkham5 {
+                left: 50px !important;
+            }
+
+            #ContentPlaceHolder1_lbphongkham {
+                margin-left: 50px !important;
+            }
+
+            .trai5, .phai5 {
+                width: 100% !important;
+                float: none !important;
+                margin: 0px 0px !important;
+                padding: 0 !important;
+                margin-top: -15px !important;
+                left: 50px !important;
+            }
+
+                .trai5 h3, .phai5 h3 {
+                    display: inline !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    font-weight: normal !important;
+                    font-size: 13px !important;
+                }
+
+                .trai5 > h3, .phai5 > h3 {
+                    display: block !important;
+                    margin-bottom: 8px !important;
+                }
+
+            .phai5 {
+                float: right !important;
+                left: 50px !important;
             }
 
             .tieudephieu5, .id5, .phong5, .thoigiankham5,
@@ -1233,9 +1492,7 @@
         <div class="nen5"></div>
 
         <div class="nguoidangky">
-            <p class="text-end">Người đăng ký</p>
-            <br>
-            <br>
+            <p class="text-end">Người đăng ký khám</p>
             <p class="text-end">(Ký và ghi rõ họ tên)</p>
         </div>
     </div>
@@ -1335,4 +1592,5 @@
             __doPostBack('<%= gvDanhSachPhieu.UniqueID %>', 'SelectRow$' + rowIndex);
         }
     </script>
+
 </asp:Content>

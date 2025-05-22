@@ -485,6 +485,14 @@
 
     margin-top:35px;
 }
+.swal-wide-popup {
+  max-width: none !important;  
+}
+
+.swal-wide-popup .swal-text {
+  white-space: normal;        
+  word-wrap: break-word;
+}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -592,12 +600,22 @@
     <script>
         function showAlert(message, iconType) {
             Swal.fire({
-                title: message,
+               
+                text: message,
+
                 icon: iconType,
                 confirmButtonText: 'OK',
-                allowOutsideClick: false
+                allowOutsideClick: false,
+
+                
+                width: '500px',
+
+                
+                customClass: {
+                    popup: 'swal-wide-popup'
+                }
             });
         }
-        
+
     </script>
 </asp:Content>

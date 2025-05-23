@@ -26,8 +26,8 @@ namespace NHOM20_DATN.Patient
         private string partnerCode = "MOMO";
         private string accessKey = "F8BBA842ECF85";
         private string secretKey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-        private string redirectUrl = "https://b282-2001-ee0-4b43-4fe0-e4e1-992b-478c-7092.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
-        private string ipnUrl = "https://b282-2001-ee0-4b43-4fe0-e4e1-992b-478c-7092.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string redirectUrl = " https://89b4-2001-ee0-4b43-2d80-cc57-686e-bb2d-fee9.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
+        private string ipnUrl = " https://89b4-2001-ee0-4b43-2d80-cc57-686e-bb2d-fee9.ngrok-free.app/Patient/Thong_Tin_Tu_Van.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {

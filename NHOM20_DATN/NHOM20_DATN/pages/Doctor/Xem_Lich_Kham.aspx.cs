@@ -62,22 +62,18 @@ namespace NHOM20_DATN
 
                 // Thực hiện xóa theo đúng thứ tự
                 string sql = @"
-            DELETE FROM HoSoBenhAn
-            WHERE IDLSK = @idLSK;
+        
+        UPDATE LichKhamBenhNhan 
+        SET TrangThai = 'DaHuy', Ghichu = @reason 
+        WHERE IDPhieu = @idPk;
 
-            DELETE FROM LichSuKham
-            WHERE IDPhieu = @idPk;
+      
+        DELETE FROM HoSoBenhAn 
+        WHERE IDLSK IN (SELECT IDLichSu FROM LichSuKham WHERE IDPhieu = @idPk);
 
-            DELETE FROM LichKhamBacSi
-            WHERE IDPhieu = @idPk;
-
-            UPDATE LichKhamBenhNhan 
-            SET TrangThai = 'DaHuy', Ghichu = @reason 
-            WHERE IDPhieu = @idPk;
-
-            DELETE FROM PhieuKham 
-            WHERE IDPhieu = @idPk;
-        ";
+        DELETE FROM LichSuKham WHERE IDPhieu = @idPk;
+        DELETE FROM LichKhamBacSi WHERE IDPhieu = @idPk;
+        DELETE FROM PhieuKham WHERE IDPhieu = @idPk;";
 
                 SqlParameter[] pr = new SqlParameter[] {
             new SqlParameter("@idPk", idPk),
@@ -118,12 +114,19 @@ namespace NHOM20_DATN
 
             pn_AT.Visible = false;
             string idU = (string)Session["UserID"];
-            string sql_LK = "select * " +
-                "from PhieuKham pk " +
-                "JOIN LichKhamBenhNhan lkb ON pk.IDPhieu = lkb.IDPhieu " +
-                "join BenhNhan bn on pk.IDBenhNhan = bn.IDBenhNhan " +
-                "where pk.IDBacSi = @idBS AND lkb.TrangThai <> 'DaHuy' " + // Chỉ hiển thị các trạng thái khác 'DaHuy'
-                "order by lkb.NgayKham, lkb.ThoiGianKham";
+            string sql_LK = @"SELECT 
+    lkb.IDPhieu,
+    lkb.NgayKham,
+    lkb.ThoiGianKham,
+    lkb.TrangThai,
+    bn.Hoten,
+    bn.SoDienThoai
+FROM LichKhamBenhNhan lkb
+LEFT JOIN PhieuKham pk ON lkb.IDPhieu = pk.IDPhieu
+JOIN BenhNhan bn ON lkb.IDBenhNhan = bn.IDBenhNhan
+WHERE 
+    (pk.IDBacSi = @idBS OR lkb.TrangThai = 'DaHuy')
+ORDER BY lkb.NgayKham DESC";
 
             SqlParameter[] pr = new SqlParameter[] {
         new SqlParameter("@idBS", idU)
@@ -154,9 +157,38 @@ namespace NHOM20_DATN
 
         protected void ddl_specialty_selectedindexchanged(object sender, EventArgs e)
         {
-            string selected_item = filter_specialty.SelectedValue;
-            if (selected_item == "") view_List();
-            else viewList_Filter(selected_item);
+            string selectedStatus = filter_specialty.SelectedValue;
+            string idBS = (string)Session["UserID"];
+
+            string sql = $@"SELECT 
+    lkb.IDPhieu,
+    lkb.NgayKham,
+    lkb.ThoiGianKham,
+    lkb.TrangThai,
+    bn.Hoten,          
+    bn.SoDienThoai     
+FROM LichKhamBenhNhan lkb
+LEFT JOIN PhieuKham pk ON lkb.IDPhieu = pk.IDPhieu
+INNER JOIN BenhNhan bn ON lkb.IDBenhNhan = bn.IDBenhNhan  
+WHERE 
+    (pk.IDBacSi = @idBS OR lkb.TrangThai = 'DaHuy') 
+    {(string.IsNullOrEmpty(selectedStatus) ? "" : " AND lkb.TrangThai = @status")}";
+
+            // Thêm parameters
+            List<SqlParameter> parameters = new List<SqlParameter> {
+        new SqlParameter("@idBS", idBS)
+    };
+
+            if (!string.IsNullOrEmpty(selectedStatus))
+            {
+                parameters.Add(new SqlParameter("@status", selectedStatus));
+            }
+
+            DataTable dt = kn.docdulieu(sql, parameters.ToArray());
+
+            // Bind data vào GridView
+            gridAppointment.DataSource = dt;
+            gridAppointment.DataBind();
         }
         public void viewList_Filter(string status)
         {
@@ -201,12 +233,12 @@ namespace NHOM20_DATN
         {
             if (e.CommandName == "DoiGio")
             {
-               
+
                 string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
                 string dayWork = commandArgs[0];
                 string idPk = commandArgs[1];
                 string timeWork = commandArgs[2];
-                
+
                 hiddenIdPk.Value = idPk;
                 hiddenOldDay.Value = dayWork;
                 hiddenOldTime.Value = timeWork;

@@ -190,7 +190,7 @@
                                         <h5 class="card-title">Đặt khám
                                         <br />
                                             trực tiếp</h5>
-                                        <a href="DangKyKhamTrucTiep.aspx" style="margin-top: 10px;" class="btn btn-primary">Tại đây</a>
+                                        <a href="Patient/Dang_Ky_Kham_Truc_Tiep.aspx" style="margin-top: 10px;" class="btn btn-primary">Tại đây</a>
                                     </div>
                                 </div>
                             </div>

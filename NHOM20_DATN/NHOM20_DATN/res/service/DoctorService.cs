@@ -57,8 +57,7 @@ namespace NHOM20_DATN.res.service
             return available;
         }
 
-
-
+       
 
 
         //ConvertList

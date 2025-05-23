@@ -116,9 +116,10 @@
                     <%--============== Xem thông tin bệnh nhân ===============--%>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Button ID="btnDetail" runat="server" Text="Xem chi tiết"
-                                CommandArgument='<%# Eval("IDBN") %>'
-                                OnClick="btnDetail_Click" CssClass="btn-detail" />
+                            <asp:LinkButton ID="btnDetail" runat="server" Text="Xem chi tiết"
+                                CommandArgument='<%# Eval("IDBN")+","+Eval("IDPhieu") %>'
+                                CommandName="detailBN"
+                             CssClass="btn-detail" ></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
 
@@ -146,7 +147,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
     <div id="patientUpdate-container-dad">
         <div id="patientUpdate_container" class="">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
     <ContentTemplate>
           
             <asp:Panel ID="pn_Update" runat="server" Visible="false" CssClass="pnl_Update">
@@ -174,6 +175,7 @@
                         </div>
                     </div>
                     <%-- inp huong dtr --%>
+
                     <div class="huongdtr-inp">
                         <span><b>Hướng điều trị</b></span>
                         <asp:TextBox ID="txtHuongDtr_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
@@ -184,12 +186,16 @@
                         <asp:TextBox ID="txtGhiChu_edit" TextMode="MultiLine" Rows="3" runat="server"></asp:TextBox>
                     </div>
                     <div class="contain_btn">
-                        <asp:Button ID="btn_Save_Update" runat="server" OnClick="btn_Save_Update_Click" Text="Lưu" />
+                        <asp:Button ID="btn_Save_Update" runat="server" OnClick="btn_Save_Update_Click" Text="Lưu"/>
                         <asp:Button ID="btn_Close_Update" runat="server" OnClick="btn_Close_Update_Click" Text="Đóng" />
                     </div>
                 </div>
      </asp:Panel>
           </ContentTemplate>
+                 <Triggers>
+        <asp:PostBackTrigger ControlID="btn_Save_Update" />
+                       <asp:PostBackTrigger ControlID="btn_Close_Update" />
+    </Triggers>
 </asp:UpdatePanel>     
     </div>
       </div>

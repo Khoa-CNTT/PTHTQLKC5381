@@ -18,7 +18,7 @@ namespace NHOM20_DATN.res.service
 
 
 
-            string add_query = "insert into BaiVietSucKhoe(TieuDe, NoiDung, HinhAnh, NgayDang) values (@TieuDe, @NoiDung,@HinhAnh,getdate())";
+            string add_query = "insert into BaiVietSucKhoe(TieuDe, NoiDung, HinhAnh, NgayDang) values (@TieuDe, @NoiDung,@HinhAnh, getdate())";
             //Truyen tham so
             SqlParameter[] pr_add = {
             new SqlParameter("@TieuDe", Caption),
@@ -32,11 +32,11 @@ namespace NHOM20_DATN.res.service
 
         public int  update(string idContent, string Title, string Description, string Image, string CreateDate)
         {
-            string update_query = "UPDATE BaiVietSucKhoe" +
+            string update_query = "UPDATE BaiVietSucKhoe " +
             " SET TieuDe=  @TieuDe " +
             " ,NoiDung = @NoiDung" +
             " , HinhAnh =@HinhAnh" +
-            " , NgayDang = getdate() " +
+            " , NgayDang = GETDATE() " +
             " WHERE IDBaiViet = @IDBaiViet ";
             //Truyen tham so
             SqlParameter[] pr_update = {

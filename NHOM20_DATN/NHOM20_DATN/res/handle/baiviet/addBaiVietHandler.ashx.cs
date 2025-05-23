@@ -66,7 +66,7 @@ namespace NHOM20_DATN.res.handle.baiviet
                 context.Response.Write("exist");
                 return;
             }
-            int result = qlbvService.add(tieude, log, pathImgToDB, DateTime.Now.ToString());
+            int result = qlbvService.add(tieude, log, pathImgToDB,"");
             context.Response.ContentType = "text/plain";
             context.Response.Write("success");
 

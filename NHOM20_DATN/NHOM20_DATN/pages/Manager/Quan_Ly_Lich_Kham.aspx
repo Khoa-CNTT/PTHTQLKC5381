@@ -140,7 +140,7 @@
                 <%-- Xóa --%>
                 <asp:TemplateField Visible="true">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btn_Delete" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("  IDBacsi") +","+ Eval("IDBenhNhan")%>' CommandName="Xoa" runat="server">
+                        <asp:LinkButton ID="btn_Delete" CssClass="btn-delete" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("  IDBacsi") +","+ Eval("IDBenhNhan")%>' CommandName="Xoa" runat="server">
                              <i class="fa-regular fa-trash-can"></i>
                         </asp:LinkButton>                                       
 
@@ -256,18 +256,29 @@
         // Khi load trang xong thì ẩn loading
         window.addEventListener("load", hideLoading);
 
+
         document.addEventListener("DOMContentLoaded", function () {
-            // LinkButton dạng __doPostBack
-            document.querySelectorAll("a").forEach(function (a) {
-                a.addEventListener("click", function (e) {
-                    // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
-                    if (a.href && a.href.includes("__doPostBack")) {
-                        showLoading();
-                    }
+            document.querySelectorAll(".btn-delete").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    showLoading();
                 });
             });
+            // LinkButton dạng __doPostBack
+            //document.querySelectorAll("a").forEach(function (a) {
+            //    a.addEventListener("click", function (e) {
+            //        // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
+            //        if (a.href && a.href.includes("__doPostBack")) {
+            //            showLoading();
+            //        }
+            //    });
+            //});
 
             // Bắt submit form
+            document.querySelectorAll("form").forEach(function (form) {
+                form.addEventListener("submit", function () {
+                    showLoading();
+                });
+            });
             document.querySelectorAll("form").forEach(function (form) {
                 form.addEventListener("submit", function () {
                     showLoading();

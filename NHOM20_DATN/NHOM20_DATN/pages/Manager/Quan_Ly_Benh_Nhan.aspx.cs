@@ -281,9 +281,10 @@ namespace NHOM20_DATN.pages.Manager
 
                     string idBn = lblID.Text;
                     result = patientManagerment.deletePatients(idBn);
+                    ShowAlert("Đã Xóa", "success");
                 }
             }
-            Response.Redirect("Quan_Ly_Benh_Nhan.aspx");
+            viewListPatients();
         }
 
         protected void cancelDelete_Click(object sender, EventArgs e)

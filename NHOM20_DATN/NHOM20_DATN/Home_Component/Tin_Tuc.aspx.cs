@@ -68,10 +68,10 @@ namespace NHOM20_DATN.Home_Component
             noiDung_literal.Text = htmlBuilder.ToString();
 
             // head image of content
-            if (imagePaths.Length > 0)
-            {
-                imgContent.Attributes["src"] = imagePaths[0];
-            }
+            //if (imagePaths.Length > 0)
+            //{
+            //    imgContent.Attributes["src"] = imagePaths[0];
+            //}
 
         }
     }

@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <div id="container_content">
-           <h1>Quản Lý Lịch Khám</h1>
+           <h1>Quản Lý Bệnh Nhân</h1>
 
     <div id="list_here">
      
@@ -185,7 +185,7 @@
                         <%-- MK --%>
                         <div class="donthuoc-inp">
                             <span><b>Mật Khẩu</b></span>
-                            <asp:TextBox ID="txtMK" placeholder="Mật khẩu" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtMK" placeholder="Mật khẩu" TextMode="Password" runat="server"></asp:TextBox>
 
                         </div>
                     </div>

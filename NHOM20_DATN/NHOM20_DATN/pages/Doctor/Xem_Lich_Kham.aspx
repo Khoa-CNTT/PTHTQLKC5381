@@ -99,7 +99,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%-- Đổi giờ --%>
-               <asp:TemplateField HeaderText="Đổi giờ">
+           <asp:TemplateField HeaderText="Đổi giờ">
   <ItemTemplate>
     <asp:LinkButton 
       ID="btn_ChangeTime" 
@@ -112,20 +112,26 @@
     </asp:LinkButton>
   </ItemTemplate>
 </asp:TemplateField>
-                <%-- Xem thông tin --%>
-                <asp:TemplateField HeaderText="Xem thông tin ">
-                    <ItemTemplate>
-                        <asp:LinkButton ID="btn_ViewDetail" CommandArgument='<%#Eval("IDPhieu") %>' CommandName="XemTT" runat="server">
-                         <i class="fa-solid fa-id-card"></i>
-                        </asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <%-- Xóa --%>
-              <asp:TemplateField Visible="true">
+              <asp:TemplateField HeaderText="Xem thông tin">
     <ItemTemplate>
-        <asp:LinkButton ID="btn_Delete" 
-            OnClientClick='<%# "showCancelDialog(\"" + Eval("IDPhieu") + "\", \"" + Eval("NgayKham") + "\"); return false;" %>' 
-            runat="server">
+        <asp:LinkButton 
+            ID="btn_ViewDetail" 
+            runat="server"
+            CommandName="XemTT"
+            CommandArgument='<%# Eval("IDPhieu") %>'
+            Visible='<%# Eval("TrangThai").ToString() != "DaHuy" %>'>
+            <i class="fa-solid fa-id-card"></i>
+        </asp:LinkButton>
+    </ItemTemplate>
+</asp:TemplateField>
+
+<asp:TemplateField>
+    <ItemTemplate>
+        <asp:LinkButton 
+            ID="btn_Delete" 
+            runat="server"
+            OnClientClick='<%# "showCancelDialog(\"" + Eval("IDPhieu") + "\", \"" + Eval("NgayKham") + "\"); return false;" %>'
+            Visible='<%# Eval("TrangThai").ToString() != "DaHuy" %>'>
             <i class="fa-regular fa-trash-can"></i>
         </asp:LinkButton>
     </ItemTemplate>

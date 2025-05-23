@@ -372,7 +372,7 @@ namespace NHOM20_DATN
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Hãy nhập triệu chứng.', 'warning');", true);
                 return;
             }
-            if (ddlbuoikham.SelectedValue == "0")
+            if (ddlbuoikham.SelectedValue == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", "showAlert('Vui lòng chọn buổi khám.', 'warning');", true);
                 return;

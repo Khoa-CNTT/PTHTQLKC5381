@@ -143,35 +143,58 @@ namespace NHOM20_DATN.pages.DoctorOnline
         }
         protected void gridDoctor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            string query_list;
-            SqlParameter[] pr;
+            string baseQuery;
+            SqlParameter[] parameters = null;
 
+            // Xác định query cơ bản tùy theo role
             if (Session["Role"].ToString() == "BacSiOn")
             {
-                query_list = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
-                      lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
-                      FROM LichTuVan lt
-                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                      WHERE lt.IDBacSi = @IDBacSi
-                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
+                baseQuery = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
+              lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
+              FROM LichTuVan lt
+              INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
+              WHERE lt.IDBacSi = @IDBacSi";
 
-                pr = new SqlParameter[] {
+                parameters = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
         };
             }
             else
             {
-                query_list = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
-                      lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
-                      FROM LichTuVan lt
-                      INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan
-                      ORDER BY lt.Ngay DESC, lt.Gio DESC";
-
-                pr = new SqlParameter[] { };
+                baseQuery = @"SELECT lt.IDTuVan, bn.IDBenhNhan, bn.HoTen AS HoTenBenhNhan, lt.Ngay, lt.Gio, 
+              lt.TrieuChung, lt.LinkJitsi AS Link, lt.TrangThai
+              FROM LichTuVan lt
+              INNER JOIN BenhNhan bn ON lt.IDBenhNhan = bn.IDBenhNhan";
             }
 
-            DataTable dataTable = ketNoi.docdulieu(query_list, pr);
-            GridView1.DataSource = dataTable;
+            // Áp dụng bộ lọc ngày nếu có
+            if (!string.IsNullOrEmpty(ddlNgayKham.SelectedValue))
+            {
+                DateTime ngay = DateTime.ParseExact(ddlNgayKham.SelectedValue, "yyyy-MM-dd", null);
+                baseQuery += (baseQuery.Contains("WHERE") ? " AND " : " WHERE ");
+                baseQuery += "CONVERT(date, lt.Ngay) = CONVERT(date, @Ngay)";
+
+                if (parameters == null)
+                {
+                    parameters = new SqlParameter[] {
+                new SqlParameter("@Ngay", ngay)
+            };
+                }
+                else
+                {
+                    var newParams = new SqlParameter[parameters.Length + 1];
+                    parameters.CopyTo(newParams, 0);
+                    newParams[parameters.Length] = new SqlParameter("@Ngay", ngay);
+                    parameters = newParams;
+                }
+            }
+
+            // Thêm ORDER BY
+            baseQuery += " ORDER BY lt.Ngay DESC, lt.Gio DESC";
+
+            // Thực thi query với các điều kiện lọc
+            DataTable dt = ketNoi.docdulieu(baseQuery, parameters);
+            GridView1.DataSource = dt;
             GridView1.PageIndex = e.NewPageIndex;
             GridView1.DataBind();
         }

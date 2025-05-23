@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections;
 
 namespace NHOM20_DATN
 {
@@ -197,36 +198,107 @@ namespace NHOM20_DATN
         }
         protected void gridDoctor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            string query_list;
-            SqlParameter[] pr;
+            string baseQuery;
+            SqlParameter[] parameters = null;
 
+            // Xác định query cơ bản tùy theo role
             if (Session["Role"].ToString() == "BacSi")
             {
-                query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                  p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
-                  p.NgayKham, p.ThoiGianKham, p.TrieuChung, ISNULL(lk.TrangThai, 'DaDangKy') AS TrangThai
-                  FROM PhieuKham p 
-                  INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
-                  LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
-                  WHERE p.IDBacSi = @IDBacSi";
+                baseQuery = @"SELECT p.IDBenhNhan, p.HoTen, p.NgayKham, p.ThoiGianKham, 
+                   p.TrieuChung, ISNULL(lk.TrangThai, 'DaDangKy') AS TrangThai
+                   FROM PhieuKham p 
+                   LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu
+                   WHERE p.IDBacSi = @IDBacSi";
 
-                pr = new SqlParameter[] {
+                parameters = new SqlParameter[] {
             new SqlParameter("@IDBacSi", Session["UserID"].ToString())
         };
             }
             else
             {
-                query_list = @"SELECT p.IDBenhNhan, p.HoTen, p.NgaySinh, p.GioiTinh, p.SoDienThoai, p.Email, 
-                  p.IDPhongKham, ck.TenChuyenKhoa as ChuyenKhoa, ck.IDChuyenKhoa,
-                  p.NgayKham, p.ThoiGianKham, p.TrieuChung, ISNULL(lk.TrangThai, 'DaDangKy') AS TrangThai
-                  FROM PhieuKham p 
-                  INNER JOIN ChuyenKhoa ck ON p.IDChuyenKhoa = ck.IDChuyenKhoa
-                  LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu";
-                pr = new SqlParameter[] { };
+                baseQuery = @"SELECT p.IDBenhNhan, p.HoTen, p.NgayKham, p.ThoiGianKham, 
+                   p.TrieuChung, ISNULL(lk.TrangThai, 'DaDangKy') AS TrangThai
+                   FROM PhieuKham p 
+                   LEFT JOIN LichKhamBenhNhan lk ON p.IDPhieu = lk.IDPhieu";
             }
 
-            DataTable dataTable = ketNoi.docdulieu(query_list, pr);
-            GridView1.DataSource = dataTable;
+            // Áp dụng bộ lọc trạng thái nếu có
+            if (!string.IsNullOrEmpty(ddlTrangThai.SelectedValue))
+            {
+                baseQuery += (baseQuery.Contains("WHERE") ? " AND " : " WHERE ");
+                baseQuery += "(lk.TrangThai = @TrangThai OR (@TrangThai = 'DaDangKy' AND lk.TrangThai IS NULL))";
+
+                if (parameters == null)
+                {
+                    parameters = new SqlParameter[] {
+                new SqlParameter("@TrangThai", ddlTrangThai.SelectedValue)
+            };
+                }
+                else
+                {
+                    var newParams = new SqlParameter[parameters.Length + 1];
+                    parameters.CopyTo(newParams, 0);
+                    newParams[parameters.Length] = new SqlParameter("@TrangThai", ddlTrangThai.SelectedValue);
+                    parameters = newParams;
+                }
+            }
+
+            // Áp dụng bộ lọc ngày khám nếu có
+            if (!string.IsNullOrEmpty(ddlNgayKham.SelectedValue))
+            {
+                DateTime ngay = DateTime.ParseExact(ddlNgayKham.SelectedValue, "yyyy-MM-dd", null);
+                baseQuery += (baseQuery.Contains("WHERE") ? " AND " : " WHERE ");
+                baseQuery += "CONVERT(date, p.NgayKham) = CONVERT(date, @NgayKham)";
+
+                if (parameters == null)
+                {
+                    parameters = new SqlParameter[] {
+                new SqlParameter("@NgayKham", ngay)
+            };
+                }
+                else
+                {
+                    var newParams = new SqlParameter[parameters.Length + 1];
+                    parameters.CopyTo(newParams, 0);
+                    newParams[parameters.Length] = new SqlParameter("@NgayKham", ngay);
+                    parameters = newParams;
+                }
+            }
+
+            // Áp dụng tìm kiếm nếu có
+            if (!string.IsNullOrEmpty(txt_Searching.Text.Trim()))
+            {
+                string searchTerm = "%" + txt_Searching.Text.Trim() + "%";
+                baseQuery += (baseQuery.Contains("WHERE") ? " AND " : " WHERE ");
+                baseQuery += @"(p.IDBenhNhan LIKE @id OR p.HoTen LIKE @term
+                    OR CONVERT(varchar, p.NgayKham, 103) LIKE @term
+                    OR CONVERT(varchar, p.ThoiGianKham, 108) LIKE @term
+                    OR p.TrieuChung LIKE @term
+                    OR ISNULL(lk.TrangThai, 'DaDangKy') LIKE @term)";
+
+                if (parameters == null)
+                {
+                    parameters = new SqlParameter[] {
+                new SqlParameter("@id", "%" + txt_Searching.Text.Trim() + "%"),
+                new SqlParameter("@term", searchTerm)
+            };
+                }
+                else
+                {
+                    var newParams = new SqlParameter[parameters.Length + 2];
+                    parameters.CopyTo(newParams, 0);
+                    newParams[parameters.Length] = new SqlParameter("@id", "%" + txt_Searching.Text.Trim() + "%");
+                    newParams[parameters.Length + 1] = new SqlParameter("@term", searchTerm);
+                    parameters = newParams;
+                }
+            }
+
+            // Thêm ORDER BY
+            baseQuery += " ORDER BY p.NgayKham DESC";
+
+            // Thực thi query với các điều kiện lọc
+            DataTable dt = ketNoi.docdulieu(baseQuery, parameters);
+            GridView1.DataSource = dt;
             GridView1.PageIndex = e.NewPageIndex;
             GridView1.DataBind();
         }

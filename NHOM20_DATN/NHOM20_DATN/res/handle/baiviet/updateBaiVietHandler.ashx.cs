@@ -93,8 +93,9 @@ namespace NHOM20_DATN.res.handle.baiviet
             //    return;
             //}
 
+          
 
-            int result = qlbvService.update(id,tieude, log, pathImgToDB, DateTime.Now);
+            int result = qlbvService.update(id,tieude, log, pathImgToDB, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             context.Response.ContentType = "text/plain";
             
             context.Response.Write("success");

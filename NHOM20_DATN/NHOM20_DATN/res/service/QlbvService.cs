@@ -18,33 +18,31 @@ namespace NHOM20_DATN.res.service
 
 
 
-            string add_query = "insert into BaiVietSucKhoe(TieuDe, NoiDung, HinhAnh, NgayDang) values (@TieuDe, @NoiDung,@HinhAnh,@NgayDang)";
+            string add_query = "insert into BaiVietSucKhoe(TieuDe, NoiDung, HinhAnh, NgayDang) values (@TieuDe, @NoiDung,@HinhAnh,getdate())";
             //Truyen tham so
             SqlParameter[] pr_add = {
             new SqlParameter("@TieuDe", Caption),
             new SqlParameter("@NoiDung", Content),
-            new SqlParameter("@HinhAnh", Image),
-            new SqlParameter("@NgayDang", CreateDate)
+            new SqlParameter("@HinhAnh", Image)
         };
             int result_TK = db.CapNhat(add_query, pr_add);
             return result_TK;
 
         }
 
-        public int  update(string idContent, string Title, string Description, string Image, DateTime CreateDate)
+        public int  update(string idContent, string Title, string Description, string Image, string CreateDate)
         {
             string update_query = "UPDATE BaiVietSucKhoe" +
             " SET TieuDe=  @TieuDe " +
             " ,NoiDung = @NoiDung" +
             " , HinhAnh =@HinhAnh" +
-            " , NgayDang = @NgayDang " +
+            " , NgayDang = getdate() " +
             " WHERE IDBaiViet = @IDBaiViet ";
             //Truyen tham so
             SqlParameter[] pr_update = {
             new SqlParameter("@TieuDe", Title),
             new SqlParameter("@NoiDung", Description),
             new SqlParameter("@HinhAnh", Image),
-            new SqlParameter("@NgayDang", CreateDate),
             new SqlParameter("@IDBaiViet", idContent)
         };
             int result_update = db.CapNhat(update_query, pr_update);

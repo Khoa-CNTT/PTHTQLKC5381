@@ -550,7 +550,6 @@
                     OnSelectedIndexChanged="ddlTrangThai_SelectedIndexChanged">
                     <asp:ListItem Text="Tất cả trạng thái" Value="" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Đã đăng ký" Value="DaDangKy"></asp:ListItem>
-                    <asp:ListItem Text="Đã huỷ" Value="DaHuy"></asp:ListItem>
                     <asp:ListItem Text="Đã khám" Value="DaKham"></asp:ListItem>
                 </asp:DropDownList>
                 <asp:DropDownList ID="ddlNgayKham" runat="server" AutoPostBack="true"

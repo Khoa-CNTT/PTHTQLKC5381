@@ -113,16 +113,18 @@ namespace NHOM20_DATN.Consultant
 
             DateTime today = DateTime.Today;
             var listDates = new List<NgayKhamInfo>();
+            string selectedDate = txtNgayKham.Text;
 
             for (int i = 1; i <= 7; i++)
             {
                 DateTime d = today.AddDays(i);
+                string dateValue = d.ToString("yyyy-MM-dd");
                 listDates.Add(new NgayKhamInfo
                 {
                     NgayValue = d.ToString("yyyy-MM-dd"),
                     NgayThang = d.ToString("dd/MM"),
                     Thu = dayOfWeekVN[(int)d.DayOfWeek],
-                    ActiveClass = ""
+                    ActiveClass = (dateValue == selectedDate) ? "active" : ""
                 });
             }
 
@@ -138,6 +140,7 @@ namespace NHOM20_DATN.Consultant
             {
                 // Gọi hàm load buổi khám dựa theo bác sĩ và ngày khám
                 LoadBuoiKham(ddlBacSi.SelectedValue, ngayKham);
+                BindNgayKhamRepeater();
             }
         }
         private void LoadChuyenKhoa()

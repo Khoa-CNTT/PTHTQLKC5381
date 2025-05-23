@@ -48,7 +48,7 @@ function addFileInput() {
     const input = document.createElement("input");
     input.type = "file";
     input.name = "dynamicInput";
-    
+    input.id = "fileInput";
     input.setAttribute("data-type", "file");
     input.setAttribute("data-index", index);
 
@@ -182,3 +182,13 @@ function showAlert(notice, warn) {
         confirmButtonText: 'OK'
     });
 }
+
+document.getElementById("fileInput").addEventListener("change", function () {
+    const file = this.files[0];
+    const maxSize = 5 * 1024 * 1024; 
+
+    if (file && file.size > maxSize) {
+        showAlert("Vui lòng chọn file nhỏ hơn 5MB.","warning")
+        this.value = "";
+    } 
+});

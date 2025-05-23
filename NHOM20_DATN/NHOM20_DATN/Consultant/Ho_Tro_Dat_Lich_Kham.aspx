@@ -302,7 +302,9 @@
             .date-box:hover {
                 background-color: #eaeaea;
             }
-
+            .date-box.active .day {
+                color: rgba(255,255,255,0.8);
+            }
             .date-box.active {
                 background-color: #3b40cc;
                 color: #fff;
@@ -708,7 +710,7 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <!-- Khi click vào date-box, giá trị (yyyy-MM-dd) sẽ được gán vào txtNgayKham -->
-                                <div class="date-box" onclick="selectDate('<%# Eval("NgayValue") %>', this)">
+                                <div class='date-box <%# Eval("ActiveClass") %>' onclick="selectDate('<%# Eval("NgayValue") %>', this)">
                                     <span class="date"><%# Eval("NgayThang") %></span>
                                     <span class="day"><%# Eval("Thu") %></span>
                                 </div>
@@ -854,6 +856,7 @@
             }
         }
         function selectDate(selectedDate, element) {
+
             // Cập nhật giá trị cho txtNgayKham
             var txtNgayKhamElem = document.getElementById('<%= txtNgayKham.ClientID %>');
             txtNgayKhamElem.value = selectedDate;
@@ -869,6 +872,12 @@
 
             // Kích hoạt sự kiện OnTextChanged
             __doPostBack('<%= txtNgayKham.UniqueID %>', '');
+
+            rebindDateRepeater(selectedDate);
+        }
+        function rebindDateRepeater(selectedDate) {
+            // Gọi server-side method để cập nhật lại Repeater
+            __doPostBack('<%= UpdatePanelMain.UniqueID %>', 'RebindDates|' + selectedDate);
         }
         function showAlert(message, iconType) {
             Swal.fire({

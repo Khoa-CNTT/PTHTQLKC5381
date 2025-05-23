@@ -143,13 +143,20 @@ namespace NHOM20_DATN.pages.Manager
         public void btn_Search_Click(object sender, EventArgs e)
         {
             string keyname = txt_Searching.Text;
-            if (keyname == "")
+            if (keyname == "")//load all 
             {
                 LoadData();
                 return;
             }
             DataTable listBaiViet = new DataTable();
             listBaiViet = qlbvService.getCLoseResult(keyname);
+            if (!(listBaiViet.Rows.Count > 0))
+            {
+                string message = "Không tìm thấy bài viết!";
+                string script = "showAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }
             ds_baiviet.DataSource = listBaiViet;
             ds_baiviet.DataBind();
         }

@@ -147,10 +147,10 @@ namespace NHOM20_DATN.pages.Manager
             }
             TimeSpan khoangCach = toDate - fromDate;
             int cachngay = int.Parse(khoangCach.TotalDays.ToString());
-            // check if input > 90 days
-            if (cachngay > 90)
+            // check if input > 60 days
+            if (cachngay > 60)
             {
-                string message = "Vui lòng chọn nhỏ hơn 90 ngày";
+                string message = "Vui lòng chọn nhỏ hơn 60 ngày";
                 string script = "showAlert('" + message + "','warning');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
@@ -296,6 +296,8 @@ namespace NHOM20_DATN.pages.Manager
                 DataRow[] huyRows = dt.Select($"Ngay = '{day}' AND TrangThai = 'DaHuy'");
                 int dkCount = dkRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
                 int huyCount = huyRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
+                huyData.Add(huyCount);
+                dkData.Add(dkCount);
             }
             lbl_totalPatient.Text = "" + countAllPatient();
             // total Pk
@@ -328,6 +330,8 @@ namespace NHOM20_DATN.pages.Manager
                 DataRow[] huyRows = dt.Select($"Ngay = '{dayString}' AND TrangThai = 'DaHuy'");
                 int dkCount = dkRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
                 int huyCount = huyRows.Sum(r => Convert.ToInt32(r["SoLuotKham"]));
+                huyData.Add(huyCount);
+                dkData.Add(dkCount);
             }
             lbl_totalPatient.Text = "" + countAllPatient();
             // total Pk

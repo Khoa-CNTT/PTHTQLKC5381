@@ -18,9 +18,9 @@
             <div class="detail_main">
                 <div class="detail_content">
                     <figure class="">
-                        <div class="detail_img">
+                        <%--<div class="detail_img">
                             <img id="imgContent" runat="server"  alt=""/>
-                        </div>
+                        </div>--%>
                         <div>
                             
                         </div>

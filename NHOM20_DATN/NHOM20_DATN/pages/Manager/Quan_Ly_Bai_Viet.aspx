@@ -28,14 +28,14 @@
                             <%-- ID content --%>
                             <asp:HiddenField ID="id_Content" Value='<%# Eval("IDBaiViet") %>' runat="server" />
                             <%-- Image --%>
-                            <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
+                            <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>" target="_blank">
                                 <!--Link news-->
                                 <img src='<%#  Eval("HinhAnh").ToString().Split(',')[0] %>' alt="">
                             </a>
 
                             <div class="news_des">
                                 <!--Caption-->
-                                <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">
+                                <a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>" target="_blank">
                                     <h3 title="<%# Eval("TieuDe") %>"><%# Eval("TieuDe") %></h3>
                                 </a>
                                 <!--Caption-->
@@ -45,7 +45,7 @@
                                 <!--Edit news-->
                                 <div class="contain_btn_news">
                                     <!--detail-->
-                                    <div class="detail_news"><a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>">Xem thêm</a></div>
+                                    <div class="detail_news"><a href="/Home_Component/Tin_Tuc.aspx?maBV=<%# Eval("IDBaiViet") %>" target="_blank">Xem thêm</a></div>
                                     <!--edit -->
                                     <%--<asp:Button class="edit_btn" CssClass="edit_btn" ID="edit_btn" OnClick="edit_News" runat="server" Text="Sửa" />--%>
                                     <button id="edit_btn" class="edit_btn" onclick="loadDataFromServer(<%# Eval("IDBaiViet") %>);open_formAddNews(); return false;">Sửa</button>

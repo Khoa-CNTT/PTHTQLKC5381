@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
        <div id="container_content">
-           <h1>Quản Lý Lịch Khám</h1>
+           <h1>Quản Lý Bệnh Nhân</h1>
 
     <div id="list_here">
      
@@ -185,7 +185,7 @@
                         <%-- MK --%>
                         <div class="donthuoc-inp">
                             <span><b>Mật Khẩu</b></span>
-                            <asp:TextBox ID="txtMK" placeholder="Mật khẩu" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtMK" placeholder="Mật khẩu" TextMode="Password" runat="server"></asp:TextBox>
 
                         </div>
                     </div>
@@ -238,12 +238,13 @@
                     <h2>Sửa thông tin</h2>
                     <asp:TextBox ID="txtIDBenhNhan_edit" Visible="false" runat="server"></asp:TextBox>
                     <asp:TextBox ID="txtName_edit" runat="server"></asp:TextBox>
-                    <asp:TextBox ID="txtNgaySinh_edit" type="date" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtNgaySinh_edit" TextMode="Date" runat="server"></asp:TextBox>
                     <asp:TextBox ID="txtSDT_edit" runat="server"></asp:TextBox>
                     <asp:TextBox ID="txtEmail_edit" runat="server"></asp:TextBox>
                     <asp:RadioButtonList ID="radioGT_edit" runat="server">
                         <asp:ListItem Value="Nam" Text="Nam"></asp:ListItem>
                         <asp:ListItem Value="Nu" Text="Nữ"></asp:ListItem>
+                        <asp:ListItem Value="Khac" Text="Khác"></asp:ListItem>
                     </asp:RadioButtonList>
                     <asp:Button ID="btn_Save_Update" runat="server" OnClick="btn_Save_Update_Click" Text="Lưu" />
                     <asp:Button ID="btn_Close_Update" runat="server" OnClick="btn_Close_Update_Click" Text="Đóng" />

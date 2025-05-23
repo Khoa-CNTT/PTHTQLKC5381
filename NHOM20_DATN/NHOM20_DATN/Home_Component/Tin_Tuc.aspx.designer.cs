@@ -33,15 +33,6 @@ namespace NHOM20_DATN.Home_Component
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl date_txt;
 
         /// <summary>
-        /// imgContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgContent;
-
-        /// <summary>
         /// noiDung_literal control.
         /// </summary>
         /// <remarks>

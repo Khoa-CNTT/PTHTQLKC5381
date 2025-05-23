@@ -29,10 +29,25 @@ namespace NHOM20_DATN.pages.Doctor
                     return;
                 }
 
-                loadData();
+                LoadInitialData();
 
             }
 
+        }
+        private void LoadInitialData()
+        {
+            string idbs = (string)Session["UserID"];
+            DataTable dtHS = new DataTable();
+            dtHS = medicalRecordService.getAll(idbs);
+            if (dtHS.Rows.Count <= 0)
+            {
+                string message = "Không có bệnh nhân nào";
+                string script = "ShowAlert('" + message + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                return;
+            }
+            gridMedicalRecord.DataSource = dtHS;
+            gridMedicalRecord.DataBind();
         }
 
         public void loadData()
@@ -98,6 +113,29 @@ namespace NHOM20_DATN.pages.Doctor
                 //cancelEdit.Visible = false;
                 string script = "OpenForm();";
                 ScriptManager.RegisterStartupScript(this, GetType(), "display", script, true);
+            }else if (e.CommandName == "detailBN")
+            {
+                string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
+                string idBenhNhan = commandArgs[0];
+                string idPK = commandArgs[1];
+                DataTable dt = patientService.findByBNAndPK(idBenhNhan, idPK);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    string details = $@"
+    <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]?.ToString() ?? ""}</p>
+    <p><strong>Họ tên:</strong> {row["HoTen"]?.ToString() ?? ""}</p>
+    <p><strong>Ngày sinh:</strong> {(row["NgaySinh"] != DBNull.Value ? Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy") : "")}</p>
+    <p><strong>Giới tính:</strong> {row["GioiTinh"]?.ToString() ?? ""}</p>
+    <p><strong>Địa chỉ:</strong> {row["DiaChi"]?.ToString() ?? ""}</p>
+<p><strong>Triệu chứng:</strong> {row["TrieuChung"]?.ToString() ?? ""}</p>";
+
+                    patientDetails.InnerHtml = details;
+                    // Hiển thị modal
+                    ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
+                        "document.getElementById('detailModal').style.display='block';", true);
+                }
             }
 
         }
@@ -117,19 +155,23 @@ namespace NHOM20_DATN.pages.Doctor
             string ngaycapnhat = dayDatetime.ToString("MM/dd/yyyy");
             int result = medicalRecordService.update(idBs, idBn, idHs,idPK, chandoan, donthuoc, ngaycapnhat, ghichu);
             int resultLSK = lskService.update(idBn, idPK, chandoan, huongdtr);
+          
             if (result != 0)
             {
+                
                 string message = "Cập Nhật Thành Công";
                 string script = "ShowAlert('" + message + "','success');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
+                
                 // Close form after finish update
-                pn_Update.Visible = false;
+               
                 string scriptClose = "CloseForm();";
                 ScriptManager.RegisterStartupScript(this, GetType(), "display", scriptClose, true);
 
                 //cancelEdit.Visible = true;
                 // then load page
                 loadData();
+                
                 return;
             }
             else
@@ -192,31 +234,7 @@ namespace NHOM20_DATN.pages.Doctor
 
 
         //=========== Xem thông tin bệnh nhân ===============
-        protected void btnDetail_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            string idBenhNhan = btn.CommandArgument;
-
-            DataTable dt = patientService.findById(idBenhNhan);
-
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                DataRow row = dt.Rows[0];
-                string details = $@"
-    <p><strong>Mã bệnh nhân:</strong> {row["IDBenhNhan"]?.ToString() ?? ""}</p>
-    <p><strong>Họ tên:</strong> {row["HoTen"]?.ToString() ?? ""}</p>
-    <p><strong>Ngày sinh:</strong> {(row["NgaySinh"] != DBNull.Value ? Convert.ToDateTime(row["NgaySinh"]).ToString("dd/MM/yyyy") : "")}</p>
-    <p><strong>Giới tính:</strong> {row["GioiTinh"]?.ToString() ?? ""}</p>
-    <p><strong>Số điện thoại:</strong> {row["SoDienThoai"]?.ToString() ?? ""}</p>
-    <p><strong>Email:</strong> {row["Email"]?.ToString() ?? ""}</p>
-    <p><strong>Địa chỉ:</strong> {row["DiaChi"]?.ToString() ?? ""}</p>";
-                patientDetails.InnerHtml = details;
-                // Hiển thị modal
-                ClientScript.RegisterStartupScript(this.GetType(), "ShowModal",
-                    "document.getElementById('detailModal').style.display='block';", true);
-            }
-        }
-
+ 
 
 
         //===========

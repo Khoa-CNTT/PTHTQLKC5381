@@ -187,7 +187,7 @@
                     </asp:DropDownList>
                 </div>
                 <div>
-                    <asp:TextBox ID="txtCalender" type="date" AutoPostBack="true"  OnTextChanged="txtCalender_TextChanged" CssClass="inp_Date" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCalender" type="date"  OnTextChanged="txtCalender_TextChanged" CssClass="inp_Date" runat="server"></asp:TextBox>
                 </div>
                     </div>
                 

@@ -57,8 +57,7 @@ namespace NHOM20_DATN.res.service
             return available;
         }
 
-
-
+       
 
 
         //ConvertList
@@ -218,14 +217,44 @@ namespace NHOM20_DATN.res.service
             dayOld = day_old.ToString("dd/MM/yyyy");
 
             string subject = "Bệnh viện banana: Đổi Giờ Khám Ngày " + dayOld;
-            string description = "Bác sĩ đã Đổi giờ khám của bạn! " +
-            " Giờ khám của bạn lúc: " + timeOld + " , ngày " + dayOld +
-            " Được đổi qua lúc: " + time + ", ngày " + day;
+           
             //mailSender mailSender = new mailSender();
             //mailSender.sendMail_CancelAppointment(email, subject, description);
 
+
+            string emailBody = $@"
+    <div style='background-color: #f5f5f5; padding: 20px 0; font-family: Arial, sans-serif;'>
+        <div style='max-width: 600px; background: white; margin: auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);'>
+            
+            <div style='background-color: #1976d2; color: white; padding: 20px; text-align: center; font-size: 24px; font-weight: bold;'>
+                BANANA HOSPITAL
+            </div>
+            
+            <div style='padding: 30px; text-align: left; color: #333;'>
+                <p>Kính gửi <strong>{name}</strong>,</p>
+
+                <p>Thông báo thay đổi lịch khám của bạn:</p>
+
+                <div style='background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 20px 0;'>
+                    <p style='margin: 5px 0;'><strong>Mã phiếu:</strong> {idPk}</p>
+                    <p style='margin: 5px 0;'><strong>Lịch cũ:</strong> {timeOld} ngày {dayOld}</p>
+                    <p style='margin: 5px 0;'><strong>Lịch mới:</strong> {time} ngày {day}</p>
+                </div>
+
+                <p>Vui lòng đến đúng giờ theo lịch hẹn mới. Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ qua số hotline: 1900 1234</p>
+
+                <p>Trân trọng,<br/>
+                <strong>Phòng Khám BANANA Hospital</strong></p>
+            </div>
+
+        </div>
+    </div>";
+
+           
+
+            // Gửi email
             sendMai_gmail mailSender = new sendMai_gmail();
-            mailSender.sendMail_gmail(email, subject, description);
+            mailSender.sendMail_gmail(email, subject, emailBody);
 
         }
 

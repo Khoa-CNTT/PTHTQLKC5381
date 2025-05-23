@@ -78,6 +78,20 @@ namespace NHOM20_DATN.res.service
             DataTable dt = kn.docdulieu(query, pr);
             return dt;
         }
+        //=============== find by id and phieu kham
+        public DataTable findByBNAndPK(string idBn, string idPK)
+        {
+            string query = "  SELECT * FROM BenhNhan bn, PhieuKham pk WHERE bn.IDBenhNhan =pk.IDBenhNhan   " +
+                " and bn.IDBenhNhan = @IDBenhNhan" +
+                " and pk.IDPhieu = @IDPhieu";
+
+            SqlParameter[] pr = new SqlParameter[] {
+             new SqlParameter("@IDBenhNhan",idBn),
+             new SqlParameter("@IDPhieu",idPK)
+            };
+            DataTable dt = kn.docdulieu(query, pr);
+            return dt;
+        }
 
 
 

@@ -3,7 +3,7 @@
      <link href="../../style/doctor/doctor_appointment.css" rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       
@@ -101,7 +101,7 @@
                 <%-- Đổi giờ --%>
                 <asp:TemplateField HeaderText="Đổi giờ">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btn_ChangeTime" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("ThoiGianKham")%>' CommandName="DoiGio" runat="server">
+                        <asp:LinkButton ID="btn_ChangeTime" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("ThoiGianKham")%>' CommandName="DoiGio" runat="server" OnClientClick="showLoading();">
                          <i class="fa-regular fa-clock"></i>
                         </asp:LinkButton>
                     </ItemTemplate>
@@ -156,7 +156,7 @@
 
 
                 </div>
-                <asp:Button ID="btn_Save" runat="server" OnClick="btn_Save_Click" Text="Lưu" />
+                <asp:Button ID="btn_Save" runat="server" OnClick="btn_Save_Click" OnClientClick="showLoading();" Text="Lưu" />
                 <asp:Button ID="btn_Close" runat="server" OnClick="btn_Close_Click" Text="Đóng" />
 
             </div>
@@ -288,7 +288,9 @@
             }
         });
     }
-      
+    function showLoading() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    }  
     // Tự động ẩn loading khi trang load xong
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('#loadingOverlay').style.display = 'none';

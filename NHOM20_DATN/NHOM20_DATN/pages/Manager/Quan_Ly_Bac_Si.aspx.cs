@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
 
 namespace NHOM20_DATN.pages.Manager
 {
@@ -211,8 +212,28 @@ namespace NHOM20_DATN.pages.Manager
             else{
                 img_String = anhHidden.Text+"";
             }
+            if (phone.Text.Length > 10 || phone.Text.Length < 10)
+            {
+                string messageD = "Số điện thoại không hợp lệ";
+                string scriptD = "showAlert('" + messageD + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptD, true);
+                return;
+            }
+            if (phone.Text.Length > 10 || phone.Text.Length < 10)
+            {
+                string messageD = "Số điện thoại không hợp lệ";
+                string scriptD = "showAlert('" + messageD + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptD, true);
+                return;
+            }
+            if (!IsValidEmail(email.Text))
+            {
+                string messageD = "Nhập email hợp lệ";
+                string scriptD = "showAlert('" + messageD + "','warning');";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", scriptD, true);
+                return;
+            }
 
-            
             //droplist
             DropDownList ddListDuty = gridDoctor.Rows[e.RowIndex].FindControl("ddl_Duty") as DropDownList;
             DropDownList ddList = gridDoctor.Rows[e.RowIndex].FindControl("ddl_Specialty") as DropDownList;
@@ -467,6 +488,17 @@ namespace NHOM20_DATN.pages.Manager
 
         }
 
-
+        public bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

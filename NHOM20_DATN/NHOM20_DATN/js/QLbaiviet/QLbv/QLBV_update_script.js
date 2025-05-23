@@ -152,7 +152,11 @@ function renderSavedContent(idBV,titleValue, savedString) {
             deleteBtn.type = "button";
             deleteBtn.style.marginLeft = "8px";
             deleteBtn.classList.add("btn-delete-dynamic");
-            deleteBtn.onclick = () => wrapper.remove();
+            deleteBtn.onclick = () => {
+                wrapper.remove();
+                reindexInputs();
+            }
+
             
            
             deleteBtn.appendChild(iconMinus());
@@ -187,6 +191,7 @@ function renderSavedContent(idBV,titleValue, savedString) {
             deleteBtn.classList.add("btn-delete-dynamic");
             deleteBtn.onclick = () => {
                 wrapper.remove();
+                reindexInputs();
             };
             input.addEventListener("change", (e) => {
                 const file = e.target.files[0];
@@ -232,3 +237,18 @@ document.getElementById("fileInput").addEventListener("change", function () {
         this.value = "";
     }
 });
+
+function reindexInputs() {
+    const allDynamicBlocks = document.querySelectorAll(".form-group-dynamic, .form-group-dynamic-img");
+    allDynamicBlocks.forEach((block, newIndex) => {
+        block.setAttribute("data-index", newIndex);
+        const input = block.querySelector("textarea, input[type='file']");
+        if (input) {
+            input.setAttribute("data-index", newIndex);
+        }
+        const hiddenSpan = block.querySelector("span[id^='hiddenImage']");
+        if (hiddenSpan) {
+            hiddenSpan.id = "hiddenImage" + newIndex;
+        }
+    });
+}

@@ -66,7 +66,7 @@
                 <%-- ==============     NGÀY GIỜ   =============== --%>
                 <asp:TemplateField HeaderText="Ngày/Giờ">
                     <ItemTemplate>
-                        <asp:Label ID="lbl_Ngay" title='<%#(DateTime.Parse(Eval("NgayKham").ToString())).ToString("dd/MM/yyyy") %>' runat="server" Text='<%#(DateTime.Parse(Eval("NgayKham").ToString())).ToString("dd/MM/yyyy") %>'></asp:Label><br />
+                        <asp:Label ID="lbl_Ngay" title='<%#DateTime.TryParse(Eval("NgayKham")?.ToString(), out DateTime ngaycn) ? ngaycn.ToString("dd/MM/yyyy") : "" %>' runat="server" Text='<%#DateTime.TryParse(Eval("NgayKham")?.ToString(), out DateTime ngaycn1) ? ngaycn1.ToString("dd/MM/yyyy") : ""%>'></asp:Label><br />
                         <asp:Label ID="lbl_ThoiGian" title='<%#(DateTime.Parse(Eval("ThoiGianKham").ToString())).ToString("HH:mm") %>' runat="server" Text='<%#(DateTime.Parse(Eval("ThoiGianKham").ToString())).ToString("HH:mm")%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -140,7 +140,7 @@
                 <%-- Xóa --%>
                 <asp:TemplateField Visible="true">
                     <ItemTemplate>
-                        <asp:LinkButton ID="btn_Delete" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("  IDBacsi") +","+ Eval("IDBenhNhan")%>' CommandName="Xoa" runat="server">
+                        <asp:LinkButton ID="btn_Delete" CssClass="btn-delete" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("  IDBacsi") +","+ Eval("IDBenhNhan")%>' CommandName="Xoa" runat="server">
                              <i class="fa-regular fa-trash-can"></i>
                         </asp:LinkButton>                                       
 
@@ -256,18 +256,29 @@
         // Khi load trang xong thì ẩn loading
         window.addEventListener("load", hideLoading);
 
+
         document.addEventListener("DOMContentLoaded", function () {
-            // LinkButton dạng __doPostBack
-            document.querySelectorAll("a").forEach(function (a) {
-                a.addEventListener("click", function (e) {
-                    // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
-                    if (a.href && a.href.includes("__doPostBack")) {
-                        showLoading();
-                    }
+            document.querySelectorAll(".btn-delete").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    showLoading();
                 });
             });
+            // LinkButton dạng __doPostBack
+            //document.querySelectorAll("a").forEach(function (a) {
+            //    a.addEventListener("click", function (e) {
+            //        // Nếu là LinkButton do ASP.NET sinh ra (có __doPostBack)
+            //        if (a.href && a.href.includes("__doPostBack")) {
+            //            showLoading();
+            //        }
+            //    });
+            //});
 
             // Bắt submit form
+            document.querySelectorAll("form").forEach(function (form) {
+                form.addEventListener("submit", function () {
+                    showLoading();
+                });
+            });
             document.querySelectorAll("form").forEach(function (form) {
                 form.addEventListener("submit", function () {
                     showLoading();

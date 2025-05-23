@@ -125,9 +125,9 @@ namespace NHOM20_DATN.pages.Manager
             TimeSpan khoangCach = toDate - fromDate;
             int cachngay = int.Parse(khoangCach.TotalDays.ToString());
             // check if input > 90 days
-            if (cachngay > 90)
+            if (cachngay > 30)
             {
-                string message = "Vui lòng chọn nhỏ hơn 90 ngày";
+                string message = "Vui lòng chọn nhỏ hơn 30 ngày";
                 string script = "showAlert('" + message + "','warning');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", script, true);
                 return;
@@ -196,6 +196,7 @@ namespace NHOM20_DATN.pages.Manager
                 labels.Add("Ngày " + day);
                 DataRow[] dkRows = dt.Select($"Ngay = {day}");
                 int dkCount = dkRows.Sum(r => Convert.ToInt32(r["LuotDangKy"]));
+                data.Add(dkCount);
             }
             lbl_totalPatient.Text = "" + countAllPatient();
             // total Pk
@@ -210,7 +211,7 @@ namespace NHOM20_DATN.pages.Manager
         {
             List<string> labels = new List<string>();
             List<int> huyData = new List<int>();
-            List<int> dkData = new List<int>();
+            List<int> data = new List<int>();
 
             DateTime today = DateTime.Today;
             int delta = DayOfWeek.Monday - today.DayOfWeek;
@@ -227,8 +228,9 @@ namespace NHOM20_DATN.pages.Manager
                 DataRow[] dkRows = dt.Select($"Ngay = '{ngay:yyyy-MM-dd}'");
 
                 int dkCount = dkRows.Sum(r => Convert.ToInt32(r["LuotDangKy"]));
-
+                data.Add(dkCount);
             }
+
             lbl_totalPatient.Text = "" + countAllPatient();
             // total tv
             lbl_allPk.Text = "" + countDaDK(dt);
@@ -237,7 +239,7 @@ namespace NHOM20_DATN.pages.Manager
 
             JavaScriptSerializer js = new JavaScriptSerializer();
             labelsJson = js.Serialize(labels);
-            dkDataJson = js.Serialize(dkData);
+            dkDataJson = js.Serialize(data);
         }
 
 
@@ -246,7 +248,7 @@ namespace NHOM20_DATN.pages.Manager
         {
             List<string> labels = new List<string>();
             List<int> huyData = new List<int>();
-            List<int> dkData = new List<int>();
+            List<int> data = new List<int>();
 
             for (int i = 1; i <= 1; i++)
             {
@@ -254,12 +256,13 @@ namespace NHOM20_DATN.pages.Manager
                 DataRow[] dkRows = dt.Select($"Ngay = '{day}' ");
 
                 int dkCount = dkRows.Sum(r => Convert.ToInt32(r["LuotDangKy"]));
+                data.Add(dkCount);
             }
             lbl_totalPatient.Text = "" + countAllPatient();
             lbl_allPk.Text = "" + countDaDK(dt);
             JavaScriptSerializer js = new JavaScriptSerializer();
             labelsJson = js.Serialize(labels);
-            dkDataJson = js.Serialize(dkData);
+            dkDataJson = js.Serialize(data);
         }
 
 

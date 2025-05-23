@@ -99,13 +99,19 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <%-- Đổi giờ --%>
-                <asp:TemplateField HeaderText="Đổi giờ">
-                    <ItemTemplate>
-                        <asp:LinkButton ID="btn_ChangeTime" CommandArgument='<%#Eval("NgayKham") +","+ Eval("IDPhieu")+","+Eval("ThoiGianKham")%>' CommandName="DoiGio" runat="server" OnClientClick="showLoading();">
-                         <i class="fa-regular fa-clock"></i>
-                        </asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>
+               <asp:TemplateField HeaderText="Đổi giờ">
+  <ItemTemplate>
+    <asp:LinkButton 
+      ID="btn_ChangeTime" 
+      runat="server"
+      CommandName="DoiGio"
+      CommandArgument='<%# Eval("NgayKham") + "," + Eval("IDPhieu") + "," + Eval("ThoiGianKham") %>'
+      OnClientClick="showLoading();"
+      Visible='<%# Eval("TrangThai").ToString() == "DaDangKy" %>'>
+        <i class="fa-regular fa-clock"></i>
+    </asp:LinkButton>
+  </ItemTemplate>
+</asp:TemplateField>
                 <%-- Xem thông tin --%>
                 <asp:TemplateField HeaderText="Xem thông tin ">
                     <ItemTemplate>

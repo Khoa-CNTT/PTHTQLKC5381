@@ -167,7 +167,7 @@
                                    <asp:Label ID="lbl_Email" title='<%#Eval("Email") %>' runat="server" Text='<%#Eval("Email") %>'></asp:Label>
                                </ItemTemplate>
                                <EditItemTemplate>
-                                   <asp:TextBox ID="txt_Email" runat="server" Text='<%#Bind("Email") %>'></asp:TextBox>
+                                   <asp:TextBox ID="txt_Email" runat="server" Text='<%#Bind("Email") %>' TextMode="Email" required></asp:TextBox>
                                </EditItemTemplate>
                            </asp:TemplateField>
 

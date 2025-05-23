@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -82,7 +83,7 @@ namespace NHOM20_DATN.res.handle.baiviet
                 return;
             }
             //DataTable dtTieuDe = new DataTable();
-            
+
             //bool existsNews = dtTieuDe.AsEnumerable()
             //    .Any(row => row["TieuDe"].ToString() == tieude);
             //if (existsNews)
@@ -91,7 +92,9 @@ namespace NHOM20_DATN.res.handle.baiviet
             //    context.Response.Write("exist");
             //    return;
             //}
-            int result = qlbvService.update(id,tieude, log, pathImgToDB, DateTime.Now.ToString());
+
+
+            int result = qlbvService.update(id,tieude, log, pathImgToDB, DateTime.Now);
             context.Response.ContentType = "text/plain";
             
             context.Response.Write("success");

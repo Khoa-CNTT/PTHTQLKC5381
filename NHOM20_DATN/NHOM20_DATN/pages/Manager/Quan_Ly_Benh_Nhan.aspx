@@ -56,13 +56,7 @@
                      Hủy
                     </asp:LinkButton>
                 </div>
-
-
-
-
-
             </div>
-
         </div>
         <%-- List --%>
         <div class="table_doctor">

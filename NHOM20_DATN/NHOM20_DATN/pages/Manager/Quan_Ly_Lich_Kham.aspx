@@ -66,7 +66,7 @@
                 <%-- ==============     NGÀY GIỜ   =============== --%>
                 <asp:TemplateField HeaderText="Ngày/Giờ">
                     <ItemTemplate>
-                        <asp:Label ID="lbl_Ngay" title='<%#(DateTime.Parse(Eval("NgayKham").ToString())).ToString("dd/MM/yyyy") %>' runat="server" Text='<%#(DateTime.Parse(Eval("NgayKham").ToString())).ToString("dd/MM/yyyy") %>'></asp:Label><br />
+                        <asp:Label ID="lbl_Ngay" title='<%#DateTime.TryParse(Eval("NgayKham")?.ToString(), out DateTime ngaycn) ? ngaycn.ToString("dd/MM/yyyy") : "" %>' runat="server" Text='<%#DateTime.TryParse(Eval("NgayKham")?.ToString(), out DateTime ngaycn1) ? ngaycn1.ToString("dd/MM/yyyy") : ""%>'></asp:Label><br />
                         <asp:Label ID="lbl_ThoiGian" title='<%#(DateTime.Parse(Eval("ThoiGianKham").ToString())).ToString("HH:mm") %>' runat="server" Text='<%#(DateTime.Parse(Eval("ThoiGianKham").ToString())).ToString("HH:mm")%>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>

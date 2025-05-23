@@ -229,7 +229,7 @@ namespace NHOM20_DATN.pages.Manager
         } 
 
         //      UPDATE
-        public string updateNews(string id, string tieuDe, string noiDung, string img_String, string createDate)
+        public string updateNews(string id, string tieuDe, string noiDung, string img_String, DateTime createDate)
         {
             int result = qlbvService.update(id,tieuDe, noiDung, img_String, createDate);
             string message = "Cập Nhật Thất Bại";

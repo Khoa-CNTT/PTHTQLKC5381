@@ -371,7 +371,9 @@ WHERE
             DataTable dt = kn.docdulieu(sql_LK, pr);
             gridAppointment.DataSource = dt;
             gridAppointment.PageIndex = e.NewPageIndex;
+            view_List();
             gridAppointment.DataBind();
+            
         }
         //========Reload
 

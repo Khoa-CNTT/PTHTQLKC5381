@@ -332,7 +332,7 @@ WHERE
                     DoctorService.mailChangeAppointment(idPk, oldDAy, oldTime);
                     string js = "showAlert('Thành công. Đã gửi mail báo đổi giờ!', 'success');";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage", js, true);
-                    Response.Redirect("Xem_Lich_Kham.aspx");
+                    //Response.Redirect("Xem_Lich_Kham.aspx");
 
                     view_List();
                     pn_AT.Visible = false;

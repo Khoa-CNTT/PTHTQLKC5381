@@ -70,7 +70,7 @@ namespace NHOM20_DATN.res.service
             //          list.Add(row[rowName].ToString());
             //      Console.WriteLine(row[rowName].ToString());
             //  }
-
+            if (dt == null) { return list; }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 DateTime time = DateTime.Parse(dt.Rows[i][rowName].ToString());

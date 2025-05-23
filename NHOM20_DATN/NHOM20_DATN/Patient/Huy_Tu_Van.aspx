@@ -137,6 +137,45 @@
             .cancel-icon:hover {
                 transform: rotate(20deg); /* Hiệu ứng xoay icon khi hover */
             }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ffffff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -163,7 +202,7 @@
                     </div>
 
                     <div class="form-group text-center">
-                        <asp:Button ID="btnHuy" runat="server" Text="Hủy Tư Vấn" CssClass="btn btn-danger"  OnClick="btnHuy_Click"  />
+                        <asp:Button ID="btnHuy" runat="server" Text="Hủy Tư Vấn" CssClass="btn btn-danger" OnClick="btnHuy_Click" OnClientClick="showOverlay();" />
                     </div>
                     <div class="note">
                         <strong>Lưu ý:</strong> Việc hủy tư vấn cần được thực hiện trước 24h kể từ thời điểm tư vấn. Nếu bạn đã quá hạn, vui lòng liên hệ tổng đài hỗ trợ.
@@ -180,10 +219,10 @@
         </div>
         <div id="successMessage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background-color: #d4edda; color: #155724; padding: 20px 40px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 9999; font-size: 18px; text-align: center;">
         </div>
-        <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9998;">
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: white; font-size: 20px;">
-                Đang xử lý...
-           
+        <div class="overlay" id="loadingOverlay" style="display: none;">
+            <div class="overlay-content">
+                <div class="loading-spinner"></div>
+                <p>Vui lòng chờ trong giây lát...</p>
             </div>
         </div>
     </div>

@@ -39,13 +39,13 @@ namespace NHOM20_DATN.Patient
 
         protected async void btnHuy_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowOverlay", "showOverlay();", true);
             string idTuVan = txtIDTuVan.Text.Trim();
             string idBenhNhan = Session["IDBenhNhan"]?.ToString() ?? string.Empty;
 
             if (string.IsNullOrEmpty(idTuVan) || string.IsNullOrEmpty(idBenhNhan))
             {
                 ThongBao("Bạn phải nhập mã tư vấn hợp lệ.");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
                 return;
             }
 
@@ -68,6 +68,7 @@ namespace NHOM20_DATN.Patient
                     if (thoiGianConLai.TotalHours < 10)
                     {
                         ThongBao("Bạn chỉ có thể hủy tư vấn trước ít nhất 10 giờ so với thời điểm tư vấn.");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
                         return;
                     }
 
@@ -75,6 +76,7 @@ namespace NHOM20_DATN.Patient
                     if (transaction == null || transaction.ResultCode != 0)
                     {
                         ThongBao("Không tìm thấy giao dịch thanh toán hợp lệ hoặc giao dịch không thành công.");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
                         return;
                     }
 
@@ -90,38 +92,43 @@ namespace NHOM20_DATN.Patient
             };
                     int result = db.CapNhat(sqlDelete, parametersDelete);
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('KetQuaXoa: {result}');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
+
 
                     if (result > 0)
                     {
                         bool refundSuccess = await ThucHienHoanTien(transaction.OrderId, transaction.TransId, transaction.Amount, idBenhNhan);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('RefundSuccess: {refundSuccess}');", true);
-
                         if (refundSuccess)
                         {
                             CapNhatTrangThaiHoanTien(transaction.OrderId, "Refunded");
                             GửiEmailXacNhanHuy(idBenhNhan, idTuVan, transaction.Amount);
                             ThongBao("Hủy tư vấn và hoàn tiền thành công. Vui lòng kiểm tra email để biết thêm chi tiết.");
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
                         }
                         else
                         {
                             GửiEmailXacNhanHuy(idBenhNhan, idTuVan, transaction.Amount, false);
                             ThongBao("Hủy tư vấn thành công nhưng hoàn tiền thất bại. Vui lòng liên hệ hỗ trợ.");
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
+
                         }
                     }
                     else
                     {
                         ThongBao("Không thể hủy tư vấn. Vui lòng thử lại.");
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
+
                     }
                 }
                 else
                 {
                     ThongBao("Mã tư vấn không tồn tại hoặc không thuộc về bạn.");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "hideOverlay", "hideOverlay();", true);
+
                 }
             }
             catch (Exception ex)
             {
-                ThongBao("Đã xảy ra lỗi: " + ex.Message + "\\nInnerException: " + (ex.InnerException?.Message ?? "None"));
             }
         }
 
@@ -148,12 +155,9 @@ namespace NHOM20_DATN.Patient
         };
                 DataTable dt = db.docdulieu(sql, parameters);
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('SoBanGhiThanhToan: {dt.Rows.Count}');", true);
-
                 if (dt.Rows.Count > 0)
                 {
                     string debugInfo = $"OrderId: {dt.Rows[0]["OrderId"]}, TransId: {dt.Rows[0]["TransId"]}, Amount: {dt.Rows[0]["Amount"]}, ResultCode: {dt.Rows[0]["ResultCode"]}, ExtraData: {dt.Rows[0]["ExtraData"]}";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('TransactionInfo: {debugInfo.Replace("'", "\\'")}');", true);
 
                     return new TransactionInfo
                     {
@@ -173,7 +177,7 @@ namespace NHOM20_DATN.Patient
                     {
                         debugAll += "\\n" + string.Join("\\n", dtAll.AsEnumerable().Select(row => $"OrderId: {row["OrderId"]}, ExtraData: {row["ExtraData"]}"));
                     }
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('KhongTimThayGiaoDich: {debugAll.Replace("'", "\\'")}');", true);
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('KhongTimThayGiaoDich: {debugAll.Replace("'", "\\'")}');", true);
                 }
                 return null;
             }
@@ -212,7 +216,7 @@ namespace NHOM20_DATN.Patient
                     var response = await client.PostAsync(refundEndpoint, content);
                     string responseString = await response.Content.ReadAsStringAsync();
 
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('MoMo Response: {responseString}');", true);
+                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "debug", $"alert('MoMo Response: {responseString}');", true);
 
                     var jsonResponse = JsonConvert.DeserializeObject<dynamic>(responseString);
                     int resultCode = jsonResponse.resultCode;
